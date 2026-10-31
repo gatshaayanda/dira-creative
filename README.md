@@ -1,6 +1,6 @@
 # Iteration 13 — Service Studio prototype
 
-**Start every new implementation chat at [START-HERE.md](./START-HERE.md).** It mandates the reading order, implementation/verification workflow, account-adaptation contract and deployment handoff. Then use [AGENTS.md](./AGENTS.md) for rules, [FOUNDATION-BLUEPRINT.md](./FOUNDATION-BLUEPRINT.md) for architecture and invariants, and [CLONING.md](./CLONING.md) for cloning/adaptation. Do not make the product owner repeat these instructions.
+**Start every new implementation chat at [START-HERE.md](./START-HERE.md).** It mandates the reading order, implementation/verification workflow, account-adaptation contract and handoff. [AGENTS.md](./AGENTS.md) contains repository rules; [FOUNDATION-BLUEPRINT.md](./FOUNDATION-BLUEPRINT.md) documents architecture; [CLONING.md](./CLONING.md) governs source selection and adaptation; [docs/ADMIN-HUB-APP-FACTORY-SOP.md](./docs/ADMIN-HUB-APP-FACTORY-SOP.md) and [docs/CLONE-RESET-CHECKLIST.md](./docs/CLONE-RESET-CHECKLIST.md) govern new-project execution. Iteration 13 is the engineering standards/reference repository, not the default clone source. The product owner chooses each new project's source; if none is named, use `gatshaayanda/africhiko`. Existing projects are improved in place.
 
 The Sparkle Legacy chat-widget reference and evidence-led proposal live in [CHAT-WIDGET-RESEARCH.md](./CHAT-WIDGET-RESEARCH.md). These files explain what to preserve, where to edit, what is demo-only, and what needs deliberate project-specific replacement.
 
