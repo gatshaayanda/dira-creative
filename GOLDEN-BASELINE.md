@@ -2,7 +2,7 @@
 
 ## Status and purpose
 
-This repository's accepted baseline is the customer-first Service Studio PWA at GitHub `main`. Preserve it as the default foundation for new projects unless the product owner explicitly selects another starting point. This is the deliberate project-specific override to the former The Plug-first cloning rule.
+This repository's accepted baseline is the customer-first Service Studio PWA at GitHub `main`. Preserve it as Iteration 13's protected working reference and standards example. It is not the default cloning source for new projects. Source selection is controlled by the product owner; Africhiko is the default only when no source is named. This is the deliberate project-specific override to the former The Plug-first cloning rule.
 
 **Install/guide collision fix:** `1296f2bdc64a013e7b079467f95167cf02dfc527`. The golden branch was first created from `da03d01b750283980ea5d1aebe39856565e8e134` and then fast-forwarded to include the approved handoff/cloning policy cleanup. Treat the current head of `golden/iteration13-service-studio` as the authoritative recovery snapshot; do not infer its head from this document.
 
@@ -35,11 +35,11 @@ The stable recovery branch `golden/iteration13-service-studio` is intended to po
 
 ## New-project adaptation contract
 
-Iteration 13 is the default foundation for a new customer-first service/business PWA in this portfolio. It is not a universal copy-and-paste app and is not production-ready merely because its demo works.
+Iteration 13 is the engineering standards and reference repository. It is not a universal copy-and-paste app and is not production-ready merely because its demo works. It is not the default source for new client projects.
 
 For every new project:
 
-1. **Inspect the brief and target repo.** For an existing project, continue its repository; do not reclone it. For a new project, use this repo as the default starting point unless explicitly overridden.
+1. **Select and inspect the source.** For an existing project, continue its repository; do not reclone it. For a new project, use the exact source named by the product owner. If none is named, use `gatshaayanda/africhiko`. If asked for a recommendation, compare relevant industry-specific portfolio apps and explain material risks before cloning. Iteration 13 remains the standards reference, not the default source.
 2. **Research the real product and users online.** Use official sources and relevant UX/accessibility/security guidance. Record only findings that affect product decisions.
 3. **Map the customer journey first.** Define the customer's next action, service/catalogue, request/booking/order flow, status language, account needs and expected staff response.
 4. **Map staff/admin work.** Ensure customer requests and admin changes use the same intended records and workflows.
