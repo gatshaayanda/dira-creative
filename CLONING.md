@@ -1,8 +1,8 @@
 # Cloning Iteration 13 safely
 
-**Before cloning or adapting:** read [START-HERE.md](./START-HERE.md), [AGENTS.md](./AGENTS.md), [GOLDEN-BASELINE.md](./GOLDEN-BASELINE.md), [docs/PWA-INSTALLATION-LOCK.md](./docs/PWA-INSTALLATION-LOCK.md), [FOUNDATION-BLUEPRINT.md](./FOUNDATION-BLUEPRINT.md) and [README.md](./README.md). Start-HERE is the mandatory handoff so a new chat does not have to rediscover which files govern which steps. Iteration 13 is now the default cloning source for new customer-first PWA projects in this portfolio, including new Admin Hub apps, unless the product owner explicitly chooses another foundation. For an existing project, inspect and improve its current repository instead of recloning it.
+**Before cloning or adapting:** read [START-HERE.md](./START-HERE.md), [AGENTS.md](./AGENTS.md), [GOLDEN-BASELINE.md](./GOLDEN-BASELINE.md), [docs/PWA-INSTALLATION-LOCK.md](./docs/PWA-INSTALLATION-LOCK.md), [FOUNDATION-BLUEPRINT.md](./FOUNDATION-BLUEPRINT.md), [docs/ADMIN-HUB-APP-FACTORY-SOP.md](./docs/ADMIN-HUB-APP-FACTORY-SOP.md), [docs/CLONE-RESET-CHECKLIST.md](./docs/CLONE-RESET-CHECKLIST.md) and [README.md](./README.md). Start-HERE is the mandatory handoff. Iteration 13 is the engineering standards/reference repository, not the default clone source. The product owner selects the source for each new project; if none is specified, use `gatshaayanda/africhiko`. Existing projects are improved in place.
 
-Use this guide when creating a new project from Iteration 13. For an existing project, inspect and improve the existing repository instead of recloning it.
+Use this guide to select, inspect, clone and safely adapt the product owner's chosen source repository. It does not prescribe Iteration 13 as the source. For an existing project, inspect and improve that repository in place instead of recloning it.
 ## 1. Establish the source and target
 
 Before starting, record the current approved baseline from [GOLDEN-BASELINE.md](./GOLDEN-BASELINE.md). Never develop directly on the golden reference branch. Create the working project from the approved source commit and keep the baseline recoverable.
