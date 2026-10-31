@@ -2,7 +2,7 @@
 
 ## Status and purpose
 
-This repository's accepted baseline is the customer-first Service Studio PWA at GitHub `main`. Preserve it as Iteration 13's protected working reference and standards example. It is not the default cloning source for new projects. Source selection is controlled by the product owner; Africhiko is the default only when no source is named. This is the deliberate project-specific override to the former The Plug-first cloning rule.
+This repository's accepted baseline is the customer-first Service Studio PWA at GitHub `main`. Preserve it as Iteration 13's protected working reference and standards example. It is not the default cloning source for new projects. Source selection is controlled by the product owner; Africhiko is the default only when no source is named. This supersedes the repository's former Iteration-13-as-default cloning rule; The Plug-first wording is also historical and no longer governs source selection.
 
 **Install/guide collision fix:** `1296f2bdc64a013e7b079467f95167cf02dfc527`. The golden branch was first created from `da03d01b750283980ea5d1aebe39856565e8e134` and then fast-forwarded to include the approved handoff/cloning policy cleanup. Treat the current head of `golden/iteration13-service-studio` as the authoritative recovery snapshot; do not infer its head from this document.
 
