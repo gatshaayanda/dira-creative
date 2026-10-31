@@ -9,7 +9,7 @@
 1. `AGENTS.md` — project rules, protected behavior, source-of-truth and safety boundaries.
 2. `FOUNDATION-BLUEPRINT.md` — repository map, architecture, data model, protected install/offline invariants, verification and known limitations.
 3. `README.md` — how the customer and admin demo currently works and what is already implemented.
-4. `CLONING.md` — required when cloning/adapting this foundation, changing app identity/PWA assets, or reusing patterns in another project. Iteration 13 is now the default cloning foundation for new customer-first apps in this portfolio unless the product owner explicitly selects another source.
+4. `CLONING.md` — required when selecting a source, cloning/adapting any portfolio project, resetting identity/PWA assets, or reusing patterns in another project. Iteration 13 is the standards/reference repository, not the default clone source; Africhiko is the default when the product owner has not selected another source.
 5. Read the relevant route/component docs and code referenced by those files, then inspect the actual latest commit, package scripts and CI/deployment state.
 
 Do not stop after reading only one file. These documents have different purposes and are designed to be used together.
