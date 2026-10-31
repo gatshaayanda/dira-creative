@@ -1,14 +1,19 @@
-# Cloning Iteration 13 safely
+# Cloning and adapting portfolio projects safely
 
 **Before cloning or adapting:** read [START-HERE.md](./START-HERE.md), [AGENTS.md](./AGENTS.md), [GOLDEN-BASELINE.md](./GOLDEN-BASELINE.md), [docs/PWA-INSTALLATION-LOCK.md](./docs/PWA-INSTALLATION-LOCK.md), [FOUNDATION-BLUEPRINT.md](./FOUNDATION-BLUEPRINT.md), [docs/ADMIN-HUB-APP-FACTORY-SOP.md](./docs/ADMIN-HUB-APP-FACTORY-SOP.md), [docs/CLONE-RESET-CHECKLIST.md](./docs/CLONE-RESET-CHECKLIST.md) and [README.md](./README.md). Start-HERE is the mandatory handoff. Iteration 13 is the engineering standards/reference repository, not the default clone source. The product owner selects the source for each new project; if none is specified, use `gatshaayanda/africhiko`. Existing projects are improved in place.
 
 Use this guide to select, inspect, clone and safely adapt the product owner's chosen source repository. It does not prescribe Iteration 13 as the source. For an existing project, inspect and improve that repository in place instead of recloning it.
 ## 1. Establish the source and target
 
-Before starting, record the current approved baseline from [GOLDEN-BASELINE.md](./GOLDEN-BASELINE.md). Never develop directly on the golden reference branch. Create the working project from the approved source commit and keep the baseline recoverable.
-1. Confirm the canonical source is `gatshaayanda/iteration13`, record the source commit and inspect its current `AGENTS.md`, package scripts, route tree, and recent implementation.
-2. Confirm the new repository name, product brief, intended Firebase project (if any), domain, brand, and media. Do not invent unknown business details.
-3. Clone only after reading this file and the current source implementation. Never reuse another business's Firebase project, secrets, private data, service-worker configuration or deployment target.
+The product owner selects the source repository. Record its exact `owner/repository`, default branch and commit. Never develop directly on Iteration 13's golden recovery branch.
+
+1. Use the exact source the product owner names. Do not silently substitute Iteration 13, Africhiko or another repository.
+2. If no source is named, use `gatshaayanda/africhiko` as the default starting point for new customer-facing PWAs and Admin Hub apps.
+3. If asked to recommend a source, inspect relevant portfolio repositories and compare industry fit, customer journey, admin workflows, architecture, integrations, protected features, visual quality and adaptation risk. Explain the recommendation before cloning.
+4. Use Iteration 13 as the engineering standards, architecture and SOP reference—not the default clone source. Read its relevant governance documents and apply the standards to the selected source.
+5. Confirm the target repository, intended empty local directory, product brief, domain, brand, media and integration decisions. Do not invent unknown business details.
+6. Inspect source and target branches/remotes before cloning or pushing. Never overwrite an existing local project or non-empty remote; stop and reconcile safely. Never force-push.
+7. Read `docs/ADMIN-HUB-APP-FACTORY-SOP.md` and `docs/CLONE-RESET-CHECKLIST.md` and record source lineage plus target baseline in the new project's `AGENTS.md`.
 
 ## 2. Preserve installation before changing identity
 
