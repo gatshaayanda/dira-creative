@@ -7,7 +7,7 @@ Read [GOLDEN-BASELINE.md](./GOLDEN-BASELINE.md) for the approved recovery point 
 This file is the fast technical handoff for a new ChatGPT/Codex conversation. GitHub main is the source of truth; inspect the actual latest commit rather than trusting an old chat summary.
 ## What this repository is
 
-Iteration 13 is a **candidate reusable, mobile-first PWA foundation** demonstrated through a local-only service-order studio. It is not yet a production business app, secure admin, cloud-backed CRM, or universal template. Its primary purpose is to prove the customer journey, admin feedback, installation and offline patterns before they are promoted into future apps.
+Iteration 13 is the **engineering standards/reference repository** and also contains a mobile-first PWA prototype demonstrated through a local-only service-order studio. It is not a production business app, secure admin, cloud-backed CRM, universal template or default clone source. Use its proven patterns as references only after inspecting the selected target source and confirming the pattern fits.
 
 ## Start here (fast map)
 
