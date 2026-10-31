@@ -110,7 +110,7 @@ Preserve proven customer journeys, authentication, booking/order flows, uploads,
 
 ## 8. Product and visual implementation standard
 
-Apply consistent craftsmanship, not a universal theme:
+Read [VISUAL-DIRECTION-STANDARD.md](./VISUAL-DIRECTION-STANDARD.md) before visual planning or visual QA. It interprets the product owner's WashRide screenshot as a reference for mobile composition, hierarchy and finish—not as a brand or fixed template. Apply consistent craftsmanship, not a universal theme:
 
 - Mobile-first responsive layout and industry-appropriate identity.
 - Deliberate typography, hierarchy, spacing, imagery, icons and component consistency.
