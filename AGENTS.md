@@ -12,7 +12,16 @@
 ## Purpose
 Iteration 13 is the standards/reference repository and a working prototype that demonstrates responsive customer journeys, browser-local demo workflows, protected PWA installation, iPhone guidance, offline behavior, and staff/admin patterns. It is not the mandatory cloning source for new projects. The service catalogue is sample content, not a real business offering.
 
-## Portfolio source-selection contract\n\n- The product owner chooses the source repository for each new project. Use the exact repository they name; inspect it and recommend changes only after evidence-based comparison. Never silently substitute Iteration 13 or another repository.\n- If no source is named, `gatshaayanda/africhiko` is the default starting point for new customer-facing PWAs and Admin Hub applications. Confirm the current repository state before cloning.\n- Iteration 13 is the standards, architecture and SOP reference—not the default cloning source. Apply its reusable standards without assuming its demo architecture or features belong in every client app.\n- If the product owner asks for a source recommendation, compare relevant portfolio repositories by industry, customer journey, admin workflows, architecture, integrations, protected behavior, visual quality and adaptation risk. State the recommended source and material risks before cloning.\n- Existing projects are improved in place. Never reclone or replace an established implementation merely to adopt a different foundation.\n- Clone only into the intended empty local directory, connect the new working copy to the new client remote, and establish a clean baseline safely. Inspect a non-empty destination/remote; never force-push or overwrite it.\n\n## Source of truth and workflow
+## Portfolio source-selection contract
+
+- The product owner chooses the source repository for each new project. Use the exact repository they name; inspect it and recommend changes only after evidence-based comparison. Never silently substitute Iteration 13 or another repository.
+- If no source is named, `gatshaayanda/africhiko` is the default starting point for new customer-facing PWAs and Admin Hub applications. Confirm the current repository state before cloning.
+- Iteration 13 is the standards, architecture and SOP reference—not the default cloning source. Apply its reusable standards without assuming its demo architecture or features belong in every client app.
+- If the product owner asks for a source recommendation, compare relevant portfolio repositories by industry, customer journey, admin workflows, architecture, integrations, protected behavior, visual quality and adaptation risk. State the recommended source and material risks before cloning.
+- Existing projects are improved in place. Never reclone or replace an established implementation merely to adopt a different foundation.
+- Clone only into the intended empty local directory, connect the new working copy to the new client remote, and establish a clean baseline safely. Inspect a non-empty destination/remote; never force-push or overwrite it.
+
+## Source of truth and workflow
 - Product owner / final reviewer: the user. Implementation: ChatGPT.
 - GitHub is the source of truth. Inspect the actual branch, latest commit, working tree, instructions, routes, service worker, install code and tests before changing them.
 - Existing project workflow: START → INSPECT → BUILD → VERIFY → CHECKPOINT. Keep inspection proportional; do not endlessly re-audit a repository whose context is established.
@@ -20,7 +29,11 @@ Iteration 13 is the standards/reference repository and a working prototype that 
 - Preserve successful behavior. Prefer focused changes over rewrites. Never claim a test, deployment, device test, offline write or Firebase workflow passed without evidence.
 - When authorized, push changes to `main`. The user handles Vercel deployments unless explicitly delegated.
 
-## New-project documentation handoff\n\nEvery new client repository must receive a project-specific `AGENTS.md` before substantial implementation. It must describe the actual source lineage, product identity, architecture and data flows, customer/admin journeys, authentication and authorization boundaries, integrations, setup requirements, known limitations, protected features/files, PWA installation and chatbot locks, verification commands and the latest verified checkpoint. Carry forward only protections that exist in the selected source or are explicitly required by the product owner; do not falsely claim that a feature exists. Update the file when material decisions or verified behavior change. The client repo's own code and instructions then become its source of truth.\n\n## Evidence-led change and regression-prevention protocol
+## New-project documentation handoff
+
+Every new client repository must receive a project-specific `AGENTS.md` before substantial implementation. It must describe the actual source lineage, product identity, architecture and data flows, customer/admin journeys, authentication and authorization boundaries, integrations, setup requirements, known limitations, protected features/files, PWA installation and chatbot locks, verification commands and the latest verified checkpoint. Carry forward only protections that exist in the selected source or are explicitly required by the product owner; do not falsely claim that a feature exists. Update the file when material decisions or verified behavior change. The client repo's own code and instructions then become its source of truth.
+
+## Evidence-led change and regression-prevention protocol
 
 Apply this protocol to every feature, bug report, visual complaint, install issue, and project adaptation. It is a default for every project cloned from this foundation.
 
