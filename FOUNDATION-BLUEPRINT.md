@@ -49,9 +49,12 @@ Iteration 13 is a **candidate reusable, mobile-first PWA foundation** demonstrat
 
 ## How to extend it safely
 
-### New client project
+### New client project — standards apply; source is selected separately
 
-- First decide whether the task is a new app cloned from this foundation or work on an existing app. Do not overwrite an existing implementation just to adopt this repo.
+- First decide whether this is a new app or work on an existing app. Existing projects are improved in place; never reclone to replace a working implementation.
+- Use the exact source repository named by the product owner. If none is named, use `gatshaayanda/africhiko` by default for new customer-facing PWAs/Admin Hub apps. If asked to recommend, compare relevant portfolio repositories and explain material risks before cloning.
+- Iteration 13 supplies engineering standards and reusable safeguards; it is not the default cloning source. Do not assume its demo architecture, data model, routes or features belong in the target app.
+- Read `docs/ADMIN-HUB-APP-FACTORY-SOP.md` and `docs/CLONE-RESET-CHECKLIST.md` before cloning/adaptation.
 - Create an identity reset checklist: app name, visible copy, domain/base URL, metadata/Open Graph, manifest, PNG/SVG icons, Apple metadata, cache namespaces, routes, media, install guide and identity-verification checks.
 - Replace demo services, prices, copy and media with project-specific requirements. Do not ship sample prices or local-only account semantics as real functionality.
 - Decide the persistence boundary before building: local prototype, Firebase-backed records, or another backend. If server-backed, implement ownership/authorization at the rules/server boundary; never just make a database public.
