@@ -15,11 +15,11 @@ The WashRide mobile-home screenshot supplied by the product owner is a useful ex
 - **Unified component language:** buttons, cards, iconography, borders, highlights and spacing feel designed as one system.
 - **Premium finish:** deliberate lighting/imagery, contrast, depth and restrained accents make the interface feel like a real product rather than a wireframe.
 
-The screenshot is a car-wash example. Do not reuse the WashRide name, logo, car/water artwork, exact blue palette, copy, layout proportions or business-specific labels unless explicitly requested. Do not reproduce it pixel-for-pixel. The transferable lesson is the quality, clarity and customer-flow composition.
+The screenshot is a car-wash example. Do not reuse the WashRide name, logo, car/water artwork, exact blue palette, copy, layout proportions or business-specific labels unless explicitly requested. Do not reproduce it pixel-for-pixel. The transferable lesson is the quality, clarity and customer-flow composition. The screenshot itself is a reference supplied in conversation; unless its image file is explicitly added to this repository, future chats must not be told that a committed image asset exists.
 
 ## The standard to aim for
 
-Every project should feel like a carefully art-directed, installable mobile product, not a desktop website compressed onto a phone.
+Every project should feel like a carefully art-directed, installable mobile product, not a desktop website compressed onto a phone. **Compactness is a product-wide requirement, not a homepage-only treatment.** It applies to public home screens, booking/order flows, customer accounts, staff/admin workspaces, dashboards, content managers, settings, forms, lists, tables and detail views. The home screen may use a cinematic hero, but inner screens must not become oversized, spacious marketing pages by default.
 
 ### 1. Brand and first impression
 
@@ -45,7 +45,23 @@ Every project should feel like a carefully art-directed, installable mobile prod
 - Keep account/profile access findable without letting it overpower the main action.
 - Do not duplicate destinations across hero, cards and navigation without a clear reason.
 
-### 4. Components and visual system
+### 4. Compactness and information density — every screen
+
+This is a mandatory cross-application rule. Do not make only the homepage compact while booking, customer and admin surfaces become tall, oversized or wasteful.
+
+- Design around the user's task and the amount of information they need at once. Prefer a compact, purposeful app interface over excessive vertical padding, oversized headings, tall cards and decorative gaps.
+- Keep page headers concise. Use a small title, brief context and only the actions needed on that screen; avoid repeating the business logo, large hero, welcome copy or promotional banners on every inner route.
+- Use compact cards and rows with aligned labels, values, statuses and actions. Keep related information together; avoid one fact per oversized card.
+- Forms should use clear labels, sensible field heights, concise helper text and logical grouping. Avoid giant input fields, excessive vertical gaps and multi-screen scrolling for a handful of fields. Preserve readable touch targets and error messaging.
+- Booking/order steps should keep the current step, selected service/item, date/time and next action visible with minimal repeated explanation. Use progressive disclosure for optional details, not for essential price, date, availability, consent or confirmation information.
+- Customer pages should prioritize the customer's records, current status, next action and relevant history. Use compact lists, tabs or grouped sections; do not bury the useful information beneath oversized welcome panels or decorative content.
+- Admin pages should prioritize operational density: filters, search, status, key record details and actions should be scannable together. Use compact tables or responsive list rows, restrained toolbars, concise metrics and well-organized detail panels. Avoid oversized dashboard tiles, huge empty cards and excessive whitespace that forces unnecessary scrolling.
+- On narrow screens, stack only when needed; keep related controls together and make important actions reachable. On larger screens, use available width intelligently instead of stretching every card or field across the page.
+- Compact does not mean cramped: maintain readable type, sufficient contrast, clear grouping, comfortable touch targets, visible focus and spacing that distinguishes sections.
+- Do not reduce font sizes, tap targets or line spacing below accessible/readable levels to achieve density. Remove redundant decoration and padding before shrinking content.
+- Use a full-height hero or cinematic image only where it serves the landing-page purpose. Inner booking, account and admin routes should generally open directly onto the task, not repeat the homepage experience.
+
+### 5. Components and visual system
 
 Define a coherent system for:
 - Typography scale, line-height, weight and truncation.
@@ -57,7 +73,7 @@ Define a coherent system for:
 
 Use consistent icons from one coherent family. Avoid emoji as a substitute for designed interface icons. Use gradients, glow, shadows, blur and motion with restraint; effects must not reduce legibility or performance.
 
-### 5. Real content and imagery
+### 6. Real content and imagery
 
 - Prefer the business's own high-quality photographs, products, staff, premises, work and videos when available.
 - Choose imagery that explains the category or service, not merely attractive but unrelated stock.
@@ -66,7 +82,7 @@ Use consistent icons from one coherent family. Avoid emoji as a substitute for d
 - If suitable assets are not available, use a deliberate branded fallback and identify the exact assets needed from the product owner.
 - Never invent customer reviews, business locations, prices, awards, partners or service claims.
 
-### 6. Mobile behavior and accessibility
+### 7. Mobile behavior and accessibility
 
 - Design at narrow phone widths first, then adapt to larger screens.
 - Keep primary actions reachable and touch targets comfortable; target 44px where practical and meet WCAG 2.2 AA minimum target-size requirements and exceptions.
@@ -75,11 +91,11 @@ Use consistent icons from one coherent family. Avoid emoji as a substitute for d
 - Support reduced motion and avoid animation that blocks or delays task completion.
 - Check real device behavior when available; a desktop responsive preview is not proof of physical-device QA.
 
-### 7. Progressive disclosure
+### 8. Progressive disclosure
 
 Show the essential decision first. Put supporting detail in well-designed modals, bottom sheets, accordions, tabs or dedicated views when that reduces clutter. Use truncation for previews, but provide a clear way to read the complete content. Never truncate critical prices, dates, safety information, eligibility or confirmation details.
 
-### 8. Functional finish
+### 9. Functional finish
 
 Visual polish includes behavior, not decoration. Every visible control must work. Provide appropriate loading, empty, validation, error, pending, success and offline states. Keep forms short and purposeful. Make booking, ordering, enquiry, account and admin actions coherent end to end. Never show fake progress, fake availability, fake payment confirmation or pretend CRUD.
 
@@ -112,6 +128,8 @@ Before calling a screen finished, ask:
 8. Are modals, truncation and progressive disclosure used to reduce clutter without hiding important information?
 9. Do all visible controls work and provide truthful feedback?
 10. Does the design still feel appropriate to this specific industry and brand?
+11. Are booking, customer and admin screens as deliberately compact and scannable as the homepage is visually polished?
+12. Can a user complete the main task without unnecessary scrolling, repeated headers, oversized cards or decorative filler?
 
 If the result looks like a generic template, a desktop page squeezed into a phone, or a collection of unrelated cards, it is not ready.
 
