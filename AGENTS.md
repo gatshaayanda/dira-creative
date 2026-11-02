@@ -50,7 +50,8 @@ These rules complement—not replace—the PWA installation lock and other proje
 
 ## Reusable product principles
 - Customer action first. Make the next step obvious, reduce unnecessary navigation, and keep copy concise.
-- Mobile-first, accessible, legible UI; WCAG 2.2 AA contrast is the baseline. Verify keyboard focus, narrow layouts, empty/error/loading states and touch targets.
+- Mobile-first, accessible, legible UI; WCAG 2.2 AA contrast is the baseline. Apply compact, task-focused information density across every surface—not only the homepage—including booking, customer account and admin pages. Avoid oversized headers/cards, redundant welcome/hero sections and unnecessary vertical whitespace; keep operational information scannable without making controls cramped. Verify keyboard focus, narrow layouts, empty/error/loading states and touch targets.
+- For visual planning and QA, follow `docs/VISUAL-DIRECTION-STANDARD.md`; its compactness requirement applies to all routes and screen types, while visual identity remains industry-specific.
 - Real workflows over decorative controls. Validate forms, persist state, expose useful feedback, and make admin changes visible to the customer view. Use visible press/focus states and accessible, dismissible toasts for meaningful outcomes; never claim a local write succeeded unless localStorage accepted it. Avoid JavaScript alert/confirm for routine UX.
 - Keep account creation proportionate. Let customers explore before requesting credentials unless a real product requirement demands otherwise.
 - Minimize Firebase reads/writes. Do not change Firebase config, rules, collections or production data without explicit instruction.
