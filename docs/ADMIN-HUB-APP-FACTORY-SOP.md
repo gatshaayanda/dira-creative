@@ -115,6 +115,7 @@ Read [VISUAL-DIRECTION-STANDARD.md](./VISUAL-DIRECTION-STANDARD.md) before visua
 - Mobile-first responsive layout and industry-appropriate identity.
 - Deliberate typography, hierarchy, spacing, imagery, icons and component consistency.
 - One clear primary action per screen; secondary content progressively disclosed.
+- Compactness across the entire product: homepage, booking/order flows, customer accounts and staff/admin workspaces. Use concise headers, compact task-focused cards/rows, grouped forms and scannable admin data. Do not reserve compactness for the homepage or make inner pages oversized and scroll-heavy.
 - Accessible labels, readable contrast, visible keyboard focus, sensible touch targets and reduced-motion support; use WCAG 2.2 AA as the baseline.
 - Real loading, empty, validation, error, pending, success and offline states.
 - Working end-to-end customer and staff/admin actions, not decorative or fake CRUD.
