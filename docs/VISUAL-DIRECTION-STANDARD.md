@@ -15,7 +15,7 @@ The WashRide mobile-home screenshot supplied by the product owner is a useful ex
 - **Unified component language:** buttons, cards, iconography, borders, highlights and spacing feel designed as one system.
 - **Premium finish:** deliberate lighting/imagery, contrast, depth and restrained accents make the interface feel like a real product rather than a wireframe.
 
-The screenshot is a car-wash example. Do not reuse the WashRide name, logo, car/water artwork, exact blue palette, copy, layout proportions or business-specific labels unless explicitly requested. Do not reproduce it pixel-for-pixel. The transferable lesson is the quality, clarity and customer-flow composition. The screenshot itself is a reference supplied in conversation; unless its image file is explicitly added to this repository, future chats must not be told that a committed image asset exists.
+The screenshot is a car-wash example. Do not reuse the WashRide name, logo, car/water artwork, exact blue palette, copy, layout proportions or business-specific labels unless explicitly requested. Do not reproduce it pixel-for-pixel. The transferable lesson is the quality, clarity and customer-flow composition. **Canonical image asset:** `docs/assets/washride-home-reference.jpeg` (WashRide mobile-home reference supplied by the product owner). Future chats must open and inspect this exact image before visual planning or visual QA; do not rely on a text-only recollection or ask the product owner to re-send it. If the asset is missing from a checkout, stop and restore it from the repository history before proceeding.
 
 ## The standard to aim for
 
@@ -135,4 +135,4 @@ If the result looks like a generic template, a desktop page squeezed into a phon
 
 ## How future chats must use this document
 
-Read this file when planning or reviewing visual work. Use the supplied WashRide screenshot as a reference for mobile composition and finish only where useful. Combine it with the project's own brand, assets, audience, route structure and customer journey. Do not redesign a protected/golden screen or expand the task scope merely because this standard exists. For visual-only tasks, preserve working data flows, authentication, PWA installation, chatbot behavior and other protected functionality.
+Read this file and open `docs/assets/washride-home-reference.jpeg` when planning or reviewing visual work. The image is the canonical visual reference and must be inspected—not merely inferred from this document. Use it as a reference for mobile composition and finish only where useful. Combine it with the project's own brand, assets, audience, route structure and customer journey. Do not redesign a protected/golden screen or expand the task scope merely because this standard exists. For visual-only tasks, preserve working data flows, authentication, PWA installation, chatbot behavior and other protected functionality.
