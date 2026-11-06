@@ -10,8 +10,9 @@
 2. `FOUNDATION-BLUEPRINT.md` — repository map, architecture, data model, protected install/offline invariants, verification and known limitations.
 3. `README.md` — how the customer and admin demo currently works and what is already implemented.
 4. `CLONING.md` — required when selecting a source, cloning/adapting any portfolio project, resetting identity/PWA assets, or reusing patterns in another project. Iteration 13 is the standards/reference repository, not the default clone source; Africhiko is the default when the product owner has not selected another source.
-5. `docs/VISUAL-DIRECTION-STANDARD.md` — required when planning or reviewing visual changes; use it as a craftsmanship and mobile-composition reference, not a universal theme.
-5. Read the relevant route/component docs and code referenced by those files, then inspect the actual latest commit, package scripts and CI/deployment state.
+5. `docs/VISUAL-DIRECTION-STANDARD.md` — required when planning or reviewing visual changes; use it as a craftsmanship and mobile-composition reference, not a universal theme. Open and inspect `docs/assets/washride-home-reference.jpeg` itself.
+6. `docs/OPERATIONAL-TRANSPARENCY-STANDARD.md` — required when implementing or reviewing meaningful user-facing or staff-facing operations, loading/progress, search, status, uploads, payments, messaging, integrations or delivery handoff.
+7. Read the relevant route/component docs and code referenced by those files, then inspect the actual latest commit, package scripts and CI/deployment state.
 
 Do not stop after reading only one file. These documents have different purposes and are designed to be used together.
 
@@ -35,7 +36,7 @@ Continue with the task only after these gates are satisfied. The installation me
 2. Read the four documents above in the relevant scope; inspect only the implementation related to the task.
 3. **Installation is a locked foundation capability.** Before editing anything that could affect it, read [docs/PWA-INSTALLATION-LOCK.md](./docs/PWA-INSTALLATION-LOCK.md). Preserve the current approved runtime and all install invariants. If installation is reported broken, follow the lock's recovery sequence; never add a replacement modal, duplicate event listener, generic browser-menu fallback, or speculative prompt fix.
 4. Preserve the customer journey, service-worker/cache namespace, local demo data shape and UploadThing configuration unless the brief explicitly calls for changing them.
-5. Implement the requested end-to-end behavior, including its customer and admin sides, validation, empty/error/success states, mobile layout and truthful offline behavior.
+5. Implement the requested end-to-end behavior, including its customer and admin sides, validation, empty/error/success states, mobile layout and truthful offline behavior. Apply the operational-transparency standard to meaningful activity and lifecycle states; apply the WashRide image reference and visual standard to visual work.
 6. Run `npm ci`, `npm run verify:identity`, `npm run lint` and `npm run build` where an execution environment is available. If a check cannot be run, say so and use an available CI/deployment signal; never infer a passing build from a successful GitHub edit.
 7. If a build fails, get the actual error log, fix the first failure, rerun checks, and repeat until green. Do not guess fixes or ask the product owner to debug logs that the agent can access.
 8. Push to `main` when implementation/pushing is authorized. Confirm the exact commit on `main`, check the resulting production deployment status, and distinguish code pushed, build passed and deployment verified.

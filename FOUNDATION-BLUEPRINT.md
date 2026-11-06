@@ -47,6 +47,10 @@ Iteration 13 is the **engineering standards/reference repository** and also cont
 7. Do not claim local writes reached a server. A local change should only be shown as saved if localStorage accepted the write.
 8. Keep mobile-first layout, visible focus, readable touch targets, status announcements and reduced-motion support.
 
+## Operational transparency is part of the foundation
+
+The reusable standard is [docs/OPERATIONAL-TRANSPARENCY-STANDARD.md](./docs/OPERATIONAL-TRANSPARENCY-STANDARD.md). Apply it alongside the canonical visual reference in [docs/VISUAL-DIRECTION-STANDARD.md](./docs/VISUAL-DIRECTION-STANDARD.md) and `docs/assets/washride-home-reference.jpeg`. The current prototype's loading and local-demo states must be described according to their actual implementation; they are not evidence of remote persistence, live staff activity, or production service delivery. When adapting a pattern, wire activity, progress and status to the target app's real data path and document any local-only behavior.
+
 ## How to extend it safely
 
 ### New client project — standards apply; source is selected separately

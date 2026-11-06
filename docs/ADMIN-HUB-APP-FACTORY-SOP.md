@@ -110,7 +110,7 @@ Preserve proven customer journeys, authentication, booking/order flows, uploads,
 
 ## 8. Product and visual implementation standard
 
-Read [VISUAL-DIRECTION-STANDARD.md](./VISUAL-DIRECTION-STANDARD.md) before visual planning or visual QA. It interprets the product owner's WashRide screenshot as a reference for mobile composition, hierarchy and finish—not as a brand or fixed template. Apply consistent craftsmanship, not a universal theme:
+Read [VISUAL-DIRECTION-STANDARD.md](./VISUAL-DIRECTION-STANDARD.md) before visual planning or visual QA, and open the canonical `docs/assets/washride-home-reference.jpeg` image itself. Read [OPERATIONAL-TRANSPARENCY-STANDARD.md](./OPERATIONAL-TRANSPARENCY-STANDARD.md) when designing meaningful workflows and their loading, progress, status, activity and outcome communication. Both standards apply together: visual craft makes the product inviting; operational transparency makes its real value understandable. Apply consistent craftsmanship, not a universal theme:
 
 - Mobile-first responsive layout and industry-appropriate identity.
 - Deliberate typography, hierarchy, spacing, imagery, icons and component consistency.
@@ -118,7 +118,8 @@ Read [VISUAL-DIRECTION-STANDARD.md](./VISUAL-DIRECTION-STANDARD.md) before visua
 - Compactness across the entire product: homepage, booking/order flows, customer accounts and staff/admin workspaces. Use concise headers, compact task-focused cards/rows, grouped forms and scannable admin data. Do not reserve compactness for the homepage or make inner pages oversized and scroll-heavy.
 - Accessible labels, readable contrast, visible keyboard focus, sensible touch targets and reduced-motion support; use WCAG 2.2 AA as the baseline.
 - Real loading, empty, validation, error, pending, success and offline states.
-- Working end-to-end customer and staff/admin actions, not decorative or fake CRUD.
+- Genuine operational transparency across relevant journeys: show real searches/checks, saves, uploads, reviews, assignments, processing and outcomes; make customer and staff status views consistent and actionable.
+- Working end-to-end customer and staff/admin actions, not decorative or fake CRUD. Progress and activity must be driven by actual operations, never staged or fabricated.
 - Use modals, expandable details and truncation where they reduce clutter without hiding essential information.
 - Do not invent business claims, testimonials, prices, availability, payment status, partners or social proof.
 - Research the actual industry and audience before choosing navigation, account extras, interaction metaphors or content hierarchy. Record only decisions that materially affect the product.
@@ -139,7 +140,8 @@ Review the complete diff against the task and protected-feature inventory. Run o
 - Customer journey and all requested primary actions.
 - Staff/admin CRUD and authorization.
 - Mobile layout, keyboard access, focus, contrast and reduced motion.
-- Loading, empty, error, pending, success and offline states.
+- Loading, empty, error, pending, success and offline states, including meaningful progress and a clear outcome/next action.
+- Operational transparency: verify visible stages against real handlers/data, truthful status transitions, customer ↔ staff consistency, activity history where consequential, privacy/authorization and honest local/offline/integration boundaries.
 - Identity reset: no unintended source names, icons, IDs, domains or sample business content.
 - Installation and chatbot behavior, where present, against the target's documented protected baseline.
 - Data ownership, uploads and integration boundaries.

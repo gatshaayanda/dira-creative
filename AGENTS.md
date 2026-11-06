@@ -6,6 +6,7 @@
 - **Repository role:** Iteration 13 is the portfolio's engineering standards, architecture and SOP reference. It is not the default cloning source. New-project source selection is governed by `CLONING.md` and `docs/ADMIN-HUB-APP-FACTORY-SOP.md`: use `gatshaayanda/africhiko` by default unless the product owner names or approves another source. Existing projects are improved in place.
 - **Mandatory first read:** [START-HERE.md](./START-HERE.md). Every new implementation chat must start there and follow its reading order; never ask the product owner which docs to inspect.
 - **Visual direction (mandatory):** read [docs/VISUAL-DIRECTION-STANDARD.md](./docs/VISUAL-DIRECTION-STANDARD.md) AND open `docs/assets/washride-home-reference.jpeg` before planning, implementing or reviewing any visual/page design. The image is the canonical persistent reference; do not ask the product owner to re-upload it or rely on prose summaries. Apply its composition, hierarchy and finish—not its car-wash branding or literal styling—to the target product.
+- **Operational transparency (mandatory):** read [docs/OPERATIONAL-TRANSPARENCY-STANDARD.md](./docs/OPERATIONAL-TRANSPARENCY-STANDARD.md) before implementing or reviewing meaningful loading, search, booking, order, enquiry, upload, payment, messaging, account, admin, background-job or handover workflows. Show genuine activity and outcomes; never fake progress or expose sensitive internals.
 - Then read FOUNDATION-BLUEPRINT.md, README.md, and CLONING.md as directed by START-HERE. These files serve different purposes; do not substitute chat summaries for them.
 - Read CHAT-WIDGET-RESEARCH.md before adding a chat helper. The current deterministic adaptation lives in src/app/ServiceGuide.tsx; that file separates the Sparkle Legacy reference from research-backed recommendations.
 - Before claiming a fix is complete, run the repository's available checks, inspect their actual output, and verify the exact commit/deployment state. A GitHub edit or merge alone is not a build verification. Never weaken or remove install regression checks to make a build pass.
@@ -56,6 +57,15 @@ These rules complement—not replace—the PWA installation lock and other proje
 - Keep account creation proportionate. Let customers explore before requesting credentials unless a real product requirement demands otherwise.
 - Minimize Firebase reads/writes. Do not change Firebase config, rules, collections or production data without explicit instruction.
 - Keep demo data, project-specific requirements and unverified ideas distinct. Local browser storage is not shared persistence, authenticated access, a server database or cloud synchronization.
+
+## Operational transparency — show genuine work and outcomes
+
+- Apply `docs/OPERATIONAL-TRANSPARENCY-STANDARD.md` to every relevant customer and staff/admin workflow. It complements the mandatory WashRide visual reference; both standards apply together.
+- Make genuine work legible at the moment it matters: what is being searched, checked, saved, uploaded, reviewed, assigned, processed or completed; what actually happened; and what the next useful action is.
+- Drive progress, statuses, timestamps and activity history from real handlers, persisted records or authoritative integration responses. Never invent stages, percentages, queue positions, completion estimates, payment confirmation, message delivery or background activity.
+- Distinguish requested from confirmed, local from remote, cached from synced, pending from completed, and sent from delivered. State offline and integration limits honestly.
+- Keep the experience compact and accessible. Customer views explain their own record and next step; admin views expose actionable operational context. Enforce privacy and role/record authorization before showing activity.
+- For instant work, use concise confirmation instead of theatrical loading. Never slow a system down to make effort appear greater.
 
 ## Demo behavior
 - The customer service-order demo on `/` uses localStorage intentionally so a reviewer can submit an order without Firebase credentials.

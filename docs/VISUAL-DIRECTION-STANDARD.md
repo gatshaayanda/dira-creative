@@ -99,6 +99,10 @@ Show the essential decision first. Put supporting detail in well-designed modals
 
 Visual polish includes behavior, not decoration. Every visible control must work. Provide appropriate loading, empty, validation, error, pending, success and offline states. Keep forms short and purposeful. Make booking, ordering, enquiry, account and admin actions coherent end to end. Never show fake progress, fake availability, fake payment confirmation or pretend CRUD.
 
+### 10. Operational transparency — make real work visible
+
+Visual polish must help people understand that the application is doing useful work. Apply [OPERATIONAL-TRANSPARENCY-STANDARD.md](./OPERATIONAL-TRANSPARENCY-STANDARD.md) alongside this visual reference. Across relevant customer and staff/admin screens, make genuine search, checking, saving, uploading, review, assignment, processing and completion visible in concise, context-appropriate language. Show the current state, meaningful update and next action; use measurable progress only when the underlying operation provides it. Do not add fake loading stages, artificial delay, animated percentages, decorative activity feeds or oversized status cards. The customer should see their own progress and next step; staff should see the actionable work behind it. Keep both views compact, accessible, brand-appropriate and consistent with the quality/composition of `washride-home-reference.jpeg`.
+
 ## Adapt the direction to the industry
 
 The same craftsmanship should produce different outcomes:
@@ -130,9 +134,12 @@ Before calling a screen finished, ask:
 10. Does the design still feel appropriate to this specific industry and brand?
 11. Are booking, customer and admin screens as deliberately compact and scannable as the homepage is visually polished?
 12. Can a user complete the main task without unnecessary scrolling, repeated headers, oversized cards or decorative filler?
+13. When work takes time, can the user see what is genuinely happening and what has actually completed?
+14. Are displayed stages, percentages, statuses, timestamps and outcomes grounded in real operations rather than staged theatre?
+15. Can the customer and authorized staff understand the same record's current state and next action without exposing private information?
 
 If the result looks like a generic template, a desktop page squeezed into a phone, or a collection of unrelated cards, it is not ready.
 
 ## How future chats must use this document
 
-Read this file and open `docs/assets/washride-home-reference.jpeg` when planning or reviewing visual work. The image is the canonical visual reference and must be inspected—not merely inferred from this document. Use it as a reference for mobile composition and finish only where useful. Combine it with the project's own brand, assets, audience, route structure and customer journey. Do not redesign a protected/golden screen or expand the task scope merely because this standard exists. For visual-only tasks, preserve working data flows, authentication, PWA installation, chatbot behavior and other protected functionality.
+Read this file and open `docs/assets/washride-home-reference.jpeg` when planning or reviewing visual work. The image is the canonical visual reference and must be inspected—not merely inferred from this document. For meaningful workflows, also apply `docs/OPERATIONAL-TRANSPARENCY-STANDARD.md`: the visual reference governs how the product feels; the operational standard governs how it communicates genuine work and outcomes. Use it as a reference for mobile composition and finish only where useful. Combine it with the project's own brand, assets, audience, route structure and customer journey. Do not redesign a protected/golden screen or expand the task scope merely because this standard exists. For visual-only tasks, preserve working data flows, authentication, PWA installation, chatbot behavior and other protected functionality.

@@ -87,7 +87,11 @@ Do not replace install code just to change an icon. Update icon assets and their
 6. Search for leftover source identities, project IDs, hostnames, cache names, icon paths and copy. Do not declare the reset complete while any unintended inherited identity remains.
 7. Push the verified changes and report commit, checks, deployment status and remaining device QA separately.
 
-## 6. Keep scope honest
+## 6. Operational transparency travels with every project
+
+Every new project and every material workflow improvement must apply [docs/OPERATIONAL-TRANSPARENCY-STANDARD.md](./docs/OPERATIONAL-TRANSPARENCY-STANDARD.md) together with [docs/VISUAL-DIRECTION-STANDARD.md](./docs/VISUAL-DIRECTION-STANDARD.md) and the canonical WashRide reference image. Carry this requirement into the target `AGENTS.md`. Adapt the visible work to the actual business: search/check stages, booking or request lifecycle, upload/payment/message states, staff assignment, customer progress and final outcomes. Wire every state to real data/actions and enforce record ownership and role access. Do not copy sample business content, expose private internals or fabricate progress. See the operational standard for the complete contract.
+
+## 7. Keep scope honest
 Iteration 13's service-order page is a local demo. Its localStorage requests, admin edits and analytics are not a shared backend. For a real project, decide its data model and authorization boundary from that project's brief; never present the demo admin as secure real-world administration.
 
 
