@@ -20,7 +20,7 @@ Do not stop after reading only one file. These documents have different purposes
 
 ## Mandatory evidence-led diagnosis and release gate
 
-Use the full [Change Safety & Regression Prevention Standard](./docs/CHANGE-SAFETY-STANDARD.md) for every project and every implementation chat; do not assume an earlier chat summary or a user's suspected cause is the current repository truth.
+Use the full [Change Safety & Regression Prevention Standard](./docs/CHANGE-SAFETY-STANDARD.md) for every project and every implementation or QA chat; do not assume an earlier chat summary or a user's suspected cause is the current repository truth.
 
 1. **Separate observation from explanation.** Capture the reported behavior and any known device/browser, deployed URL/version, route, and reproduction steps. Treat verified real-device success as behavior to preserve. Do not turn a symptom or a hypothesis into an assumed root cause.
 2. **Diagnose before editing.** Inspect the actual deployed commit/status, current source, recent commits, relevant tests and browser behavior. Reproduce where possible. Identify the first proven failure and the smallest scope that can explain it. If no defect is evidenced, explain the findings rather than changing unrelated code.
