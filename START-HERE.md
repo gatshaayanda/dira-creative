@@ -1,24 +1,26 @@
 # START HERE — Iteration 13
 
-**This is the mandatory entry point for every new ChatGPT/Codex implementation chat.** Do not ask the product owner which documents to inspect. GitHub `main` is the source of truth; chat history is supporting context only.
+**This is the mandatory entry point for every new ChatGPT/Codex implementation or QA chat.** Do not ask the product owner which documents to inspect. GitHub `main` is the source of truth; chat history is supporting context only. The full documentation map is [docs/README.md](./docs/README.md).
 
 ## Required reading order — before editing
 
 **Golden baseline:** read [GOLDEN-BASELINE.md](./GOLDEN-BASELINE.md) alongside these instructions. It defines the recovery point, protected behavior and mandatory adaptation checks.
 
 1. `AGENTS.md` — project rules, protected behavior, source-of-truth and safety boundaries.
-2. `FOUNDATION-BLUEPRINT.md` — repository map, architecture, data model, protected install/offline invariants, verification and known limitations.
-3. `README.md` — how the customer and admin demo currently works and what is already implemented.
-4. `CLONING.md` — required when selecting a source, cloning/adapting any portfolio project, resetting identity/PWA assets, or reusing patterns in another project. Iteration 13 is the standards/reference repository, not the default clone source; Africhiko is the default when the product owner has not selected another source.
-5. `docs/VISUAL-DIRECTION-STANDARD.md` — required when planning or reviewing visual changes; use it as a craftsmanship and mobile-composition reference, not a universal theme. Open and inspect `docs/assets/washride-home-reference.jpeg` itself.
-6. `docs/OPERATIONAL-TRANSPARENCY-STANDARD.md` — required when implementing or reviewing meaningful user-facing or staff-facing operations, loading/progress, search, status, uploads, payments, messaging, integrations or delivery handoff.
-7. Read the relevant route/component docs and code referenced by those files, then inspect the actual latest commit, package scripts and CI/deployment state.
+2. `GOLDEN-BASELINE.md` — protected behavior, recovery point and baseline promotion policy.
+3. `docs/CHANGE-SAFETY-STANDARD.md` — mandatory regression-prevention method for every change, not just bug fixes.
+4. `FOUNDATION-BLUEPRINT.md` — repository map, architecture, data model, protected install/offline invariants, verification and known limitations.
+5. `README.md` — how the customer and admin demo currently works and what is already implemented.
+6. `CLONING.md` — required when selecting a source, cloning/adapting any portfolio project, resetting identity/PWA assets, or reusing patterns in another project. Iteration 13 is the standards/reference repository, not the default clone source; Africhiko is the default when the product owner has not selected another source.
+7. `docs/VISUAL-DIRECTION-STANDARD.md` — required when planning or reviewing visual changes; use it as a craftsmanship and mobile-composition reference, not a universal theme. Open and inspect `docs/assets/washride-home-reference.jpeg` itself.
+8. `docs/OPERATIONAL-TRANSPARENCY-STANDARD.md` — required when implementing or reviewing meaningful user-facing or staff-facing operations, loading/progress, search, status, uploads, payments, messaging, integrations or delivery handoff.
+9. Read the relevant route/component docs and code referenced by those files, then inspect the actual latest commit, package scripts and CI/deployment state.
 
 Do not stop after reading only one file. These documents have different purposes and are designed to be used together.
 
 ## Mandatory evidence-led diagnosis and release gate
 
-Use this gate for every project and every implementation chat; do not assume an earlier chat summary or a user's suspected cause is the current repository truth.
+Use the full [Change Safety & Regression Prevention Standard](./docs/CHANGE-SAFETY-STANDARD.md) for every project and every implementation chat; do not assume an earlier chat summary or a user's suspected cause is the current repository truth.
 
 1. **Separate observation from explanation.** Capture the reported behavior and any known device/browser, deployed URL/version, route, and reproduction steps. Treat verified real-device success as behavior to preserve. Do not turn a symptom or a hypothesis into an assumed root cause.
 2. **Diagnose before editing.** Inspect the actual deployed commit/status, current source, recent commits, relevant tests and browser behavior. Reproduce where possible. Identify the first proven failure and the smallest scope that can explain it. If no defect is evidenced, explain the findings rather than changing unrelated code.
