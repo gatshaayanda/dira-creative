@@ -165,7 +165,6 @@ export default function Home() {
 
   const activeServices = data.services.filter(service => service.active);
   const selectedService = data.services.find(service => service.id === selected && service.active);
-  const myOrders = useMemo(() => data.orders.filter(order => !email.trim() || order.email.toLowerCase() === email.trim().toLowerCase()), [data.orders, email]);
   const statusCounts = useMemo(() => data.orders.reduce<Record<string, number>>((acc, order) => { acc[order.status] = (acc[order.status] || 0) + 1; return acc; }, {}), [data.orders]);
 
   function beginOrder(service: Service) {
