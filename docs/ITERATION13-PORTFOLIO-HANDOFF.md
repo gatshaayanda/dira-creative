@@ -47,6 +47,10 @@ Do not copy WashRide's name, automotive imagery, car-wash actions, palette or bu
 
 For Iteration 13 itself, the service-studio visual identity is a dark midnight/blue digital-product studio with crisp blue actions, light readable form surfaces and a compact two-column service catalogue on mobile. The sample service prices and browser-local workflow remain clearly labelled demo content.
 
+The public storefront's footer logo is the discreet owner-entry affordance; do not add a public Admin button/link to customer navigation. The intended product model is Store + private owner Briefcase / **Your Business OS**, with useful areas such as Today, Customers, Orders & Jobs, Receipts & Records, Calendar, Insights, Store Design, Settings and **My Notes**. Keep My Notes in the owner workspace, not the customer account. Only expose OS modules that are actually implemented; do not represent a local demo as Gmail-secured or cross-device private storage. A true owner Gmail authentication boundary must be implemented and verified before real business records are placed behind this entry point.
+
+The WashRide reference means compact, app-like composition—not simply a smaller type scale. Keep the hero short enough to reveal useful content/actions early, use a strong but contained visual, compress redundant proof chips and decorative whitespace, and make the service catalogue visible without a long marketing scroll. Apply the same compactness to all inner workspaces.
+
 ## 4. Product and operational model
 
 The portfolio's product direction is a business-specific digital storefront paired with a private owner workspace (the digital briefcase). Keep these concepts understandable:
