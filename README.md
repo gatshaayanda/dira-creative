@@ -14,7 +14,7 @@ The approved foundation baseline and recovery policy are documented in [GOLDEN-B
    - Phaser games — P500
 2. Select **Request this service**, enter a name and email, choose a requested timeline date (today or later), and optionally describe the project.
 3. Submit the request. It should take you to **My account**, where the request, requested date, starting price and status are shown.
-4. Return to Services to submit another request or filter account requests by the same email.
+4. Return to Services to submit another request or filter account requests by the same email. Each request has a branded request/payment record that can be printed or saved as PDF, even before a payment is recorded.
 
 The date is a requested timeline, not a confirmed delivery promise. No payment is taken.
 
@@ -25,14 +25,18 @@ Use the one-word **Login** entry or the discreet 13Studio footer logo to open th
 - Add, edit, hide/show and delete services.
 - Change prices, descriptions, image/video URLs and media type.
 - Publish or clear a storefront announcement.
-- Review incoming requests and change their status.
-- Run a simulated test purchase that creates a sample customer, completed job, demo payment record and receipt. No money moves.
-- Record a demo payment against a request and inspect or print its receipt.
-- Review the customer directory, payments received, completed-unpaid value and accepted/in-progress job pipeline.
+- Review each customer and their requests, then move work through New request, Reviewing, Accepted, In progress, Completed or Declined.
+- Record full or partial simulated payments against a request. Download or print a branded receipt / request record from both the customer account and owner job record, including unpaid, partially paid and fully paid states. The receipt uses the current business name and selected Store colour; no money moves.
+- Review the customer directory, payments received, completed value, projected accepted/in-progress value, requested value and completed-unpaid balance.
+- Choose whether a clean lap in the embedded Big Brothers Racing 3D warm-up awards P10 or P20 off. The customer enters an email, earns a one-use code on a clean lap, and can redeem it against a Store request. Owners can also assign a promotion directly to a customer email.
+- Switch between Today, Customers & jobs, Money, Store design, My Notes and Insights tabs instead of scrolling through one long owner page.
 - Configure the business details and tax references shown on prototype receipts for the business's own record-keeping setup.
 - Review a local event trail tied to demo visits, requests, completed jobs and payments. Vercel Analytics and Speed Insights are included at application level; Firebase Analytics and private Vercel dashboard data are not connected.
 - See summary counts for requests, statuses, services, customer emails and demo visits.
-- Change the Store's accent colour using presets or a custom colour picker; the choice previews across the Store and Briefcase.- Keep private My Notes in this browser.\n- Review the BoardSignal 25 GB capacity reference and illustrative busy-day scenario.\n- Reset the local sample data for another walkthrough.
+- Change the Store's accent colour using vivid presets or a custom colour picker; the chosen colour is used as an accent on neutral, readable surfaces across the Store, Briefcase and receipts.
+- Keep private My Notes in this browser.
+- Review the BoardSignal 25 GB capacity reference and illustrative busy-day scenario.
+- Reset the local sample data for another walkthrough.
 
 This is a prototype control surface, not a secure admin boundary. Do not enter real customer data.
 
@@ -85,7 +89,8 @@ Before cloning/adapting the guide, read [CHAT-WIDGET-RESEARCH.md](./CHAT-WIDGET-
 ## Customer account workspace
 
 **My account** now demonstrates more than an empty request list:
-- Filter and review request history, requested timeline, starting price and current status.
+- Filter and review request history, requested timeline, discounted or regular price and current status.
+- Submit repeat requests for the same customer, browse new services, and view assigned or earned racing discount codes.
 - Open a conversation attached to a specific request, send a message and share an image, video or PDF attachment while online.
 - See admin/studio replies in the same thread in the Admin demo on this same browser.
 - Use a project-preparation checklist and save a project note for later in this browser. Account sections use consistent Service Studio styling; optional extras are chosen for the actual product context rather than copied from another client.
