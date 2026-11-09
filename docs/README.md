@@ -15,7 +15,11 @@ For every new implementation or QA chat:
 
 Then open only the relevant task-specific documents below. Read the actual code and current GitHub state before editing; docs and old chat summaries are not proof of current runtime behavior.
 
-## 2. Task-specific source of truth
+## 2. Portfolio-wide adoption guide
+
+- [Iteration 13 Portfolio Handoff](./ITERATION13-PORTFOLIO-HANDOFF.md) — canonical guidance for using this repository as the shared reference when creating new projects or improving existing portfolio apps. It defines source selection, visual adaptation, protected behavior and release expectations.
+
+## 3. Task-specific source of truth
 
 | If the task involves… | Read this authoritative document |
 | --- | --- |
@@ -27,7 +31,7 @@ Then open only the relevant task-specific documents below. Read the actual code 
 | Customer account workspace | [Account adaptation contract](../AGENTS.md#customer-account-workspace-adaptation-contract), plus the account/data sections in [Foundation Blueprint](../FOUNDATION-BLUEPRINT.md) and [Cloning guide](../CLONING.md) |
 | Build, identity or release verification | [START-HERE](../START-HERE.md), [AGENTS](../AGENTS.md), `package.json`, verifier, CI workflow and actual check output |
 
-## 3. What each root document owns
+## 4. What each root document owns
 
 - **START-HERE.md** — one entry point; reading order, stop/go gates and workflow. It should stay concise and link to detailed standards rather than duplicate them.
 - **AGENTS.md** — binding repository instructions and protected implementation contracts. It describes what future agents must obey.
@@ -37,7 +41,7 @@ Then open only the relevant task-specific documents below. Read the actual code 
 - **CLONING.md** — source selection and safe reuse/adaptation across portfolio projects.
 - **CHAT-WIDGET-RESEARCH.md** — focused research record for the guided assistant; not a general operating policy.
 
-## 4. Standards and execution references in this folder
+## 5. Standards and execution references in this folder
 
 - **CHANGE-SAFETY-STANDARD.md** — cross-project regression-prevention method. Mandatory for every task.
 - **VISUAL-DIRECTION-STANDARD.md** — visual craft, composition and responsive compactness; the JPEG asset is the visual source, not the prose alone.
@@ -46,7 +50,7 @@ Then open only the relevant task-specific documents below. Read the actual code 
 - **ADMIN-HUB-APP-FACTORY-SOP.md** — end-to-end new-project operating procedure.
 - **CLONE-RESET-CHECKLIST.md** — actionable checklist for new-project reset and handoff.
 
-## 5. Authority when documents overlap
+## 6. Authority when documents overlap
 
 Use this order; do not resolve conflicts by guessing:
 
@@ -59,7 +63,7 @@ Use this order; do not resolve conflicts by guessing:
 
 The standards complement one another. For example, a visual redesign must preserve the protected install behavior; a booking-flow change must preserve authentication/data boundaries and show truthful operational outcomes. The Change Safety Standard governs *how* every change is diagnosed, scoped, reviewed and verified.
 
-## 6. Documentation maintenance rules
+## 7. Documentation maintenance rules
 
 - Keep one canonical document per policy. Other files should link to it rather than maintain competing copies.
 - Keep task-specific detail in the relevant guide; keep `START-HERE.md` as the shortest useful handoff.
