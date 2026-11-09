@@ -26,8 +26,13 @@ Use the one-word **Login** entry or the discreet 13Studio footer logo to open th
 - Change prices, descriptions, image/video URLs and media type.
 - Publish or clear a storefront announcement.
 - Review incoming requests and change their status.
+- Run a simulated test purchase that creates a sample customer, completed job, demo payment record and receipt. No money moves.
+- Record a demo payment against a request and inspect or print its receipt.
+- Review the customer directory, payments received, completed-unpaid value and accepted/in-progress job pipeline.
+- Configure the business details and tax references shown on prototype receipts for the business's own record-keeping setup.
+- Review a local event trail tied to demo visits, requests, completed jobs and payments. Vercel Analytics and Speed Insights are included at application level; Firebase Analytics and private Vercel dashboard data are not connected.
 - See summary counts for requests, statuses, services, customer emails and demo visits.
-- Change the Store's accent colour using presets or a custom colour picker; the choice previews across the Store and Briefcase.\n- Keep private My Notes in this browser.\n- Review the BoardSignal 25 GB capacity reference and illustrative busy-day scenario.\n- Reset the local sample data for another walkthrough.
+- Change the Store's accent colour using presets or a custom colour picker; the choice previews across the Store and Briefcase.- Keep private My Notes in this browser.\n- Review the BoardSignal 25 GB capacity reference and illustrative busy-day scenario.\n- Reset the local sample data for another walkthrough.
 
 This is a prototype control surface, not a secure admin boundary. Do not enter real customer data.
 
