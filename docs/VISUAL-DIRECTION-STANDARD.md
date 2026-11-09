@@ -103,6 +103,21 @@ Visual polish includes behavior, not decoration. Every visible control must work
 
 Visual polish must help people understand that the application is doing useful work. Apply [OPERATIONAL-TRANSPARENCY-STANDARD.md](./OPERATIONAL-TRANSPARENCY-STANDARD.md) alongside this visual reference. Across relevant customer and staff/admin screens, make genuine search, checking, saving, uploading, review, assignment, processing and completion visible in concise, context-appropriate language. Show the current state, meaningful update and next action; use measurable progress only when the underlying operation provides it. Do not add fake loading stages, artificial delay, animated percentages, decorative activity feeds or oversized status cards. The customer should see their own progress and next step; staff should see the actionable work behind it. Keep both views compact, accessible, brand-appropriate and consistent with the quality/composition of `washride-home-reference.jpeg`.
 
+
+## Iteration 13 Business OS composition
+
+Iteration 13's own visual direction is specifically a compact **Store → Briefcase → Login** product. The public Store is a real storefront demo, not a generic 13Studio brochure. The first viewport should communicate: a business-branded digital Store, the private owner Briefcase, low-friction one-word Login, and the practical benefit of remaining organised while the owner steps away.
+
+- Keep public navigation to short, recognisable words such as **Store**, **Account** and **Login**. The logo is the discreet owner-workspace affordance where the product design calls for it; never expose an "Admin" destination to customers.
+- The owner Briefcase should have compact navigation and operational sections: Today, Customers, Jobs, Receipts/Records, Calendar, Insights, Store design, Announcements, Settings and My Notes.
+- Store editing is part of the OS: service/product CRUD, pricing, media, visibility, announcements and theme changes should preview in the public Store. A save must update the same source used by the customer view.
+- Theme means a business-selected colour system, not only light/dark mode. Offer a curated palette and custom colour picker, apply the accent consistently, derive readable foregrounds and verify contrast. Keep the business's theme with its identity and preview before publishing.
+- The 25 GB / high-volume customer-day story should be a concise capacity proof point, not a giant marketing section. Use the BoardSignal benchmark supplied by the product owner as the evidence reference; show the allowance, customer-call/interactions example, day-off outcome and cost-versus-marketing-budget rationale compactly. Do not imply that 25 GB is unlimited or that bandwidth, file storage, database operations, API calls, messaging and AI usage are interchangeable. Actual live usage must come from provider telemetry.
+- Keep customer share/onboarding as a short action from the customer record: add one or multiple WhatsApp contacts, create scoped invitations and let customers open their account on the actual business domain. Never claim Chrome can be forced open by a universal web link.
+- Use compact status rows for receipt readiness, job completion, projected sales and priority jobs. Clearly distinguish actual sales/confirmed receipts from quotations, unpaid amounts and projected work. Custom priorities must follow owner preferences and real job state.
+
+The reference demo may use clearly labelled illustrative capacity scenarios and local-only data. It must never imply Gmail authentication, server persistence, cross-device sync, real WhatsApp delivery, live 25 GB metering, BUR compliance or production-grade customer isolation until those paths are implemented and verified.
+
 ## Adapt the direction to the industry
 
 The same craftsmanship should produce different outcomes:
