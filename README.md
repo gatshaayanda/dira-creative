@@ -14,7 +14,7 @@ The approved foundation baseline and recovery policy are documented in [GOLDEN-B
    - Phaser games — P500
 2. Select **Request this service**, enter a name and email, choose a requested timeline date (today or later), and optionally describe the project.
 3. Submit the request. It should take you to **My account**, where the request, requested date, starting price and status are shown.
-4. Return to Services to submit another request or filter account requests by the same email. Each request has a branded request/payment record that can be printed or saved as PDF, even before a payment is recorded.
+4. Return to Services to submit another request or filter account requests by the same email. Each request has a branded request/payment record that can be printed or saved as PDF, even before a payment is recorded. Use the receipt's **Print / Save PDF** action to open the browser's native print dialog, then choose **Save as PDF**; the prototype does not generate or download a server-side PDF.
 
 The date is a requested timeline, not a confirmed delivery promise. No payment is taken.
 
