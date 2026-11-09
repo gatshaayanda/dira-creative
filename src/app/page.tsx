@@ -171,7 +171,7 @@ export default function Home() {
   const paidTotal = data.orders.reduce((sum, order) => sum + (order.paidAmount || 0), 0);
   const completedUnpaid = data.orders.filter(order => order.status === "Completed" && order.paymentStatus !== "Paid (demo)").reduce((sum, order) => sum + order.price, 0);
   const activePipeline = data.orders.filter(order => ["Accepted", "In progress"].includes(order.status)).reduce((sum, order) => sum + order.price, 0);
-  const customerRecords = Array.from(new Map(data.orders.map(order => [order.email.toLowerCase(), { name: order.customerName, email: order.email, jobs: data.orders.filter(item => item.email.toLowerCase() === order.email.toLowerCase()) }])).values());
+  const customerRecords = Array.from(new Map(data.orders.map(order => [order.email.toLowerCase(), { name: order.customerName, email: order.email, jobs: data.orders.filter(item => item.email.toLowerCase() === order.email.toLowerCase()) }] as const)).values());
   const selectedService = data.services.find(service => service.id === selected && service.active);
   const statusCounts = useMemo(() => data.orders.reduce<Record<string, number>>((acc, order) => { acc[order.status] = (acc[order.status] || 0) + 1; return acc; }, {}), [data.orders]);
 
