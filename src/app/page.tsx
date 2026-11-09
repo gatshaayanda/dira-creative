@@ -7,8 +7,9 @@ import AccountWorkspace, { type AccountMessage } from "@/app/AccountWorkspace";
 import { useEffect, useMemo, useState } from "react";
 
 type Service = { id: string; name: string; price: number; description: string; media: string; mediaType: "image" | "video"; active: boolean };
-type DemoOrder = { id: string; serviceId: string; serviceName: string; price: number; dueDate: string; customerName: string; email: string; brief: string; status: string; createdAt: string; messages?: AccountMessage[] };
-type DemoData = { services: Service[]; orders: DemoOrder[]; announcement: string; views: number };
+type DemoOrder = { id: string; serviceId: string; serviceName: string; price: number; dueDate: string; customerName: string; email: string; brief: string; status: string; createdAt: string; messages?: AccountMessage[]; paymentStatus?: "Unpaid" | "Paid (demo)"; paidAmount?: number; paidAt?: string; receiptNo?: string; isTest?: boolean; completedAt?: string };
+type DemoEvent = { id: string; kind: "visit" | "request" | "completed" | "payment"; label: string; at: string; test?: boolean };
+type DemoData = { services: Service[]; orders: DemoOrder[]; announcement: string; views: number; events?: DemoEvent[]; receiptProfile?: { legalName: string; registration: string; address: string; phone: string; footer: string } };
 const STORAGE_KEY = "iteration13:service-demo:v1";
 const seedServices: Service[] = [
   { id: "website", name: "Website", price: 100, description: "A clear, professional home for your business, services and contact details.", media: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1200&q=80", mediaType: "image", active: true },
@@ -16,7 +17,7 @@ const seedServices: Service[] = [
   { id: "support", name: "Monthly support", price: 50, description: "Ongoing updates, small improvements and practical help after launch.", media: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80", mediaType: "image", active: true },
   { id: "phaser", name: "Phaser games", price: 500, description: "A custom browser game concept built for play, learning or promotion.", media: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80", mediaType: "image", active: true },
 ];
-const emptyData: DemoData = { services: seedServices, orders: [], announcement: "", views: 0 };
+const emptyData: DemoData = { services: seedServices, orders: [], announcement: "", views: 0, events: [], receiptProfile: { legalName: "Your Business", registration: "", address: "", phone: "", footer: "Thank you for your business." } };
 const money = (amount: number) => "P" + amount.toLocaleString("en-BW", { maximumFractionDigits: 2 });
 const localDate = () => { const now = new Date(); return [now.getFullYear(), String(now.getMonth() + 1).padStart(2, "0"), String(now.getDate()).padStart(2, "0")].join("-"); };
 
@@ -97,9 +98,9 @@ export default function Home() {
       const saved = window.localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved) as Partial<DemoData>;
-        setData({ services: Array.isArray(parsed.services) ? parsed.services : seedServices, orders: Array.isArray(parsed.orders) ? parsed.orders : [], announcement: typeof parsed.announcement === "string" ? parsed.announcement : "", views: (Number(parsed.views) || 0) + 1 });
+        setData({ ...emptyData, ...parsed, services: Array.isArray(parsed.services) ? parsed.services : seedServices, orders: Array.isArray(parsed.orders) ? parsed.orders : [], announcement: typeof parsed.announcement === "string" ? parsed.announcement : "", views: (Number(parsed.views) || 0) + 1, events: [...(Array.isArray(parsed.events) ? parsed.events : []), { id: "EV-"+Date.now().toString(36), kind: "visit", label: "Store visited", at: new Date().toISOString() }], receiptProfile: { ...emptyData.receiptProfile!, ...(parsed.receiptProfile || {}) } });
         setAnnouncementDraft(typeof parsed.announcement === "string" ? parsed.announcement : "");
-      } else setData(current => ({ ...current, views: 1 }));
+      } else setData(current => ({ ...current, views: 1, events: [{ id: "EV-"+Date.now().toString(36), kind: "visit", label: "Store visited", at: new Date().toISOString() }] }));
     } catch { setNotice("Local demo storage is unavailable in this browser. You can explore, but changes may not persist."); }
     setReady(true);
     setOnline(navigator.onLine);
@@ -167,6 +168,10 @@ export default function Home() {
   }
 
   const activeServices = data.services.filter(service => service.active);
+  const paidTotal = data.orders.reduce((sum, order) => sum + (order.paidAmount || 0), 0);
+  const completedUnpaid = data.orders.filter(order => order.status === "Completed" && order.paymentStatus !== "Paid (demo)").reduce((sum, order) => sum + order.price, 0);
+  const activePipeline = data.orders.filter(order => ["Accepted", "In progress"].includes(order.status)).reduce((sum, order) => sum + order.price, 0);
+  const customerRecords = Array.from(new Map(data.orders.map(order => [order.email.toLowerCase(), { name: order.customerName, email: order.email, jobs: data.orders.filter(item => item.email.toLowerCase() === order.email.toLowerCase()) }])).values());
   const selectedService = data.services.find(service => service.id === selected && service.active);
   const statusCounts = useMemo(() => data.orders.reduce<Record<string, number>>((acc, order) => { acc[order.status] = (acc[order.status] || 0) + 1; return acc; }, {}), [data.orders]);
 
@@ -203,8 +208,8 @@ export default function Home() {
     if (!selectedService) { setNotice("Choose a service first."); return; }
     if (!customerName.trim() || !email.trim() || !dueDate) { setNotice("Add your name, email and requested timeline date."); return; }
     if (dueDate < localDate()) { setNotice("Choose today or a future date for your requested timeline."); return; }
-    const order: DemoOrder = { id: "DEMO-" + Date.now().toString(36).toUpperCase(), serviceId: selectedService.id, serviceName: selectedService.name, price: selectedService.price, dueDate, customerName: customerName.trim(), email: email.trim(), brief: brief.trim(), status: "New request", createdAt: new Date().toISOString() };
-    if (!commitData(current => ({ ...current, orders: [order, ...current.orders] }), "Order request saved on this device. No payment was taken.")) return;
+    const order: DemoOrder = { id: "DEMO-" + Date.now().toString(36).toUpperCase(), serviceId: selectedService.id, serviceName: selectedService.name, price: selectedService.price, dueDate, customerName: customerName.trim(), email: email.trim(), brief: brief.trim(), status: "New request", createdAt: new Date().toISOString(), paymentStatus: "Unpaid" };
+    if (!commitData(current => ({ ...current, orders: [order, ...current.orders], events: [{ id: "EV-"+Date.now().toString(36), kind: "request", label: "Customer request received · "+order.serviceName, at: new Date().toISOString() }, ...(current.events || [])] }), "Order request saved on this device. No payment was taken.")) return;
     setView("account"); setSelected(null);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
@@ -223,7 +228,22 @@ export default function Home() {
     resetServiceForm();
   }
   function resetServiceForm() { setEditingId(null); setServiceName(""); setServicePrice("100"); setServiceDescription(""); setServiceMedia(""); setServiceMediaType("image"); setServiceActive(true); }
-  function updateOrder(id: string, status: string) { const order = data.orders.find(item => item.id === id); commitData(current => ({ ...current, orders: current.orders.map(item => item.id === id ? { ...item, status } : item) }), order ? `${order.serviceName} status changed to ${status}. Saved on this device.` : "Request status saved on this device."); }
+  function updateOrder(id: string, status: string) {
+    const order = data.orders.find(item => item.id === id); const now = new Date().toISOString();
+    commitData(current => ({ ...current, orders: current.orders.map(item => item.id === id ? { ...item, status, ...(status === "Completed" ? { completedAt: now } : {}) } : item), events: [{ id: "EV-"+Date.now().toString(36), kind: status === "Completed" ? "completed" : "request", label: (order?.serviceName || "Job")+" moved to "+status, at: now, test: order?.isTest }, ...(current.events || [])] }), order ? `${order.serviceName} status changed to ${status}. Saved on this device.` : "Request status saved on this device.");
+  }
+  function recordDemoPayment(id: string) {
+    const order = data.orders.find(item => item.id === id); if (!order) return;
+    if (order.paymentStatus === "Paid (demo)") { setNotice("This demo payment is already recorded."); return; }
+    const now = new Date().toISOString(); const receiptNo = "RCP-"+now.slice(0,10).replaceAll("-","")+"-"+id.slice(-5);
+    commitData(current => ({ ...current, orders: current.orders.map(item => item.id === id ? { ...item, paymentStatus: "Paid (demo)", paidAmount: item.price, paidAt: now, receiptNo } : item), events: [{ id: "EV-"+Date.now().toString(36), kind: "payment", label: "Demo payment recorded · "+order.serviceName, at: now, test: order.isTest }, ...(current.events || [])] }), "Demo payment recorded. Receipt is available in this job record; no money moved.");
+  }
+  function createTestPurchase() {
+    const service = data.services.find(item => item.active) || data.services[0]; if (!service) { setNotice("Add a service before creating a test purchase."); return; }
+    const now = new Date().toISOString(); const id = "TEST-"+now.slice(0,10).replaceAll("-","")+"-"+Math.random().toString(36).slice(2,6).toUpperCase();
+    const order: DemoOrder = { id, serviceId: service.id, serviceName: service.name, price: service.price, dueDate: localDate(), customerName: "Demo Customer", email: "demo.customer@example.com", brief: "Simulated customer checkout to demonstrate the owner workflow.", status: "Completed", createdAt: now, completedAt: now, paymentStatus: "Paid (demo)", paidAmount: service.price, paidAt: now, receiptNo: "RCP-"+id.slice(-10), isTest: true };
+    commitData(current => ({ ...current, orders: [order, ...current.orders], events: [{ id: "EV-"+Date.now().toString(36), kind: "payment", label: "Test purchase completed · "+service.name, at: now, test: true }, { id: "EV-"+Date.now().toString(36)+"-2", kind: "request", label: "Test customer request created", at: now, test: true }, ...(current.events || [])] }), "Test purchase created. It appears in customers, completed jobs and demo receipts; no payment was processed.");
+  }
   function replyToOrder(id: string) {
     const text = (adminReplyDrafts[id] || "").trim();
     if (!text) { setNotice("Write a reply before sending it."); return; }
