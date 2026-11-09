@@ -1,20 +1,21 @@
 # START HERE — Iteration 13
 
-**This is the mandatory entry point for every new ChatGPT/Codex implementation or QA chat.** Do not ask the product owner which documents to inspect. GitHub `main` is the source of truth; chat history is supporting context only. The full documentation map is [docs/README.md](./docs/README.md).
+**This is the mandatory entry point for every new ChatGPT/Codex implementation or QA chat.** Do not ask the product owner which documents to inspect. GitHub `main` is the source of truth; chat history is supporting context only. The full documentation map is [docs/README.md](./docs/README.md). For portfolio-wide product direction and instructions on applying this repository to new and existing projects, also use [docs/ITERATION13-PORTFOLIO-HANDOFF.md](./docs/ITERATION13-PORTFOLIO-HANDOFF.md).
 
 ## Required reading order — before editing
 
 **Golden baseline:** read [GOLDEN-BASELINE.md](./GOLDEN-BASELINE.md) alongside these instructions. It defines the recovery point, protected behavior and mandatory adaptation checks.
 
 1. `AGENTS.md` — project rules, protected behavior, source-of-truth and safety boundaries.
-2. `GOLDEN-BASELINE.md` — protected behavior, recovery point and baseline promotion policy.
-3. `docs/CHANGE-SAFETY-STANDARD.md` — mandatory regression-prevention method for every change, not just bug fixes.
-4. `FOUNDATION-BLUEPRINT.md` — repository map, architecture, data model, protected install/offline invariants, verification and known limitations.
-5. `README.md` — how the customer and admin demo currently works and what is already implemented.
-6. `CLONING.md` — required when selecting a source, cloning/adapting any portfolio project, resetting identity/PWA assets, or reusing patterns in another project. Iteration 13 is the standards/reference repository, not the default clone source; Africhiko is the default when the product owner has not selected another source.
-7. `docs/VISUAL-DIRECTION-STANDARD.md` — required when planning or reviewing visual changes; use it as a craftsmanship and mobile-composition reference, not a universal theme. Open and inspect `docs/assets/washride-home-reference.jpeg` itself.
-8. `docs/OPERATIONAL-TRANSPARENCY-STANDARD.md` — required when implementing or reviewing meaningful user-facing or staff-facing operations, loading/progress, search, status, uploads, payments, messaging, integrations or delivery handoff.
-9. Read the relevant route/component docs and code referenced by those files, then inspect the actual latest commit, package scripts and CI/deployment state.
+2. `docs/ITERATION13-PORTFOLIO-HANDOFF.md` — how to use this repository as the shared product/engineering reference when creating or updating portfolio projects.
+3. `GOLDEN-BASELINE.md` — protected behavior, recovery point and baseline promotion policy.
+4. `docs/CHANGE-SAFETY-STANDARD.md` — mandatory regression-prevention method for every change, not just bug fixes.
+5. `FOUNDATION-BLUEPRINT.md` — repository map, architecture, data model, protected install/offline invariants, verification and known limitations.
+6. `README.md` — how the customer and admin demo currently works and what is already implemented.
+7. `CLONING.md` — required when selecting a source, cloning/adapting any portfolio project, resetting identity/PWA assets, or reusing patterns in another project. Iteration 13 is the standards/reference repository, not the default clone source; Africhiko is the default when the product owner has not selected another source.
+8. `docs/VISUAL-DIRECTION-STANDARD.md` — required when planning or reviewing visual changes; use it as a craftsmanship and mobile-composition reference, not a universal theme. Open and inspect `docs/assets/washride-home-reference.jpeg` itself.
+9. `docs/OPERATIONAL-TRANSPARENCY-STANDARD.md` — required when implementing or reviewing meaningful user-facing or staff-facing operations, loading/progress, search, status, uploads, payments, messaging, integrations or delivery handoff.
+10. Read the relevant route/component docs and code referenced by those files, then inspect the actual latest commit, package scripts and CI/deployment state.
 
 Do not stop after reading only one file. These documents have different purposes and are designed to be used together.
 
