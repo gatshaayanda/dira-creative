@@ -71,7 +71,6 @@ export default function AccountWorkspace({ businessName, orders, email, setEmail
   const totalMessages = filteredOrders.reduce((total, order) => total + (order.messages?.length || 0), 0);
   const openOrders = filteredOrders.filter(order => !["Completed", "Declined"].includes(order.status)).length;
   const fileCount = filteredOrders.reduce((total, order) => total + (order.messages || []).filter(message => Boolean(message.attachment)).length, 0);
-  const seeds = gardenSeeds + filteredOrders.length + Math.floor(totalMessages / 2);
 
   function sendMessage(order: WorkspaceOrder, attachment?: AccountAttachment) {
     const text = (drafts[order.id] || "").trim();
