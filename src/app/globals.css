@@ -2279,3 +2279,129 @@ button.plugProductAction{width:100%;align-items:center;background:transparent;bo
   .serviceDemo .sd-showcase-preview-media{height:92px;min-height:92px!important}
   .serviceDemo .sd-showcase-preview-copy{padding:8px}
 }
+
+
+/* Universal readable text system: neutralise competing accent colours and
+   inconsistent muted text without changing brand artwork, layouts or controls. */
+:root {
+  --plug-muted: #b8b8b8;
+  --i13-text-primary: #f2f3f4;
+  --i13-text-secondary: #c4c7cb;
+  --i13-text-subtle: #aeb3b9;
+  --i13-paper-text: #25292e;
+  --i13-paper-muted: #555b62;
+}
+body { color: var(--i13-text-primary); }
+.hero p,
+.sectionHead p,
+.locationGrid p,
+.requestBand p,
+.storyGrid p,
+.orderTruth,
+.truthNote,
+.adminHeader p,
+.adminAccountBar,
+.queueRow small,
+.emptyState,
+.footerInner span {
+  color: var(--i13-text-secondary);
+}
+.eyebrow,
+.kicker,
+.textLink,
+.dealsSection .kicker,
+h1 em,
+.dealCard b,
+.total strong,
+.stats strong {
+  color: var(--i13-text-primary);
+  text-shadow: none;
+}
+.navLinks,
+.buttonLight:hover,
+.qty button:hover {
+  color: var(--i13-text-primary);
+}
+.serviceDemo {
+  --i13-text-primary: #f1f2f3;
+  --i13-text-secondary: #c6c9ce;
+  --i13-text-subtle: #adb2b9;
+  color: var(--i13-text-primary);
+}
+.serviceDemo :is(.sd-kicker, .sd-section-head h2 em, .sd-hero h1 em,
+  .sd-order-copy h2 em, .sd-service-title > strong,
+  .sd-order-price, .sd-account-stats article strong,
+  .sd-account-extra .sd-studio-feed article > span,
+  .sd-account-extra .sd-next-steps b) {
+  color: inherit !important;
+  text-shadow: none !important;
+}
+.serviceDemo :is(.sd-hero-copy > p, .sd-section-head > p, .sd-order-copy > p,
+  .sd-service-info > p, .sd-footer-inner > p, .sd-brand small,
+  .sd-order-card-main p, .sd-order-card-main small, .sd-local-warning,
+  .sd-account-head > p, .sd-account-extra > p, .sd-account-extra small,
+  .sd-account-stats article span, .sd-account-stats article small) {
+  color: var(--i13-text-secondary);
+}
+.serviceDemo :is(.sd-hero h1, .sd-section-head h2, .sd-order-copy h2,
+  .sd-account-head h1, .sd-admin-head h1, .sd-account-extra h2,
+  .sd-order-card-main h2, .sd-panel-head h2, .sd-account-extra strong) {
+  color: inherit;
+  text-shadow: none;
+}
+/* Customer account content is a light reading surface: one ink colour for
+   headings, labels, body copy, metrics, saved notes and activity throughout. */
+.serviceDemo .sd-account-content,
+.serviceDemo .sd-account-content :is(h1,h2,h3,p,span,small,strong,b,label,li,dt,dd,a),
+.serviceDemo .sd-account-rewards,
+.serviceDemo .sd-account-rewards :is(h2,p,span,small,strong,b),
+.serviceDemo .sd-account-stats,
+.serviceDemo .sd-account-stats :is(span,strong,small),
+.serviceDemo .sd-account-extra,
+.serviceDemo .sd-account-extra :is(h2,h3,p,span,small,strong,b,label,li,a),
+.serviceDemo .sd-project-check,
+.serviceDemo .sd-project-check :is(span,strong,b,small),
+.serviceDemo .sd-account-guide,
+.serviceDemo .sd-account-guide :is(h2,h3,p,span,small,strong,b,li,a),
+.serviceDemo .sd-thread,
+.serviceDemo .sd-thread :is(p,span,small,strong,b) {
+  color: var(--i13-paper-text) !important;
+  text-shadow: none !important;
+}
+.serviceDemo .sd-account-content :is(p,small),
+.serviceDemo .sd-account-extra :is(p,small),
+.serviceDemo .sd-account-guide :is(p,small),
+.serviceDemo .sd-project-check-description,
+.serviceDemo .sd-account-stats article small {
+  color: var(--i13-paper-muted) !important;
+}
+.serviceDemo .sd-account-content a,
+.serviceDemo .sd-account-extra a,
+.serviceDemo .sd-account-guide a {
+  text-decoration-color: currentColor;
+  text-underline-offset: 3px;
+}
+.serviceDemo .sd-account-stats article strong {
+  color: var(--i13-paper-text) !important;
+}
+.serviceDemo .sd-account-extra .sd-published-note,
+.serviceDemo .sd-account-extra .sd-published-note :is(span,p,strong) {
+  color: var(--i13-paper-text) !important;
+  background: #f4f4f2;
+  border-color: #dededb;
+}
+.serviceDemo .sd-account-extra .sd-saved-note {
+  border-left-color: #8b9096;
+}
+.serviceDemo .sd-admin {
+  color: var(--i13-paper-text);
+}
+.serviceDemo .sd-admin :is(h1,h2,h3,p,span,small,strong,b,label,li,dt,dd) {
+  text-shadow: none;
+}
+.serviceDemo .sd-admin :is(.sd-kicker,.sd-stats strong,.sd-finance-metrics strong) {
+  color: var(--i13-paper-text) !important;
+}
+.serviceDemo :is(.sd-notice,.sd-offline-notice) {
+  color: #30343a;
+}
