@@ -1774,3 +1774,142 @@ button.plugProductAction{width:100%;align-items:center;background:transparent;bo
  .sd-compact-order .sd-order-form{padding:14px!important}
  .sd-footer-inner{gap:12px!important}
 }
+
+
+
+/* 13Studio Briefcase — compact owner workspace and a real footer affordance */
+.serviceDemo .sd-owner-entry{
+  display:flex;align-items:center;gap:12px;min-width:min(100%,310px);
+  padding:10px 14px!important;border:1px solid #424852!important;
+  border-radius:14px!important;background:#171b22!important;color:#f7f8fb!important;
+  text-align:left;cursor:pointer;transition:transform .16s ease,border-color .16s ease,background .16s ease;
+}
+.serviceDemo .sd-briefcase-mark{
+  display:grid;place-items:center;flex:0 0 46px;width:46px;height:46px;
+  border-radius:12px;background:color-mix(in srgb,var(--studio-accent) 18%,#111923);
+  border:1px solid color-mix(in srgb,var(--studio-accent) 55%,#303846);
+  font-size:26px;line-height:1;
+}
+.serviceDemo .sd-owner-entry-copy{display:grid;gap:3px;min-width:0}
+.serviceDemo .sd-owner-entry-copy strong{font-size:1rem;line-height:1.1;letter-spacing:.02em}
+.serviceDemo .sd-owner-entry-copy small{font-size:.65rem;line-height:1.3;color:var(--studio-accent);font-weight:900;letter-spacing:.09em}
+.serviceDemo .sd-owner-entry-copy em{font-size:.75rem;line-height:1.25;color:#c2c9d4;font-style:normal;overflow-wrap:anywhere}
+.serviceDemo .sd-owner-entry-arrow{margin-left:auto;color:var(--studio-accent);font-size:1.2rem}
+.serviceDemo .sd-owner-entry:hover{transform:translateY(-1px);border-color:var(--studio-accent)!important;background:#1d2430!important}
+.serviceDemo .sd-owner-entry:active{transform:scale(.985)}
+.serviceDemo .sd-owner-entry:focus-visible{outline:3px solid var(--studio-accent);outline-offset:3px}
+.serviceDemo .sd-footer-inner{align-items:center;gap:14px}
+.serviceDemo .sd-footer-inner>p{font-size:.72rem;margin:0}
+.serviceDemo .sd-footer-inner>div{display:flex;align-items:center;gap:14px}
+
+/* Briefcase information architecture: concise header, compact identity and scannable work */
+.serviceDemo .sd-admin{padding-top:18px;padding-bottom:24px}
+.serviceDemo .sd-os-heading{align-items:center;gap:12px;margin-bottom:10px;padding-bottom:10px}
+.serviceDemo .sd-os-heading h1{font-size:clamp(1.65rem,3vw,2.35rem);line-height:1;margin:3px 0}
+.serviceDemo .sd-os-heading p{font-size:.76rem;line-height:1.4;max-width:650px}
+.serviceDemo .sd-os-status{font-size:.58rem;padding:5px 8px}
+.serviceDemo .sd-business-identity{grid-template-columns:minmax(0,1fr) minmax(190px,.7fr);gap:12px;margin:10px 0;padding:12px;border-radius:13px}
+.serviceDemo .sd-business-identity-fields{gap:5px}
+.serviceDemo .sd-business-identity-fields label{display:flex;align-items:center;gap:10px;font-size:.75rem}
+.serviceDemo .sd-business-identity-fields input{min-height:39px;padding:7px 10px}
+.serviceDemo .sd-business-identity-fields small{font-size:.68rem;line-height:1.35}
+.serviceDemo .sd-business-identity-preview{gap:4px;padding:9px 11px;border-radius:10px}
+.serviceDemo .sd-business-identity-preview strong{font-size:1.15rem;line-height:1.15}
+.serviceDemo .sd-business-identity-preview small{font-size:.66rem}
+.serviceDemo .sd-theme-control{margin:0 0 10px;padding:9px 11px;border-radius:11px}
+.serviceDemo .sd-theme-control strong{font-size:.74rem}
+.serviceDemo .sd-theme-control small{font-size:.65rem}
+.serviceDemo .sd-theme-options>button{width:25px;height:25px}
+.serviceDemo .sd-theme-options input{height:27px}
+.serviceDemo .sd-os-nav{position:sticky;top:66px;z-index:8;gap:4px;margin-bottom:12px;padding:6px;border-radius:10px}
+.serviceDemo .sd-os-nav a{padding:7px 9px;font-size:.68rem}
+.serviceDemo .sd-admin-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 10px;padding:10px 12px;border:1px solid #294365;border-radius:12px;background:#0d1a2d}
+.serviceDemo .sd-admin-head h1{font-size:1.25rem;line-height:1.1;margin:0}
+.serviceDemo .sd-admin-head h1 br{display:none}
+.serviceDemo .sd-admin-head p{font-size:.7rem;line-height:1.35;margin:4px 0 0;max-width:560px}
+.serviceDemo .sd-admin-head-actions{display:flex;gap:7px;flex-wrap:wrap}
+.serviceDemo .sd-admin-head-actions .sd-button{min-height:36px;padding:7px 10px;font-size:.65rem}
+.serviceDemo .sd-stats{grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin:0 0 10px}
+.serviceDemo .sd-stats article{min-width:0;padding:10px;border-radius:10px}
+.serviceDemo .sd-stats article span{font-size:.65rem;line-height:1.3}
+.serviceDemo .sd-stats article strong{font-size:1.25rem;line-height:1.15}
+.serviceDemo .sd-stats article small{font-size:.61rem;line-height:1.3}
+.serviceDemo .sd-admin-performance{margin:0 0 10px;padding:11px 13px;border-radius:12px}
+.serviceDemo .sd-admin-performance .sd-panel-head{margin-bottom:5px}
+.serviceDemo .sd-admin-performance h2{font-size:1.1rem;line-height:1.15;margin:3px 0}
+.serviceDemo .sd-admin-performance .sd-admin-help{font-size:.67rem;line-height:1.35;margin:4px 0 8px}
+.serviceDemo .sd-performance-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+.serviceDemo .sd-performance-grid article{padding:8px;border-radius:9px}
+.serviceDemo .sd-performance-grid article span{font-size:.65rem}
+.serviceDemo .sd-performance-grid article strong{font-size:1rem}
+.serviceDemo .sd-performance-grid article small{font-size:.6rem;line-height:1.3}
+.serviceDemo .sd-showcase-preview{margin:0 0 10px;padding:12px;border-radius:12px}
+.serviceDemo .sd-showcase-preview .sd-panel-head{margin-bottom:8px}
+.serviceDemo .sd-showcase-preview .sd-panel-head h2{font-size:1.15rem;margin:3px 0}
+.serviceDemo .sd-showcase-preview-head{padding:9px 10px;border-radius:9px}
+.serviceDemo .sd-showcase-preview-head strong{font-size:.95rem}
+.serviceDemo .sd-showcase-preview-head p,.serviceDemo .sd-showcase-preview-grid p{font-size:.68rem;line-height:1.35}
+.serviceDemo .sd-showcase-preview-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:7px;margin-top:8px}
+.serviceDemo .sd-showcase-preview-grid article{gap:4px;padding:9px;border-radius:9px}
+.serviceDemo .sd-showcase-preview-grid article strong{font-size:.78rem}
+.serviceDemo .sd-showcase-preview-grid article>b{font-size:.9rem}
+.serviceDemo .sd-showcase-preview>.sd-admin-help{font-size:.65rem;line-height:1.35;margin:8px 0 0}
+.serviceDemo .sd-admin-grid{gap:10px;margin-top:10px}
+.serviceDemo .sd-admin-panel{padding:12px;border-radius:12px}
+.serviceDemo .sd-panel-head{gap:8px;margin-bottom:9px}
+.serviceDemo .sd-panel-head h2{font-size:1.15rem;line-height:1.1;margin:3px 0}
+.serviceDemo .sd-admin-help{font-size:.69rem;line-height:1.4}
+.serviceDemo .sd-admin-services{gap:6px}
+.serviceDemo .sd-admin-services article{gap:8px;padding:8px 9px;border-radius:9px}
+.serviceDemo .sd-admin-services article strong{font-size:.76rem}
+.serviceDemo .sd-admin-services article span{font-size:.66rem}
+.serviceDemo .sd-row-actions{gap:5px}
+.serviceDemo .sd-row-actions button{padding:6px 8px;font-size:.65rem}
+.serviceDemo .sd-admin-form{gap:8px;margin-top:10px;padding:11px;border-radius:10px}
+.serviceDemo .sd-admin-form h3{font-size:.95rem;margin:0}
+.serviceDemo .sd-admin-form label,.serviceDemo .sd-admin-panel label{font-size:.72rem;gap:4px}
+.serviceDemo .sd-admin-form input,.serviceDemo .sd-admin-form textarea,.serviceDemo .sd-admin-panel select{min-height:38px;padding:7px 9px;font-size:.78rem}
+.serviceDemo .sd-admin-form textarea{min-height:65px}
+.serviceDemo .sd-admin-form .sd-button,.serviceDemo .sd-admin-panel>.sd-button{min-height:39px;padding:8px 11px;font-size:.68rem}
+.serviceDemo .sd-admin-orders{gap:8px}
+.serviceDemo .sd-admin-orders>article{padding:10px;border-radius:10px}
+.serviceDemo .sd-admin-orders p{font-size:.7rem;line-height:1.35;margin:5px 0}
+.serviceDemo .sd-admin-thread{margin-top:8px;padding:9px;border-radius:9px}
+.serviceDemo .sd-admin-thread strong{font-size:.7rem}
+.serviceDemo .sd-admin-thread form{gap:6px;margin-top:7px}
+.serviceDemo .sd-admin-thread textarea{min-height:58px}
+.serviceDemo .sd-live-preview{margin-top:9px;padding:9px;border-radius:9px}
+.serviceDemo .sd-capacity-reference{margin-top:10px;padding:11px 13px}
+.serviceDemo .sd-capacity-reference .sd-panel-head{margin-bottom:5px}
+.serviceDemo .sd-capacity-reference h2{font-size:1.1rem;margin:3px 0}
+.serviceDemo .sd-capacity-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:8px 0}
+.serviceDemo .sd-capacity-grid article{gap:3px;padding:8px;border-radius:8px}
+.serviceDemo .sd-capacity-grid strong{font-size:1rem}
+.serviceDemo .sd-capacity-grid span{font-size:.64rem;line-height:1.3}
+.serviceDemo .sd-owner-notes{margin-top:10px;padding:11px 13px}
+.serviceDemo .sd-owner-notes textarea{min-height:100px;padding:9px;font-size:.78rem}
+.serviceDemo .sd-notes-meta{font-size:.63rem}
+.serviceDemo .sd-admin-footer{display:flex;align-items:center;gap:12px;margin-top:10px;padding-top:9px;border-top:1px solid #294365}
+.serviceDemo .sd-admin-footer p{font-size:.65rem;margin:0}
+@media(max-width:760px){
+ .serviceDemo .sd-admin{padding-top:12px}
+ .serviceDemo .sd-os-heading{align-items:flex-start}
+ .serviceDemo .sd-os-heading p{font-size:.7rem}
+ .serviceDemo .sd-business-identity{grid-template-columns:1fr;gap:8px}
+ .serviceDemo .sd-business-identity-fields label{align-items:stretch;flex-direction:column;gap:5px}
+ .serviceDemo .sd-os-nav{top:60px;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
+ .serviceDemo .sd-os-nav a{white-space:nowrap}
+ .serviceDemo .sd-admin-head{align-items:flex-start;flex-direction:column}
+ .serviceDemo .sd-admin-head-actions{width:100%}
+ .serviceDemo .sd-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .serviceDemo .sd-stats article:last-child{grid-column:1/-1}
+ .serviceDemo .sd-performance-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .serviceDemo .sd-showcase-preview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .serviceDemo .sd-admin-grid{grid-template-columns:1fr}
+ .serviceDemo .sd-capacity-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .serviceDemo .sd-capacity-grid article:last-child{grid-column:1/-1}
+ .serviceDemo .sd-admin-footer{align-items:flex-start;flex-direction:column}
+ .serviceDemo .sd-footer-inner{align-items:stretch}
+ .serviceDemo .sd-owner-entry{width:100%;max-width:none}
+}
+@media(prefers-reduced-motion:reduce){.serviceDemo .sd-owner-entry{transition:none}}
