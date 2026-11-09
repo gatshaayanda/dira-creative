@@ -11,6 +11,7 @@ export type AccountMessage = { id: string; from: "customer" | "studio"; text: st
 export type WorkspaceOrder = { id: string; serviceId: string; serviceName: string; price: number; dueDate: string; customerName: string; email: string; brief: string; status: string; createdAt: string; messages?: AccountMessage[] };
 
 type Props = {
+  businessName: string;
   orders: WorkspaceOrder[];
   email: string;
   setEmail: (email: string) => void;
@@ -26,7 +27,7 @@ const prettyDate = (value: string) => {
   catch { return value; }
 };
 
-export default function AccountWorkspace({ orders, email, setEmail, online, announcement, onBrowse, onUpdateOrder }: Props) {
+export default function AccountWorkspace({ businessName, orders, email, setEmail, online, announcement, onBrowse, onUpdateOrder }: Props) {
   const [drafts, setDrafts] = useState<Record<string, string>>({});
   const [uploadingOrder, setUploadingOrder] = useState<string | null>(null);
   const [uploadProgress, setUploadProgress] = useState(0);
