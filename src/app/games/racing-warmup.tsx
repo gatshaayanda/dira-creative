@@ -24,7 +24,7 @@ function fmt(seconds: number | null): string {
   return `${Math.floor(seconds / 60)}:${(seconds % 60).toFixed(2).padStart(5, "0")}`;
 }
 
-export default function RacingWarmup({ embedded = false, startExpanded = false, discountAmount = 10, onDiscountEarned }: { embedded?: boolean; startExpanded?: boolean; discountAmount?: number; onDiscountEarned?: (email: string, lapTime: number) => void }) {
+export default function RacingWarmup({ embedded = false, startExpanded = false, discountAmount = 10, promoTitle = "Take a quick lap.", promoDescription = "A little circuit practice while you wait. Complete a clean lap to earn a discount.", promoImage = "", rewardEnabled = true, onDiscountEarned }: { embedded?: boolean; startExpanded?: boolean; discountAmount?: number; promoTitle?: string; promoDescription?: string; promoImage?: string; rewardEnabled?: boolean; onDiscountEarned?: (email: string, lapTime: number) => void }) {
   const [expanded, setExpanded] = useState(!embedded || startExpanded);
   const raceRef = useRef<Race>(newRace());
   const trackRef = useRef<ReturnType<typeof createRacingTrack> | null>(null);
@@ -67,7 +67,7 @@ export default function RacingWarmup({ embedded = false, startExpanded = false, 
     setSpeed(0); setLapTime(0); setBestLap(null); setLap(1); setNos(100); setBoostActive(false);
     setCountdown(3); phaseRef.current = start ? "countdown" : "ready"; setPhase(start ? "countdown" : "ready");
   }, []);
-  const startRace = useCallback(() => { if (embedded && !rewardEmail.trim()) { notify("Enter your email before starting so a clean lap can be credited."); return; } reset(true); }, [reset, embedded, rewardEmail, notify]);
+  const startRace = useCallback(() => { if (embedded && rewardEnabled && !rewardEmail.trim()) { notify("Enter your email before starting so a clean lap can be credited."); return; } reset(true); }, [reset, embedded, rewardEnabled, rewardEmail, notify]);
   const pauseRace = useCallback(() => {
     if (phaseRef.current === "running") {
       controlsRef.current = { steer: 0, accelerate: false, brake: false, boost: false };
@@ -397,7 +397,7 @@ export default function RacingWarmup({ embedded = false, startExpanded = false, 
         race.lapTime += dt;
         const lapNow = Math.floor(race.progress) + 1;
         if (lapNow > race.lap) {
-          if (!race.lapInvalid && rewardedLap.current < race.lap) { rewardedLap.current = race.lap; if (rewardEmail.trim()) rewardCallback.current?.(rewardEmail, race.lapTime); }
+          if (!race.lapInvalid && rewardEnabled && rewardedLap.current < race.lap) { rewardedLap.current = race.lap; if (rewardEmail.trim()) rewardCallback.current?.(rewardEmail, race.lapTime); }
           if (!race.lapInvalid && (race.bestLap === null || race.lapTime < race.bestLap)) {
             race.bestLap = race.lapTime;
             setBestLap(race.lapTime);
@@ -428,7 +428,7 @@ export default function RacingWarmup({ embedded = false, startExpanded = false, 
     };
     raf = window.requestAnimationFrame(frame);
     return () => window.cancelAnimationFrame(raf);
-  }, [notify, rewardEmail]);
+  }, [notify, rewardEmail, rewardEnabled]);
 
   useEffect(() => {
     const keyDown = (e: KeyboardEvent) => {
@@ -489,12 +489,12 @@ export default function RacingWarmup({ embedded = false, startExpanded = false, 
     setBoostActive(next);
   };
 
-  if (embedded && !expanded) return <div className="race-inline-promo"><div><p className="big-brothers-eyebrow">BIG BROTHERS RACING · QUICK BREAK</p><h2>Take a quick lap.</h2><p>A little circuit practice while you wait. Your wash booking stays right where you left it.</p></div><button type="button" className="big-brothers-button primary" onClick={() => setExpanded(true)}>Play now ↗</button></div>;
+  if (embedded && !expanded) return <div className="race-inline-promo"><div className="race-inline-promo-copy"><p className="big-brothers-eyebrow">13STUDIO · QUICK BREAK</p><h2>{promoTitle}</h2><p>{promoDescription}</p></div><div className="race-inline-art">{promoImage ? <img src={promoImage} alt={promoTitle + " reward thumbnail"} loading="lazy"/> : <div className="race-inline-art-fallback" aria-hidden="true"><span>🏁</span><b>RACE / REWARD</b></div>}<div className="race-inline-art-label"><small>{rewardEnabled ? "CLEAN LAP REWARD" : "SOLO PRACTICE"}</small><strong>{rewardEnabled ? "P" + discountAmount + " OFF" : "PLAY A LAP"}</strong></div></div><button type="button" className="big-brothers-button primary" onClick={() => setExpanded(true)}>Play now ↗</button></div>;
 
   return <div className={"big-brothers race-hub" + (embedded ? " race-hub-embedded" : "")}>
     {!embedded && <><div className="big-brothers-status"><span className="status-dot online" />Big Brothers Racing · solo circuit practice</div><header className="big-brothers-nav"><Link href="/" className="big-brothers-brand"><span className="big-brothers-mark">V</span><span>{businessName}<small>Racing warm-up</small></span></Link><nav><Link href="/#request">Book a wash</Link><Link href="/account">My Wash</Link></nav></header><section className="big-brothers-section warmup-intro"><p className="big-brothers-eyebrow">BIG BROTHERS RACING · SOLO PRACTICE</p><h1>Find your racing line.</h1><p>Follow the recommended line: brake before turn-in, ease off through the apex, then build throttle on exit. Save NOS for straights.</p></section></>}
     {embedded && <div className="race-inline-heading"><div><p className="big-brothers-eyebrow">BIG BROTHERS RACING · CIRCUIT PRACTICE</p><h2>Find your racing line.</h2><p>One more lap? Smooth corners, clean exits, well-timed NOS.</p></div><button type="button" className="big-brothers-button secondary" onClick={() => { if (phaseRef.current === "running") pauseRace(); setExpanded(false); }}>Close game ×</button></div>}
-    {embedded && <label className="race-reward-email">Email for your reward code<input type="email" value={rewardEmail} onChange={event=>setRewardEmail(event.target.value)} placeholder="you@example.com" autoComplete="email" /><small>A clean lap can earn P{discountAmount} off. Your code is saved to this local demo account.</small></label>}
+    {embedded && rewardEnabled && <label className="race-reward-email">Email for your reward code<input type="email" value={rewardEmail} onChange={event=>setRewardEmail(event.target.value)} placeholder="you@example.com" autoComplete="email" /><small>A clean lap can earn P{discountAmount} off. Your code is saved to this local demo account.</small></label>}
     <section className="big-brothers-section warmup-game">
       <div className="warmup-hud warmup-circuit-hud"><div><span>Speed</span><strong>{Math.round(speed)} <small>km/h</small></strong></div><div><span>Lap</span><strong>{lap}</strong></div><div><span>Current lap</span><strong>{fmt(lapTime)}</strong></div><div><span>Best lap</span><strong>{fmt(bestLap)}</strong></div></div>
       <div className="warmup-canvas-wrap warmup-circuit-wrap">

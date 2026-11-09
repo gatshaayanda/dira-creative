@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { generateReactHelpers } from "@uploadthing/react";
 import type { OurFileRouter } from "@/app/api/uploadthing/core";
 
@@ -15,6 +15,9 @@ type Props = {
 
 export default function AnnouncementImagePicker({ value, online, onChange, onUploadingChange }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const instanceId = useId().replace(/:/g, "");
+  const fileInputId = "announcement-thumbnail-file-" + instanceId;
+  const urlInputId = "announcement-thumbnail-url-" + instanceId;
   const [message, setMessage] = useState("");
   const [progress, setProgress] = useState(0);
   const { startUpload, isUploading } = useUploadThing("fileUploader", {
@@ -74,11 +77,11 @@ export default function AnnouncementImagePicker({ value, online, onChange, onUpl
     <fieldset className="sd-announcement-image-picker" disabled={isUploading}>
       <legend>Announcement thumbnail <span className="sd-optional">OPTIONAL</span></legend>
       <p className="sd-admin-help">Add a small, relevant image that helps customers recognise the update. Keep the subject clear when cropped.</p>
-      <label className="sd-media-file-label" htmlFor="announcement-thumbnail-file">Upload an image · max 4 MB</label>
-      <input ref={inputRef} id="announcement-thumbnail-file" type="file" accept="image/*" onChange={uploadSelected} />
+      <label className="sd-media-file-label" htmlFor={fileInputId}>Upload an image · max 4 MB</label>
+      <input ref={inputRef} id={fileInputId} type="file" accept="image/*" onChange={uploadSelected} />
       {!online && <small className="sd-media-offline">Offline: reconnect before uploading an image.</small>}
-      <label className="sd-media-url-label" htmlFor="announcement-thumbnail-url">Or use an existing image URL</label>
-      <input id="announcement-thumbnail-url" type="url" value={value} onChange={(event) => { onChange(event.target.value); setMessage(""); }} placeholder="https://…/image.jpg" />
+      <label className="sd-media-url-label" htmlFor={urlInputId}>Or use an existing image URL</label>
+      <input id={urlInputId} type="url" value={value} onChange={(event) => { onChange(event.target.value); setMessage(""); }} placeholder="https://…/image.jpg" />
       {isUploading && <div className="sd-media-progress" role="status" aria-live="polite"><div className="sd-media-progress-copy"><strong>Uploading thumbnail</strong><span>{progress}%</span></div><div className="sd-media-progress-track" role="progressbar" aria-label="Thumbnail upload progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress}><span style={{ width: progress + "%" }} /></div></div>}
       {message && <p className="sd-media-status" role="status">{message}</p>}
       {value && <div className="sd-announcement-image-current"><img src={value} alt="Announcement thumbnail preview" onError={(event) => { event.currentTarget.style.display = "none"; }} /><button type="button" onClick={() => { onChange(""); setMessage("Thumbnail removed. Publish the announcement to apply the change."); }}>Remove thumbnail</button></div>}

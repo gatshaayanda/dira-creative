@@ -467,3 +467,21 @@
 
 /* Iteration13 adaptation: preserve the Big Brothers 3D warm-up game and use the demo workspace controls. */
 .race-reward-email{display:grid;gap:6px;max-width:480px;margin:0 auto 12px;padding:12px 14px;background:#fff;border:1px solid #dce3d7;border-radius:10px;color:#172820;font-size:12px;font-weight:700}.race-reward-email input{width:100%;min-height:42px;border:1px solid #cbd5c9;border-radius:7px;padding:9px 11px;font:inherit}.race-reward-email small{color:#687568;font-weight:500}.sd-racing-promo{padding:28px 0 40px}.sd-racing-promo>div:first-child{margin-bottom:16px}.sd-racing-promo h2{font-size:clamp(24px,4vw,34px);margin:5px 0}.sd-racing-promo p{color:#69736d;line-height:1.55}.sd-racing-promo .race-hub-embedded{background:transparent}.sd-racing-promo .big-brothers-button{font:inherit;border-radius:9px;min-height:44px;padding:10px 16px}.sd-racing-promo .big-brothers-button.primary{background:var(--studio-accent);color:#fff;border:1px solid var(--studio-accent)}.sd-racing-promo .big-brothers-button.secondary{background:#fff;color:#24352b;border:1px solid #d5ded6}
+
+
+/* Clear, image-led home-page quick-lap promotion. */
+.race-inline-promo{display:grid;grid-template-columns:minmax(0,1fr) minmax(150px,220px) auto;align-items:center;gap:18px;color:#202923!important;border-color:#cbd5cc;box-shadow:0 12px 30px rgba(22,38,28,.08)}
+.race-inline-promo .race-inline-promo-copy{min-width:0}
+.race-inline-promo .big-brothers-eyebrow{color:#3c5142!important;font-size:.64rem;font-weight:900;letter-spacing:.1em}
+.race-inline-promo h2{color:#17251c!important;text-shadow:none!important}
+.race-inline-promo p:not(.big-brothers-eyebrow){color:#46534a!important}
+.race-inline-art{position:relative;display:grid;grid-template-rows:1fr auto;min-width:0;min-height:116px;overflow:hidden;border:1px solid #c9d4ca;border-radius:12px;background:linear-gradient(135deg,#13251c,#2d4937 62%,#d7e2d7)}
+.race-inline-art>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.race-inline-art-fallback{display:grid;align-content:center;justify-items:center;gap:5px;color:#fff;background:radial-gradient(circle at 50% 30%,#476b50,transparent 58%)}
+.race-inline-art-fallback span{font-size:2.5rem}
+.race-inline-art-fallback b{font-size:.58rem;letter-spacing:.12em}
+.race-inline-art-label{position:relative;z-index:1;display:grid;gap:3px;align-self:end;padding:9px 10px;color:#fff;background:linear-gradient(transparent,rgba(8,18,12,.9))}
+.race-inline-art-label small{color:#e4f0e5;font-size:.55rem;font-weight:900;letter-spacing:.1em}
+.race-inline-art-label strong{color:#fff;font-size:1.2rem;line-height:1}
+@media(max-width:760px){.race-inline-promo{grid-template-columns:minmax(0,1fr) minmax(104px,34%);gap:12px}.race-inline-promo>button{grid-column:1/-1;justify-self:start}.race-inline-art{min-height:104px}}
+@media(max-width:440px){.race-inline-promo{grid-template-columns:1fr}.race-inline-art{min-height:126px}.race-inline-promo>button{width:100%}}
