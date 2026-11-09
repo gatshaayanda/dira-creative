@@ -1913,3 +1913,45 @@ button.plugProductAction{width:100%;align-items:center;background:transparent;bo
  .serviceDemo .sd-owner-entry{width:100%;max-width:none}
 }
 @media(prefers-reduced-motion:reduce){.serviceDemo .sd-owner-entry{transition:none}}
+
+/* Local Business OS demo: finance, customers, receipts and event trail */
+.serviceDemo .sd-admin-quick-actions{display:flex;align-items:center;gap:12px;margin:0 0 12px;padding:10px 12px;border:1px solid #34547e;border-radius:12px;background:#0d1a2d}
+.serviceDemo .sd-admin-quick-actions>span{font-size:.72rem;color:#bdc9dc;line-height:1.4}
+.serviceDemo .sd-finance-panel,.serviceDemo .sd-customers-panel,.serviceDemo .sd-activity-panel{margin:10px 0;padding:13px;border:1px solid #2a4163;border-radius:12px;background:#101e33}
+.serviceDemo .sd-finance-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:12px 0}
+.serviceDemo .sd-finance-metrics article{display:grid;gap:5px;padding:12px;border:1px solid #2a4163;border-radius:10px;background:#0a172a}
+.serviceDemo .sd-finance-metrics small{font-size:.68rem;color:#bdc9dc}
+.serviceDemo .sd-finance-metrics strong{font-size:1.25rem;color:#f5f8ff}
+.serviceDemo .sd-receipt-profile{margin-top:12px;padding-top:12px;border-top:1px solid #2a4163}
+.serviceDemo .sd-receipt-profile h3{font-size:.9rem;margin:0 0 5px}
+.serviceDemo .sd-receipt-profile .sd-form-two{margin:10px 0}
+.serviceDemo .sd-customer-list{display:grid;gap:7px}
+.serviceDemo .sd-customer-list article{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:10px;border:1px solid #2a4163;border-radius:9px;background:#0a172a}
+.serviceDemo .sd-customer-list article div{display:grid;gap:3px}
+.serviceDemo .sd-customer-list article strong{font-size:.8rem}
+.serviceDemo .sd-customer-list article span,.serviceDemo .sd-customer-list article small{font-size:.68rem;color:#bdc9dc;overflow-wrap:anywhere}
+.serviceDemo .sd-customer-list article>b{font-size:.72rem}
+.serviceDemo .sd-customer-list article>small{grid-column:1/-1}
+.serviceDemo .sd-test-label{display:inline-block;padding:2px 6px;border-radius:5px;background:#4c3714;color:#ffd37a;font-size:.58rem;letter-spacing:.08em}
+.serviceDemo .sd-order-admin-actions{display:grid;gap:8px;margin:8px 0}
+.serviceDemo .sd-receipt{margin:10px 0;padding:9px;border:1px dashed #647b9a;border-radius:9px}
+.serviceDemo .sd-receipt summary{cursor:pointer;font-size:.75rem;font-weight:800}
+.serviceDemo .sd-receipt-paper{max-width:520px;margin:12px auto;padding:20px;background:#fff;color:#182235;border-radius:5px}
+.serviceDemo .sd-receipt-paper>span{font-size:.65rem;font-weight:900;letter-spacing:.1em}
+.serviceDemo .sd-receipt-paper h3{margin:10px 0 4px;color:#182235}
+.serviceDemo .sd-receipt-paper p{margin:5px 0;color:#344054;font-size:.78rem}
+.serviceDemo .sd-receipt-paper h2{margin:12px 0;color:#182235;font-size:1.6rem}
+.serviceDemo .sd-receipt-paper small{display:block;margin:12px 0;color:#667085;font-size:.65rem}
+.serviceDemo .sd-receipt-paper button{margin-top:8px}
+.serviceDemo .sd-activity-summary{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.serviceDemo .sd-activity-summary span{padding:7px 10px;border:1px solid #2a4163;border-radius:8px;color:#bdc9dc;font-size:.68rem}
+.serviceDemo .sd-activity-summary strong{color:#fff;font-size:.9rem}
+.serviceDemo .sd-event-list{display:grid;gap:7px}
+.serviceDemo .sd-event-list article{display:flex;align-items:flex-start;gap:9px;padding:8px;border-bottom:1px solid #263d5d}
+.serviceDemo .sd-event-list article>div{display:grid;gap:3px}
+.serviceDemo .sd-event-list strong{font-size:.73rem;color:#f5f8ff}
+.serviceDemo .sd-event-list small{font-size:.64rem;color:#9fb0c8}
+.serviceDemo .sd-event-dot{width:8px;height:8px;flex:0 0 8px;margin-top:4px;border-radius:50%;background:var(--studio-accent)}
+.serviceDemo .sd-event-dot.is-test{background:#e7ad42}
+@media(max-width:680px){.serviceDemo .sd-finance-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.serviceDemo .sd-admin-quick-actions{align-items:flex-start;flex-direction:column}.serviceDemo .sd-admin-quick-actions .sd-button{width:100%}.serviceDemo .sd-customer-list article{grid-template-columns:1fr auto}}
+@media print{body *{visibility:hidden!important}.sd-receipt[open],.sd-receipt[open] *{visibility:visible!important}.sd-receipt[open]{position:absolute;inset:0;border:0}.sd-receipt-paper{max-width:none;margin:0;box-shadow:none}}
