@@ -2092,3 +2092,83 @@ button.plugProductAction{width:100%;align-items:center;background:transparent;bo
 .serviceDemo .sd-admin .sd-admin-thread-message a{color:var(--studio-accent-text,#2458a6)}
 .serviceDemo .sd-admin .sd-owner-notes textarea{background:#fff;color:#202923;border-color:#cfd7ce}
 .serviceDemo .sd-receipt-paper{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+/* Admin readability: neutral form surfaces, explicit text contrast and brand-led accents. */
+.serviceDemo .sd-admin {
+  color: #202923;
+  background: transparent;
+  color-scheme: light;
+}
+.serviceDemo .sd-admin .sd-business-identity {
+  background: #fff;
+  border-color: #dfe5dd;
+  color: #202923;
+}
+.serviceDemo .sd-admin .sd-business-identity-fields label {
+  color: #202923;
+}
+.serviceDemo .sd-admin .sd-business-identity-fields input,
+.serviceDemo .sd-admin input:not([type="checkbox"]):not([type="radio"]):not([type="color"]),
+.serviceDemo .sd-admin select,
+.serviceDemo .sd-admin textarea {
+  background: #fff !important;
+  color: #202923 !important;
+  -webkit-text-fill-color: #202923;
+  caret-color: var(--studio-accent-text, #202923);
+  border: 1px solid #8a948b !important;
+  border-radius: 9px;
+  opacity: 1;
+}
+.serviceDemo .sd-admin input::placeholder,
+.serviceDemo .sd-admin textarea::placeholder {
+  color: #59645c;
+  opacity: 1;
+}
+.serviceDemo .sd-admin input:focus-visible,
+.serviceDemo .sd-admin select:focus-visible,
+.serviceDemo .sd-admin textarea:focus-visible {
+  outline: 3px solid var(--studio-accent-text, #202923);
+  outline-offset: 2px;
+  border-color: var(--studio-accent-text, #202923) !important;
+}
+.serviceDemo .sd-admin .sd-admin-head,
+.serviceDemo .sd-admin .sd-admin-quick-actions {
+  background: #fff !important;
+  border-color: #dfe5dd !important;
+  color: #202923;
+}
+.serviceDemo .sd-admin .sd-admin-quick-actions p,
+.serviceDemo .sd-admin .sd-admin-quick-actions small {
+  color: #59645c;
+}
+.serviceDemo .sd-admin .sd-owner-notes,
+.serviceDemo .sd-admin .sd-admin-thread,
+.serviceDemo .sd-admin .sd-admin-form,
+.serviceDemo .sd-admin .sd-live-preview {
+  background: #f7f8f5 !important;
+  border-color: #dfe5dd !important;
+  color: #202923;
+}
+.serviceDemo .sd-admin .sd-owner-notes textarea,
+.serviceDemo .sd-admin .sd-admin-thread textarea {
+  background: #fff !important;
+  color: #202923 !important;
+  -webkit-text-fill-color: #202923;
+  border-color: #8a948b !important;
+}
+.serviceDemo .sd-admin .sd-os-nav button[aria-pressed="true"] {
+  background: var(--studio-accent) !important;
+  border-color: var(--studio-accent) !important;
+  color: var(--studio-accent-ink, #111827) !important;
+}
+.serviceDemo .sd-admin .sd-theme-control {
+  background: #f7f8f5;
+  border-color: #dfe5dd;
+  color: #202923;
+}
+.serviceDemo .sd-admin .sd-theme-control strong {
+  color: #202923;
+}
+.serviceDemo .sd-admin .sd-theme-control small {
+  color: #59645c;
+}

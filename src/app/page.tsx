@@ -315,8 +315,8 @@ export default function Home() {
 
     {view === "admin" && adminUnlocked && <section className="sd-admin sd-wrap" data-admin-current={adminTab}><div className="sd-os-heading"><div><span className="sd-kicker">ADMIN HUB / PRIVATE BRIEFCASE</span><h1>{businessName.trim() || "Your Business"}</h1><p>Owner operations · customer requests · money</p></div><span className="sd-os-status">LOCAL DEMO</span></div><section className="sd-business-identity" data-admin-tab="store" aria-label="Business identity">
   <div className="sd-business-identity-fields">
-    <label>Business name<input value={businessName} onChange={event => setBusinessName(event.target.value.slice(0, 48))} maxLength={48} placeholder="e.g. Metsi Wellness" /></label>
-    <small>Use a real or fictional name. Your Store, Account and Briefcase rebrand together instantly.</small>
+    <label>Business name<input value={businessName} onChange={event => setBusinessName(event.target.value.slice(0, 48))} maxLength={48} autoComplete="organization" /></label>
+    <small>Example: Metsi Wellness. Use a real or fictional name. Your Store, Account and Briefcase rebrand together instantly.</small>
   </div>
   <div className="sd-business-identity-preview" style={{borderColor:themeColor}}><span className="sd-kicker">LIVE BUSINESS IDENTITY</span><strong>{businessName.trim() || "Your Business"}</strong><small>Store · Account · Briefcase</small></div>
 </section>
