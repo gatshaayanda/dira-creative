@@ -1672,3 +1672,10 @@ button.plugProductAction{width:100%;align-items:center;background:transparent;bo
  .serviceDemo .sd-art-block{min-height:88px}
  .serviceDemo .sd-services{padding-top:19px;padding-bottom:22px}
 }
+
+
+.serviceDemo .sd-capacity-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:12px 0}
+.serviceDemo .sd-capacity-grid article{display:grid;gap:5px;padding:12px;background:#0a172a;border:1px solid #294365;border-radius:10px}
+.serviceDemo .sd-capacity-grid strong{font-size:1.35rem;color:var(--studio-accent)}
+.serviceDemo .sd-capacity-grid span{font-size:.7rem;line-height:1.4;color:#c1cde0}
+@media(max-width:620px){.serviceDemo .sd-capacity-grid{grid-template-columns:1fr 1fr}.serviceDemo .sd-capacity-grid article:last-child{grid-column:1/-1}}
