@@ -52,6 +52,15 @@ Apply [docs/CHANGE-SAFETY-STANDARD.md](./docs/CHANGE-SAFETY-STANDARD.md) to ever
 
 These rules complement—not replace—the PWA installation lock and other project-specific protected contracts. Preserve known-good installation and chatbot behavior unless an explicit authorized task and evidence require a narrowly scoped change.
 
+## Iteration 13 Business OS product contract
+
+- Iteration 13 demonstrates one business product: **Store → Briefcase → Login**. Store is customer-facing; Briefcase is the owner's Business OS; Login is the one-word owner entry. The logo remains a discreet owner-workspace affordance; never add a public "Admin" navigation destination.
+- The owner Briefcase owns Store CRUD (services/products, prices, media, visibility, announcements), business theme, customer records, jobs/orders, receipts/BUR-ready exports, calendar, custom priorities, insights/projections, settings and My Notes. Expose only functions that are implemented; label prototype/local behavior clearly.
+- Business theme means a selectable accent colour/palette and custom colour, not only light/dark. Apply it consistently and preserve accessible contrast.
+- Demonstrate the BoardSignal-derived 25 GB monthly capacity benchmark and high-volume customer-day use case as supplied by the product owner. Explain that provider plan, file storage, bandwidth, database operations, API calls, messaging and AI usage are distinct. Never imply unlimited capacity or live metering without telemetry.
+- Keep actual receipts/confirmed sales separate from quotes, unpaid work and projected sales. Owner-defined job priorities must be based on persisted preferences and actual job states. WhatsApp invitations must be customer-scoped, revocable and tied to the correct customer/domain.
+- The current demo remains browser-local. No real Gmail owner authentication, shared server records, live 25 GB metering, cross-device sync, customer WhatsApp delivery or BUR compliance is implied until implemented and verified. Never enter real customer records into this demo.
+
 ## Reusable product principles
 - Customer action first. Make the next step obvious, reduce unnecessary navigation, and keep copy concise.
 - Mobile-first, accessible, legible UI; WCAG 2.2 AA contrast is the baseline. Apply compact, task-focused information density across every surface—not only the homepage—including booking, customer account and admin pages. Avoid oversized headers/cards, redundant welcome/hero sections and unnecessary vertical whitespace; keep operational information scannable without making controls cramped. Verify keyboard focus, narrow layouts, empty/error/loading states and touch targets.
