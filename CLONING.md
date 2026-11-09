@@ -2,7 +2,7 @@
 
 **Before cloning or adapting:** read [START-HERE.md](./START-HERE.md), [AGENTS.md](./AGENTS.md), [GOLDEN-BASELINE.md](./GOLDEN-BASELINE.md), [docs/PWA-INSTALLATION-LOCK.md](./docs/PWA-INSTALLATION-LOCK.md), [FOUNDATION-BLUEPRINT.md](./FOUNDATION-BLUEPRINT.md), [docs/ADMIN-HUB-APP-FACTORY-SOP.md](./docs/ADMIN-HUB-APP-FACTORY-SOP.md), [docs/CLONE-RESET-CHECKLIST.md](./docs/CLONE-RESET-CHECKLIST.md) and [README.md](./README.md). Start-HERE is the mandatory handoff. Iteration 13 is the engineering standards/reference repository, not the default clone source. The product owner selects the source for each new project; if none is specified, use `gatshaayanda/africhiko`. Existing projects are improved in place.
 
-Use this guide to select, inspect, clone and safely adapt the product owner's chosen source repository. It does not prescribe Iteration 13 as the source. For an existing project, inspect and improve that repository in place instead of recloning it.
+Use this guide to select, inspect, clone and safely adapt the product owner's chosen source repository. For the shared product direction and portfolio-wide rules to apply during that work, first consult [docs/ITERATION13-PORTFOLIO-HANDOFF.md](./docs/ITERATION13-PORTFOLIO-HANDOFF.md). That handoff does not change source selection: the selected source's own code and protected behavior remain authoritative. It does not prescribe Iteration 13 as the source. For an existing project, inspect and improve that repository in place instead of recloning it.
 ## 1. Establish the source and target
 
 The product owner selects the source repository. Record its exact `owner/repository`, default branch and commit. Never develop directly on Iteration 13's golden recovery branch.
