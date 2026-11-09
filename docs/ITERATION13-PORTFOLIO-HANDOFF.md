@@ -144,3 +144,9 @@ Before declaring an adoption complete:
 - [ ] Mobile, accessibility, empty/error/loading/success states checked.
 - [ ] Identity checks, tests, lint and build run where available.
 - [ ] Commit, push, deployment and physical-device QA reported separately.
+
+
+## Interactive business identity and live showcase preview
+- A visitor can rename the fictional or real demo business and select an accent colour; the Store, customer Account and owner Briefcase adopt that identity together. These settings persist only in the current browser profile.
+- The Briefcase includes a live showcase preview driven by the same local service/product and announcement state as the Store. CRUD changes are reflected in the preview immediately, with an explicit "Displaying in demo Store" status. This is a local prototype preview, not a remote publication or a customer's production website.
+- The prototype's purpose is to let prospects experience and qualify their intended business software before Admin Hub scopes and builds their actual iteration. Do not represent local demo activity as a real paid project, shared customer data or live production service.
