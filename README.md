@@ -1,10 +1,10 @@
-# Iteration 13 — Service Studio prototype
+# Iteration 13 — Business OS / Store + Briefcase
 
 **Start every new implementation or QA chat at [START-HERE.md](./START-HERE.md).** The [Iteration 13 Portfolio Handoff](./docs/ITERATION13-PORTFOLIO-HANDOFF.md) explains how this repository is used as the shared reference for new and existing portfolio projects. The complete [documentation map](./docs/README.md) shows the shortest task-specific reading path. The mandatory [Change Safety & Regression Prevention Standard](./docs/CHANGE-SAFETY-STANDARD.md) applies to every change and requires the fix and adjacent working behavior to be verified. [AGENTS.md](./AGENTS.md) contains repository rules; [FOUNDATION-BLUEPRINT.md](./FOUNDATION-BLUEPRINT.md) documents architecture; [CLONING.md](./CLONING.md) governs source selection and adaptation; [docs/ADMIN-HUB-APP-FACTORY-SOP.md](./docs/ADMIN-HUB-APP-FACTORY-SOP.md) and [docs/CLONE-RESET-CHECKLIST.md](./docs/CLONE-RESET-CHECKLIST.md) govern new-project execution. [docs/VISUAL-DIRECTION-STANDARD.md](./docs/VISUAL-DIRECTION-STANDARD.md) defines the visual craftsmanship and mobile-first experience standard. Iteration 13 is the engineering standards/reference repository, not the default clone source. The product owner chooses each new project's source; if none is named, use `gatshaayanda/africhiko`. Existing projects are improved in place.
 
 The Sparkle Legacy chat-widget reference and evidence-led proposal live in [CHAT-WIDGET-RESEARCH.md](./CHAT-WIDGET-RESEARCH.md). These files explain what to preserve, where to edit, what is demo-only, and what needs deliberate project-specific replacement.
 
-The approved foundation baseline and recovery policy are documented in [GOLDEN-BASELINE.md](./GOLDEN-BASELINE.md). A reusable, mobile-first PWA foundation candidate. The homepage demonstrates a complete service-order journey using browser-local demo data. Its compact 13Studio visual direction adapts the canonical WashRide reference's identity-first hero, dominant action, concise proof points and compact service grid without copying WashRide branding. Firebase configuration, rules and data were intentionally left unchanged.
+The approved foundation baseline and recovery policy are documented in [GOLDEN-BASELINE.md](./GOLDEN-BASELINE.md). A reusable, mobile-first PWA foundation candidate. The homepage demonstrates a compact business-branded Store connected to an owner Briefcase/Business OS. The public navigation uses Store, Account and Login; the owner logo remains a discreet workspace entry. Owners can edit services, announcements and the Store accent theme in the local demo. The interface uses the BoardSignal-derived 25 GB monthly capacity reference and high-volume customer-day scenario supplied by the product owner; it is not live server metering or a universal capacity guarantee. Firebase configuration, rules and data were intentionally left unchanged.
 ## Customer demo
 
 1. Open the homepage and browse the four example services:
@@ -20,14 +20,14 @@ The date is a requested timeline, not a confirmed delivery promise. No payment i
 
 ## Local admin demo
 
-Use **Admin demo** at the bottom of the page. From the admin view you can:
+Use the one-word **Login** entry or the discreet 13Studio footer logo to open the local Briefcase demo. From the owner workspace you can:
 
 - Add, edit, hide/show and delete services.
 - Change prices, descriptions, image/video URLs and media type.
 - Publish or clear a storefront announcement.
 - Review incoming requests and change their status.
 - See summary counts for requests, statuses, services, customer emails and demo visits.
-- Reset the local sample data for another walkthrough.
+- Change the Store's accent colour using presets or a custom colour picker; the choice previews across the Store and Briefcase.\n- Keep private My Notes in this browser.\n- Review the BoardSignal 25 GB capacity reference and illustrative busy-day scenario.\n- Reset the local sample data for another walkthrough.
 
 This is a prototype control surface, not a secure admin boundary. Do not enter real customer data.
 
