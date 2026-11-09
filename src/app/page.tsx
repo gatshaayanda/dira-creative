@@ -142,6 +142,26 @@ export default function Home() {
   }, [data, ready]);
 
   useEffect(() => {
+    if (!ready || !("serviceWorker" in navigator)) return;
+    const mediaUrls = [
+      ...data.services.map(service => service.media),
+      data.announcementImage || "",
+      ...data.orders.flatMap(order => (order.messages || []).map(message => message.attachment?.url || "")),
+    ].filter((url): url is string => typeof url === "string" && /^https:\/\//i.test(url));
+    const prepareOfflineMedia = () => {
+      navigator.serviceWorker.controller?.postMessage({ type: "CACHE_MEDIA", urls: mediaUrls });
+    };
+    prepareOfflineMedia();
+    navigator.serviceWorker.addEventListener("controllerchange", prepareOfflineMedia);
+    void navigator.serviceWorker.ready.then(registration => {
+      (navigator.serviceWorker.controller || registration.active)?.postMessage({ type: "CACHE_MEDIA", urls: mediaUrls });
+    }).catch(() => {
+      // Local demo actions remain available even when the browser blocks service workers.
+    });
+    return () => navigator.serviceWorker.removeEventListener("controllerchange", prepareOfflineMedia);
+  }, [data.services, data.announcementImage, data.orders, ready]);
+
+  useEffect(() => {
     if (!notice) return;
     const duration = /^(Choose|Add |Enter |The browser|Local demo storage|Could not save)/i.test(notice) ? 6500 : 4200;
     const timeout = window.setTimeout(() => setNotice(current => current === notice ? "" : current), duration);
@@ -305,6 +325,8 @@ export default function Home() {
   return <main className="serviceDemo" style={{ "--studio-accent": themeColor, "--studio-accent-ink": accentInk(themeColor), "--studio-accent-text": accentText(themeColor) } as React.CSSProperties}>
     <div className="sd-topline"><div className="sd-wrap"><span>13STUDIO <i className="sd-topline-divider">/</i> BUSINESS OS DEMO</span><span className={online ? "sd-connect" : "sd-connect is-offline"}><i />{online ? "Demo ready" : "Offline · local demo"}</span></div></div>
     <header className="sd-header"><div className="sd-wrap sd-nav"><button className="sd-brand" onClick={() => { setView("shop"); setNotice(""); window.scrollTo({top:0,behavior:"smooth"}); }} aria-label="Back to services"><span className="sd-logo">{(businessName.trim() || "YB").slice(0,2).toUpperCase()}</span><span><strong>{businessName || "Your Business"}</strong><small>STORE</small></span></button><nav aria-label="Main navigation"><button onClick={() => { setView("shop"); setNotice(""); }}>Store</button><button onClick={() => { setView("account"); setNotice(""); }}>Account <span className="sd-count">{data.orders.length}</span></button><button onClick={requestAdminLogin}>Login</button></nav></div></header>
+    {!online && <aside className="sd-offline-notice" role="status"><strong>Offline mode · saved on this device</strong><span>Store, account and Briefcase demo changes remain local to this browser. Previously loaded Store media can be available; new uploads and remote services need internet.</span></aside>}
+
 
     {view === "shop" && <>
       <section className="sd-store-home"><div className="sd-wrap"><div className="sd-store-intro"><div><span className="sd-kicker">YOUR BUSINESS / STORE + BRIEFCASE</span><h1>{businessName.trim() || "Your Business"}</h1><p>One simple place for customers to explore and the owner to stay organised.</p></div><div className="sd-store-proof"><span><b>25 GB</b><small>Capacity reference</small></span><span><b>1,000+</b><small>Busy-day interactions</small></span><span><b>24/7</b><small>Store access</small></span></div></div><section className="sd-quick-theme" aria-label="Choose business colour"><strong>Store colour</strong><button type="button" className={themeColor==="#4f8cff"?"is-selected":""} aria-label="Blue" aria-pressed={themeColor==="#4f8cff"} style={{background:"#4f8cff"}} onClick={()=>setThemeColor("#4f8cff")}/><button type="button" className={themeColor==="#16866a"?"is-selected":""} aria-label="Emerald" aria-pressed={themeColor==="#16866a"} style={{background:"#16866a"}} onClick={()=>setThemeColor("#16866a")}/><button type="button" className={themeColor==="#b7791f"?"is-selected":""} aria-label="Amber" aria-pressed={themeColor==="#b7791f"} style={{background:"#b7791f"}} onClick={()=>setThemeColor("#b7791f")}/><button type="button" className={themeColor==="#c04467"?"is-selected":""} aria-label="Rose" aria-pressed={themeColor==="#c04467"} style={{background:"#c04467"}} onClick={()=>setThemeColor("#c04467")}/><label>Custom <input aria-label="Choose custom business colour" type="color" value={themeColor} onChange={event=>setThemeColor(event.target.value)}/></label><span className="sd-theme-saved">Saved on this device</span></section></div></section>

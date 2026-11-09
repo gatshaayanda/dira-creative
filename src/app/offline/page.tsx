@@ -11,8 +11,10 @@ export default function OfflinePage() {
           <div className="confirmIcon">📶</div>
           <span className="kicker">Offline mode</span>
           <h1>Iteration 13 is still here.</h1>
-          <p>The app shell and pages already loaded may remain available on this device. Displayed information may be out of date.</p>
-          <p>The service-order demo stores requests, service edits and announcements in this browser, so those demo changes remain on this device while offline. They are not shared with another device or synced to a server. Firebase-backed routes and other server-dependent actions still need a connection.</p>
+          <p>The Store shell, app scripts and styles are cached for offline visits. Once the Store has loaded online, its current service images and videos from supported media hosts are also prepared for offline viewing. Cached content may be out of date, and browser storage can still be cleared by the device.</p>
+          <p>Customer requests, account text messages, service edits, announcement changes, Briefcase notes and demo payment/status changes save in this browser. Customer and owner views use the same local records on this device; nothing is uploaded or synced to another device.</p>
+          <p>New UploadThing uploads, external links, remote Firebase features and other server-dependent actions need internet. Offline text and admin changes are saved locally, not queued for server delivery.</p>
+          <p><strong>Before going offline:</strong> open the Store while connected, let its images and videos finish loading, then reload once so the latest app shell is active.</p>
           <div className="actions centered">
             <Link className="button buttonPrimary" href="/#service-order">Try customer journey</Link>
             <Link className="button buttonLight" href="/">Open home</Link>

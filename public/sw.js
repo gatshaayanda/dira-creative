@@ -51,11 +51,13 @@ self.addEventListener("notificationclick", (event) => {
   }));
 });
 
-const CACHE_VERSION = "iteration13-shell-v3";
-const MEDIA_CACHE = "iteration13-media-v1";
+const CACHE_VERSION = "iteration13-shell-v4";
+const MEDIA_CACHE = "iteration13-media-v2";
 const SHELL_CACHE = CACHE_VERSION;
 const STATIC_LIMIT = 100;
 const PUBLIC_PAGE_LIMIT = 12;
+const MEDIA_LIMIT = 40;
+const MEDIA_HOSTS = ["images.unsplash.com", "utfs.io", "ufs.sh"];
 const APP_SHELL = ["/", "/offline", "/patterns", "/iphone-install", "/iphone-install.svg", "/iteration13-icon.svg", "/iteration13-icon-192.svg", "/iteration13-icon-512.svg", "/iteration13-icon-192.png", "/iteration13-icon-512.png", "/iteration13-icon-180.png", "/manifest.webmanifest"];
 
 self.addEventListener("install", event => {
@@ -92,7 +94,45 @@ async function precacheShell() {
 
 self.addEventListener("message", event => {
   if (event.data?.type === "SKIP_WAITING") self.skipWaiting();
+  if (event.data?.type === "CACHE_MEDIA" && Array.isArray(event.data.urls)) {
+    const urls = [...new Set(event.data.urls.filter(url => typeof url === "string" && isApprovedMediaUrl(url)))].slice(0, MEDIA_LIMIT);
+    event.waitUntil(cacheMediaBatch(urls));
+  }
 });
+
+function isApprovedMediaUrl(value) {
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" && MEDIA_HOSTS.some(host => url.hostname === host || url.hostname.endsWith("." + host));
+  } catch {
+    return false;
+  }
+}
+
+async function cacheMediaBatch(urls) {
+  // Limit concurrency and total entries: large media must not crowd out the app shell.
+  for (let index = 0; index < urls.length; index += 3) {
+    await Promise.all(urls.slice(index, index + 3).map(cacheMediaUrl));
+  }
+  await trimCache(MEDIA_CACHE, MEDIA_LIMIT);
+}
+
+async function cacheMediaUrl(value) {
+  if (!isApprovedMediaUrl(value)) return;
+  const request = new Request(value, { mode: "no-cors", credentials: "omit", cache: "reload" });
+  const cache = await caches.open(MEDIA_CACHE);
+  if (await cache.match(request)) return;
+  try {
+    const response = await fetch(request);
+    const declaredSize = Number(response.headers.get("content-length") || 0);
+    if ((response.ok || response.type === "opaque") && (!declaredSize || declaredSize <= 20 * 1024 * 1024)) {
+      await cache.put(request, response.clone());
+      await trimCache(MEDIA_CACHE, MEDIA_LIMIT);
+    }
+  } catch {
+    // Media remains optional; a failed prefetch must never interrupt app-shell use.
+  }
+}
 
 self.addEventListener("activate", event => {
   event.waitUntil((async () => {
@@ -104,8 +144,16 @@ self.addEventListener("activate", event => {
 
 self.addEventListener("fetch", event => {
   const request = event.request;
-  if (request.method !== "GET" || new URL(request.url).origin !== self.location.origin) return;
+  if (request.method !== "GET") return;
   const url = new URL(request.url);
+
+  // Cache only explicitly approved image/video CDNs. This lets previously viewed
+  // Store media remain visible offline without caching arbitrary third-party traffic.
+  if (["image", "video"].includes(request.destination) && isApprovedMediaUrl(request.url)) {
+    event.respondWith(cacheMediaRequest(request, event));
+    return;
+  }
+  if (url.origin !== self.location.origin) return;
   if (url.pathname.startsWith("/api/")) return;
 
   const isNavigation = request.mode === "navigate" || request.headers.get("accept")?.includes("text/html");
@@ -136,6 +184,30 @@ self.addEventListener("fetch", event => {
     }));
   }
 });
+
+async function cacheMediaRequest(request, event) {
+  const cache = await caches.open(MEDIA_CACHE);
+  const cached = await cache.match(request);
+  if (cached) {
+    // Refresh in the background while returning the cached immutable media immediately.
+    event.waitUntil(fetch(request).then(async response => {
+      if (response.ok || response.type === "opaque") {
+        await cache.put(request, response.clone());
+        await trimCache(MEDIA_CACHE, MEDIA_LIMIT);
+      }
+    }).catch(() => {}));
+    return cached;
+  }
+  try {
+    const response = await fetch(request);
+    if (response.ok || response.type === "opaque") {
+      event.waitUntil(cache.put(request, response.clone()).then(() => trimCache(MEDIA_CACHE, MEDIA_LIMIT)));
+    }
+    return response;
+  } catch {
+    return Response.error();
+  }
+}
 
 async function cacheFirst(request) {
   const cache = await caches.open(SHELL_CACHE);

@@ -2235,3 +2235,16 @@ button.plugProductAction{width:100%;align-items:center;background:transparent;bo
 @media(prefers-reduced-motion:reduce){
   .serviceDemo .sd-showcase-footer .sd-owner-entry{transition:none}
 }
+
+
+/* Offline state: compact, explicit boundary for customer and owner workflows. */
+.serviceDemo .sd-offline-notice{
+  display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;
+  padding:9px 16px;background:#fff7e8;border-bottom:1px solid #e8cf9e;
+  color:#4b3512;font-size:.72rem;line-height:1.45;text-align:center;
+}
+.serviceDemo .sd-offline-notice strong{font-weight:900}
+.serviceDemo .sd-offline-notice span{color:#624c2b}
+@media(max-width:600px){
+  .serviceDemo .sd-offline-notice{align-items:flex-start;flex-direction:column;gap:2px;padding:9px 14px;text-align:left}
+}
