@@ -108,7 +108,7 @@ export default function AccountWorkspace({ businessName, orders, email, setEmail
 
   return <section className="sd-account sd-wrap">
     <div className="sd-account-head">
-      <span className="sd-kicker">YOUR SPACE / ACCOUNT</span>
+      <span className="sd-kicker">{businessName.toUpperCase()} / CUSTOMER ACCOUNT</span>
       <h1>Your projects.<br/><em>All here.</em></h1>
       <p>Track requests, share files, and keep project messages together. This prototype stores account activity in this browser, not in a shared customer account.</p>
       <button className="sd-button sd-outline" onClick={onBrowse}>← Back to services</button>
