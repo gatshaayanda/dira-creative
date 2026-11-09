@@ -51,7 +51,34 @@ The public storefront's footer logo is the discreet owner-entry affordance; do n
 
 The WashRide reference means compact, app-like composition—not simply a smaller type scale. Keep the hero short enough to reveal useful content/actions early, use a strong but contained visual, compress redundant proof chips and decorative whitespace, and make the service catalogue visible without a long marketing scroll. Apply the same compactness to all inner workspaces.
 
-## 4. Product and operational model
+
+## 4A. Iteration 13 product standard — Store + Briefcase + Login
+
+Iteration 13 is the live product demonstration of a small-business operating system, not merely a 13Studio services landing page. The complete customer journey and owner workflow must read as one product:
+
+- **Store** — the public, business-branded storefront: services/products, offers, announcements, customer enquiries, booking/order entry and customer account sharing.
+- **Briefcase** — the owner's private Business OS: Today, customers, jobs/orders, receipts and BUR-ready records, calendar, priorities, projections, insights, Store editor, announcements, theme, settings and My Notes.
+- **Login** — one-word, low-friction owner entry. It must authenticate the owner before any real private records are shown. A logo may be the discreet visual shortcut to owner access; do not expose an Admin link in the public customer navigation. Customer access is separately scoped and is not owner login.
+
+The Store and Briefcase must feel like one branded app. A business can select a theme colour (not merely light/dark), and the chosen accessible accent must flow through buttons, active navigation, links, badges, focus rings, charts and highlights. Provide a curated palette plus a custom colour control; derive readable foreground/surface treatments and check contrast. The business identity/theme is owner-controlled and should preview against the public Store before publishing.
+
+### The Briefcase is operational, not decorative
+
+The owner should be able to CRUD the actual Store content: services/products, descriptions, pricing, imagery, visibility, offers and announcements. A saved change must appear in the customer Store through the same data source. Owner preferences should shape custom job priorities, next actions and workload presentation. Include customer records and customer-scoped WhatsApp invitation/share links so the owner can onboard one or multiple contacts; customers open the actual business domain and see only their own permitted account, orders, messages and receipts.
+
+Receipts and records should support retention, search, date filters, export and audit history for high customer volumes (including BUR-related record keeping). Keep confirmed payments/receipts and completed-job actual sales separate from quotations, incomplete jobs and projected sales. A completed job can be counted as actual sales only according to the business's configured completion/payment rules; an unfinished or quoted job remains a projection. Make the assumptions visible.
+
+### Capacity and affordability proposition
+
+The product demonstration should communicate the user's BoardSignal-derived capacity evidence: a 25 GB monthly server allowance has been proven against BoardSignal's observed workload, and is presented as capable of supporting thousands of customer interactions/records in a busy day, rather than framing the business system as airtime consumed by every customer call. The demonstration should show an illustrative high-volume day (thousands of customer interactions; e.g. 1,000+ calls) and a day-off scenario where customer journeys and automated record handling continue while the owner is away.
+
+Do not conflate file storage, monthly data transfer, database operations, API requests, messaging charges or AI usage. The 25 GB allowance must be defined by the actual hosting/provider plan and measured usage. BoardSignal is the evidence reference, not a universal guarantee for every app, payload size, integration or traffic pattern. Show capacity as a transparent benchmark with assumptions and usage reporting; do not promise unlimited service. Present the monthly software/infrastructure expense as a business-operating cost designed to sit below a typical marketing budget, and show the actual plan/cost breakdown rather than inventing a universal price or saying every business will spend the same amount.
+
+### Compact storefront visual contract
+
+Use the WashRide image's app-like composition as the craftsmanship target: identity, relevant hero visual, concise headline, one dominant action, compact secondary action grid, clean card hierarchy and persistent navigation only where it helps. The Store must communicate the proposition quickly: one business OS, its public Store, its private Briefcase and its owner Login. Remove oversized marketing sections and repeated explanations. The first screen should expose the business proposition and customer action; the next screenful should reveal useful products/services. The Briefcase must be compact and operationally dense, with clear section separation, short labels, and progressive disclosure. Do not simply shrink typography or tap targets.
+
+## 5. Product and operational model
 
 The portfolio's product direction is a business-specific digital storefront paired with a private owner workspace (the digital briefcase). Keep these concepts understandable:
 - Store: public discovery, services/products, content, enquiries and customer actions.
@@ -63,13 +90,13 @@ The portfolio's product direction is a business-specific digital storefront pair
 
 Do not present Iteration 13's current browser-local demo as shared cloud storage, secure owner login, cross-device account sync or a production customer database. Check the actual code and data boundary before making capability claims.
 
-## 5. Operational transparency and labor illusion
+## 6. Operational transparency and labor illusion
 
 Make genuine work and outcomes visible where useful: received, validated, saved, reviewed, assigned, awaiting customer action, confirmed, in progress, completed or failed. Show the next useful action and preserve a meaningful history for consequential changes.
 
 The labor-illusion insight is used ethically: communicate real work performed and the customer benefit. Never fabricate typing, progress, queue positions, enquiries, scarcity, customer interest, delivery, payments, savings or results. Do not delay a fast action to make software appear busy. Keep a human escalation route where the business requires it.
 
-## 6. How to apply this to a new project
+## 7. How to apply this to a new project
 
 Iteration 13 is a **standards/reference repository, not the default clone source**.
 
@@ -83,7 +110,7 @@ Iteration 13 is a **standards/reference repository, not the default clone source
 8. Implement the brief in the target repository. Do not graft Iteration 13's demo localStorage architecture or sample services into production apps.
 9. Verify customer and staff/admin flows, mobile layout, offline boundaries, security, identity, lint/build/tests and deployment separately. Push only when authorized.
 
-## 7. How to apply this to an existing project
+## 8. How to apply this to an existing project
 
 1. Inspect the existing repository's latest branch/commit, instructions, implementation and protected behavior.
 2. Compare the requested area with the relevant Iteration 13 standard and reference image.
@@ -92,7 +119,7 @@ Iteration 13 is a **standards/reference repository, not the default clone source
 5. Update the target project's `AGENTS.md` only when a project-specific invariant, architecture decision or recurring failure mode needs to be retained.
 6. Report commit/push, tests/build, deployment and device QA as separate facts.
 
-## 8. Authority and conflict resolution
+## 9. Authority and conflict resolution
 
 Use this order:
 1. Product owner's latest explicit instruction.
@@ -104,7 +131,7 @@ Use this order:
 
 When a shared standard conflicts with a target project's proven behavior, stop and resolve the conflict explicitly. Never weaken security or break a working capability merely to achieve visual consistency.
 
-## 9. Release checkpoint
+## 10. Release checkpoint
 
 Before declaring an adoption complete:
 - [ ] Target repo and latest baseline inspected.
