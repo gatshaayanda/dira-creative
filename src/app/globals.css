@@ -2432,3 +2432,108 @@ h1 em,
 .serviceDemo .sd-reward-preview section p{margin:4px 0;color:#4b5560;font-size:.75rem;line-height:1.45}
 .serviceDemo .sd-reward-preview section b{color:#1744bd;font-size:.82rem}
 @media(max-width:560px){.serviceDemo .sd-reward-preview>div{align-items:flex-start}.serviceDemo .sd-reward-preview img,.serviceDemo .sd-reward-preview-fallback{flex-basis:72px;width:72px;height:68px}}
+
+
+/* Responsive layout pass — phone, iPad/tablet and desktop.
+   Keep the established visual system; only adjust sizing, wrapping and columns. */
+@media (min-width: 1101px) {
+  .serviceDemo .sd-wrap { width: min(1160px, calc(100% - 64px)); }
+  .serviceDemo .sd-admin { width: min(1160px, calc(100% - 64px)); margin-inline: auto; }
+  .serviceDemo .sd-account { width: min(1160px, calc(100% - 64px)); margin-inline: auto; }
+  .serviceDemo .sd-admin-grid { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: 18px; }
+  .serviceDemo .sd-admin[data-admin-current="work"] .sd-admin-grid { grid-template-columns: minmax(0, 1fr); }
+  .serviceDemo .sd-admin[data-admin-current="work"] #admin-announcement-tools { grid-column: 1 / -1; }
+  .serviceDemo .sd-showcase-preview-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+  .serviceDemo .sd-account-extras { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .serviceDemo .sd-panel-head h2 { font-size: clamp(19px, 1.7vw, 24px); }
+  .serviceDemo .sd-reward-editor { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+  .serviceDemo .sd-reward-editor > label:nth-child(2) { grid-column: 1 / -1; }
+  .serviceDemo .sd-reward-editor .sd-announcement-image-picker,
+  .serviceDemo .sd-reward-editor .sd-reward-admin-actions,
+  .serviceDemo .sd-reward-editor .sd-reward-preview { min-width: 0; }
+}
+@media (min-width: 761px) and (max-width: 1100px) {
+  .serviceDemo .sd-wrap { width: min(100% - 48px, 1040px); }
+  .serviceDemo .sd-nav { gap: 14px; }
+  .serviceDemo .sd-nav nav { gap: clamp(10px, 1.7vw, 18px); }
+  .serviceDemo .sd-nav nav button,
+  .serviceDemo .sd-nav nav a { font-size: .7rem; }
+  .serviceDemo .sd-store-intro { grid-template-columns: minmax(0, 1.1fr) minmax(250px, .9fr); gap: 18px; }
+  .serviceDemo .sd-hero-grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(20px, 3vw, 34px); }
+  .serviceDemo .sd-hero h1 { font-size: clamp(2.65rem, 5.4vw, 4.3rem); line-height: .98; letter-spacing: -.055em; }
+  .serviceDemo .sd-service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .serviceDemo .sd-service-media { height: clamp(170px, 23vw, 250px); }
+  .serviceDemo .sd-admin,
+  .serviceDemo .sd-account { width: min(100% - 48px, 1040px); margin-inline: auto; }
+  .serviceDemo .sd-admin-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .serviceDemo .sd-admin[data-admin-current="work"] .sd-admin-grid { grid-template-columns: minmax(0, 1fr); }
+  .serviceDemo .sd-admin[data-admin-current="work"] #admin-announcement-tools { grid-column: 1 / -1; }
+  .serviceDemo .sd-admin-panel { padding: clamp(13px, 1.7vw, 19px); }
+  .serviceDemo .sd-panel-head { align-items: flex-start; }
+  .serviceDemo .sd-panel-head h2 { font-size: clamp(18px, 2.1vw, 22px); }
+  .serviceDemo .sd-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .serviceDemo .sd-finance-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .serviceDemo .sd-performance-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .serviceDemo .sd-showcase-preview-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+  .serviceDemo .sd-account-head { margin-bottom: 22px; }
+  .serviceDemo .sd-account-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .serviceDemo .sd-account-extras { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .serviceDemo .sd-account-filter { align-items: flex-end; }
+  .serviceDemo .sd-discount-claims article { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) auto; }
+  .serviceDemo .sd-admin-orders article,
+  .serviceDemo .sd-admin-panel,
+  .serviceDemo .sd-account-content,
+  .serviceDemo .sd-showcase-preview { min-width: 0; }
+  .serviceDemo :is(.sd-admin-panel, .sd-admin-orders, .sd-discount-admin, .sd-account-content) { overflow-wrap: anywhere; }
+}
+@media (max-width: 760px) {
+  .serviceDemo .sd-wrap { width: calc(100% - 32px); }
+  .serviceDemo .sd-nav { align-items: center; gap: 8px; }
+  .serviceDemo .sd-nav nav { min-width: 0; max-width: 100%; flex-wrap: wrap; gap: 8px 14px; }
+  .serviceDemo .sd-nav nav button,
+  .serviceDemo .sd-nav nav a { min-height: 38px; display: inline-flex; align-items: center; }
+  .serviceDemo .sd-admin,
+  .serviceDemo .sd-account { width: calc(100% - 28px); margin-inline: auto; }
+  .serviceDemo .sd-admin-grid { grid-template-columns: minmax(0, 1fr); }
+  .serviceDemo .sd-admin[data-admin-current="work"] #admin-announcement-tools { grid-column: auto; }
+  .serviceDemo .sd-admin-panel { padding: 14px; }
+  .serviceDemo .sd-panel-head { flex-wrap: wrap; align-items: flex-start; }
+  .serviceDemo .sd-panel-head h2 { font-size: clamp(18px, 5vw, 22px); }
+  .serviceDemo .sd-admin-services article { align-items: flex-start; flex-direction: column; }
+  .serviceDemo .sd-row-actions { width: 100%; }
+  .serviceDemo .sd-row-actions button { flex: 1 1 auto; min-height: 38px; }
+  .serviceDemo .sd-form-two { grid-template-columns: minmax(0, 1fr); }
+  .serviceDemo .sd-account-filter { align-items: stretch; flex-direction: column; }
+  .serviceDemo .sd-account-filter > span { white-space: normal; }
+  .serviceDemo .sd-account-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .serviceDemo .sd-account-extras { grid-template-columns: minmax(0, 1fr); }
+  .serviceDemo .sd-reward-editor { grid-template-columns: minmax(0, 1fr); }
+  .serviceDemo .sd-reward-editor > label { max-width: none; }
+  .serviceDemo .sd-reward-admin-actions > button { flex: 1 1 150px; }
+  .serviceDemo .sd-discount-claims article { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .serviceDemo .sd-discount-claims article > * { min-width: 0; overflow-wrap: anywhere; }
+  .serviceDemo .sd-announcement .sd-wrap { width: 100%; }
+  .serviceDemo .sd-announcement > div > span { max-width: 100px; white-space: normal; }
+  .serviceDemo .sd-showcase-preview-head { align-items: flex-start; flex-direction: column; }
+  .serviceDemo .sd-showcase-preview-head .sd-small-button { width: 100%; }
+  .serviceDemo .sd-receipt-meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 420px) {
+  .serviceDemo .sd-wrap { width: calc(100% - 24px); }
+  .serviceDemo .sd-nav { align-items: flex-start; flex-direction: column; }
+  .serviceDemo .sd-nav nav { width: 100%; justify-content: space-between; gap: 4px 8px; }
+  .serviceDemo .sd-nav nav button,
+  .serviceDemo .sd-nav nav a { font-size: .68rem; }
+  .serviceDemo .sd-admin,
+  .serviceDemo .sd-account { width: calc(100% - 20px); }
+  .serviceDemo .sd-admin-panel { padding: 12px; }
+  .serviceDemo .sd-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .serviceDemo .sd-account-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .serviceDemo .sd-account-head h1 { font-size: clamp(1.75rem, 9vw, 2.2rem); }
+  .serviceDemo .sd-discount-claims article { grid-template-columns: minmax(0, 1fr); }
+  .serviceDemo .sd-announcement .sd-wrap { align-items: flex-start; flex-wrap: wrap; }
+  .serviceDemo .sd-announcement > div > span { flex: 1 1 100%; max-width: none; }
+  .serviceDemo .sd-announcement p { flex: 1 1 100%; }
+  .serviceDemo .sd-reward-preview > div { align-items: flex-start; }
+  .serviceDemo .sd-admin-footer p { overflow-wrap: anywhere; }
+}
