@@ -57,3 +57,6 @@ Before building/adapting any customer account, read the **Customer account works
 - Customer/admin replies are visible only in the same browser profile; no real remote inbox, email delivery or cross-device sync is configured.
 - UploadThing uploads require internet and are not queued offline. Current limits: images 4 MB, PDFs 4 MB, videos 16 MB.
 - The product owner handles Vercel deployments unless explicitly delegated, but the implementation agent must still inspect deployment/build status when it is available.
+
+
+For one-word staff/admin login work, follow the **One-word staff/admin access** section in `docs/ADMIN-HUB-APP-FACTORY-SOP.md`: one access-word field at the UI, server-side validation, real expiring authorization, and no invented email/username or auth infrastructure.
