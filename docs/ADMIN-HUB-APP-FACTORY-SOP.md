@@ -104,6 +104,21 @@ Before copying this pattern into a source that does not have it, inspect both im
 
 Preserve the selected source's existing chatbot implementation and behavior. For a new project based on Africhiko, adapt branding, copy and project-specific actions without replacing its behavior or removing capabilities. Connect actions to real target handlers; do not invent AI, live-agent, remote inbox or backend capabilities. If the chosen source has no chatbot or has a materially different protected assistant, document that fact and ask before grafting or replacing one.
 
+### One-word staff/admin access
+
+When the brief requests a one-word staff/owner login, the **user-facing contract is one access-word field and one submit action**. Do not turn it into an email, username, multi-field credential form, invitation flow or customer account journey. Keep the entry compact and clearly staff-only.
+
+- Inspect the selected source's actual login UI, route, session lifecycle, authorization checks, Firestore/security rules and environment configuration before implementation. John the Stylist is a relevant working reference; inspect its code rather than assuming from documentation.
+- Preserve the selected source's proven session mechanism where secure and compatible. "One-word" describes the staff experience; it does not authorize replacing custom-token, Firebase Auth, cookie/session or other established internals. If the product owner explicitly requests a particular mechanism (for example, no custom tokens), obey that instruction with the smallest secure change.
+- Validate the submitted word server-side against a server-only secret such as `ADMIN_PASSWORD`. Never expose the expected word in client code/public environment variables, log it, or store it in plaintext in Firestore.
+- After validation, establish a real authenticated staff session. Enforce staff authorization at server handlers and database security-rule boundaries; hiding admin UI is not authorization. Sessions must expire and invalid/expired sessions must fail closed.
+- Keep customer authentication separate. Do not require a staff email inbox, email entry, manual registration or second credential unless explicitly required or an unavoidable, documented architecture dependency.
+- Reuse the selected source's Firebase Admin initialization convention. Parse service-account JSON safely and normalize escaped private-key newlines. Do not add extra mandatory project-ID variables or duplicate strict project checks unless verified target architecture requires them. The service account must belong to the target Firebase project; never reuse source credentials.
+- Do not add custom claims/tokens, Email/Password provider dependencies, deterministic internal email identities or new provisioning layers as speculative fixes. Inspect the proven source and use only what its implementation and explicit requirements call for.
+- Document exact environment variables and console/rules steps. Test correct/incorrect word, missing configuration, expired session, unauthorized access and successful staff workflow. Never claim login works until the actual flow is verified.
+
+The required outcome is simple: staff enter one word and reach the authorized workspace. Infrastructure complexity must not leak into the login experience or be invented without evidence.
+
 ### Other protected functionality
 
 Preserve proven customer journeys, authentication, booking/order flows, uploads, offline behavior, games, admin CRUD and other golden features unless the brief explicitly authorizes a change. A branding-only task does not authorize workflow rewrites.
