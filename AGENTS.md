@@ -38,6 +38,8 @@ Iteration 13 is the standards/reference repository and a working prototype that 
 
 Every new client repository must receive a project-specific `AGENTS.md` before substantial implementation. It must describe the actual source lineage, product identity, architecture and data flows, customer/admin journeys, authentication and authorization boundaries, integrations, setup requirements, known limitations, protected features/files, PWA installation and chatbot locks, verification commands and the latest verified checkpoint. Carry forward only protections that exist in the selected source or are explicitly required by the product owner; do not falsely claim that a feature exists. Update the file when material decisions or verified behavior change. The client repo's own code and instructions then become its source of truth.
 
+For any requested one-word staff/owner login, follow the mandatory **One-word staff/admin access** section in `docs/ADMIN-HUB-APP-FACTORY-SOP.md`. One-word means one access-word field at the UI; inspect and preserve the selected source's proven auth/session implementation unless the product owner explicitly directs otherwise. Never invent email/username fields, token systems, provider dependencies or extra Firebase environment requirements.
+
 ## Evidence-led change and regression-prevention protocol
 
 Apply [docs/CHANGE-SAFETY-STANDARD.md](./docs/CHANGE-SAFETY-STANDARD.md) to every feature, bug report, visual complaint, install issue, and project adaptation. That document is the canonical cross-project method; the summary below is an implementation reminder, not a competing policy.
