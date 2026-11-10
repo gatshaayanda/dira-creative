@@ -76,3 +76,6 @@ The standards complement one another. For example, a visual redesign must preser
 - Remove stale or contradictory instructions when changing a rule. Never leave two competing versions of the same contract.
 - Preserve working links and referenced assets. Do not rename/move existing docs or assets without updating every reference.
 - Do not record secrets, personal customer data or unverified claims in documentation.
+
+
+For staff/admin login changes, the authoritative contract is the **One-word staff/admin access** section in [ADMIN-HUB-APP-FACTORY-SOP.md](./ADMIN-HUB-APP-FACTORY-SOP.md).
