@@ -86,6 +86,7 @@ Use this checklist with [CLONING.md](../CLONING.md) and [ADMIN-HUB-APP-FACTORY-S
 - [ ] Run relevant type, lint, test, identity and build checks; record actual output.
 - [ ] Inspect the built/served manifest and referenced icon/media paths when PWA identity changes.
 - [ ] Verify customer flow and staff/admin flow end to end.
+- [ ] If staff access is one-word, verify the single-field experience, server-only secret, proven session mechanism, expiry, rules/handler authorization and failure cases against the One-word staff/admin access SOP.
 - [ ] Verify authorization and customer record isolation.
 - [ ] Verify upload success, rejection, size/type limits and offline messaging.
 - [ ] Verify loading, empty, error, pending, success and offline states.
