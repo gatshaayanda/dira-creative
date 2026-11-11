@@ -25,6 +25,7 @@ Then open only the relevant task-specific documents below. Read the actual code 
 | --- | --- |
 | Visual design, responsive layout or visual QA | [Visual Direction Standard](./VISUAL-DIRECTION-STANDARD.md), then open the canonical [WashRide reference image](./assets/washride-home-reference.jpeg) |
 | Meaningful loading, search, booking, status, upload, payment, messaging, admin operations or handoff | [Operational Transparency Standard](./OPERATIONAL-TRANSPARENCY-STANDARD.md) |
+| Interaction affordances, contrast, touch targets, account UX, success/error feedback or notifications | [Interaction Clarity & Feedback Standard](./INTERACTION-CLARITY-AND-FEEDBACK-STANDARD.md) |
 | PWA install behavior, install regression or install-related identity work | [PWA Installation Lock](./PWA-INSTALLATION-LOCK.md) |
 | New app selection, cloning, adaptation or infrastructure reset | [Cloning guide](../CLONING.md), [App Factory SOP](./ADMIN-HUB-APP-FACTORY-SOP.md), [Clone/reset checklist](./CLONE-RESET-CHECKLIST.md), and [Golden Baseline](../GOLDEN-BASELINE.md) |
 | Chat widget / guided assistant | [Chat Widget Research](../CHAT-WIDGET-RESEARCH.md), then inspect the current component and handlers |
@@ -46,6 +47,7 @@ Then open only the relevant task-specific documents below. Read the actual code 
 - **CHANGE-SAFETY-STANDARD.md** — cross-project regression-prevention method. Mandatory for every task.
 - **VISUAL-DIRECTION-STANDARD.md** — visual craft, composition and responsive compactness; the JPEG asset is the visual source, not the prose alone.
 - **OPERATIONAL-TRANSPARENCY-STANDARD.md** — truthful activity, status and outcomes across real workflows.
+- **INTERACTION-CLARITY-AND-FEEDBACK-STANDARD.md** — clear affordances, accessible interaction, customer accounts and persistent/contextual feedback; toasts are supplementary only.
 - **PWA-INSTALLATION-LOCK.md** — protected installation state machine and recovery rules.
 - **ADMIN-HUB-APP-FACTORY-SOP.md** — end-to-end new-project operating procedure.
 - **CLONE-RESET-CHECKLIST.md** — actionable checklist for new-project reset and handoff.
