@@ -40,6 +40,12 @@ Every new client repository must receive a project-specific `AGENTS.md` before s
 
 For any requested one-word staff/owner login, follow the mandatory **One-word staff/admin access** section in `docs/ADMIN-HUB-APP-FACTORY-SOP.md`. One-word means one access-word field at the UI; inspect and preserve the selected source's proven auth/session implementation unless the product owner explicitly directs otherwise. Never invent email/username fields, token systems, provider dependencies or extra Firebase environment requirements.
 
+## Interaction clarity and feedback (mandatory)
+
+- Read [docs/INTERACTION-CLARITY-AND-FEEDBACK-STANDARD.md](./docs/INTERACTION-CLARITY-AND-FEEDBACK-STANDARD.md) before implementing or reviewing customer-facing interactions, forms, navigation, account workspaces, status feedback, notifications or error/success states.
+- Every action must look actionable before hover, use the correct semantic control, expose visible focus/pressed/disabled/loading states and provide truthful contextual feedback. Toasts must never be the sole record of important outcomes.
+- Apply the standard's contrast, touch-target, mobile-first, account-workspace and end-to-end QA requirements to all new and existing projects. Project-specific `AGENTS.md` files should link to the canonical standard rather than inventing competing rules.
+
 ## Evidence-led change and regression-prevention protocol
 
 Apply [docs/CHANGE-SAFETY-STANDARD.md](./docs/CHANGE-SAFETY-STANDARD.md) to every feature, bug report, visual complaint, install issue, and project adaptation. That document is the canonical cross-project method; the summary below is an implementation reminder, not a competing policy.
