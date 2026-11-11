@@ -2537,3 +2537,142 @@ h1 em,
   .serviceDemo .sd-reward-preview > div { align-items: flex-start; }
   .serviceDemo .sd-admin-footer p { overflow-wrap: anywhere; }
 }
+
+
+
+/* Compact storefront refresh — app-like hierarchy inspired by the WashRide reference.
+   Keep the business identity and customer actions prominent without a tall marketing stack. */
+.serviceDemo .sd-store-home{padding:18px 0 12px;background:radial-gradient(ellipse at 82% 18%,color-mix(in srgb,var(--studio-accent) 24%,transparent),transparent 42%),linear-gradient(135deg,#111b2b 0%,#0b101a 72%);border-bottom:1px solid #293448}
+.serviceDemo .sd-store-intro{grid-template-columns:minmax(0,1.15fr) minmax(220px,.85fr);gap:24px;align-items:center}
+.serviceDemo .sd-store-copy{min-width:0}
+.serviceDemo .sd-store-copy .sd-kicker{color:#a9c7ff;font-size:.65rem}
+.serviceDemo .sd-store-copy h1{max-width:620px;margin:9px 0 10px;color:#fff;font-size:clamp(2.35rem,5.2vw,4.4rem);line-height:.98;letter-spacing:-.065em}
+.serviceDemo .sd-store-copy h1 em{color:var(--studio-accent);font-style:normal}
+.serviceDemo .sd-store-copy>p{max-width:470px;color:#c7d0de;font-size:.9rem;line-height:1.55}
+.serviceDemo .sd-hero-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:17px}
+.serviceDemo .sd-hero-actions button{display:inline-flex;align-items:center;justify-content:center;gap:18px;min-height:46px;padding:0 17px;border-radius:10px;font-size:.78rem;font-weight:850;cursor:pointer;transition:transform .18s ease,background .18s ease}
+.serviceDemo .sd-hero-actions button:active{transform:translateY(1px)}
+.serviceDemo .sd-hero-primary{border:1px solid var(--studio-accent);background:var(--studio-accent);color:var(--studio-accent-ink)}
+.serviceDemo .sd-hero-secondary{border:1px solid #50617a;background:#18263a;color:#f5f7fb}
+.serviceDemo .sd-store-visual{display:flex;justify-content:center;align-items:center;min-width:0;min-height:190px;padding:8px}
+.serviceDemo .sd-device-card{width:min(100%,300px);padding:13px;border:1px solid #47638a;border-radius:19px;background:linear-gradient(145deg,#1d3554,#101b2c 76%);box-shadow:0 18px 45px #0007,inset 0 1px #ffffff1c;transform:rotate(2deg)}
+.serviceDemo .sd-device-top,.serviceDemo .sd-device-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#c7d8f1;font-size:.59rem;font-weight:850;letter-spacing:.1em}
+.serviceDemo .sd-device-top strong{color:#fff;font-size:.75rem}
+.serviceDemo .sd-device-top span{padding:5px 7px;border:1px solid #536d8d;border-radius:6px}
+.serviceDemo .sd-device-main{display:grid;grid-template-columns:54px 1fr;align-items:center;gap:10px;margin:12px 0;padding:15px 12px;border:1px solid #49648a;border-radius:12px;background:linear-gradient(125deg,#284d7a,#172c49)}
+.serviceDemo .sd-device-mark{display:grid;place-items:center;width:48px;height:48px;border-radius:13px;background:var(--studio-accent);font-size:1.55rem}
+.serviceDemo .sd-device-main strong{color:#fff;font-size:1.22rem;line-height:1.03;letter-spacing:-.04em}
+.serviceDemo .sd-device-main small{grid-column:2;color:#d3deec;font-size:.62rem}
+.serviceDemo .sd-device-bottom{padding:2px 4px 0}
+.serviceDemo .sd-device-bottom b{color:var(--studio-accent);font-size:.85rem}
+.serviceDemo .sd-store-proof{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
+.serviceDemo .sd-store-proof span{display:flex;align-items:center;gap:8px;padding:8px 11px;border:1px solid #2b3c54;border-radius:9px;background:#152238}
+.serviceDemo .sd-store-proof b{flex:0 0 auto;color:#fff;font-size:.96rem}
+.serviceDemo .sd-store-proof small{margin:0;color:#c0cddd;font-size:.63rem;line-height:1.25}
+.serviceDemo .sd-quick-theme{gap:9px;margin-top:9px;padding:7px 10px;border-color:#2b3c54;background:#111d2d}
+.serviceDemo .sd-quick-theme>strong{color:#e8eef7;font-size:.68rem}
+.serviceDemo .sd-quick-theme>button{width:22px;height:22px;min-width:22px}
+.serviceDemo .sd-quick-theme label{font-size:.68rem}
+.serviceDemo .sd-quick-theme input[type=color]{width:29px;height:25px}
+.serviceDemo .sd-theme-saved{font-size:.62rem}
+.serviceDemo .sd-announcement{border-color:#e0c77f;background:#fff4d5}
+.serviceDemo .sd-announcement .sd-wrap{gap:10px;padding:9px 0}
+.serviceDemo .sd-announcement>div>span{display:inline-flex;align-items:center;gap:6px;color:#705018;font-size:.57rem;letter-spacing:.08em}
+.serviceDemo .sd-announcement p{flex:1;min-width:0;color:#352a16;font-size:.78rem;line-height:1.35;font-weight:800}
+.serviceDemo .sd-announcement-thumb{width:42px;height:42px;flex:0 0 42px;border-radius:7px;object-fit:cover}
+.serviceDemo .sd-services{padding-top:23px!important;padding-bottom:24px!important;scroll-margin-top:78px}
+.serviceDemo .sd-compact-section-head{align-items:center;margin-bottom:12px}
+.serviceDemo .sd-compact-section-head h2{margin:4px 0;font-size:clamp(1.45rem,3vw,2rem);letter-spacing:-.045em}
+.serviceDemo .sd-compact-section-head>p{font-size:.74rem;line-height:1.4}
+.serviceDemo .sd-service-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px!important}
+.serviceDemo .sd-service-card{border:1px solid #d9dee6;border-radius:11px!important;background:#fff;box-shadow:0 5px 16px #1118270a}
+.serviceDemo .sd-service-media{height:clamp(84px,11vw,126px)!important;min-height:0!important}
+.serviceDemo .sd-service-index{top:7px;left:7px;width:25px;height:25px;font-size:.58rem}
+.serviceDemo .sd-service-emoji{top:7px;right:7px;left:auto;width:29px;height:29px;font-size:1rem}
+.serviceDemo .sd-service-info{display:grid;gap:6px;padding:10px!important}
+.serviceDemo .sd-service-title{align-items:center;gap:6px}
+.serviceDemo .sd-service-title h3{font-size:.9rem!important;line-height:1.2;letter-spacing:-.025em}
+.serviceDemo .sd-service-title>strong{font-size:.88rem!important}
+.serviceDemo .sd-service-info>p{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;min-height:0!important;margin:0!important;color:#525b67;font-size:.68rem!important;line-height:1.4!important}
+.serviceDemo .sd-order-button{min-height:38px;margin-top:2px;padding:0 10px;border:0;border-radius:7px;background:var(--studio-accent)!important;color:var(--studio-accent-ink)!important;font-size:.69rem}
+.serviceDemo .sd-order-button:hover{filter:brightness(1.06)}
+.serviceDemo .sd-order-section{padding:20px 0;background:#eef2f8;border-block:1px solid #d8dfeb;scroll-margin-top:74px}
+.serviceDemo .sd-order-grid{grid-template-columns:minmax(0,.7fr) minmax(0,1fr);gap:20px}
+.serviceDemo .sd-order-copy h2{margin:7px 0 10px;font-size:clamp(1.7rem,3vw,2.5rem);line-height:1}
+.serviceDemo .sd-order-copy>p{font-size:.78rem;line-height:1.5}
+.serviceDemo .sd-order-note{gap:8px;margin-top:12px;padding:10px}
+.serviceDemo .sd-order-form{position:relative;gap:11px;padding:15px;border-radius:12px;box-shadow:0 8px 24px #29385a0c}
+.serviceDemo .sd-form-heading{gap:5px;padding:0 34px 10px 0}
+.serviceDemo .sd-form-heading>strong{font-size:1.2rem}
+.serviceDemo .sd-form-close{position:absolute;top:12px;right:12px;display:grid;place-items:center;width:32px;height:32px;border:1px solid #d5dce6;border-radius:8px;background:#f7f9fc;color:#283447;font-size:1.25rem;cursor:pointer}
+.serviceDemo .sd-racing-promo{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,.8fr);align-items:center;gap:16px;margin-top:12px;margin-bottom:18px;padding:12px;border:1px solid #263b59;border-radius:12px;background:linear-gradient(120deg,#101b2c,#172b47)}
+.serviceDemo .sd-racing-promo-copy h2{margin:4px 0;font-size:1.25rem;line-height:1.1;letter-spacing:-.04em}
+.serviceDemo .sd-racing-promo-copy>p{margin:0;color:#c4d0e1;font-size:.72rem;line-height:1.4}
+.serviceDemo .sd-racing-details{min-width:0}
+.serviceDemo .sd-racing-details>summary{display:flex;align-items:center;gap:9px;min-height:48px;padding:8px 11px;border:1px solid #385b89;border-radius:9px;background:#1b3557;color:#fff;list-style:none;cursor:pointer}
+.serviceDemo .sd-racing-details>summary::-webkit-details-marker{display:none}
+.serviceDemo .sd-racing-details>summary>span:first-child{font-size:1.25rem}
+.serviceDemo .sd-racing-details>summary strong{flex:1;font-size:.76rem}
+.serviceDemo .sd-racing-open{color:#b9d4ff;font-size:.7rem;font-weight:850;white-space:nowrap}
+.serviceDemo .sd-racing-details[open]{grid-column:1/-1}
+.serviceDemo .sd-racing-details[open]>summary{margin-bottom:10px}
+.serviceDemo .sd-mobile-nav{display:none}
+.serviceDemo .sd-hero-actions button:focus-visible,.serviceDemo .sd-mobile-nav button:focus-visible,.serviceDemo .sd-form-close:focus-visible{outline:3px solid #fff;outline-offset:3px}
+@media(max-width:760px){
+  .serviceDemo{padding-bottom:calc(70px + env(safe-area-inset-bottom))}
+  .serviceDemo .sd-header .sd-nav{align-items:center;flex-direction:row;gap:8px}
+  .serviceDemo .sd-header .sd-nav nav{display:none}
+  .serviceDemo .sd-header .sd-brand{min-height:46px}
+  .serviceDemo .sd-store-home{padding:15px 0 10px}
+  .serviceDemo .sd-store-intro{grid-template-columns:minmax(0,1fr);gap:8px}
+  .serviceDemo .sd-store-copy h1{max-width:560px;margin:7px 0;font-size:clamp(2.1rem,9vw,3.25rem)}
+  .serviceDemo .sd-store-copy>p{max-width:430px;font-size:.8rem}
+  .serviceDemo .sd-hero-actions{gap:8px;margin-top:12px}
+  .serviceDemo .sd-hero-actions button{min-height:44px;padding:0 13px;font-size:.72rem}
+  .serviceDemo .sd-store-visual{display:none}
+  .serviceDemo .sd-store-proof{gap:6px;margin-top:13px}
+  .serviceDemo .sd-store-proof span{display:grid;gap:2px;padding:7px 8px}
+  .serviceDemo .sd-store-proof b{font-size:.9rem}
+  .serviceDemo .sd-store-proof small{font-size:.58rem}
+  .serviceDemo .sd-quick-theme{gap:8px;margin-top:8px;padding:6px 8px}
+  .serviceDemo .sd-theme-saved{margin-left:auto}
+  .serviceDemo .sd-announcement .sd-wrap{width:calc(100% - 24px);align-items:center;flex-wrap:nowrap;padding:8px 0}
+  .serviceDemo .sd-announcement>div>span{flex:0 0 auto;max-width:none;font-size:.53rem}
+  .serviceDemo .sd-announcement p{flex:1 1 auto;font-size:.72rem}
+  .serviceDemo .sd-announcement-thumb{width:38px;height:38px;flex-basis:38px}
+  .serviceDemo .sd-services{padding-top:18px!important;padding-bottom:16px!important}
+  .serviceDemo .sd-compact-section-head{align-items:flex-end}
+  .serviceDemo .sd-compact-section-head>p{max-width:145px;font-size:.65rem}
+  .serviceDemo .sd-service-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px!important}
+  .serviceDemo .sd-service-media{height:88px!important}
+  .serviceDemo .sd-service-info{gap:5px;padding:8px!important}
+  .serviceDemo .sd-service-title h3{font-size:.82rem!important}
+  .serviceDemo .sd-service-title>strong{font-size:.78rem!important}
+  .serviceDemo .sd-service-info>p{font-size:.64rem!important}
+  .serviceDemo .sd-order-button{min-height:38px}
+  .serviceDemo .sd-order-grid{grid-template-columns:minmax(0,1fr);gap:10px}
+  .serviceDemo .sd-order-copy{display:none}
+  .serviceDemo .sd-order-form{gap:10px;padding:13px}
+  .serviceDemo .sd-form-two{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .serviceDemo .sd-racing-promo{grid-template-columns:minmax(0,1fr);gap:10px;margin:8px 12px 14px;padding:10px}
+  .serviceDemo .sd-racing-promo-copy h2{font-size:1.1rem}
+  .serviceDemo .sd-mobile-nav{position:fixed;z-index:80;right:0;bottom:0;left:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;padding:6px 8px calc(6px + env(safe-area-inset-bottom));border-top:1px solid #26364d;background:rgba(7,14,25,.97);box-shadow:0 -8px 24px #0003;backdrop-filter:blur(14px)}
+  .serviceDemo .sd-mobile-nav button{display:grid;place-items:center;gap:2px;min-width:0;min-height:50px;padding:4px 2px;border:0;border-radius:8px;background:transparent;color:#c3ccda;font-size:.62rem;font-weight:750;cursor:pointer}
+  .serviceDemo .sd-mobile-nav button>span{font-size:1.08rem;line-height:1}
+  .serviceDemo .sd-mobile-nav button.is-active{background:#18345a;color:#fff}
+  .serviceDemo .sd-mobile-nav button.is-active>span{color:var(--studio-accent)}
+}
+@media(max-width:420px){
+  .serviceDemo .sd-header .sd-nav{align-items:center;flex-direction:row}
+  .serviceDemo .sd-header .sd-nav nav{display:none}
+  .serviceDemo .sd-store-copy h1{font-size:2.12rem}
+  .serviceDemo .sd-store-proof small{font-size:.54rem}
+  .serviceDemo .sd-quick-theme>strong{font-size:.63rem}
+  .serviceDemo .sd-theme-saved{font-size:.55rem}
+  .serviceDemo .sd-service-media{height:78px!important}
+  .serviceDemo .sd-service-info>p{font-size:.61rem!important}
+  .serviceDemo .sd-form-two{grid-template-columns:minmax(0,1fr)}
+}
+@media(prefers-reduced-motion:reduce){
+  .serviceDemo .sd-hero-actions button{transition:none}
+}
