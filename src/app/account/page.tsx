@@ -49,7 +49,7 @@ export default function AccountPage(){
  const[user,setUser]=useState<User|null>(null),[profile,setProfile]=useState<CustomerProfile|null>(null),[requests,setRequests]=useState<DiraEnquiry[]>([]),[busy,setBusy]=useState(false),[authReady,setAuthReady]=useState(false),[message,setMessage]=useState(""),[showPostSubmitSetup,setShowPostSubmitSetup]=useState(false),[submitted,setSubmitted]=useState(false);
 
 
- useEffect(()=>{const params=new URLSearchParams(window.location.search);if(params.has("submitted")){setSubmitted(true);setMessage("Your project enquiry is saved. Dira Creative will review the scope, prepare a quote and confirm the proposed timeline. No payment has been taken.");setShowPostSubmitSetup(true)}},[]);
+ useEffect(()=>{const params=new URLSearchParams(window.location.search);if(params.has("submitted")){setSubmitted(true);setShowPostSubmitSetup(true)}},[]);
  useEffect(()=>{
   let stopRequests=()=>{};
   let stopAuth=()=>{};
