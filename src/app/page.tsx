@@ -178,7 +178,7 @@ export default function Home() {
     window.addEventListener("online", syncOnline);
     window.addEventListener("offline", syncOnline);
     const params = new URLSearchParams(window.location.search);
-    if (params.get("view") === "account") { if (hasFirebaseWebConfig) window.location.replace("/account"); else setView("account"); }
+    if (params.get("view") === "account") window.location.replace("/account");
     if (window.location.hash === "#admin" || window.location.hash === "#login") { if (hasFirebaseWebConfig) window.location.replace("/admin"); else setView("login"); }
     return () => { window.removeEventListener("online", syncOnline); window.removeEventListener("offline", syncOnline); };
   }, []);
