@@ -16,7 +16,7 @@ check(sw.includes('const CACHE_VERSION = "dira-creative-shell-v2"'), "current ha
 check(sw.includes("account|request|requests|orders|admin|invite"), "customer account, enquiry and owner routes must use the private network-only path");
 check(sw.includes("fetchWithTimeout(request, 7000)") && sw.includes("controller.abort()"), "public navigation must fall back after a bounded network wait");
 check(sw.includes('key.startsWith("dira-creative-shell-")') && sw.includes('key.startsWith("dira-creative-media-")'), "activation must clean superseded Dira cache versions");
-check((sw.match(/"\\/dira-icon\\.svg"/g) || []).length === 1, "app shell should not repeat the Dira icon URL");
+check((sw.split('"/dira-icon.svg"').length - 1) === 1, "app shell should not repeat the Dira icon URL");
 check(sw.includes('"/", "/offline"'), "home and offline fallback must be precached");
 check(sw.includes('event.respondWith(cacheMediaRequest(request, event))'), "approved image/video requests must use the offline media cache");
 check(sw.includes('event.data?.type === "CACHE_MEDIA"'), "service worker must accept the page's current media list");
