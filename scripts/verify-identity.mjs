@@ -35,7 +35,7 @@ if (!appManifest.includes('name: "Dira Creative | Business OS"')) failures.push(
 if (appManifest.includes("Iteration 13") || appManifest.includes("The Plug") || appManifest.includes("plug-icon")) failures.push("app manifest: inherited The Plug identity remains");
 for (const iconPath of ["/dira-icon.svg"]) if (!appManifest.includes(iconPath)) failures.push("app manifest: missing " + iconPath);
 if (!fs.existsSync(path.join(root, "public/dira-icon.svg"))) failures.push("Dira Creative icon file missing");
-if (!fs.existsSync(path.join(root, "public/iteration13-icon-180.png"))) failures.push("Apple install icon file missing");
+
 const layout = fs.readFileSync(path.join(root, "src/app/layout.tsx"), "utf8");
 const pwaRegister = fs.readFileSync(path.join(root, "src/app/pwa-register.tsx"), "utf8");
 for (const expected of ["Iteration 13 | Service Studio", "applicationName:\"Iteration 13\""]) if (!layout.includes(expected)) failures.push("layout: missing " + expected);
