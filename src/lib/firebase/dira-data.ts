@@ -50,7 +50,11 @@ export type DiraEnquiry = {
   clientApprovedAt?:string;
   clientApprovedPrice?:number;
   clientApprovalSource?:string;
-  clientApprovalUid?:string;\n  configurationType?:"package"|"custom";\n  proposedTotal?:number;\n  excludedInclusions?:Array<{id:string;name:string;price:number}>;\n  configurationHistory?:Array<{action:"added"|"removed"|"package_changed";itemId:string;itemName:string;kind:"service"|"package";price:number;at:string}>;
+  clientApprovalUid?:string;
+  configurationType?:"package"|"custom";
+  proposedTotal?:number;
+  excludedInclusions?:Array<{id:string;name:string;price:number}>;
+  configurationHistory?:Array<{action:"added"|"removed"|"package_changed";itemId:string;itemName:string;kind:"service"|"package";price:number;at:string}>;
 };
 
 const enquiries=collection(db,"clientEnquiries");
