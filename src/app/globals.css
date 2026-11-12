@@ -3506,3 +3506,70 @@ h1 em,
  .diraAccountPage .accountConnect p{font-size:.84rem}
  .diraAccountPage .accountSubmissionSuccess{grid-template-columns:28px minmax(0,1fr) auto}
 }
+
+
+/* Dira owner workspace — operational hierarchy */
+.diraAdminPage .diraAdminHeader{grid-template-columns:auto minmax(220px,1fr) auto;padding:15px 18px;background:#20272b;border:1px solid #34464c;box-shadow:0 8px 24px rgba(20,42,48,.12)}
+.diraAdminPage .diraAdminHeader h1{font-size:1.42rem;letter-spacing:-.025em}
+.diraAdminPage .diraAdminLinks a{border-color:#60777e;background:#29363b}
+.diraAdminPage .diraMetrics{grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.diraAdminPage .diraMetrics article{position:relative;gap:5px;padding:11px 13px;border-color:#d6e1e5;border-radius:10px;box-shadow:0 2px 8px rgba(25,54,62,.035)}
+.diraAdminPage .diraMetrics article span{font-size:.75rem;line-height:1.3}
+.diraAdminPage .diraMetrics article strong{font-size:1.42rem;color:#005f70}
+.diraOwnerFocus{display:grid;gap:12px;padding:15px 16px;border:1px solid #34464c;border-radius:12px;background:#20272b;color:#fff;box-shadow:0 7px 20px rgba(20,42,48,.1)}
+.diraOwnerFocusLead{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.diraOwnerFocusLead .kicker{color:#8ed5e0}
+.diraOwnerFocusLead h2{margin:3px 0;color:#fff;font-size:1.12rem;letter-spacing:-.015em}
+.diraOwnerFocusLead p{margin:3px 0 0;color:#d1dfe2;font-size:.82rem;line-height:1.45}
+.diraOwnerFocusLead .button{flex:0 0 auto;min-height:42px;padding:9px 13px;background:#0097b2;color:#fff}
+.diraOwnerFocusStats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.diraOwnerFocusStats>div{display:grid;gap:4px;min-width:0;padding:10px 11px;border:1px solid #46575c;border-radius:8px;background:#293438}
+.diraOwnerFocusStats small{color:#d4e1e4;font-size:.75rem;line-height:1.35}
+.diraOwnerFocusStats strong{color:#fff;font-size:1.24rem;font-variant-numeric:tabular-nums}
+.diraAdminPage .diraFinancePanel{padding:13px 15px;border-color:#d5e0e4;background:#edf3f6}
+.diraAdminPage .diraFinancePanel .diraFinanceStrip>div{padding:10px 12px}
+.diraActivityDisclosure{overflow:hidden;border:1px solid #d5e0e4;border-radius:12px;background:#fff}
+.diraActivityDisclosure>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:58px;padding:11px 14px;cursor:pointer;list-style:none}
+.diraActivityDisclosure>summary::-webkit-details-marker{display:none}
+.diraActivityDisclosure>summary>span:first-child{display:grid;gap:3px}
+.diraActivityDisclosure>summary b{color:#25363c;font-size:.88rem}
+.diraActivityDisclosure>summary small{color:#52636b;font-size:.76rem;line-height:1.35}
+.diraActivityDisclosureHint{color:#006f82;font-size:.78rem;font-weight:900;white-space:nowrap}
+.diraActivityDisclosure[open]>summary{border-bottom:1px solid #dfe8eb;background:#f6fafb}
+.diraActivityDisclosure .diraActivityPanel{border:0;border-radius:0;box-shadow:none}
+.diraAdminPage .diraAdminTabs{position:sticky;top:0;z-index:5;padding:8px 0;background:#f4f6fc}
+.diraAdminPage .diraAdminTabs button{min-height:43px}
+.diraAdminPage .diraAdminTabs button:focus-visible,.diraAdminPage button:focus-visible,.diraAdminPage a:focus-visible,.diraActivityDisclosure>summary:focus-visible{outline:3px solid #0097b2;outline-offset:2px}
+.diraAdminPage .diraEnquiryQueue{max-height:calc(100vh - 32px);overflow:auto;overscroll-behavior:contain}
+.diraAdminPage .diraEnquiryRow{min-height:74px}
+.diraAdminPage .diraEnquiryRow:hover{background:#f3fafb}
+.diraAdminPage .diraEnquiryRow.selected:hover{background:#e8f6f8}
+.diraAdminPage .diraProjectForm label{color:#26383e;font-size:.82rem}
+.diraAdminPage .diraProjectForm input,.diraAdminPage .diraProjectForm select,.diraAdminPage .diraProjectForm textarea{min-height:42px;border-color:#c6d5da;background:#fff;color:#202c32;font:inherit;font-size:.86rem}
+.diraAdminPage .diraProjectForm textarea{min-height:88px}
+.diraAdminPage .diraTaskForm label{font-size:.82rem}
+.diraAdminPage .diraTaskForm input,.diraAdminPage .diraTaskForm textarea{font-size:.84rem}
+@media(max-width:900px){.diraAdminPage .diraMetrics{grid-template-columns:repeat(3,minmax(0,1fr))}.diraOwnerFocusStats{grid-template-columns:repeat(2,minmax(0,1fr))}.diraAdminPage .diraEnquiryQueue{max-height:none}}
+@media(max-width:560px){
+ .diraAdminPage{padding:10px 9px 24px}
+ .diraAdminPage .adminShell{gap:11px}
+ .diraAdminPage .diraAdminHeader{grid-template-columns:1fr;padding:13px;gap:8px}
+ .diraAdminPage .diraAdminHeader .logo{display:flex}
+ .diraAdminPage .diraAdminHeader h1{font-size:1.28rem}
+ .diraAdminPage .diraAdminHeader p{font-size:.82rem}
+ .diraAdminPage .diraAdminLinks a{flex:1;min-height:40px;padding:9px 8px;font-size:.76rem}
+ .diraAdminPage .diraMetrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+ .diraAdminPage .diraMetrics article{padding:9px 10px}
+ .diraAdminPage .diraMetrics article strong{font-size:1.3rem}
+ .diraOwnerFocus{padding:12px;gap:10px}
+ .diraOwnerFocusLead{align-items:stretch;flex-direction:column;gap:9px}
+ .diraOwnerFocusLead .button{width:100%;justify-content:center}
+ .diraOwnerFocusStats{gap:6px}
+ .diraOwnerFocusStats>div{padding:9px}
+ .diraOwnerFocusStats small{font-size:.74rem}
+ .diraOwnerFocusStats strong{font-size:1.15rem}
+ .diraActivityDisclosure>summary{align-items:flex-start;padding:11px}
+ .diraActivityDisclosureHint{font-size:.74rem}
+ .diraAdminPage .diraAdminTabs{margin:0 -2px;gap:6px}
+ .diraAdminPage .diraAdminTabs button{padding:8px 11px;font-size:.78rem}
+}
