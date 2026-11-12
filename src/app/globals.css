@@ -3213,3 +3213,34 @@ h1 em,
 .diraActivityTop b{white-space:nowrap}
 @media(max-width:760px){.diraActivityGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.diraActivityPanel{padding:12px}.diraActivityPanel .diraFinanceHeading{align-items:flex-start;flex-direction:column}.diraActivityGrid{gap:7px}.diraActivityGrid article{padding:10px}.diraActivityGrid strong{font-size:1.2rem}}
+
+
+/* Customer workspace: clear progress and immediate enquiry confirmation */
+.diraAccountPage .accountSubmissionSuccess{display:grid;grid-template-columns:34px minmax(0,1fr) auto;align-items:start;gap:12px;margin:16px 0 4px;padding:14px 15px;border:1px solid #9ed5df;border-radius:11px;background:#eef8fa;color:#17343b}
+.diraAccountPage .accountSuccessMark{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#007b91;color:#fff;font-weight:900}
+.diraAccountPage .accountSubmissionSuccess strong{display:block;font-size:.95rem}
+.diraAccountPage .accountSubmissionSuccess p{margin:4px 0 7px;color:#46575e;font-size:.82rem;line-height:1.45}
+.diraAccountPage .accountSubmissionSuccess a{color:#006b7e;font-size:.8rem;font-weight:850;text-decoration:underline;text-underline-offset:3px}
+.diraAccountPage .accountSubmissionSuccess button{border:0;background:transparent;color:#52636b;font-size:1.25rem;line-height:1;cursor:pointer}
+.diraAccountPage .accountNextAction{margin:10px 0 12px;padding:10px 12px;border-left:3px solid #0097b2;background:#eef8fa}
+.diraAccountPage .accountNextAction .kicker{font-size:.62rem;letter-spacing:.09em}
+.diraAccountPage .accountNextAction p{margin:4px 0 0;color:#344b53;font-size:.82rem;line-height:1.45}
+.diraAccountPage .accountProgress{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;margin:12px 0 14px;padding:0;list-style:none}
+.diraAccountPage .accountProgress li{position:relative;display:grid;justify-items:center;gap:6px;min-width:0;text-align:center;color:#7b8b91}
+.diraAccountPage .accountProgress li:before{content:"";position:absolute;top:12px;left:calc(-50% + 14px);right:calc(50% + 14px);height:2px;background:#d9e3e7}
+.diraAccountPage .accountProgress li:first-child:before{display:none}
+.diraAccountPage .accountProgress li>span{z-index:1;display:grid;place-items:center;width:25px;height:25px;border:1px solid #c8d9df;border-radius:50%;background:#fff;color:#60727a;font-size:.7rem;font-weight:850}
+.diraAccountPage .accountProgress li small{max-width:100%;color:#60727a;font-size:.65rem;line-height:1.2}
+.diraAccountPage .accountProgress li.isComplete>span{border-color:#007b91;background:#007b91;color:#fff}
+.diraAccountPage .accountProgress li.isComplete:before,.diraAccountPage .accountProgress li.isCurrent:before{background:#68b8c7}
+.diraAccountPage .accountProgress li.isCurrent>span{border:2px solid #007b91;color:#005f70;font-weight:950}
+.diraAccountPage .accountProgress li.isCurrent small{color:#005f70;font-weight:900}
+@media(max-width:560px){
+ .diraAccountPage .accountSubmissionSuccess{grid-template-columns:28px minmax(0,1fr) auto;gap:9px;padding:12px}
+ .diraAccountPage .accountSuccessMark{width:26px;height:26px}
+ .diraAccountPage .accountProgress{gap:2px;margin:10px -3px 13px}
+ .diraAccountPage .accountProgress li{gap:5px}
+ .diraAccountPage .accountProgress li>span{width:22px;height:22px;font-size:.64rem}
+ .diraAccountPage .accountProgress li:before{top:10px;left:calc(-50% + 12px);right:calc(50% + 12px)}
+ .diraAccountPage .accountProgress li small{font-size:.58rem;overflow-wrap:anywhere}
+}
