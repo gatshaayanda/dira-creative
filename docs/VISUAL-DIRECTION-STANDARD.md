@@ -47,6 +47,18 @@ Every project should feel like a carefully art-directed, installable mobile prod
 
 ### 4. Compactness and information density — every screen
 
+### 4A. Readability is a release blocker — compact never means clipped
+
+- Never truncate customer-facing service/product descriptions. No line-clamp, fixed-height text box, ellipsis, clipped overflow or hidden continuation on catalogue cards. Let the card grow naturally; keep the catalogue compact by reducing decorative media/padding, not by hiding words.
+- The customer must be able to read the complete name, full price (or clearly stated "From" price), full short description and action without opening the request form. Essential price information is never hidden behind hover, a details panel or a later step. If the business genuinely cannot quote a price, show "Price on request" rather than inventing one.
+- Normal body, card, form, navigation and button text should be at least 14 CSS px; supporting metadata should generally be at least 12 CSS px and must not carry essential instructions alone. Use comfortable line height (normally 1.4–1.6) and allow text to wrap without clipping.
+- Maintain WCAG 2.2 AA text contrast: 4.5:1 for normal text and 3:1 only for qualifying large text. Check the actual foreground/background pair, including brand accents, badges, placeholders, disabled states, announcement banners, overlays and dark surfaces.
+- Use stable neutral text/surface pairs. Never use grey-on-grey, accent-on-accent or white-on-light-accent text without verifying contrast. Derive a readable foreground for custom brand colours; do not assume a fixed white or black foreground works for every colour.
+- Never shrink all typography to make a page fit one viewport. Preserve content and scroll naturally. Test long words, longer business/service names, 2–3 line descriptions, custom themes and narrow phones.
+- Acceptance test: the complete example description "A mobile-first app experience built around the way your customers work." must be readable in the App card at phone width without clipping, fading, horizontal scrolling or opening another screen.
+
+
+
 This is a mandatory cross-application rule. Do not make only the homepage compact while booking, customer and admin surfaces become tall, oversized or wasteful.
 
 - Design around the user's task and the amount of information they need at once. Prefer a compact, purposeful app interface over excessive vertical padding, oversized headings, tall cards and decorative gaps.
