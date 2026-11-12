@@ -3786,3 +3786,29 @@ h1 em,
  .diraAnalyticsPeriod{width:100%}
  .diraJourneyGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+
+/* Dira owner workspace — compact, destination-led navigation */
+.diraAdminQuickNav{display:flex;align-items:center;gap:6px;overflow-x:auto;padding:2px 0 5px;border-bottom:1px solid #dce6e9;scrollbar-width:thin}
+.diraAdminQuickNav a,.diraAdminQuickNav button{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;min-height:38px;padding:8px 11px;border:1px solid #d4e0e4;border-radius:8px;background:#fff;color:#26383e;text-decoration:none;font:700 .78rem/1.2 inherit;white-space:nowrap}
+.diraAdminQuickNav a:first-child{border-color:#08798c;background:#eaf5f7;color:#075f70}
+.diraAdminQuickNav a:hover,.diraAdminQuickNav button:hover{border-color:#08798c;background:#f0f8f9}
+.diraAdminQuickNav a:focus-visible,.diraAdminQuickNav button:focus-visible{outline:3px solid #0097b2;outline-offset:2px}
+.diraAdminPage .diraOwnerFocus{scroll-margin-top:12px}
+.diraAdminPage .diraFinancePanel,.diraAdminPage .diraJourneyPanel,.diraAdminPage .diraAdminTabs,.diraAdminPage .diraEnquiryQueue{scroll-margin-top:12px}
+@media(max-width:760px){
+ .diraAdminPage .diraAdminHeader{grid-template-columns:1fr;align-items:start;gap:10px}
+ .diraAdminPage .diraAdminHeader .logo{width:max-content}
+ .diraAdminPage .diraAdminLinks{gap:6px}
+ .diraAdminPage .diraAdminLinks a{padding:8px 9px;font-size:.76rem}
+ .diraAdminQuickNav{margin-inline:-2px}
+}
+@media(max-width:560px){
+ .diraAdminPage .diraAdminHeader h1{font-size:1.28rem}
+ .diraAdminPage .diraAdminHeader p{font-size:.8rem;line-height:1.4}
+ .diraAdminPage .diraAdminLinks a{flex:1 1 auto;text-align:center}
+ .diraAdminQuickNav a,.diraAdminQuickNav button{min-height:40px;padding:8px 10px}
+ .diraAdminPage .diraOwnerFocusLead{align-items:flex-start;flex-direction:column}
+ .diraAdminPage .diraOwnerFocusLead .button{width:100%;justify-content:center}
+ .diraAdminPage .diraJourneyGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
