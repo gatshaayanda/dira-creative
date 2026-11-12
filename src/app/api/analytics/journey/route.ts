@@ -1,6 +1,6 @@
 import {NextResponse} from "next/server";
 import {getAuth} from "firebase-admin/auth";
-import {getFirestore} from "firebase-admin/firestore";
+import {FieldValue,getFirestore} from "firebase-admin/firestore";
 import {getDiraAdminApp} from "@/lib/firebase/admin";
 
 export const runtime="nodejs";
@@ -24,7 +24,12 @@ export async function POST(request:Request){
     const createdAt=new Date().toISOString();
     const record={customerId:decoded.uid,event:body.event,details,createdAt};
     const payloadBytes=Buffer.byteLength(JSON.stringify(record),"utf8");
-    await db.collection("customerJourneyEvents").add({...record,payloadBytes});
+    const eventRef=db.collection("customerJourneyEvents").doc();
+    const summaryRef=db.collection("customerJourneyAnalytics").doc("summary");
+    const counter:Record<string,unknown>={eventCount:FieldValue.increment(1),payloadBytes:FieldValue.increment(payloadBytes),updatedAt:createdAt};
+    const counterField:Record<string,string>={public_visit:"publicVisits",catalogue_view:"catalogueViews",service_selected:"serviceSelections",request_flow_opened:"requestFlowOpens",request_submitted:"enquiriesSubmitted",notification_enabled:"notificationsEnabled"};
+    counter[counterField[body.event]]=FieldValue.increment(1);
+    await db.runTransaction(async tx=>{tx.create(eventRef,{...record,payloadBytes});tx.set(summaryRef,counter,{merge:true})});
     return NextResponse.json({ok:true});
   }catch(error){
     console.error("[Dira Creative] journey analytics write failed:",error);
