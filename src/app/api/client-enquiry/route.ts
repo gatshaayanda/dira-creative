@@ -8,13 +8,25 @@ export const runtime="nodejs";
 function adminApp(){ return getDiraAdminApp(); }
 
 function validEnquiry(data:Record<string,unknown>,uid:string){
-  const allowed=["customerId","customerName","email","phone","serviceName","packageName","scope","budget","preferredTimeline","attachment","createdAt","updatedAt","status","engagementMode"];
+  const allowed=["customerId","customerName","email","phone","serviceName","packageName","selectedItems","scope","budget","preferredTimeline","attachment","createdAt","updatedAt","status","engagementMode"];
   if(Object.keys(data).some(key=>!allowed.includes(key))||!allowed.every(key=>Object.prototype.hasOwnProperty.call(data,key)))return false;
   if(data.customerId!==uid||typeof data.customerName!=="string"||!data.customerName.trim()||data.customerName.length>120)return false;
   if(typeof data.email!=="string"||data.email.length>254||!/^\S+@\S+\.\S+$/.test(data.email))return false;
   if(typeof data.phone!=="string"||!data.phone.trim()||data.phone.length>60)return false;
   if(typeof data.serviceName!=="string"||!data.serviceName.trim()||data.serviceName.length>180)return false;
-  if(typeof data.packageName!=="string"||data.packageName.length>180||typeof data.scope!=="string"||data.scope.length>5000)return false;
+  if(typeof data.packageName!=="string"||data.packageName.length>500||typeof data.scope!=="string"||data.scope.length>5000)return false;
+  if(!Array.isArray(data.selectedItems)||data.selectedItems.length<1||data.selectedItems.length>30)return false;
+  const seen=new Set<string>();
+  for(const item of data.selectedItems){
+    if(!item||typeof item!=="object"||Array.isArray(item))return false;
+    const entry=item as Record<string,unknown>;
+    if(Object.keys(entry).some(key=>!["id","name","kind","price","priceLabel"].includes(key)))return false;
+    if(typeof entry.id!=="string"||entry.id.length>100||seen.has(entry.id)||typeof entry.name!=="string"||!entry.name.trim()||entry.name.length>180)return false;
+    if(entry.kind!=="service"&&entry.kind!=="package")return false;
+    if(typeof entry.price!=="number"||!Number.isFinite(entry.price)||entry.price<0||entry.price>100000000||typeof entry.priceLabel!=="string"||entry.priceLabel.length>40)return false;
+    seen.add(entry.id);
+  }
+  if(data.serviceName!==(data.selectedItems as Array<{name:string}>).map(item=>item.name).join(" + "))return false;
   if(typeof data.budget!=="string"||data.budget.length>160||typeof data.preferredTimeline!=="string"||data.preferredTimeline.length>160)return false;
   if(typeof data.createdAt!=="string"||typeof data.updatedAt!=="string"||data.status!=="New Enquiry")return false;
   if(data.engagementMode!=="remote"&&data.engagementMode!=="on-site"&&data.engagementMode!=="hybrid")return false;
