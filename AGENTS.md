@@ -28,7 +28,7 @@ Build an integrated Business OS for Royalty Holdings, initially operated through
 3. Owner Briefcase / Business OS: Today, clients, pipeline, projects, tasks, service catalogue CRUD, deliverables, calendar, receipts/records, finances, brand assets, documents, team responsibilities, insights and settings.
 4. Parent-company oversight: Royalty Holdings identity and company records, with Dira Creative as the operating agency.
 
-Only expose a module as operational when its actions and persistence are implemented. Clearly distinguish prototype/local state from server-persisted/shared state.
+The local prototype currently demonstrates enquiries, quote send/approve/decline, project task checklists, client messages/attachments, requested-date calendar, service CRUD, customer discounts and receipt/payment recording. These actions are browser-local. Only expose a module as production-operational when its server-side actions and persistence are implemented. Clearly distinguish prototype/local state from server-persisted/shared state.
 
 ## Five development stages
 1. Define Your Identity — logo, colour, typography, iconography, graphic elements, photography direction, illustration and layout.
