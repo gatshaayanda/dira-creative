@@ -3163,3 +3163,14 @@ h1 em,
  .diraAccountPage .accountBottomNav>a:hover{background:#eaf7f9;color:#005f70}
  .diraAccountPage{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
 }
+
+/* Multi-service project selection and client account line items */
+.diraSelectedServices{display:grid;gap:10px;padding:14px;border:1px solid var(--line,#dce3eb);border-radius:14px;background:var(--surface,#fff);min-width:0}
+.diraSelectedServices>strong{font-size:15px}
+.diraSelectedService{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line,#e4e9ef);font-size:14px}
+.diraSelectedService:last-of-type{border-bottom:0}
+.diraSelectedServices>div:has(>select){display:grid;gap:9px}
+.clientSelectedItems{list-style:none;margin:8px 0 12px;padding:0;display:grid;gap:5px}
+.clientSelectedItems li{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:7px 10px;border-radius:8px;background:var(--surface-soft,#f4f6fc);font-size:13px}
+.clientSelectedItems li strong{white-space:nowrap}
+@media(max-width:560px){.diraSelectedServices{padding:11px}.diraSelectedService{align-items:flex-start}.clientSelectedItems li{font-size:13px}}
