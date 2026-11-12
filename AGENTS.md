@@ -31,7 +31,12 @@ Build an integrated Business OS for Royalty Holdings, initially operated through
 
 The local prototype currently demonstrates enquiries, quote send/approve/decline, project task checklists, client messages/attachments, requested-date calendar, service CRUD, customer discounts and receipt/payment recording. These actions are browser-local. Only expose a module as production-operational when its server-side actions and persistence are implemented. Clearly distinguish prototype/local state from server-persisted/shared state.
 
-## UX research and onboarding decisions\n- Follow `docs/DIRA-UX-AND-ONBOARDING-DECISIONS.md` for the audience paths, psychology-informed choice architecture, progressive-disclosure enquiry form, colour constraints and first-QA acceptance journeys.\n- Lead with three plain-language audience package paths, then provide a searchable full service catalogue. Do not hide or remove any supplied service or price.\n- Enquiry fallback without configured online submission must clearly prepare a WhatsApp draft and say it is not sent until the customer presses Send.\n\n## Five development stages
+## UX research and onboarding decisions
+- Follow `docs/DIRA-UX-AND-ONBOARDING-DECISIONS.md` for the audience paths, psychology-informed choice architecture, progressive-disclosure enquiry form, colour constraints and first-QA acceptance journeys.
+- Lead with three plain-language audience package paths, then provide a searchable full service catalogue. Do not hide or remove any supplied service or price.
+- Enquiry fallback without configured online submission must clearly prepare a WhatsApp draft and say it is not sent until the customer presses Send.
+
+## Five development stages
 1. Define Your Identity — logo, colour, typography, iconography, graphic elements, photography direction, illustration and layout.
 2. Establish Your Presence — company profiles, proposals, portfolios, pitch decks, business cards, websites, applications and maintenance.
 3. Structure Your Operations — workflows, team structures, function mapping and operational support.
