@@ -10,7 +10,7 @@ export const ourFileRouter = {
     video: { maxFileSize: "16MB", maxFileCount: 1 },
     pdf: { maxFileSize: "4MB", maxFileCount: 1 },
   }).onUploadComplete(async ({ file }) => {
-    console.info("[Iteration 13] account/service attachment uploaded", {
+    console.info("[Dira Creative] client attachment uploaded", {
       name: file.name,
       size: file.size,
       type: file.type,
