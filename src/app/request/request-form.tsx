@@ -35,6 +35,8 @@ export default function RequestForm(){
   event.preventDefault();
   if(busy)return;
   if(!serviceName.trim()||!name.trim()||!email.trim()||!phone.trim()||!scope.trim()){setNotice("Complete the service, contact and project brief fields before submitting.");return;}
+  if(file&&(!file.type.startsWith("image/")&&file.type!=="application/pdf")){setNotice("Attach an image or PDF file.");return;}
+  if(file&&file.size>MAX_FILE_SIZE){setNotice("Attachments must be 4 MB or smaller.");return;}
   if(!hasFirebaseWebConfig){const message=["Hello Dira Creative, I would like to enquire about a project.","Service: "+serviceName.trim(),packageName.trim()?"Package: "+packageName.trim():"","Name: "+name.trim(),"Email: "+email.trim(),"WhatsApp: "+phone.trim(),"Budget guide: "+(budget.trim()||"Not supplied"),"Preferred timeline: "+(preferredTimeline.trim()||"To discuss"),"Working preference: "+engagementMode,"Project brief: "+scope.trim(),file?"Attachment to add in WhatsApp: "+file.name:""].filter(Boolean).join("\n");window.open("https://wa.me/26774343719?text="+encodeURIComponent(message),"_blank","noopener,noreferrer");setNotice("A WhatsApp enquiry draft has been prepared. Your details are not sent or saved by Dira until you press Send in WhatsApp.");return;}
   if(file&&(!file.type.startsWith("image/")&&file.type!=="application/pdf")){setNotice("Attach an image or PDF file.");return;}
   if(file&&file.size>MAX_FILE_SIZE){setNotice("Attachments must be 4 MB or smaller.");return;}
