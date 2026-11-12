@@ -45,6 +45,10 @@ export async function POST(request:Request){
     const newQuoteRef=db.collection("quotes").doc();quoteId=newQuoteRef.id;newQuote=true;
     tx.create(newQuoteRef,{enquiryId:body.enquiryId,clientId:old.customerId,serviceName:old.serviceName,packageName:old.packageName||"",scope:old.scope||"",amount:quote,currency:"BWP",initialPaymentRequired:required,deliverables,targetCompletion,engagementMode,version:quoteVersion,status:nextStatus==="Quote Ready"?"Sent":"Draft",sentAt:nextStatus==="Quote Ready"?now:null,sentBy:token.uid,createdAt:now,updatedAt:now});
    }
+   if(quoteId&&!newQuote&&["Quote Ready","Awaiting Approval"].includes(nextStatus)){
+    const existingQuoteRef=db.collection("quotes").doc(quoteId),existingQuote=await tx.get(existingQuoteRef);
+    if(existingQuote.exists)tx.update(existingQuoteRef,{status:"Sent",sentAt:existingQuote.data()?.sentAt||now,sentBy:token.uid,updatedAt:now});
+   }
    if(paymentDelta>0)tx.create(paymentRef,{enquiryId:body.enquiryId,clientId:old.customerId,projectId:old.projectId||null,amount:paymentDelta,currency:"BWP",method,reference,status:"Verified",source:"owner-confirmed",verifiedAt:now,verifiedBy:token.uid,createdAt:now});
    const update:Record<string,unknown>={quotedPrice:quote??null,initialPaymentRequired:required,initialPaymentReceived:received,paymentReference:reference,paymentMethod:method,targetCompletion,engagementMode,deliverables,status:nextStatus,updatedAt:now};
    if(quoteId){update.quoteId=quoteId;update.quoteVersion=quoteVersion;}
