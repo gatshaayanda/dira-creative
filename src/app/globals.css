@@ -3061,3 +3061,60 @@ h1 em,
 .serviceDemo .sd-approach-grid article{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
 .serviceDemo .sd-approach-grid article a{display:inline-flex;align-items:center;justify-content:center;min-height:36px;margin-top:auto;padding:7px 10px;border:1px solid #b8d6dd;border-radius:7px;color:#006f83;font-size:.74rem;font-weight:850}
 .serviceDemo .sd-approach-grid article a:hover{background:#eaf7f9;border-color:#0097b2}
+
+
+/* Dira storefront: compact, action-led composition adapted from the approved WashRide reference. */
+.sd-store-home{padding:clamp(20px,3.2vw,38px) 0 24px}
+.sd-store-intro{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(280px,.92fr);gap:clamp(16px,2.4vw,28px);align-items:stretch}
+.sd-store-copy{align-self:center;max-width:650px}
+.sd-store-copy h1{max-width:11ch;margin:12px 0 12px;font-size:clamp(2.25rem,5.3vw,4.8rem);line-height:.94;letter-spacing:-.045em}
+.sd-store-copy>p{max-width:48ch;margin:0;color:var(--sd-muted,#5c626b);font-size:clamp(.96rem,1.25vw,1.08rem);line-height:1.55}
+.sd-hero-actions{margin-top:18px;gap:9px}
+.sd-hero-primary,.sd-hero-secondary{min-height:44px;padding:11px 16px;border-radius:9px}
+.sd-hero-quicklinks{min-height:0;padding:16px;background:var(--sd-panel,#f4f5f6);border:1px solid var(--sd-line,#d9dde1);border-radius:14px;display:flex;flex-direction:column;gap:12px}
+.sd-quicklinks-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.sd-quicklinks-head>span{font-size:.65rem;font-weight:850;letter-spacing:.13em;color:var(--sd-muted,#626873)}
+.sd-quicklinks-head>strong{font-size:.82rem;font-weight:850}
+.sd-quicklinks-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;flex:1}
+.sd-quicklinks-grid button{position:relative;display:grid;grid-template-columns:1fr auto;align-content:space-between;gap:12px;min-height:91px;padding:13px;text-align:left;border:1px solid var(--sd-line,#d9dde1);border-radius:10px;background:#fff;color:var(--sd-ink,#171a1f);cursor:pointer;transition:border-color .16s ease,transform .16s ease}
+.sd-quicklinks-grid button:hover{border-color:var(--sd-accent,var(--studio-accent,#007b91));transform:translateY(-1px)}
+.sd-quicklinks-grid button>span{grid-column:1/-1;font-size:.67rem;font-weight:800;letter-spacing:.1em;color:var(--sd-muted,#6c727c)}
+.sd-quicklinks-grid button>strong{align-self:end;font-size:.94rem;line-height:1.15}
+.sd-quicklinks-grid button>i{align-self:end;font-style:normal;font-size:1.05rem;font-weight:800;color:var(--sd-accent,var(--studio-accent,#007b91))}
+.sd-store-proof{margin-top:18px;padding:12px 0;border-top:1px solid var(--sd-line,#d9dde1);border-bottom:1px solid var(--sd-line,#d9dde1)}
+.sd-starting-points{padding-top:28px}
+.sd-starting-heading{margin-bottom:14px}
+.sd-starting-heading h2{margin:7px 0;font-size:clamp(1.55rem,3vw,2.2rem);line-height:1.05}
+.sd-starting-heading p{margin:0;font-size:.9rem}
+.sd-starting-grid{gap:10px}
+.sd-starting-grid article{padding:15px;border-radius:11px}
+.sd-services{padding-top:34px}
+.sd-section-head.sd-compact-section-head{margin-bottom:16px}
+.sd-catalogue-tools{gap:10px}
+.sd-catalogue-resultline{margin:12px 0}
+.sd-service-grid{gap:12px}
+.sd-service-card{border-radius:11px;overflow:hidden}
+.sd-service-media{min-height:118px}
+.sd-service-info{padding:13px}
+.sd-service-info p{line-height:1.45}
+.sd-approach{padding-top:34px;padding-bottom:34px}
+.sd-approach-grid{gap:10px}
+.sd-approach-grid article{padding:15px}
+.sd-contact{padding-top:28px;padding-bottom:30px}
+@media(max-width:760px){
+ .sd-store-home{padding:14px 0 18px}
+ .sd-store-intro{grid-template-columns:1fr;gap:14px}
+ .sd-store-copy h1{max-width:13ch;font-size:clamp(2.25rem,10vw,3.3rem);margin:8px 0 9px}
+ .sd-store-copy>p{font-size:.94rem}
+ .sd-hero-actions{margin-top:13px}
+ .sd-hero-quicklinks{padding:12px;gap:9px}
+ .sd-quicklinks-grid button{min-height:78px;padding:11px}
+ .sd-store-proof{margin-top:12px;padding:10px 0}
+ .sd-starting-points{padding-top:22px}
+ .sd-starting-grid{grid-template-columns:1fr;gap:8px}
+ .sd-starting-grid article{display:grid;grid-template-columns:1fr auto;gap:5px 12px;align-items:center;padding:12px}
+ .sd-starting-grid article p{grid-column:1/-1;margin:0}
+ .sd-starting-grid article strong{grid-column:1;grid-row:3}
+ .sd-starting-grid article button{grid-column:2;grid-row:3}
+ .sd-services{padding-top:24px}
+}
