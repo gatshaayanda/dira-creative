@@ -3690,3 +3690,53 @@ h1 em,
  .diraHomeFooter nav{gap:13px}
  .diraHomeFooterInner>small{grid-column:1}
 }
+
+
+/* Dira customer project configurator — compact account-native workspace. */
+.diraBuilder{margin:12px 0;padding:16px;border:1px solid #d8e2e7;border-radius:12px;background:#fff;color:#24343b;display:grid;gap:14px}
+.diraBuilderHeading{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.diraBuilderHeading h2{margin:5px 0;font-size:clamp(1.25rem,3vw,1.7rem);line-height:1.15}
+.diraBuilderHeading p{margin:0;color:#586a72;font-size:14px;line-height:1.45;max-width:620px}
+.diraBuilderHeading>strong{font-size:1.45rem;white-space:nowrap;color:#087e83}
+.diraBuilderPackages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+.diraBuilderPackages button{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:8px;min-height:66px;padding:10px;border:1px solid #d6e1e5;border-radius:8px;background:#f6f8fa;color:#273940;text-align:left;font:inherit}
+.diraBuilderPackages button span{font-size:13px;font-weight:650}
+.diraBuilderPackages button strong{font-size:14px}
+.diraBuilderPackages button.isSelected{border-color:#087f83;background:#e9f6f4;box-shadow:inset 0 0 0 1px #087f83}
+.diraBuilderIncluded{display:grid;gap:9px}
+.diraBuilderSubhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.diraBuilderSubhead strong{font-size:14px}
+.diraBuilderSubhead small{font-size:12px;color:#657780}
+.diraBuilderServiceList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.diraBuilderServiceList label{display:flex;align-items:center;gap:9px;padding:9px;border:1px solid #e0e7ea;border-radius:7px;background:#fbfcfd;min-width:0}
+.diraBuilderServiceList label.isExcluded{opacity:.7;background:#f5f6f7}
+.diraBuilderServiceList input{width:18px;height:18px;flex:0 0 auto;accent-color:#078b88}
+.diraBuilderServiceList label>span{display:grid;gap:2px;flex:1;min-width:0}
+.diraBuilderServiceList label strong{font-size:13px;line-height:1.3}
+.diraBuilderServiceList label small{font-size:12px;color:#63747b;line-height:1.35}
+.diraBuilderServiceList label>b{font-size:11px;color:#087f83;white-space:nowrap}
+.diraBuilderToggle{justify-self:start;border:1px solid #cbdadd;border-radius:7px;padding:9px 12px;background:#f3f7f8;color:#145c61;font:inherit;font-size:13px;font-weight:650}
+.diraBuilderReceipt{padding:12px;border:1px solid #d8e3e5;border-radius:9px;background:#f5f8f9;display:grid;gap:8px}
+.diraBuilderReceipt>div:not(.diraBuilderSubhead){display:flex;justify-content:space-between;gap:12px;font-size:13px}
+.diraBuilderReceipt>p{margin:0;color:#765b2c;font-size:12px}
+.diraBuilderTotal{padding-top:9px;border-top:1px solid #d5e0e3;align-items:center}
+.diraBuilderTotal strong{font-size:1.45rem;color:#087e83}
+.diraBuilderForm{display:grid;gap:10px}
+.diraBuilderForm .fieldGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.diraBuilderForm label{display:grid;gap:5px;font-size:13px;font-weight:650}
+.diraBuilderForm input,.diraBuilderForm textarea{width:100%;min-width:0;border:1px solid #cbd8dd;border-radius:7px;padding:10px;background:#fff;color:#26363d;font:inherit;font-size:14px}
+.diraBuilderForm textarea{resize:vertical}
+.diraBuilderSubmit{display:grid;gap:7px}
+.diraBuilderSubmit .button{justify-self:start}
+.diraBuilderSubmit small{font-size:12px;color:#657780;line-height:1.4}
+.diraConfigAudit{margin:12px 0;padding:12px;border:1px solid #cbdfe0;border-radius:8px;background:#f2f8f8;display:grid;gap:8px}
+.diraConfigAudit>div{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.diraConfigAudit>div strong{font-size:13px}
+.diraConfigAudit>div b{font-size:13px;color:#087f83}
+.diraConfigAudit small{font-size:12px;color:#52666d}
+.diraConfigAudit ul,.diraConfigAudit ol{margin:4px 0 0;padding-left:20px}
+.diraConfigAudit li{font-size:13px;margin:4px 0}
+.diraConfigAudit details summary{cursor:pointer;font-size:13px;font-weight:650}
+.diraConfigAudit details li{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.diraBuilder button:focus-visible,.diraBuilder input:focus-visible,.diraBuilder textarea:focus-visible{outline:3px solid #078b88;outline-offset:2px}
+@media(max-width:700px){.diraBuilder{padding:12px;gap:12px}.diraBuilderPackages{grid-template-columns:repeat(2,minmax(0,1fr))}.diraBuilderServiceList{grid-template-columns:1fr}.diraBuilderForm .fieldGrid{grid-template-columns:1fr}.diraBuilderHeading{display:grid}.diraBuilderHeading>strong{font-size:1.35rem}}
