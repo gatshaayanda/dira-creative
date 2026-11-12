@@ -64,6 +64,9 @@ Use these supplied prices only. A range must remain visible as a range; Ultimate
 ## Current persistence/security boundary
 The legacy single-page preview in `src/app/page.tsx` still contains browser-local demo state and must not be treated as the production record system. The production journeys are `/request` (anonymous Firebase Auth session + server-validated Firestore enquiry when configured; otherwise an explicit WhatsApp draft fallback), `/account` (customer Firebase Auth, enquiry subscriptions, quote approval, project tasks and conversations), `/admin` (one-word Operations gate + Firebase custom token + role-checked owner workspace), and `/admin/storefront` (Firestore service CRUD). Owner updates and client quote approvals use Firebase Admin transactions. The production flows are only operational when the `the-wall-ab746` web config, matching `FIREBASE_ADMIN_KEY`, `FIREBASE_PROJECT_ID`, `DIRA_OPERATIONS_WORD`, and UploadThing token where uploads are used are configured in the runtime. Do not treat legacy browser-local preview records as real customer data.
 
+## Notification preferences
+- Notification lead-time is an optional `leadMinutes` preference. Existing saved records without it must remain readable and use the 15-minute default; keep the supported choices in `src/components/NotificationSettings.tsx` aligned with the UI.
+
 ## Implementation discipline
 - GitHub main is source of truth. Inspect relevant files before edits; make focused changes and review diffs.
 - Never invent backend behavior, client data, prices or payment confirmation.
