@@ -37,6 +37,8 @@ export type DiraEnquiry = {
   quotedPrice?:number;
   initialPaymentRequired?:number;
   initialPaymentReceived?:number;
+  paymentReference?:string;
+  paymentMethod?:string;
   targetCompletion?:string;
   engagementMode?:"remote"|"on-site"|"hybrid";
   deliverables?:string;
