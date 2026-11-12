@@ -34,7 +34,8 @@ const seedServices: Service[] = DEFAULT_DIRA_CATALOGUE.map(item => ({
 }));
 const emptyData: DemoData = { services: seedServices, orders: [], announcement: "", announcementImage: "", views: 0, events: [], discountAmount: 10, discountClaims: [], receiptProfile: { legalName: "Royalty Holdings (Pty) Ltd", registration: "UIN BW 00001917522", address: "Gaborone, Botswana", phone: "+267 74 343 719", footer: "Dira Creative · Building brands that communicate clearly, operate efficiently, and scale effectively." } };
 const money = (amount: number) => "P" + amount.toLocaleString("en-BW", { maximumFractionDigits: 2 });
-const servicePriceLabel = (service: Service) => service.priceLabel || money(service.price);
+const canonicalPackage = (service: Service) => DEFAULT_DIRA_CATALOGUE.find(item => item.kind === "package" && item.name.toLowerCase() === service.name.toLowerCase());
+const servicePriceLabel = (service: Service) => canonicalPackage(service)?.priceLabel || service.priceLabel || money(service.price);
 const serviceEmoji = (name: string) => {
   const label = name.toLowerCase();
   if (/website|web|site|digital|design/.test(label)) return "🌐";
@@ -262,7 +263,10 @@ export default function Home() {
   }
 
   const servicesForDisplay = remoteServices && remoteServices.length > 0 ? remoteServices : data.services.length > 0 ? data.services : seedServices;
-  const activeServices = servicesForDisplay.filter(service => service.active);
+  const activeServices = servicesForDisplay.filter(service => service.active && (service.kind !== "package" || Boolean(canonicalPackage(service)))).map(service => {
+    const fixed = canonicalPackage(service);
+    return fixed ? { ...service, price: fixed.priceFrom ?? service.price, priceLabel: fixed.priceLabel, description: fixed.description } : service;
+  });
   const paidTotal = data.orders.reduce((sum, order) => sum + (order.paidAmount || 0), 0);
   const completedUnpaid = data.orders.filter(order => order.status === "Completed").reduce((sum, order) => sum + Math.max(0, order.price - (order.paidAmount || 0)), 0);
   
@@ -270,7 +274,7 @@ export default function Home() {
   const projectedValue = data.orders.filter(order => ["Accepted", "In progress"].includes(order.status)).reduce((sum, order) => sum + order.price, 0);
   const completedValue = data.orders.filter(order => order.status === "Completed").reduce((sum, order) => sum + order.price, 0);
   const customerRecords = Array.from(new Map(data.orders.map(order => [order.email.toLowerCase(), { name: order.customerName, email: order.email, jobs: data.orders.filter(item => item.email.toLowerCase() === order.email.toLowerCase()) }] as const)).values());
-  const selectedService = servicesForDisplay.find(service => service.id === selected && service.active);
+  const selectedService = activeServices.find(service => service.id === selected);
   const catalogueMatches = activeServices.filter(service => { const query = catalogueSearch.trim().toLowerCase(); const matchesQuery = !query || [service.name, service.description, service.category || ""].some(value => value.toLowerCase().includes(query)); const matchesView = catalogueView === "all" || (catalogueView === "services" && service.kind !== "package") || (catalogueView === "packages" && service.kind === "package"); return matchesQuery && matchesView; });
   const statusCounts = useMemo(() => data.orders.reduce<Record<string, number>>((acc, order) => { acc[order.status] = (acc[order.status] || 0) + 1; return acc; }, {}), [data.orders]);
 
