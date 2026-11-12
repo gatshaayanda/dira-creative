@@ -35,7 +35,7 @@ The owner workspace is intended to bring together Today, clients, pipeline, proj
 - Supporting typeface: Open Sans
 - Design philosophy: Designed to stand out.
 
-The mobile-first composition adapts the approved Iteration 13 WashRide reference at docs/assets/washride-home-reference.jpeg. The reference informs hierarchy, compactness, readable information density and finish; it does not supply Dira's brand identity.
+The mobile-first composition adapts the approved Iteration 13 WashRide reference at docs/assets/washride-home-reference.jpeg. The reference informs hierarchy, compactness, readable information density and finish; it does not supply Dira's brand identity. The source repository does not currently contain the Radnika Next or Open Sans font files; the stylesheet declares them as preferred families and retains readable system fallbacks until licensed font assets are supplied.
 
 ## Services and pricing
 The supplied service catalogue and brand-package descriptions/prices are recorded in [docs/DIRA-PROJECT-BRIEF.md](./docs/DIRA-PROJECT-BRIEF.md). Prices are in Botswana pula (BWP). Package ranges remain ranges; Ultimate is custom-scoped and must not be represented as a zero-priced service.
@@ -73,7 +73,7 @@ npm run build
 ```
 
 ## Protected foundation behavior
-Do not rewrite the PWA install lifecycle or chatbot interaction architecture as part of brand adaptation. Preserve the captured native install prompt, click-to-prompt behavior, branded dismissible install card, iOS Safari guidance, embedded-browser handoff, service-worker update lifecycle, offline shell and upload feedback. See [AGENTS.md](./AGENTS.md) and docs/PWA-INSTALLATION-LOCK.md for the project-specific protections.
+Do not rewrite the PWA install lifecycle or chatbot interaction architecture as part of brand adaptation. Preserve the captured native install prompt, click-to-prompt behavior, branded dismissible install card, iOS Safari guidance, embedded-browser handoff, service-worker update lifecycle, offline shell and upload feedback. See [AGENTS.md](./AGENTS.md), [CLONING.md](./CLONING.md) and [docs/CHANGE-SAFETY-STANDARD.md](./docs/CHANGE-SAFETY-STANDARD.md) for the project-specific protections.
 
 ## Checkpoint
 The brand/catalogue and local workflow adaptation is in progress. Quote approval, project tasks and requested-date calendar are browser-local demonstrations. Production database/auth, shared customer records, server-side task/deliverable workflows, verified financial records, live messaging and payment integrations remain to be connected and verified before launch.
