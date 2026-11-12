@@ -115,3 +115,13 @@ Every client delivery should include a concise, evidence-based summary of:
 - Known limitations, required owner actions and support coverage.
 
 Progress summaries must come from actual project tasks/checkpoints. Do not invent percentages, completed milestones or dates. The purpose is to make real work legible—not to manufacture the appearance of work.
+
+## Dira Creative live activity and Firebase telemetry
+
+The admin dashboard records privacy-limited customer journey events in the customerJourneyEvents collection. Current events are public storefront visits, catalogue views, project enquiry flow opens, service/package selections, and submitted enquiries. Events are written through /api/analytics/journey after Firebase ID-token verification using the approved Dira Admin SDK project. Staff/admin accounts are excluded from customer activity.
+
+Analytics payloads contain only the anonymous Firebase UID, event name, timestamp, and bounded catalogue item identifiers/names/types. They must never contain customer names, email addresses, phone numbers, project briefs, attachments, or payment information. Analytics failures must never block browsing or enquiry submission.
+
+The dashboard's 25 GB reference meter is deliberately labelled as an estimated tracked event payload footprint. The server measures the UTF-8 JSON payload size of each analytics event before writing it. This is not a Firebase Console quota/billing meter and does not represent total Firestore storage, indexes, reads, writes, bandwidth, attachment storage, or infrastructure overhead. Never describe it as total Firebase usage. Actual project-wide usage must be checked in Firebase/Google Cloud usage and billing reports.
+
+Required deployment configuration is the existing Dira server-side FIREBASE_PROJECT_ID and FIREBASE_ADMIN_KEY, with the approved project ID the-wall-ab746. Firestore rules must permit owner/staff reads of customerJourneyEvents; the current rules already do. Writes are performed server-side with Admin SDK, not directly by the browser. If configuration or Firestore access is unavailable, the admin shows an analytics availability message and customer journeys continue normally.
