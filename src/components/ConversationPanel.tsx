@@ -47,7 +47,7 @@ export default function ConversationPanel({conversationId,conversationTitle,onBa
  }
  if(!activeConversationId&&!conversationTitle)return null;
  return <section className="conversationPanel">
-  <div className="conversationHeader"><div><span className="kicker">Talk to Dira Creative</span><h2>{conversation?.title||conversationTitle||"Conversation"}</h2><p>Ask a question, make a product request or send details for a bulk order.</p></div>{onBack&&<button className="button buttonLight" onClick={onBack}>Back</button>}</div>
+  <div className="conversationHeader"><div><span className="kicker">Talk to Dira Creative</span><h2>{conversation?.title||conversationTitle||"Conversation"}</h2><p>Ask a question, discuss a service enquiry, review a quote or share project files.</p></div>{onBack&&<button className="button buttonLight" onClick={onBack}>Back</button>}</div>
   <div className="messageList" aria-live="polite">
    {messages.length===0&&<div className="conversationEmpty"><strong>Start the conversation.</strong><p>Tell Dira Creative what you need. You can add a photo or PDF when it helps explain the request.</p></div>}
    {messages.map(message=><article className={"messageBubble "+(message.senderRole==="customer"?"messageMine":"messageThem")} key={message.id}><div className="messageRole">{message.senderRole==="customer"?"You":"Dira Creative"} · {timeText(message.createdAt)}</div>{message.text&&<p>{message.text}</p>}{message.attachment&&<a className="messageAttachment" href={message.attachment.url} target="_blank" rel="noreferrer">{message.attachment.type.startsWith("image/")?"🖼️":"📄"} {message.attachment.name}<small>{Math.max(1,Math.round(message.attachment.size/1024))} KB · Open</small></a>}</article>)}
