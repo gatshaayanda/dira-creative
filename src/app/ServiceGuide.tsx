@@ -17,8 +17,8 @@ type Props = {
   onOpenStorefront: () => void;
 };
 
-const HISTORY_KEY = "iteration13:guide-history:v1";
-const TEASER_KEY = "iteration13:guide-teaser:v1";
+const HISTORY_KEY = "dira-creative:guide-history:v1";
+const TEASER_KEY = "dira-creative:guide-teaser:v1";
 
 function createMessage(from: Message["from"], text: string): Message {
   return { id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`, from, text };
@@ -151,12 +151,12 @@ export default function ServiceGuide({ view, services, requestCount, onChooseSer
   return <div className="sd-guide-root">
     {!open && teaser && <aside className="sd-guide-teaser" aria-label="Optional service guide invitation">
       <span className="sd-guide-teaser-spark"><Sparkles size={15}/></span>
-      <div><strong>{view === "admin" ? "Need a hand with the demo?" : "Not sure which service fits?"}</strong><p>{view === "admin" ? "Jump straight to requests, services or your storefront." : "I can help you choose, or take you to your requests."}</p><div className="sd-guide-teaser-actions"><button type="button" onClick={() => { setTeaser(false); setOpen(true); if (!messages.length) say("Hi! I’m the Service Studio guide. I use clear options and real demo actions—no pretend human replies."); }}> {view === "admin" ? "Open admin guide" : "Help me choose"} <ArrowRight size={14}/></button><button type="button" className="sd-guide-dismiss" onClick={() => { setTeaser(false); try { window.sessionStorage.setItem(TEASER_KEY, "dismissed"); } catch { /* optional */ } }}>Not now</button></div></div>
+      <div><strong>{view === "admin" ? "Need a hand with the demo?" : "Not sure which service fits?"}</strong><p>{view === "admin" ? "Jump straight to requests, services or your storefront." : "I can help you choose, or take you to your requests."}</p><div className="sd-guide-teaser-actions"><button type="button" onClick={() => { setTeaser(false); setOpen(true); if (!messages.length) say("Hi! I’m the Dira Creative guide. I use clear options and real demo actions—no pretend human replies."); }}> {view === "admin" ? "Open admin guide" : "Help me choose"} <ArrowRight size={14}/></button><button type="button" className="sd-guide-dismiss" onClick={() => { setTeaser(false); try { window.sessionStorage.setItem(TEASER_KEY, "dismissed"); } catch { /* optional */ } }}>Not now</button></div></div>
       <button type="button" className="sd-guide-teaser-close" aria-label="Dismiss guide invitation" onClick={() => { setTeaser(false); try { window.sessionStorage.setItem(TEASER_KEY, "dismissed"); } catch { /* optional */ } }}><X size={15}/></button>
     </aside>}
     {open && <div className="sd-guide-backdrop" onClick={() => setOpen(false)} aria-hidden="true"/>}
     {open && <section ref={panelRef} className="sd-guide-panel" role="dialog" aria-modal="true" aria-labelledby="sd-guide-title">
-      <header className="sd-guide-head"><div className="sd-guide-avatar"><Sparkles size={18}/></div><div><span className="sd-guide-eyebrow">ITERATION 13 · SERVICE GUIDE</span><h2 id="sd-guide-title">{view === "admin" ? "Studio sidekick" : "Find your next step"}</h2><p><span/> Guided demo · {view === "admin" ? "Admin tools" : "Customer journey"}</p></div><button type="button" aria-label="Close guide" onClick={() => { setOpen(false); launcherRef.current?.focus(); }}><ChevronDown size={19}/></button></header>
+      <header className="sd-guide-head"><div className="sd-guide-avatar"><Sparkles size={18}/></div><div><span className="sd-guide-eyebrow">ITERATION 13 · SERVICE GUIDE</span><h2 id="sd-guide-title">{view === "admin" ? "Dira guide" : "Find your next step"}</h2><p><span/> Guided demo · {view === "admin" ? "Admin tools" : "Customer journey"}</p></div><button type="button" aria-label="Close guide" onClick={() => { setOpen(false); launcherRef.current?.focus(); }}><ChevronDown size={19}/></button></header>
       <div className="sd-guide-intro"><strong>{view === "admin" ? "What are you working on?" : "What would you like to do?"}</strong><p>{view === "admin" ? "I’ll take you to the right local demo tool." : "Choose a service or jump to your requests. You can always continue without me."}</p></div>
       <div className="sd-guide-actions">{(view === "admin" ? adminActions : customerActions).map(item => <button key={item.key} type="button" onClick={() => item.key === "services" ? say("Choose a service below to see its starting price and fit. I’ll take you to the existing form when you’re ready.") : runAction(item.key)}><span>{item.icon}</span>{item.label}<ArrowRight size={15}/></button>)}</div>
       {view !== "admin" && <div className="sd-guide-services"><span className="sd-guide-section-label">SERVICE SHORTCUTS</span>{activeServices.map(service => <button key={service.id} type="button" onClick={() => chooseService(service)} aria-pressed={lastChoice === service.id}><span className="sd-guide-service-thumb" aria-hidden="true"><img src={service.media} alt="" loading="lazy" onError={event => { event.currentTarget.style.visibility = "hidden"; }}/></span><span className="sd-guide-service-copy"><strong>{service.name}</strong><small>{service.description}</small></span><b>P{service.price.toLocaleString("en-BW")}</b></button>)}</div>}
@@ -166,7 +166,7 @@ export default function ServiceGuide({ view, services, requestCount, onChooseSer
       <p id="sd-guide-type-hint" className="sd-guide-type-hint">Tap the message box above to type. Your keyboard opens only when you choose to type.</p>
       <p className="sd-guide-footnote"><Check size={12}/> Scripted guidance · Local demo only · No data sent</p>
     </section>}
-    <button ref={launcherRef} type="button" className={`sd-guide-launcher${open ? " is-open" : ""}`} aria-expanded={open} aria-haspopup="dialog" aria-label={open ? "Close service guide" : "Open service guide"} onClick={() => { setTeaser(false); setOpen(value => !value); if (!messages.length) say("Hi! I’m the Service Studio guide. I can point you to the right action, but I’m not a live person or an AI assistant."); }}>
+    <button ref={launcherRef} type="button" className={`sd-guide-launcher${open ? " is-open" : ""}`} aria-expanded={open} aria-haspopup="dialog" aria-label={open ? "Close service guide" : "Open service guide"} onClick={() => { setTeaser(false); setOpen(value => !value); if (!messages.length) say("Hi! I’m the Dira Creative guide. I can point you to the right action, but I’m not a live person or an AI assistant."); }}>
       {open ? <X size={21}/> : <MessageCircle size={22}/>}<span>{open ? "Close" : "Need a hand?"}</span>{!open && requestCount > 0 && view === "admin" && <b>{requestCount}</b>}
     </button>
   </div>;
