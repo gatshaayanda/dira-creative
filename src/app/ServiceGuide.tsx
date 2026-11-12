@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowDownLeft, ArrowRight, Check, ChevronDown, MessageCircle, Send, Sparkles, X } from "lucide-react";
 
-type GuideService = { id: string; name: string; price: number; description: string; media: string; mediaType: "image" | "video"; active: boolean };
+type GuideService = { id: string; name: string; price: number; description: string; media: string; mediaType: "image" | "video"; active: boolean; priceLabel?: string };
 type View = "shop" | "account" | "admin";
 type Message = { id: string; from: "guide" | "you"; text: string };
 
@@ -87,18 +87,18 @@ export default function ServiceGuide({ view, services, requestCount, onChooseSer
   }
   function chooseService(service: GuideService) {
     setLastChoice(service.id);
-    say(`${service.name} · ${service.id.startsWith("package-") ? "Starting from " : ""}P${service.price.toLocaleString("en-BW")}. ${service.description} Choose “Request this service” to continue in the request form; your requested date is a preference, not a confirmed delivery promise.`);
+    say(`${service.name} · ${service.priceLabel || (service.id.startsWith("package-") ? "Starting from " : "") + "P" + service.price.toLocaleString("en-BW")}. ${service.description} Choose “Request this service” to continue with a project enquiry; your requested timeline is a preference, not a confirmed delivery commitment.`);
   }
   function runAction(action: string) {
     setTeaser(false);
     switch (action) {
-      case "help": say("I can guide you to a service or a real page in this demo. Choose a service below, view your requests, or browse without chat. I’m a scripted guide, not a live person or AI assistant."); break;
-      case "browse": say("No problem. You can keep browsing; the service menu and order form remain available without chat."); setOpen(false); break;
-      case "account": say(`Opening My account. This demo currently has ${requestCount} request(s) in this browser. Use the same browser profile to see local demo records.`); onOpenAccount(); break;
-      case "storefront": say("Taking you back to the customer storefront."); onOpenStorefront(); break;
-      case "admin-services": say("Opening the service menu tools. You can add, edit, hide or remove demo services here."); onOpenAdmin("services"); break;
-      case "admin-announcement": say("Opening the announcement editor. Publish or clear a storefront note; it stays on this device."); onOpenAdmin("announcement"); break;
-      case "admin-requests": say(requestCount ? `Opening ${requestCount} local request(s). Status changes are visible to the customer view on this same device.` : "There are no requests yet. Switch to the storefront and submit a sample request first."); onOpenAdmin("requests"); break;
+      case "help": say("I can guide you to a service or a real page in the Dira Creative preview. Choose a service below, view your requests, or browse without chat. I’m a scripted guide, not a live person or AI assistant."); break;
+      case "browse": say("No problem. You can keep browsing; the service catalogue and project enquiry form remain available without chat."); setOpen(false); break;
+      case "account": say(`Opening your client account. Sign in to see your project enquiries, quotes and conversations.`); onOpenAccount(); break;
+      case "storefront": say("Taking you back to the Dira Creative service catalogue."); onOpenStorefront(); break;
+      case "admin-services": say("Opening the service catalogue tools. You can add, edit, hide or remove services and packages here."); onOpenAdmin("services"); break;
+      case "admin-announcement": say("Opening the public update editor. Changes in this preview stay on this device."); onOpenAdmin("announcement"); break;
+      case "admin-requests": say(requestCount ? `Opening ${requestCount} project enquiries. Status changes are visible to the customer view on this same device.` : "There are no requests yet. Switch to the storefront and submit a sample request first."); onOpenAdmin("requests"); break;
       default: {
         const service = activeServices.find(item => item.id === action);
         if (service) {
@@ -133,7 +133,7 @@ export default function ServiceGuide({ view, services, requestCount, onChooseSer
     if (match) { chooseService(match); return; }
     if (/website|web page|site/.test(normalized)) { const service = activeServices.find(item => /website/i.test(item.name)); if (service) { chooseService(service); return; } }
     if (/app|mobile/.test(normalized)) { const service = activeServices.find(item => /^app$/i.test(item.name)); if (service) { chooseService(service); return; } }
-    say("I can help with the options this demo actually supports. Pick one of the quick actions below, or choose a service from the menu. I won’t pretend to know something this guide hasn’t been configured to answer.");
+    say("I can help with the options the Dira Creative preview actually supports. Pick one of the quick actions below, or choose a service from the menu. I won’t pretend to know something this guide hasn’t been configured to answer.");
   }
 
   const customerActions = [
@@ -151,12 +151,12 @@ export default function ServiceGuide({ view, services, requestCount, onChooseSer
   return <div className="sd-guide-root">
     {!open && teaser && <aside className="sd-guide-teaser" aria-label="Optional service guide invitation">
       <span className="sd-guide-teaser-spark"><Sparkles size={15}/></span>
-      <div><strong>{view === "admin" ? "Need a hand with the demo?" : "Not sure which service fits?"}</strong><p>{view === "admin" ? "Jump straight to requests, services or your storefront." : "I can help you choose, or take you to your requests."}</p><div className="sd-guide-teaser-actions"><button type="button" onClick={() => { setTeaser(false); setOpen(true); if (!messages.length) say("Hi! I’m the Dira Creative guide. I use clear options and real demo actions—no pretend human replies."); }}> {view === "admin" ? "Open admin guide" : "Help me choose"} <ArrowRight size={14}/></button><button type="button" className="sd-guide-dismiss" onClick={() => { setTeaser(false); try { window.sessionStorage.setItem(TEASER_KEY, "dismissed"); } catch { /* optional */ } }}>Not now</button></div></div>
+      <div><strong>{view === "admin" ? "Need a hand with Dira Creative?" : "Not sure which service fits?"}</strong><p>{view === "admin" ? "Jump straight to requests, services or your storefront." : "I can help you choose, or take you to your requests."}</p><div className="sd-guide-teaser-actions"><button type="button" onClick={() => { setTeaser(false); setOpen(true); if (!messages.length) say("Hi! I’m the Dira Creative guide. I use clear options and real demo actions—no pretend human replies."); }}> {view === "admin" ? "Open admin guide" : "Help me choose"} <ArrowRight size={14}/></button><button type="button" className="sd-guide-dismiss" onClick={() => { setTeaser(false); try { window.sessionStorage.setItem(TEASER_KEY, "dismissed"); } catch { /* optional */ } }}>Not now</button></div></div>
       <button type="button" className="sd-guide-teaser-close" aria-label="Dismiss guide invitation" onClick={() => { setTeaser(false); try { window.sessionStorage.setItem(TEASER_KEY, "dismissed"); } catch { /* optional */ } }}><X size={15}/></button>
     </aside>}
     {open && <div className="sd-guide-backdrop" onClick={() => setOpen(false)} aria-hidden="true"/>}
     {open && <section ref={panelRef} className="sd-guide-panel" role="dialog" aria-modal="true" aria-labelledby="sd-guide-title">
-      <header className="sd-guide-head"><div className="sd-guide-avatar"><Sparkles size={18}/></div><div><span className="sd-guide-eyebrow">ITERATION 13 · SERVICE GUIDE</span><h2 id="sd-guide-title">{view === "admin" ? "Dira guide" : "Find your next step"}</h2><p><span/> Guided demo · {view === "admin" ? "Admin tools" : "Customer journey"}</p></div><button type="button" aria-label="Close guide" onClick={() => { setOpen(false); launcherRef.current?.focus(); }}><ChevronDown size={19}/></button></header>
+      <header className="sd-guide-head"><div className="sd-guide-avatar"><Sparkles size={18}/></div><div><span className="sd-guide-eyebrow">DIRA CREATIVE · SERVICE GUIDE</span><h2 id="sd-guide-title">{view === "admin" ? "Dira guide" : "Find your next step"}</h2><p><span/> Service guide · {view === "admin" ? "Owner tools" : "Client journey"}</p></div><button type="button" aria-label="Close guide" onClick={() => { setOpen(false); launcherRef.current?.focus(); }}><ChevronDown size={19}/></button></header>
       <div className="sd-guide-intro"><strong>{view === "admin" ? "What are you working on?" : "What would you like to do?"}</strong><p>{view === "admin" ? "I’ll take you to the right local demo tool." : "Choose a service or jump to your requests. You can always continue without me."}</p></div>
       <div className="sd-guide-actions">{(view === "admin" ? adminActions : customerActions).map(item => <button key={item.key} type="button" onClick={() => item.key === "services" ? say("Choose a service below to see its starting price and fit. I’ll take you to the existing form when you’re ready.") : runAction(item.key)}><span>{item.icon}</span>{item.label}<ArrowRight size={15}/></button>)}</div>
       {view !== "admin" && <div className="sd-guide-services"><span className="sd-guide-section-label">SERVICE SHORTCUTS</span>{activeServices.map(service => <button key={service.id} type="button" onClick={() => chooseService(service)} aria-pressed={lastChoice === service.id}><span className="sd-guide-service-thumb" aria-hidden="true"><img src={service.media} alt="" loading="lazy" onError={event => { event.currentTarget.style.visibility = "hidden"; }}/></span><span className="sd-guide-service-copy"><strong>{service.name}</strong><small>{service.description}</small></span><b>P{service.price.toLocaleString("en-BW")}</b></button>)}</div>}
