@@ -9,7 +9,7 @@ const { useUploadThing } = generateReactHelpers<OurFileRouter>();
 
 export type AccountAttachment = { name: string; url: string; type: string; size: number };
 export type AccountMessage = { id: string; from: "customer" | "studio"; text: string; createdAt: string; attachment?: AccountAttachment };
-export type WorkspaceOrder = { id: string; serviceId: string; serviceName: string; price: number; originalPrice?: number; discountAmount?: number; discountCode?: string; receiptNo?: string; paidAmount?: number; paidAt?: string; paymentStatus?: "Unpaid" | "Partially paid (demo)" | "Paid (demo)"; dueDate: string; customerName: string; email: string; brief: string; status: string; createdAt: string; messages?: AccountMessage[] };
+export type WorkspaceOrder = { id: string; serviceId: string; serviceName: string; price: number; originalPrice?: number; discountAmount?: number; discountCode?: string; receiptNo?: string; paidAmount?: number; paidAt?: string; paymentStatus?: "Unpaid" | "Partially paid (demo)" | "Paid (demo)"; dueDate: string; customerName: string; email: string; brief: string; status: string; createdAt: string; tasks?: { id: string; title: string; done: boolean }[]; messages?: AccountMessage[] };
 
 type DiscountClaim = { id: string; email: string; code: string; amount: number; lapTime: number; createdAt: string; status: "Available" | "Redeemed" };
 type Props = {
@@ -81,7 +81,7 @@ export default function AccountWorkspace({ businessName, orders, discountClaims,
     const text = (drafts[order.id] || "").trim();
     if (!text && !attachment) { setUploadNotice("Write a message or attach a file before sending."); return; }
     const message: AccountMessage = { id: "MSG-" + Date.now().toString(36), from: "customer", text, createdAt: new Date().toISOString(), ...(attachment ? { attachment } : {}) };
-    onUpdateOrder(order.id, current => ({ ...current, messages: [...(current.messages || []), message] }), "Message saved in this browser's demo thread. The Dira Creative can see it in the Admin demo on this device.");
+    onUpdateOrder(order.id, current => ({ ...current, messages: [...(current.messages || []), message] }), "Message saved in this browser's demo thread. Dira Creative can see it in the owner workspace on this device.");
     setDrafts(current => ({ ...current, [order.id]: "" }));
     setUploadNotice("Message added to this local demo thread.");
     setOpenThread(order.id);
@@ -125,8 +125,9 @@ export default function AccountWorkspace({ businessName, orders, discountClaims,
         const expanded = openThread === order.id;
         return <article className="sd-order-card sd-workspace-order" key={order.id}>
           <div className="sd-order-card-top"><span>{order.id}</span><b>{order.status}</b></div>
-          <div className="sd-order-card-main"><div><h2>{order.serviceName}</h2><p>Requested timeline: <strong>{order.dueDate}</strong></p><p>{order.brief || "No extra brief added."}</p>{order.discountAmount ? <p className="sd-account-discount">Racing reward · {money(order.discountAmount)} off (regular {money(order.originalPrice || order.price + order.discountAmount)})</p> : null}<small>Submitted {prettyDate(order.createdAt)}</small></div><strong className="sd-order-price">{money(order.price)}</strong></div>
-          <div className="sd-workspace-meta"><span>{messages.length} {messages.length === 1 ? "message" : "messages"}</span><span>{messages.filter(message => message.from === "Dira Creative").length ? "Dira Creative replied" : "Awaiting Dira Creative reply"}</span><button className="sd-small-button" onClick={() => setOpenThread(expanded ? null : order.id)}>{expanded ? "Close conversation" : "Messages & files →"}</button></div><ReceiptDocument businessName={businessName} accentColor={accentColor} receiptProfile={receiptProfile} order={order} />
+          <div className="sd-order-card-main"><div><h2>{order.serviceName}</h2><p>Requested timeline: <strong>{order.dueDate}</strong></p><p>{order.brief || "No extra brief added."}</p>{order.discountAmount ? <p className="sd-account-discount">Client promotion · {money(order.discountAmount)} off (regular {money(order.originalPrice || order.price + order.discountAmount)})</p> : null}<small>Submitted {prettyDate(order.createdAt)}</small></div><strong className="sd-order-price">{money(order.price)}</strong></div>
+          <div className="sd-client-task-list">{(order.tasks || []).length > 0 && <><div><strong>Project progress</strong><small>{(order.tasks || []).filter(task=>task.done).length} of {(order.tasks || []).length} tasks complete</small></div>{(order.tasks || []).map(task=><div key={task.id} className={task.done?"is-done":""}><span aria-hidden="true">{task.done?"✓":"○"}</span>{task.title}</div>)}</>}</div>
+          <div className="sd-workspace-meta"><span>{messages.length} {messages.length === 1 ? "message" : "messages"}</span><span>{messages.filter(message => message.from === "studio").length ? "Dira Creative replied" : "Awaiting Dira Creative reply"}</span><button className="sd-small-button" onClick={() => setOpenThread(expanded ? null : order.id)}>{expanded ? "Close conversation" : "Messages & files →"}</button></div><ReceiptDocument businessName={businessName} accentColor={accentColor} receiptProfile={receiptProfile} order={order} />
           {expanded && <div className="sd-thread">
             <div className="sd-thread-heading"><div><span className="sd-kicker">PROJECT / CONVERSATION</span><h3>Talk about {order.serviceName}</h3></div><span className="sd-local-pill">LOCAL DEMO</span></div>
             <p className="sd-admin-help">Messages are saved to this browser and appear in the Admin demo on the same device. They are not emailed or sent to a remote team.</p>
