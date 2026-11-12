@@ -19,6 +19,19 @@
 
 Do not stop after reading only one file. These documents have different purposes and are designed to be used together.
 
+## Fast Iteration 13 adoption path — new and existing projects
+
+When asked to adopt/use Iteration 13 as a reference, do not restart a full foundation audit or reread every portfolio document. Use this focused path:
+
+1. Inspect the target repository's current branch/commit, its AGENTS.md, relevant route/components, data/auth boundaries and protected features. Existing projects stay in place.
+2. Open docs/assets/washride-home-reference.jpeg and read docs/VISUAL-DIRECTION-STANDARD.md plus docs/INTERACTION-CLARITY-AND-FEEDBACK-STANDARD.md. Add docs/OPERATIONAL-TRANSPARENCY-STANDARD.md for meaningful workflows. Read the Portfolio Handoff's Business OS adaptation contract.
+3. Keep the customer Store compact and fully readable: complete descriptions, visible prices and clear actions. Do not line-clamp, fade or hide essential text.
+4. Preserve the customer account's receipts and order history, and the matching owner/admin record and receipt. Verify customer → owner → customer state consistency using the target's actual secure data path.
+5. Adapt only brand, copy, assets, verified catalogue/prices, account extras and layout details to the target context. Do not copy demo data, fake auth, local-only persistence or 13Studio identity.
+6. Preserve the target's working PWA installation, offline behavior, authentication, chatbot, uploads and integrations. Run focused checks and report the actual build/deployment/device status.
+
+This path is the default for both new and existing project adaptations. Follow the longer foundation/cloning SOP only when the task actually creates a new repository or changes its foundation.
+
 ## Mandatory evidence-led diagnosis and release gate
 
 Use the full [Change Safety & Regression Prevention Standard](./docs/CHANGE-SAFETY-STANDARD.md) for every project and every implementation or QA chat; do not assume an earlier chat summary or a user's suspected cause is the current repository truth.
