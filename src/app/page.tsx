@@ -190,14 +190,14 @@ export default function Home() {
           ) : (
             <div className="diraHomeEmpty"><strong>No matching options.</strong><button type="button" onClick={() => { setSearch(""); setFilter("services"); }}>Clear search</button></div>
           )}
-          <div className="diraHomeCatalogueFoot"><span>Combine services in one brief.</span><Link href="/request">Build your project enquiry <span aria-hidden="true">→</span></Link></div>
+          <div className="diraHomeCatalogueFoot"><span>Combine services in one brief.</span><Link href="/account?new=1#project-builder">Build your project enquiry <span aria-hidden="true">→</span></Link></div>
         </div>
       </section>
 
       <footer className="diraHomeFooter">
         <div className="diraHomeWrap diraHomeFooterInner">
           <div><DiraBrand /><p>Building brands that communicate clearly, operate efficiently, and scale effectively.</p></div>
-          <nav aria-label="Footer navigation"><Link href="/account">Client account</Link><Link href="/patterns">App installation</Link><Link href="/request">Start a project</Link></nav>
+          <nav aria-label="Footer navigation"><Link href="/account">Client account</Link><Link href="/patterns">App installation</Link><Link href="/account?new=1#project-builder">Start a project</Link></nav>
           <small>© {new Date().getFullYear()} Dira Creative · Royalty Holdings (Pty) Ltd</small>
         </div>
       </footer>
