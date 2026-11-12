@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+<title id="title">Dira Creative</title>
+<rect width="512" height="512" rx="104" fill="#222222"/>
+<path d="M110 130h118c102 0 166 62 166 126S330 382 228 382H110V130Zm90 78v96h31c48 0 75-17 75-48s-27-48-75-48h-31Z" fill="#f4f6fc"/>
+<path d="M335 130h68v44h-68z" fill="#4bb4ce"/>
+<path d="M335 205h68v177h-68z" fill="#0097b2"/>
+<circle cx="403" cy="108" r="30" fill="#4bb4ce"/>
+</svg>
