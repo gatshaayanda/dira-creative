@@ -8,7 +8,7 @@ const allowed=new Set(["public_visit","catalogue_view","service_selected","reque
 
 export async function POST(request:Request){
   try{
-    const match=(request.headers.get("authorization")||"").match(/^Bearer\\s+(.+)$/i);
+    const match=(request.headers.get("authorization")||"").match(/^Bearer\s+(.+)$/i);
     if(!match)return NextResponse.json({ok:false},{status:401});
     const app=getDiraAdminApp();
     const decoded=await getAuth(app).verifyIdToken(match[1]);
