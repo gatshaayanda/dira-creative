@@ -3188,3 +3188,28 @@ h1 em,
 .diraFinancePanel>p{margin:0;color:#4a5b62;font-size:.75rem;line-height:1.5}
 @media(max-width:760px){.diraFinancePanel .diraFinanceStrip{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.diraFinancePanel{padding:12px}.diraFinanceHeading{align-items:flex-start;flex-direction:column}.diraFinanceHeading>small{text-align:left}.diraFinancePanel .diraFinanceStrip{grid-template-columns:1fr 1fr;gap:7px}.diraFinancePanel .diraFinanceStrip>div{padding:10px}.diraFinancePanel .diraFinanceStrip strong{font-size:1.03rem}}
+
+/* Dira live activity and Firebase telemetry */
+.diraActivityPanel{display:grid;gap:13px;padding:15px;border:1px solid #d7e2e7;border-radius:13px;background:#fff}
+.diraActivityPanel .diraFinanceHeading{align-items:flex-end}
+.diraActivityPanel .diraFinanceHeading span{color:#007b91;font-size:.68rem;font-weight:900;letter-spacing:.09em}
+.diraActivityPanel .diraFinanceHeading h2{margin:3px 0 0;color:#222;font-size:1.12rem}
+.diraActivityPanel .diraFinanceHeading>small{color:#52636b;font-size:.75rem}
+.diraActivityGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.diraActivityGrid article{display:grid;gap:5px;padding:12px;border:1px solid #e0e8ec;border-radius:9px;background:#f7fafb}
+.diraActivityGrid small{color:#52636b;font-size:.72rem;line-height:1.3}
+.diraActivityGrid strong{color:#202c32;font-size:1.35rem;line-height:1.1}
+.diraUsageMeter{display:grid;gap:8px;padding:12px;border-radius:10px;background:#edf3f6}
+.diraUsageMeter>div:first-child{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.diraUsageMeter>div:first-child strong{font-size:.84rem}
+.diraUsageMeter>div:first-child b{font-size:.85rem}
+.diraUsageMeter>div:first-child b span{color:#52636b;font-size:.72rem;font-weight:600}
+.diraUsageTrack{height:9px;overflow:hidden;border-radius:99px;background:#d4e0e5}
+.diraUsageTrack i{display:block;height:100%;min-width:0;border-radius:99px;background:#007b91}
+.diraUsageMeter>small,.diraActivityPanel>.orderTruth{color:#52636b;font-size:.72rem;line-height:1.45}
+.diraActivityTop{display:grid;gap:7px}
+.diraActivityTop>strong{font-size:.82rem}
+.diraActivityTop>div{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid #e5ecef;font-size:.8rem}
+.diraActivityTop b{white-space:nowrap}
+@media(max-width:760px){.diraActivityGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.diraActivityPanel{padding:12px}.diraActivityPanel .diraFinanceHeading{align-items:flex-start;flex-direction:column}.diraActivityGrid{gap:7px}.diraActivityGrid article{padding:10px}.diraActivityGrid strong{font-size:1.2rem}}
