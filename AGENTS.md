@@ -69,6 +69,21 @@ These rules complement—not replace—the PWA installation lock and other proje
 - Keep actual receipts/confirmed sales separate from quotes, unpaid work and projected sales. Owner-defined job priorities must be based on persisted preferences and actual job states. WhatsApp invitations must be customer-scoped, revocable and tied to the correct customer/domain.
 - The current demo remains browser-local. No real Gmail owner authentication, shared server records, live 25 GB metering, cross-device sync, customer WhatsApp delivery or BUR compliance is implied until implemented and verified. Never enter real customer records into this demo.
 
+## Mandatory Business OS adaptation contract
+
+When the product owner asks to look at Iteration 13, adopt Iteration 13, or use it as the OS template for a new or existing project, apply the Portfolio Product & Engineering Handoff and the focused visual/accessibility/operational standards. Do not treat that request as permission to copy 13Studio branding or demo architecture.
+
+Preserve these cross-project capabilities unless the product owner explicitly removes them:
+- A compact customer-facing Store/catalogue with the complete service/product description, a visible full price (or honest "From" / "Price on request"), and a direct action on every card.
+- A useful customer account with customer-scoped order history, accurate status, price/payment balance and a receipt/payment record that can be opened and printed/saved.
+- The matching owner/admin order record with the same price, status, payment and receipt information. Customer and owner views must use the same underlying record and authorized data path.
+- A concise, operational owner Briefcase for CRUD, customer work, receipts/records and business settings, adapted to the actual business.
+- The compact WashRide-inspired composition and information density across Store, booking, account and admin—not only the homepage.
+
+Brand, business terminology, service catalogue, prices, visual assets, account extras and layout can change for project context. Existing project data/auth/security and protected features remain authoritative. Never copy sample prices, localStorage architecture, game mechanics, demo login or unsupported claims into production apps. For missing prices use "Price on request" until verified; never invent.
+
+Readability is a release blocker: no clipped/truncated customer descriptions, no hidden prices, no faint text, no accent-colour contrast failures. Normal text/control labels ≥14 CSS px; supporting metadata generally ≥12 CSS px; WCAG 2.2 AA contrast ≥4.5:1 normal text and ≥3:1 qualifying large text. Never achieve compactness by shrinking or clipping text.
+
 ## Reusable product principles
 - Customer action first. Make the next step obvious, reduce unnecessary navigation, and keep copy concise.
 - Mobile-first, accessible, legible UI; WCAG 2.2 AA contrast is the baseline. Apply compact, task-focused information density across every surface—not only the homepage—including booking, customer account and admin pages. Avoid oversized headers/cards, redundant welcome/hero sections and unnecessary vertical whitespace; keep operational information scannable without making controls cramped. Verify keyboard focus, narrow layouts, empty/error/loading states and touch targets.
