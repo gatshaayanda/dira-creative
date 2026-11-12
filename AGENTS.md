@@ -52,11 +52,11 @@ The local prototype currently demonstrates enquiries, quote send/approve/decline
 - Image/photography direction: Basic P350; Standard P650; Full System P995.
 - Illustration: Basic P250; Standard P500; Custom Direction P1,000.
 - Layout/composition: Basic P250; Standard P500; Full System P1,000.
-- Novice package: P2,100–P3,200.
-- Elevate package: P3,400–P5,200.
-- Elite package: P9,500–P12,500.
+- Novice package: P3,200 (published maximum; scope and any price adjustment are discussed and agreed before approval).
+- Elevate package: P5,200 (published maximum; scope and any price adjustment are discussed and agreed before approval).
+- Elite package: P12,500 (published maximum; scope and any price adjustment are discussed and agreed before approval).
 - Ultimate package: custom scope and pricing.
-Use these supplied prices only. A range must remain visible as a range; Ultimate must be described as custom pricing, not P0.
+Use the fixed package prices above. Discuss and agree any scope adjustment or negotiated price before customer approval. Do not publish ranges or custom-priced package cards without a specific approved price. Public storefront and customer account must not display Dira phone/email contact details; collect customer details only inside private order/account flows.
 
 ## Protected foundation behavior
 - Preserve the inherited PWA install lifecycle: early beforeinstallprompt capture, retained native prompt, click-triggered browser prompt, branded dismissible card, iOS Safari Share → Add to Home Screen guidance, embedded-browser handling and service-worker update lifecycle.
