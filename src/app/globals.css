@@ -3174,3 +3174,17 @@ h1 em,
 .clientSelectedItems li{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:7px 10px;border-radius:8px;background:var(--surface-soft,#f4f6fc);font-size:13px}
 .clientSelectedItems li strong{white-space:nowrap}
 @media(max-width:560px){.diraSelectedServices{padding:11px}.diraSelectedService{align-items:flex-start}.clientSelectedItems li{font-size:13px}}
+
+
+/* Dira owner financial overview */
+.diraFinancePanel{display:grid;gap:12px;padding:15px;border:1px solid #d7e2e7;border-radius:13px;background:#edf3f6}
+.diraFinanceHeading{display:flex;align-items:flex-end;justify-content:space-between;gap:14px}
+.diraFinanceHeading span{color:#007b91;font-size:.68rem;font-weight:900;letter-spacing:.09em}
+.diraFinanceHeading h2{margin:3px 0 0;color:#222;font-size:1.12rem}
+.diraFinanceHeading>small{max-width:360px;color:#4a5b62;font-size:.74rem;line-height:1.4;text-align:right}
+.diraFinancePanel .diraFinanceStrip{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.diraFinancePanel .diraFinanceStrip>div{padding:13px 14px;border-radius:10px}
+.diraFinancePanel .diraFinanceStrip strong{font-size:1.2rem;line-height:1.2}
+.diraFinancePanel>p{margin:0;color:#4a5b62;font-size:.75rem;line-height:1.5}
+@media(max-width:760px){.diraFinancePanel .diraFinanceStrip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.diraFinancePanel{padding:12px}.diraFinanceHeading{align-items:flex-start;flex-direction:column}.diraFinanceHeading>small{text-align:left}.diraFinancePanel .diraFinanceStrip{grid-template-columns:1fr 1fr;gap:7px}.diraFinancePanel .diraFinanceStrip>div{padding:10px}.diraFinancePanel .diraFinanceStrip strong{font-size:1.03rem}}
