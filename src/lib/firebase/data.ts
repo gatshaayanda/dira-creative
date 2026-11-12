@@ -5,7 +5,7 @@ import type {Unsubscribe} from "firebase/firestore";
 import {db} from "@/lib/firebase/client";
 
 export type CustomerProfile={uid:string;name:string;email:string;phone:string;preferredDeliveryLocation:string;notes:string;createdAt:string;updatedAt:string};
-export type NotificationPreferences={enabled:boolean;updatedAt:string};
+export type NotificationPreferences={enabled:boolean;leadMinutes?:number;updatedAt:string};
 export type NotificationToken={token:string;admin:boolean;updatedAt:string};
 export type ConversationAttachment={url:string;name:string;type:string;size:number};
 export type Conversation={id:string;customerId:string;customerName?:string;title:string;status:"open"|"waiting"|"resolved";createdAt:string;updatedAt:string;lastMessageAt:string;lastMessagePreview:string;unreadForCustomer:boolean;unreadForAdmin:boolean;customerLastReadAt?:string;adminLastReadAt?:string};
