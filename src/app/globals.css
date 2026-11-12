@@ -3435,3 +3435,74 @@ h1 em,
  .diraHomeFooter nav{gap:14px}
  .diraHomeFooterInner>small{grid-column:1}
 }
+
+
+/* Client workspace refinement — distinguish the lived-in BOS from the public storefront. */
+.diraAccountPage{background:#eef3f8!important;color:#222!important}
+.diraAccountPage .orderHeader{padding:10px 0 13px;border-bottom:1px solid #d5e1e8}
+.diraAccountPage .accountTopNav .buttonLight{background:#fff;color:#344b53;border-color:#c8d9df}
+.diraAccountPage .accountTopNav .buttonPrimary{background:#007b91;border-color:#007b91;color:#fff}
+.diraAccountPage .accountDashboard{background:#fff;border:1px solid #d5e1e8;border-radius:16px;box-shadow:0 14px 38px rgba(24,56,68,.07);padding:clamp(16px,3vw,26px)}
+.diraAccountPage .accountHero{position:relative;align-items:flex-start;padding:19px 20px;border:1px solid #c9e4e9;border-radius:13px;background:linear-gradient(115deg,#eaf7f9 0%,#f5f9fc 72%,#fff 100%)}
+.diraAccountPage .accountHero .kicker{color:#006b7e;font-size:.7rem;letter-spacing:.1em}
+.diraAccountPage .accountHero h1{max-width:17ch;margin:8px 0 7px;color:#222;font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.02;letter-spacing:-.045em}
+.diraAccountPage .accountHero p{max-width:610px;color:#43565e;font-size:.94rem;line-height:1.6}
+.diraAccountPage .accountStatus{flex:0 0 auto;margin-top:3px;border-color:#a9d5dc;background:#fff;color:#005f70;font-size:.76rem}
+.diraAccountPage .accountQuicklinks>a{min-height:94px;padding:13px 15px;border-color:#d5e1e8;background:#f7fafc;border-radius:11px}
+.diraAccountPage .accountQuicklinks>a>span{color:#007b91;font-size:.7rem}
+.diraAccountPage .accountQuicklinks>a>strong{font-size:.98rem}
+.diraAccountPage .accountQuicklinks>a>small{font-size:.82rem;line-height:1.45}
+.diraAccountPage .accountSection{border-top:1px solid #d5e1e8;margin-top:25px;padding-top:22px}
+.diraAccountPage .accountRequestsHeading h2{font-size:1.35rem;color:#222}
+.diraAccountPage .feedItem{padding:17px;border:1px solid #d5e1e8;border-left:3px solid #0097b2;border-radius:12px;background:#fff;box-shadow:0 4px 16px rgba(24,56,68,.035)}
+.diraAccountPage .feedMarker{width:32px;height:32px;background:#e5f4f6;color:#006b7e;border:1px solid #b9dce2}
+.diraAccountPage .feedTop strong{font-size:1rem;color:#222}
+.diraAccountPage .feedTop small{font-size:.78rem;color:#52636b}
+.diraAccountPage .accountNextAction{margin:13px 0;padding:12px 14px;border-left:3px solid #0097b2;border-radius:0 8px 8px 0;background:#eef8fa}
+.diraAccountPage .accountNextAction p{font-size:.9rem;line-height:1.55;color:#344b53}
+.diraAccountPage .accountProgress{gap:7px;margin:16px 0;padding:13px;border:1px solid #dce8ec;border-radius:10px;background:#f7fafb}
+.diraAccountPage .accountProgress li small{font-size:.78rem;line-height:1.35;color:#52636b}
+.diraAccountPage .accountProgress li>span{width:27px;height:27px;font-size:.76rem}
+.diraAccountPage .accountProgress li.isCurrent small{color:#005f70}
+.diraAccountPage .clientSelectedItems li{padding:9px 11px;background:#f1f5f8;color:#27383e;font-size:.88rem}
+.diraAccountPage .feedActions,.diraAccountPage .orderTruth{font-size:.84rem;line-height:1.55;color:#52636b}
+.diraAccountPage .accountConnect{margin-top:20px;background:#f7fafb;border-color:#d5e1e8}
+.diraAccountPage .accountConnect strong{font-size:1rem}
+.diraAccountPage .accountConnect p{font-size:.84rem;line-height:1.55}
+.diraAccountPage .accountDetails,.diraAccountPage .accountSetupDisclosure{border:1px solid #d5e1e8;border-radius:12px;background:#fff}
+.diraAccountPage .accountDetails summary,.diraAccountPage .accountSetupSummary{padding:15px 16px}
+.diraAccountPage .accountDetails summary strong,.diraAccountPage .accountSetupSummary strong{font-size:.95rem}
+.diraAccountPage .accountDetails summary small,.diraAccountPage .accountSetupSummary small{font-size:.8rem;line-height:1.45;color:#52636b}
+.diraAccountPage .accountDetails .adminForm{padding:16px}
+.diraAccountPage .accountDetails .adminForm label{font-size:.88rem}
+.diraAccountPage .accountDetails input,.diraAccountPage .accountDetails textarea{min-height:44px;font-size:16px}
+.diraAccountPage .accountSubmissionSuccess{padding:15px;border-radius:12px}
+.diraAccountPage .accountSubmissionSuccess p{font-size:.88rem;line-height:1.55}
+.diraAccountPage .accountSubmissionSuccess a{font-size:.86rem}
+.diraAccountPage .memberSetupCard{padding:15px;border-radius:11px;background:#f7fafb}
+.diraAccountPage .memberSetupCard span{font-size:.72rem}
+.diraAccountPage .memberSetupCard strong{font-size:.94rem}
+.diraAccountPage .memberSetupCard small{font-size:.82rem;line-height:1.5}
+.diraAccountPage .accountFooterNote{font-size:.82rem;line-height:1.55}
+.diraAccountPage a:focus-visible,.diraAccountPage button:focus-visible,.diraAccountPage summary:focus-visible{outline:3px solid #007b91;outline-offset:3px}
+@media(max-width:640px){
+ .diraAccountPage .accountDashboard{padding:12px}
+ .diraAccountPage .accountHero{padding:16px;gap:10px}
+ .diraAccountPage .accountHero h1{font-size:clamp(1.75rem,8vw,2.2rem)}
+ .diraAccountPage .accountHero p{font-size:.9rem}
+ .diraAccountPage .accountStatus{font-size:.72rem}
+ .diraAccountPage .accountQuicklinks>a{min-height:92px;padding:11px}
+ .diraAccountPage .accountQuicklinks>a>strong{font-size:.9rem}
+ .diraAccountPage .accountQuicklinks>a>small{font-size:.78rem}
+ .diraAccountPage .feedItem{grid-template-columns:27px minmax(0,1fr);gap:9px;padding:12px}
+ .diraAccountPage .feedTop{display:flex;flex-wrap:wrap;align-items:baseline}
+ .diraAccountPage .accountProgress{grid-template-columns:1fr;gap:0;padding:10px 12px}
+ .diraAccountPage .accountProgress li{display:flex;align-items:center;justify-items:initial;gap:11px;min-height:38px;text-align:left;padding:4px 0}
+ .diraAccountPage .accountProgress li:before{top:-7px;bottom:auto;left:12px;right:auto;width:2px;height:15px}
+ .diraAccountPage .accountProgress li:first-child:before{display:none}
+ .diraAccountPage .accountProgress li>span{flex:0 0 26px;width:26px;height:26px}
+ .diraAccountPage .accountProgress li small{max-width:none;font-size:.86rem;line-height:1.35}
+ .diraAccountPage .accountConnect{padding:13px}
+ .diraAccountPage .accountConnect p{font-size:.84rem}
+ .diraAccountPage .accountSubmissionSuccess{grid-template-columns:28px minmax(0,1fr) auto}
+}
