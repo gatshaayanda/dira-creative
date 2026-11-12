@@ -1,5 +1,6 @@
 "use client";
-import {addDoc,collection,deleteDoc,doc,onSnapshot,query,updateDoc,where} from "firebase/firestore";
+import {addDoc,collection,deleteDoc,doc,getDocs,onSnapshot,query,updateDoc,where,writeBatch} from "firebase/firestore";
+import {DEFAULT_DIRA_CATALOGUE} from "@/lib/dira-catalogue";
 import type {Unsubscribe} from "firebase/firestore";
 import {db} from "@/lib/firebase/client";
 
@@ -35,3 +36,12 @@ export async function updateDiraService(id:string,patch:Partial<Omit<DiraService
  await updateDoc(doc(db,"services",id),{...patch,updatedAt:new Date().toISOString()});
 }
 export async function deleteDiraService(id:string){await deleteDoc(doc(db,"services",id));}
+
+export async function seedDefaultDiraCatalogue(){
+ const existing=await getDocs(services);
+ if(!existing.empty)throw new Error("The service catalogue already contains records. Seeding was stopped to protect existing edits.");
+ const now=new Date().toISOString(),batch=writeBatch(db);
+ for(const item of DEFAULT_DIRA_CATALOGUE){const {id,...data}=item;batch.set(doc(db,"services",id),{...data,createdAt:now,updatedAt:now});}
+ await batch.commit();
+ return DEFAULT_DIRA_CATALOGUE.length;
+}
