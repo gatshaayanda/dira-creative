@@ -166,7 +166,7 @@ export default function Home() {
       const saved = window.localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved) as Partial<DemoData>;
-        setData({ ...emptyData, ...parsed, services: Array.isArray(parsed.services) ? parsed.services : seedServices, orders: Array.isArray(parsed.orders) ? parsed.orders : [], announcement: typeof parsed.announcement === "string" ? parsed.announcement : "", views: (Number(parsed.views) || 0) + 1, events: [...(Array.isArray(parsed.events) ? parsed.events : []), { id: "EV-"+Date.now().toString(36), kind: "visit", label: "Store visited", at: new Date().toISOString() }], receiptProfile: { ...emptyData.receiptProfile!, ...(parsed.receiptProfile || {}) } });
+        setData({ ...emptyData, ...parsed, services: Array.isArray(parsed.services) && parsed.services.length > 0 ? parsed.services : seedServices, orders: Array.isArray(parsed.orders) ? parsed.orders : [], announcement: typeof parsed.announcement === "string" ? parsed.announcement : "", views: (Number(parsed.views) || 0) + 1, events: [...(Array.isArray(parsed.events) ? parsed.events : []), { id: "EV-"+Date.now().toString(36), kind: "visit", label: "Store visited", at: new Date().toISOString() }], receiptProfile: { ...emptyData.receiptProfile!, ...(parsed.receiptProfile || {}) } });
         setAnnouncementDraft(typeof parsed.announcement === "string" ? parsed.announcement : "");
         setAnnouncementImageDraft(typeof parsed.announcementImage === "string" ? parsed.announcementImage : "");
         setDiscountAmountDraft(String(Number(parsed.discountAmount) > 0 ? Number(parsed.discountAmount) : 10));
@@ -257,7 +257,7 @@ export default function Home() {
     return commitData(current => ({ ...current, services: current.services.map(item => item.id === service.id ? { ...item, active: !item.active } : item) }), `${service.name} ${service.active ? "hidden" : "visible"} in the demo.`);
   }
 
-  const servicesForDisplay = remoteServices ?? data.services;
+  const servicesForDisplay = remoteServices && remoteServices.length > 0 ? remoteServices : data.services.length > 0 ? data.services : seedServices;
   const activeServices = servicesForDisplay.filter(service => service.active);
   const paidTotal = data.orders.reduce((sum, order) => sum + (order.paidAmount || 0), 0);
   const completedUnpaid = data.orders.filter(order => order.status === "Completed").reduce((sum, order) => sum + Math.max(0, order.price - (order.paidAmount || 0)), 0);
@@ -442,12 +442,13 @@ export default function Home() {
                 <button type="button" className="sd-hero-secondary" onClick={openRequestForm}>Start a request <span aria-hidden="true">↗</span></button>
               </div>
             </div>
-            <div className="sd-store-visual" aria-label="Dira Creative brand and business development">
-              <div className="sd-hero-art">
-                <div className="sd-hero-art-top"><span>ROYALTY HOLDINGS</span><span>01 — 05</span></div>
-                <div className="sd-hero-art-main"><span className="sd-hero-art-kicker">IDEAS INTO OPERATING BUSINESSES</span><strong>MAKE<br/><em>IT</em> CLEAR.</strong><span className="sd-hero-art-line"/></div>
-                <div className="sd-hero-art-bottom"><span>IDENTITY</span><span>PRESENCE</span><span>OPERATIONS</span><span>GROWTH</span></div>
-                <span className="sd-hero-art-orbit" aria-hidden="true">D</span>
+            <div className="sd-store-visual sd-hero-quicklinks" aria-label="Explore Dira Creative">
+              <div className="sd-quicklinks-head"><span>ROYALTY HOLDINGS</span><strong>Make your next move.</strong></div>
+              <div className="sd-quicklinks-grid">
+                <button type="button" onClick={() => document.getElementById("services")?.scrollIntoView({behavior:"smooth",block:"start"})}><span>01</span><strong>Explore services</strong><i>↘</i></button>
+                <button type="button" onClick={() => {setCatalogueView("packages");document.getElementById("services")?.scrollIntoView({behavior:"smooth",block:"start"});}}><span>02</span><strong>Brand packages</strong><i>↗</i></button>
+                <button type="button" onClick={openRequestForm}><span>03</span><strong>Start a request</strong><i>↗</i></button>
+                <button type="button" onClick={() => document.getElementById("approach")?.scrollIntoView({behavior:"smooth",block:"start"})}><span>04</span><strong>How we work</strong><i>↘</i></button>
               </div>
             </div>
           </div>
