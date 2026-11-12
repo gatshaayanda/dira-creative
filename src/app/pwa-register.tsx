@@ -327,7 +327,7 @@ export default function PwaRegister({ initialEmbedded = false, initialAndroid = 
   ) : null;
 
   return <>
-    {offline && <div className="offlineBanner" role="status" aria-live="polite"><span aria-hidden="true">⚡</span> Offline · The service demo saves orders and admin edits locally on this device. Firebase-backed routes need a connection.</div>}
+    {offline && <div className="offlineBanner" role="status" aria-live="polite"><span aria-hidden="true">⚡</span> Offline · Cached public preview is available. Enquiries, customer accounts and owner actions need a connection.</div>}
     {!offline && reconnecting && <div className="offlineBanner reconnectingBanner" role="status" aria-live="polite"><span aria-hidden="true">↻</span> Reconnected · Dira Creative can reach the network again. Local demo data remains on this device.</div>}
     {!environment().standalone && installState !== "embedded" && (canInstall || canShowManualInstall) && !installCardDismissed && !(installState === "native" && installHelpOpen) && (
       <aside className="i13-install-card" aria-label="Install Dira Creative">
