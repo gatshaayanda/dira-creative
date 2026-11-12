@@ -2711,3 +2711,14 @@ h1 em,
   .serviceDemo .sd-approach-grid{grid-template-columns:minmax(0,1fr)}
   .serviceDemo .sd-approach-grid article{padding:12px}
 }
+
+
+.serviceDemo .sd-admin[data-admin-current="calendar"] [data-admin-tab]:not([data-admin-tab="calendar"]){display:none!important}
+.serviceDemo .sd-calendar-list{display:grid;gap:8px;margin:14px 0}
+.serviceDemo .sd-calendar-list article{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:12px;padding:12px;border:1px solid #d1dfe5;border-radius:10px;background:#fff}
+.serviceDemo .sd-calendar-list article>div{display:grid;gap:3px;min-width:0}
+.serviceDemo .sd-calendar-list strong{color:#222;font-size:.9rem}
+.serviceDemo .sd-calendar-list small{color:#46545b;font-size:.78rem;overflow-wrap:anywhere}
+.serviceDemo .sd-calendar-list time{color:#005f70;font-size:.82rem;font-weight:800;white-space:nowrap}
+.serviceDemo .sd-calendar-list article>span{padding:5px 8px;border-radius:99px;background:#e5f5f8;color:#005f70;font-size:.72rem;font-weight:800}
+@media(max-width:560px){.serviceDemo .sd-calendar-list article{grid-template-columns:minmax(0,1fr) auto;gap:8px}.serviceDemo .sd-calendar-list article>span{grid-column:1/-1;justify-self:start}}
