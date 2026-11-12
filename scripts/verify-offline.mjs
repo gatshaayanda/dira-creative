@@ -8,8 +8,8 @@ const offline = read("../src/app/offline/page.tsx");
 const failures = [];
 const check = (condition, message) => { if (!condition) failures.push(message); };
 
-check(/const CACHE_VERSION = "iteration13-shell-v\d+"/.test(sw), "versioned Dira Creative app-shell cache is missing");
-check(/const MEDIA_CACHE = "iteration13-media-v\d+"/.test(sw), "versioned Dira Creative media cache is missing");
+check(/const CACHE_VERSION = "dira-creative-shell-v\d+"/.test(sw), "versioned Dira Creative app-shell cache is missing");
+check(/const MEDIA_CACHE = "dira-creative-media-v\d+"/.test(sw), "versioned Dira Creative media cache is missing");
 check(sw.includes('"/", "/offline"'), "home and offline fallback must be precached");
 check(sw.includes('event.respondWith(cacheMediaRequest(request, event))'), "approved image/video requests must use the offline media cache");
 check(sw.includes('event.data?.type === "CACHE_MEDIA"'), "service worker must accept the page's current media list");
