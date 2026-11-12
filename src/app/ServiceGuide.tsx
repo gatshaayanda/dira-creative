@@ -168,7 +168,7 @@ export default function ServiceGuide({ view, services, requestCount, onChooseSer
       <p className="sd-guide-footnote"><Check size={12}/> Scripted guidance · Local demo only · No data sent</p>
     </section>}
     <button ref={launcherRef} type="button" className={`sd-guide-launcher${open ? " is-open" : ""}`} aria-expanded={open} aria-haspopup="dialog" aria-label={open ? "Close service guide" : "Open service guide"} onClick={() => { setTeaser(false); setOpen(value => !value); if (!messages.length) say("Hi! I’m the Dira Creative guide. I can point you to the right action, but I’m not a live person or an AI assistant."); }}>
-      {open ? <X size={21}/> : <MessageCircle size={22}/>}<span>{open ? "Close" : "Need a hand?"}</span>{!open && requestCount > 0 && view === "admin" && <b>{requestCount}</b>}
+      {open ? <X size={21}/> : <MessageCircle size={22}/>}<span>{open ? "Close" : "Service guide"}</span>{!open && requestCount > 0 && view === "admin" && <b>{requestCount}</b>}
     </button>
   </div>;
 }
