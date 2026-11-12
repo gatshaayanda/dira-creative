@@ -99,7 +99,7 @@ service cloud.firestore {
     }
 
     match /tasks/{taskId} {
-      allow read: if isOwnerOrStaff() || ownsProject(resource.data.projectId);
+      allow read: if isOwnerOrStaff() || (signedIn() && resource.data.clientId == request.auth.uid);
       allow create, update, delete: if isOwnerOrStaff();
     }
 
