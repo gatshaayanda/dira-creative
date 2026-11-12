@@ -59,6 +59,11 @@ export default function AccountPage(){
     try{await setPersistence(auth,browserLocalPersistence)}catch{if(!disposed)setMessage("This browser could not confirm saved sign-in. Keep this browser session available while using Dira Creative.")}
    }
    if(disposed)return;
+   const entryParams=new URLSearchParams(window.location.search);
+   if(hasFirebaseWebConfig&&(entryParams.has("package")||entryParams.has("service")||entryParams.has("new"))&&!auth.currentUser){
+    try{await signInAnonymously(auth)}catch{if(!disposed)setMessage("Your private project session could not be started. Please retry the package selection.")}
+   }
+   if(disposed)return;
    stopAuth=onAuthStateChanged(auth,async next=>{
     stopRequests();stopRequests=()=>{};
     if(next&&await isAdminUser(next.uid)){
