@@ -2743,3 +2743,19 @@ h1 em,
 .serviceDemo .sd-ultimate-package p{margin:0;max-width:650px;color:#34434b;font-size:.88rem;line-height:1.5}
 .serviceDemo .sd-ultimate-package>a{flex:0 0 auto;padding:11px 14px;border-radius:9px;background:#007b91;color:#fff;font-size:.84rem;font-weight:800;text-decoration:none}
 @media(max-width:560px){.serviceDemo .sd-ultimate-package{align-items:flex-start;flex-direction:column;padding:14px}.serviceDemo .sd-ultimate-package>a{width:100%;text-align:center}}
+
+
+.serviceDemo .sd-quote-editor{display:grid;gap:8px;margin:12px 0;padding:11px;border:1px solid #c4dce2;border-radius:10px;background:#f0f8fa}
+.serviceDemo .sd-quote-editor>div:first-child{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.serviceDemo .sd-quote-editor strong{color:#222;font-size:.85rem}
+.serviceDemo .sd-quote-editor small{color:#52636b;font-size:.75rem}
+.serviceDemo .sd-quote-editor>div:nth-child(2){display:flex;gap:8px}
+.serviceDemo .sd-quote-editor input{min-width:0;flex:1;min-height:40px;padding:8px 10px;border:1px solid #c7d6dc;border-radius:8px;background:#fff;color:#222;font-size:.85rem}
+.serviceDemo .sd-client-quote{display:grid;gap:9px;margin:12px 0;padding:14px;border:1px solid #83cbd7;border-radius:12px;background:#edf8fa}
+.serviceDemo .sd-client-quote>div:first-child{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.serviceDemo .sd-client-quote>div:first-child strong{color:#005f70;font-size:1.2rem}
+.serviceDemo .sd-client-quote p{margin:0;color:#34434b;font-size:.85rem;line-height:1.5}
+.serviceDemo .sd-client-quote>div:last-child{display:flex;flex-wrap:wrap;gap:8px}
+.serviceDemo .sd-client-quote .sd-button{min-height:42px;padding:9px 12px;font-size:.84rem}
+.serviceDemo .sd-client-quote-status{margin:10px 0;padding:10px 12px;border-radius:9px;background:#e4f5ed;color:#155c40;font-size:.85rem;font-weight:800}
+@media(max-width:560px){.serviceDemo .sd-quote-editor>div:first-child{align-items:flex-start;flex-direction:column}.serviceDemo .sd-quote-editor>div:nth-child(2){flex-direction:column}.serviceDemo .sd-client-quote>div:first-child{align-items:flex-start;flex-direction:column}}
