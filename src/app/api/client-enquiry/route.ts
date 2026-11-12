@@ -8,7 +8,7 @@ export const runtime="nodejs";
 function adminApp(){
   const existing=getApps()[0];if(existing)return existing;
   const raw=process.env.FIREBASE_ADMIN_KEY;
-  if(!raw)throw new Error("The Dira client-enquiry service is not configured.");
+  if(!raw)throw new Error("The Dira Creative client-enquiry service is not configured.");
   let serviceAccount:Record<string,unknown>;
   try{serviceAccount=JSON.parse(raw) as Record<string,unknown>}
   catch{throw new Error("The Dira Firebase service credentials are invalid.");}
