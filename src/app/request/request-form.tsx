@@ -10,6 +10,7 @@ import {uploadFiles} from "@/lib/uploadthing";
 import {createCustomerConversation,getCustomerProfile,recordConversationMessage,saveCustomerProfile} from "@/lib/firebase/data";
 import {createDiraEnquiry,type DiraSelectedItem} from "@/lib/firebase/dira-data";
 import {DEFAULT_DIRA_CATALOGUE} from "@/lib/dira-catalogue";
+import {trackDiraJourney} from "@/lib/firebase/journey-analytics";
 
 type Attachment={url:string;name:string;type:string;size:number};
 const MAX_FILE_SIZE=4*1024*1024;
@@ -32,9 +33,9 @@ export default function RequestForm(){
  const[progress,setProgress]=useState(0);
  const[notice,setNotice]=useState("");
  const[enquiryId,setEnquiryId]=useState("");
- useEffect(()=>{const params=new URLSearchParams(window.location.search);const initialName=params.get("package")||params.get("service")||"";const initial=DEFAULT_DIRA_CATALOGUE.find(item=>item.name.toLowerCase()===initialName.trim().toLowerCase());if(initial){const entry={id:initial.id,name:initial.name,kind:initial.kind,price:initial.priceFrom??0,priceLabel:initial.priceLabel};setSelectedItems([entry]);setServiceName(initial.name);setPackageName(initial.kind==="package"?initial.name:"");}},[]);
+ useEffect(()=>{void trackDiraJourney("request_flow_opened");const params=new URLSearchParams(window.location.search);const initialName=params.get("package")||params.get("service")||"";const initial=DEFAULT_DIRA_CATALOGUE.find(item=>item.name.toLowerCase()===initialName.trim().toLowerCase());if(initial){const entry={id:initial.id,name:initial.name,kind:initial.kind,price:initial.priceFrom??0,priceLabel:initial.priceLabel};setSelectedItems([entry]);setServiceName(initial.name);setPackageName(initial.kind==="package"?initial.name:"");}},[]);
  const selectedIds=new Set(selectedItems.map(item=>item.id));
- function addAnotherService(){const item=DEFAULT_DIRA_CATALOGUE.find(entry=>entry.id===additionalServiceId);if(!item||selectedIds.has(item.id))return;const next={id:item.id,name:item.name,kind:item.kind,price:item.priceFrom??0,priceLabel:item.priceLabel};setSelectedItems(current=>[...current,next]);setServiceName(current=>current?current+" + "+item.name:item.name);if(item.kind==="package")setPackageName(current=>current?[current,item.name].join(" + "):item.name);setAdditionalServiceId("");setShowAddService(false);}
+ function addAnotherService(){const item=DEFAULT_DIRA_CATALOGUE.find(entry=>entry.id===additionalServiceId);if(!item||selectedIds.has(item.id))return;void trackDiraJourney("service_selected",{itemId:item.id,itemName:item.name,kind:item.kind});const next={id:item.id,name:item.name,kind:item.kind,price:item.priceFrom??0,priceLabel:item.priceLabel};setSelectedItems(current=>[...current,next]);setServiceName(current=>current?current+" + "+item.name:item.name);if(item.kind==="package")setPackageName(current=>current?[current,item.name].join(" + "):item.name);setAdditionalServiceId("");setShowAddService(false);}
  function removeService(id:string){const next=selectedItems.filter(item=>item.id!==id);setSelectedItems(next);setServiceName(next.map(item=>item.name).join(" + "));setPackageName(next.filter(item=>item.kind==="package").map(item=>item.name).join(" + "));}
  const selectedCatalogueItem=selectedItems[0]&&DEFAULT_DIRA_CATALOGUE.find(item=>item.id===selectedItems[0].id);
 
@@ -67,6 +68,7 @@ export default function RequestForm(){
    };
    const idToken=await customer.getIdToken();
    savedId=await createDiraEnquiry(data,idToken);
+   void trackDiraJourney("request_submitted",{itemName:selectedItems.map(item=>item.name).join(" + ").slice(0,120)});
    await fetch("/api/notifications/enquiry-created",{method:"POST",headers:{Authorization:"Bearer "+idToken,"Content-Type":"application/json"},body:JSON.stringify({enquiryId:savedId})}).catch(()=>null);
    const existing=await getCustomerProfile(customer.uid).catch(()=>null);
    await saveCustomerProfile({uid:customer.uid,name:name.trim(),email:email.trim(),phone:phone.trim(),preferredDeliveryLocation:existing?.preferredDeliveryLocation||"",notes:scope.trim(),createdAt:existing?.createdAt||now,updatedAt:now});
