@@ -78,6 +78,17 @@ Do not conflate file storage, monthly data transfer, database operations, API re
 
 Use the WashRide image's app-like composition as the craftsmanship target: identity, relevant hero visual, concise headline, one dominant action, compact secondary action grid, clean card hierarchy and persistent navigation only where it helps. The Store must communicate the proposition quickly: one business OS, its public Store, its private Briefcase and its owner Login. Remove oversized marketing sections and repeated explanations. The first screen should expose the business proposition and customer action; the next screenful should reveal useful products/services. The Briefcase must be compact and operationally dense, with clear section separation, short labels, and progressive disclosure. Do not simply shrink typography or tap targets.
 
+## 4B. Reusable Business OS customer-to-owner contract
+
+This is the reusable workflow contract for every new or existing Admin Hub / Business OS adaptation. Visual identity, industry wording, catalogue content, branding and layout details may change; the customer-to-owner workflow must not silently lose these capabilities.
+
+1. Customer Store: a compact, mobile-first catalogue. Every visible service/product card shows its name, complete description, full current price (or honest "From" / "Price on request" wording) and a clear action. Keep descriptions readable in full; no line-clamping or hidden price. Customers can browse before giving personal details. Keep the compact customer-viewing experience as the default.
+2. Customer account: customers can find their own orders/requests, see current status and next step, view price/discount/payment balance and open/print/save the corresponding receipt or payment record. Keep the account useful and scannable, not a decorative profile page.
+3. Owner Briefcase: staff/owner can find the same customer/order record, update its real status, record payment only through the supported payment workflow, and open/print/save the matching receipt. Customer and owner views must reference the same authoritative record; never create unrelated duplicate receipt data.
+4. End-to-end consistency: verify one test journey: customer selects a priced item → submits → sees it in their account with the same price → owner sees the same record → owner updates status/payment → both sides show the correct state and matching receipt. Preserve the real authentication, persistence, privacy and offline boundaries of the target app.
+5. Adapt, do not fake: use the target business's verified service names, pricing and terminology. If price data is not supplied, research only when appropriate and confirm the actual business price before publishing; otherwise show "Price on request". Never copy Iteration 13's sample services/prices into a client project.
+6. Preserve compactness across routes: adapt the WashRide composition to the target brand on the Store, then keep booking, customer account and admin compact and task-focused. Compact means fewer redundant blocks and clear grouping—not tiny text, clipped descriptions or cramped controls.
+
 ## 5. Product and operational model
 
 The portfolio's product direction is a business-specific digital storefront paired with a private owner workspace (the digital briefcase). Keep these concepts understandable:
