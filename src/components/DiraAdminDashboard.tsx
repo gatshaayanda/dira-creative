@@ -24,7 +24,7 @@ export default function DiraAdminDashboard(){
  async function addTask(event:React.FormEvent<HTMLFormElement>){
   event.preventDefault();if(!selected?.projectId||taskBusy)return;if(!taskDraft.title.trim()){setNotice("Enter a task title.");return}
   setTaskBusy(true);setNotice("");
-  try{await createDiraTask({projectId:selected.projectId,enquiryId:selected.id,clientId:selected.customerId,title:taskDraft.title.trim(),description:taskDraft.description.trim(),status:"To Do",dueDate:taskDraft.dueDate,assignee:taskDraft.assignee.trim(),sortOrder:tasks.length*10});setTaskDraft({title:"",description:"",dueDate:"",assignee:""});setNotice("Client-visible project task added.");}
+  try{await createDiraTask({projectId:selected.projectId,enquiryId:selected.id,clientId:selected.customerId,projectName:selected.serviceName,title:taskDraft.title.trim(),description:taskDraft.description.trim(),status:"To Do",dueDate:taskDraft.dueDate,assignee:taskDraft.assignee.trim(),sortOrder:tasks.length*10});setTaskDraft({title:"",description:"",dueDate:"",assignee:""});setNotice("Client-visible project task added.");}
   catch(error){setNotice(error instanceof Error?error.message:"The task could not be added.");}finally{setTaskBusy(false)}
  }
  async function changeTaskStatus(task:DiraTask,status:DiraTaskStatus){try{await updateDiraTask(task.id,{status});setNotice("Task status updated.");}catch(error){setNotice(error instanceof Error?error.message:"Task status could not be updated.");}}
