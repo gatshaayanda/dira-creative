@@ -11,7 +11,7 @@ export type AccountAttachment = { name: string; url: string; type: string; size:
 export type AccountMessage = { id: string; from: "customer" | "studio"; text: string; createdAt: string; attachment?: AccountAttachment };
 export type WorkspaceOrder = { id: string; serviceId: string; serviceName: string; price: number; originalPrice?: number; discountAmount?: number; discountCode?: string; receiptNo?: string; paidAmount?: number; paidAt?: string; paymentStatus?: "Unpaid" | "Partially paid (demo)" | "Paid (demo)"; dueDate: string; customerName: string; email: string; brief: string; status: string; createdAt: string; tasks?: { id: string; title: string; done: boolean }[]; messages?: AccountMessage[] };
 
-type DiscountClaim = { id: string; email: string; code: string; amount: number; lapTime: number; createdAt: string; status: "Available" | "Redeemed" };
+type DiscountClaim = { id: string; email: string; code: string; amount: number; createdAt: string; status: "Available" | "Redeemed" };
 type Props = {
   businessName: string;
   orders: WorkspaceOrder[];
