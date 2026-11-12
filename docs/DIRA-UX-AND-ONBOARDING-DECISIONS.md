@@ -8,9 +8,9 @@ The experience should make the next sensible step obvious. Visitors should not n
 
 ## Audience and decision paths
 
-- **Starting out:** needs a credible foundation and a clear first brand system. Primary fit: Novice Brand Package (P2,100–P3,200).
-- **Growing:** needs consistency across brand identity, presence and day-to-day business. Primary fit: Elevate Brand Package (P3,400–P5,200).
-- **Established:** needs a complete connected identity and broader strategic application. Primary fit: Elite Brand Package (P9,500–P12,500).
+- **Starting out:** needs a credible foundation and a clear first brand system. Primary fit: Novice Brand Package (P3,200).
+- **Growing:** needs consistency across brand identity, presence and day-to-day business. Primary fit: Elevate Brand Package (P5,200).
+- **Established:** needs a complete connected identity and broader strategic application. Primary fit: Elite Brand Package (P12,500).
 - **Not sure yet:** should be able to ask for a discovery conversation rather than guess at a technical service.
 
 These are useful starting points, not eligibility rules. A customer may choose any individual service or request a custom scope.
@@ -25,7 +25,7 @@ Keep the five development stages visible as the agency's organising model:
 4. Connect With Your Market — flyers, brochures, posters, advertising, social media, video ads and motion graphics.
 5. Optimise for Growth — assets and resources, revenue optimisation, gap analysis, strategic problem-solving and growth solutions.
 
-Show the most useful starting choices first, while keeping the complete catalogue searchable and available. Preserve the supplied BWP prices and always show package ranges as ranges. Never turn a custom price into zero or imply an estimate is a final quote.
+Show the most useful starting choices first, while keeping the complete catalogue searchable and available. Preserve the supplied BWP prices and show one published package price using the former range maximum; scope and any price adjustment are discussed and agreed before approval. Never turn a custom price into zero or imply an estimate is a final quote.
 
 ## Psychology-informed interaction decisions
 
@@ -35,7 +35,7 @@ Show the most useful starting choices first, while keeping the complete catalogu
 - **Set expectations early.** Explain that an enquiry is reviewed, scoped and quoted before work or payment is confirmed. A preferred date is not a confirmed delivery date.
 - **Use a short, visible process.** Share brief → scope/proposal → approval/begin so customers understand what happens after they submit.
 - **Keep the user in control.** The service guide is optional, can be dismissed, and never blocks browsing or form completion.
-- **Make actions and outcomes legible.** Buttons name the outcome; loading, errors and confirmations say what really happened. A WhatsApp fallback must clearly say that a draft is prepared and is not sent until the customer presses Send.
+- **Make actions and outcomes legible.** Buttons name the outcome; loading, errors and confirmations say what really happened. Do not display public phone numbers, email addresses or contact panels in the storefront or customer account. Collect customer contact details only inside the private order/account journey. The order fallback must clearly say that a WhatsApp draft is prepared and is not sent until the customer presses Send.
 - **Avoid manipulative choice design.** Do not preselect expensive packages, hide lower-priced options, invent scarcity, fabricate testimonials or use false urgency.
 
 ## Brand and visual rules
