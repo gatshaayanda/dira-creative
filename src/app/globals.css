@@ -2611,3 +2611,103 @@ h1 em,
   .serviceDemo .sd-account :is(label,button,input,select,textarea),.serviceDemo .sd-admin :is(label,button,input,select,textarea){font-size:.875rem}
   .serviceDemo .sd-receipt-paper :is(p,dd,dt,small){font-size:.8125rem;line-height:1.45}
 }
+
+
+/* Dira Creative brand system — adapted from the approved compact mobile reference. */
+.serviceDemo{
+  --sd-ink:#222222;
+  --sd-paper:#f4f6fc;
+  --sd-blue:#0097b2;
+  --sd-lime:#4bb4ce;
+  --sd-line:#d5e1e8;
+  --studio-accent:#0097b2;
+  --studio-accent-ink:#111827;
+  --studio-accent-text:#006b7e;
+  background:#f4f6fc;
+  color:#222222;
+  font-family:"Open Sans",Arial,Helvetica,sans-serif;
+}
+.serviceDemo h1,.serviceDemo h2,.serviceDemo h3,
+.serviceDemo .sd-brand strong,.serviceDemo .sd-kicker{
+  font-family:"Radnika Next","Arial",Helvetica,sans-serif;
+}
+.serviceDemo .sd-topline{background:#222;color:#f4f6fc;border-bottom:1px solid #3b4c52}
+.serviceDemo .sd-topline .sd-connect{color:#e9f7fa}
+.serviceDemo .sd-topline .sd-connect i{background:#4bb4ce}
+.serviceDemo .sd-header{background:rgba(244,246,252,.97);border-bottom:1px solid #cbdde4}
+.serviceDemo .sd-header nav button{color:#222}
+.serviceDemo .sd-header nav button:hover,.serviceDemo .sd-header nav button:focus-visible{color:#006b7e}
+.serviceDemo .sd-header .sd-logo{background:#0097b2;color:#fff;box-shadow:0 0 0 2px #0097b2}
+.serviceDemo .sd-store-home{padding:20px 0 18px;background:linear-gradient(130deg,#222 0%,#173b45 60%,#006b7e 100%);border-bottom:1px solid #006b7e}
+.serviceDemo .sd-store-intro{gap:18px}
+.serviceDemo .sd-store-intro .sd-kicker{color:#7dd8e8}
+.serviceDemo .sd-store-intro h1{color:#fff;font-size:clamp(2rem,5.2vw,3.35rem);line-height:1.02;letter-spacing:-.04em}
+.serviceDemo .sd-store-intro h1 em{color:#69d1e4}
+.serviceDemo .sd-store-intro p{color:#f0f6f8;font-size:1rem;line-height:1.55}
+.serviceDemo .sd-hero-actions{gap:9px}
+.serviceDemo .sd-hero-actions button{min-height:46px;border-radius:10px;font-size:.875rem}
+.serviceDemo .sd-hero-primary{background:#0097b2;color:#fff;border:1px solid #69d1e4}
+.serviceDemo .sd-hero-primary:hover{background:#00778d}
+.serviceDemo .sd-hero-secondary{background:rgba(255,255,255,.08);color:#fff;border:1px solid #a9dce5}
+.serviceDemo .sd-hero-secondary:hover{background:rgba(255,255,255,.16)}
+.serviceDemo .sd-store-visual{min-height:220px;display:grid;place-items:center}
+.serviceDemo .sd-device-card{width:min(100%,330px);min-height:220px;padding:18px;border:1px solid #74d6e7;border-radius:18px;background:linear-gradient(145deg,#122b34,#075d6d);box-shadow:0 18px 42px #071b2366;color:#fff}
+.serviceDemo .sd-device-top,.serviceDemo .sd-device-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:.72rem;letter-spacing:.1em}
+.serviceDemo .sd-device-top span,.serviceDemo .sd-device-bottom{color:#c8f1f6}
+.serviceDemo .sd-device-main{display:grid;gap:8px;padding:22px 0}
+.serviceDemo .sd-device-mark{font-size:1.8rem}
+.serviceDemo .sd-device-main strong{font-size:1.65rem;line-height:1.12}
+.serviceDemo .sd-device-main small{color:#d6edf1;font-size:.82rem}
+.serviceDemo .sd-store-proof{gap:8px;margin-top:14px}
+.serviceDemo .sd-store-proof span{border:1px solid #6db8c7;background:#ffffff10;color:#fff;border-radius:10px;padding:10px 12px}
+.serviceDemo .sd-store-proof b{color:#fff;font-size:.95rem}
+.serviceDemo .sd-store-proof small{color:#e2f4f7}
+.serviceDemo .sd-services{padding-top:24px;padding-bottom:26px}
+.serviceDemo .sd-section-head h2{color:#222}
+.serviceDemo .sd-section-head>p{color:#3f5059}
+.serviceDemo .sd-service-grid{gap:12px}
+.serviceDemo .sd-service-card{background:#fff;border:1px solid #cfdae1;border-radius:12px;box-shadow:0 5px 18px #1838440d}
+.serviceDemo .sd-service-title h3{color:#222}
+.serviceDemo .sd-service-title>strong{color:#006b7e}
+.serviceDemo .sd-service-info>p{color:#34434b}
+.serviceDemo .sd-order-button{background:#007b91;color:#fff;border-color:#007b91}
+.serviceDemo .sd-order-button:hover{background:#005f70;color:#fff}
+.serviceDemo .sd-approach{padding-top:24px;padding-bottom:28px}
+.serviceDemo .sd-approach-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.serviceDemo .sd-approach-grid article{min-width:0;padding:14px;border:1px solid #d1dfe5;border-radius:12px;background:#fff}
+.serviceDemo .sd-approach-grid article>span{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#d8f3f7;color:#005e70;font-weight:800}
+.serviceDemo .sd-approach-grid h3{margin:10px 0 6px;color:#222;font-size:1rem;line-height:1.25;text-transform:none}
+.serviceDemo .sd-approach-grid p{margin:0;color:#34434b;font-size:.875rem;line-height:1.5}
+.serviceDemo .sd-approach-grid small{display:block;margin-top:10px;color:#006b7e;font-size:.78rem;line-height:1.4;font-weight:700}
+.serviceDemo .sd-contact{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:22px;padding-bottom:26px;margin-bottom:24px;border-top:1px solid #d1dfe5}
+.serviceDemo .sd-contact h2{margin:6px 0;color:#222;font-size:clamp(1.5rem,3.5vw,2.2rem);text-transform:none}
+.serviceDemo .sd-contact p{max-width:520px;color:#34434b;line-height:1.5}
+.serviceDemo .sd-contact-actions{display:grid;gap:8px;min-width:min(100%,260px);font-size:.9rem}
+.serviceDemo .sd-contact-actions a{color:#005f70;font-weight:800;text-decoration:underline;text-underline-offset:3px}
+.serviceDemo .sd-contact-actions span{color:#46545b}
+.serviceDemo .sd-announcement{background:#e5f5f8;border-block:1px solid #b6dfe7;color:#222}
+.serviceDemo .sd-announcement p{color:#24343a}
+.serviceDemo .sd-footer{background:#222;color:#f4f6fc}
+.serviceDemo .sd-footer p,.serviceDemo .sd-footer a,.serviceDemo .sd-footer button{color:#e5f3f6}
+.serviceDemo .sd-footer .sd-briefcase-mark{background:#0097b2}
+.serviceDemo .sd-admin .sd-kicker,.serviceDemo .sd-account .sd-kicker{color:#006b7e}
+.serviceDemo .sd-admin .sd-button.sd-primary{background:#007b91;color:#fff!important;border-color:#007b91}
+.serviceDemo .sd-admin .sd-button.sd-primary:hover{background:#005f70}
+.serviceDemo .sd-admin .sd-os-nav button[aria-pressed="true"]{background:#d8f3f7;color:#005f70;border-color:#75c6d3}
+.serviceDemo .sd-account .sd-button.sd-primary{background:#007b91;color:#fff;border-color:#007b91}
+.serviceDemo .sd-account .sd-order-price{color:#006b7e}
+.serviceDemo .sd-service-media .sd-media-placeholder{background:linear-gradient(135deg,#e5f5f8,#b8e4eb);color:#005f70}
+.serviceDemo .sd-service-media .sd-media-placeholder span{color:#006b7e}
+.serviceDemo :is(.sd-admin,.sd-account) :is(p,small,label,span){text-shadow:none}
+@media(max-width:900px){.serviceDemo .sd-approach-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.serviceDemo .sd-contact{align-items:flex-start;flex-direction:column}}
+@media(max-width:560px){
+  .serviceDemo .sd-store-intro{grid-template-columns:minmax(0,1fr);gap:14px}
+  .serviceDemo .sd-store-visual{min-height:0}
+  .serviceDemo .sd-device-card{min-height:190px}
+  .serviceDemo .sd-store-proof{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .serviceDemo .sd-store-proof span{padding:8px 6px}
+  .serviceDemo .sd-store-proof b{font-size:.82rem}
+  .serviceDemo .sd-store-proof small{font-size:.7rem}
+  .serviceDemo .sd-approach-grid{grid-template-columns:minmax(0,1fr)}
+  .serviceDemo .sd-approach-grid article{padding:12px}
+}
