@@ -9,7 +9,7 @@ export type DiraJourneyEvent="public_visit"|"catalogue_view"|"service_selected"|
 async function guestToken():Promise<string|null>{
   if(!hasFirebaseWebConfig)return null;
   try{
-    let user=auth.currentUser;
+    const user=auth.currentUser;
     if(!user){
       if(!guestPromise)guestPromise=signInAnonymously(auth).then(result=>result.user.getIdToken()).catch(()=>null).finally(()=>{guestPromise=null});
       return await guestPromise;
