@@ -29,7 +29,7 @@ export default function DiraProjectBuilder({user,profile,onSaved}:Props){
  const[notice,setNotice]=useState("");
  const[expanded,setExpanded]=useState(false);
  const selectedPackage=catalogue.find(x=>x.id===packageId&&x.kind==="package");
- const included=packages.find(x=>x.id===packageId)?.includes||[];
+ const included:string[]=[...(packages.find(x=>x.id===packageId)?.includes||[])];
  const serviceIds=custom?chosen:included.filter(id=>!excluded.includes(id));
  const addOns=custom?serviceIds.filter(id=>catalogue.find(x=>x.id===id)?.kind==="service"):chosen.filter(id=>!included.includes(id));
  const total=(selectedPackage?.priceFrom||0)+addOns.reduce((sum,id)=>sum+(catalogue.find(x=>x.id===id)?.priceFrom||0),0);
