@@ -87,7 +87,7 @@ export default function ServiceGuide({ view, services, requestCount, onChooseSer
   }
   function chooseService(service: GuideService) {
     setLastChoice(service.id);
-    say(`${service.name} starts at P${service.price.toLocaleString("en-BW")}. ${service.description} Choose “Request this service” to continue in the existing form; your requested date is a preference, not a confirmed delivery promise.`);
+    say(`${service.name} · ${service.id.startsWith("package-") ? "Starting from " : ""}P${service.price.toLocaleString("en-BW")}. ${service.description} Choose “Request this service” to continue in the request form; your requested date is a preference, not a confirmed delivery promise.`);
   }
   function runAction(action: string) {
     setTeaser(false);
