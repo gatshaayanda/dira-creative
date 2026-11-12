@@ -55,7 +55,6 @@ The local prototype currently demonstrates enquiries, quote send/approve/decline
 - Novice package: P3,200 (published maximum; scope and any price adjustment are discussed and agreed before approval).
 - Elevate package: P5,200 (published maximum; scope and any price adjustment are discussed and agreed before approval).
 - Elite package: P12,500 (published maximum; scope and any price adjustment are discussed and agreed before approval).
-- Ultimate package: custom scope and pricing.
 Use the fixed package prices above. Discuss and agree any scope adjustment or negotiated price before customer approval. Do not publish ranges or custom-priced package cards without a specific approved price. Public storefront and customer account must not display Dira phone/email contact details; collect customer details only inside private order/account flows.
 
 ## Protected foundation behavior
