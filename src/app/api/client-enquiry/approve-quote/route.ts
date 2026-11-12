@@ -20,7 +20,7 @@ export async function POST(request:Request){
    const required=Number(data.initialPaymentRequired??0),nextStatus=required>0?"Awaiting Initial Payment":"In Progress";
    let quoteId=String(data.quoteId??"");
    let quoteRef=quoteId?db.collection("quotes").doc(quoteId):null;
-   let quoteSnap=quoteRef?await tx.get(quoteRef):null;
+   const quoteSnap=quoteRef?await tx.get(quoteRef):null;
    if(!quoteSnap?.exists){quoteRef=db.collection("quotes").doc();quoteId=quoteRef.id;}
    let projectId=String(data.projectId??"");
    const projectRef=projectId?db.collection("projects").doc(projectId):db.collection("projects").doc();
