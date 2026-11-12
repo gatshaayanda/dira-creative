@@ -416,14 +416,14 @@ export default function Home() {
   }
 
   return <main className="serviceDemo" style={{ "--studio-accent": themeColor, "--studio-accent-ink": accentInk(themeColor), "--studio-accent-text": accentText(themeColor) } as React.CSSProperties}>
-    <div className="sd-topline"><div className="sd-wrap"><span>DIRA CREATIVE <i className="sd-topline-divider">/</i> BUSINESS OS PREVIEW</span><span className={online ? "sd-connect" : "sd-connect is-offline"}><i />{online ? "Preview ready" : "Offline · local demo"}</span></div></div>
+    <div className="sd-topline"><div className="sd-wrap"><span>DIRA CREATIVE <i className="sd-topline-divider">/</i> BRAND &amp; BUSINESS DEVELOPMENT</span><span className={online ? "sd-connect" : "sd-connect is-offline"}><i />{!online ? (hasFirebaseWebConfig ? "Offline · cached workspace" : "Offline · local preview") : remoteServices !== null ? "Live service catalogue" : hasFirebaseWebConfig ? "Connecting to services…" : "Preview only"}</span></div></div>
     <header className="sd-header"><div className="sd-wrap sd-nav"><button className="sd-brand" onClick={() => { setView("shop"); setNotice(""); window.scrollTo({top:0,behavior:"smooth"}); }} aria-label="Back to services"><span className="sd-logo">{(businessName.trim() || "DC").slice(0,2).toUpperCase()}</span><span><strong>{businessName || "Dira Creative"}</strong><small>STORE</small></span></button><nav aria-label="Main navigation"><button onClick={() => { setView("shop"); setNotice(""); }}>Store</button><button onClick={() => { if (hasFirebaseWebConfig) window.location.assign("/account"); else { setView("account"); setNotice(""); } }}>Account <span className="sd-count">{data.orders.length}</span></button></nav></div></header>
     {(view === "shop" || view === "account" || view === "login") && <nav className="sd-mobile-nav" aria-label="Quick navigation">
       <button type="button" className={view === "shop" ? "is-active" : ""} onClick={() => { setView("shop"); setNotice(""); window.scrollTo({ top: 0, behavior: "smooth" }); }}><span aria-hidden="true">⌂</span>Store</button>
       <button type="button" onClick={() => { setView("shop"); document.getElementById("services")?.scrollIntoView({ behavior: "smooth", block: "start" }); }}><span aria-hidden="true">▦</span>Services</button>
       <button type="button" className={view === "account" ? "is-active" : ""} onClick={() => { if (hasFirebaseWebConfig) window.location.assign("/account"); else { setView("account"); setNotice(""); } }}><span aria-hidden="true">◉</span>Account</button>
     </nav>}
-    {!online && <aside className="sd-offline-notice" role="status"><strong>Offline mode · saved on this device</strong><span>Store, account and Briefcase preview changes remain local to this browser. Previously loaded Store media can be available; new uploads and remote services need internet.</span></aside>}
+    {!online && <aside className="sd-offline-notice" role="status"><strong>{hasFirebaseWebConfig ? "Offline mode · cached workspace" : "Offline mode · local preview"}</strong><span>{hasFirebaseWebConfig ? "Previously loaded service and account data may remain available from this device. New submissions and uploads need an internet connection." : "Preview changes remain local to this browser. New uploads and remote services need internet."}</span></aside>}
 
 
     {view === "shop" && <>
