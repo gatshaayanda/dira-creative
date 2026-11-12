@@ -2,7 +2,7 @@
 import {onAuthStateChanged,signInWithCustomToken,signOut,type User} from "firebase/auth";
 import {doc,onSnapshot} from "firebase/firestore";
 import {useEffect,useState} from "react";
-import {auth,db} from "@/lib/firebase/client";
+import {auth,db,hasFirebaseWebConfig} from "@/lib/firebase/client";
 
 function hasAdminRole(data:Record<string,unknown>|undefined){
  return ["owner","staff"].includes(String(data?.role??"").toLowerCase());
@@ -22,6 +22,7 @@ export default function AdminGate({children}:{children:React.ReactNode}){
  const[user,setUser]=useState<User|null>(null),[checking,setChecking]=useState(true),[authorized,setAuthorized]=useState(false),[offline,setOffline]=useState(false),[accessWord,setAccessWord]=useState(""),[error,setError]=useState(""),[busy,setBusy]=useState(false);
 
  useEffect(()=>{
+  if(!hasFirebaseWebConfig){setChecking(false);return;}
   let stopAdmin:undefined|(()=>void);
   const stopAuth=onAuthStateChanged(auth,next=>{
    if(stopAdmin){stopAdmin();stopAdmin=undefined}
@@ -61,6 +62,7 @@ export default function AdminGate({children}:{children:React.ReactNode}){
   finally{setBusy(false)}
  }
 
+ if(!hasFirebaseWebConfig)return <main className="adminPage"><div className="adminShell"><section className="adminPanel" style={{maxWidth:560,margin:"60px auto"}}><span className="kicker">Dira Creative · Operations</span><h1>Workspace setup required</h1><p>The client workspace is not connected to the approved Firebase project in this deployment. Configure the public Firebase web settings and server-side service account before signing in.</p><p className="orderTruth">Project: the-wall-ab746 · Firestore: (default) · africa-south1</p></section></div></main>;
  if(checking)return <main className="adminPage"><div className="adminShell"><div className="emptyState"><div>🔐</div><h1>Opening Dira Creative Admin</h1><p>Checking access…</p></div></div></main>;
  if(user&&authorized)return <div className="adminAuthorized">{offline&&<div className="adminAccountBar"><span>Dira Creative Admin · Offline mode · cached admin access</span><span>Changes will sync when connection returns.</span></div>}<div className="adminAccountBar"><span>Dira Creative Admin · {user.email??"authorized staff"}</span><button className="button buttonLight" type="button" onClick={()=>void signOut(auth)}>Sign out</button></div>{children}</div>;
  return <main className="adminPage"><div className="adminShell"><section className="adminPanel" style={{maxWidth:520,margin:"80px auto"}}><span className="kicker">Dira Creative · Operations</span><h1>Operations sign in</h1><p>Enter your Operations access word to manage client enquiries, service catalogue and customer conversations.</p><form className="adminForm" onSubmit={signIn}><label>Access word<input type="password" value={accessWord} onChange={e=>setAccessWord(e.target.value)} autoComplete="current-password" required autoFocus/></label><button className="button buttonPrimary" type="submit" disabled={busy}>{busy?"Checking access…":"Enter Operations"}</button></form>{error&&<p role="alert" className="notice">{error}</p>}</section></div></main>
