@@ -9,7 +9,7 @@ export const runtime="nodejs";
 function adminApp(){ return getDiraAdminApp(); }
 
 function validEnquiry(data:Record<string,unknown>,uid:string){
-  const allowed=["customerId","customerName","email","phone","serviceName","packageName","selectedItems","scope","budget","preferredTimeline","attachment","createdAt","updatedAt","status","engagementMode"];
+  const allowed=["customerId","customerName","email","phone","serviceName","packageName","selectedItems","scope","budget","preferredTimeline","attachment","createdAt","updatedAt","status","engagementMode","configurationType","proposedTotal","excludedInclusions","configurationHistory"];
   if(Object.keys(data).some(key=>!allowed.includes(key))||!allowed.every(key=>Object.prototype.hasOwnProperty.call(data,key)))return false;
   if(data.customerId!==uid||typeof data.customerName!=="string"||!data.customerName.trim()||data.customerName.length>120)return false;
   if(typeof data.email!=="string"||data.email.length>254||!/^\S+@\S+\.\S+$/.test(data.email))return false;
@@ -33,6 +33,35 @@ function validEnquiry(data:Record<string,unknown>,uid:string){
   if(typeof data.budget!=="string"||data.budget.length>160||typeof data.preferredTimeline!=="string"||data.preferredTimeline.length>160)return false;
   if(typeof data.createdAt!=="string"||typeof data.updatedAt!=="string"||data.status!=="New Enquiry")return false;
   if(data.engagementMode!=="remote"&&data.engagementMode!=="on-site"&&data.engagementMode!=="hybrid")return false;
+  if(data.configurationType!==undefined&&data.configurationType!=="package"&&data.configurationType!=="custom")return false;
+  if(data.proposedTotal!==undefined&&(typeof data.proposedTotal!=="number"||!Number.isFinite(data.proposedTotal)||data.proposedTotal<0||data.proposedTotal>100000000))return false;
+  if(data.excludedInclusions!==undefined){
+    if(!Array.isArray(data.excludedInclusions)||data.excludedInclusions.length>30)return false;
+    for(const raw of data.excludedInclusions){
+      if(!raw||typeof raw!=="object"||Array.isArray(raw))return false;
+      const item=raw as Record<string,unknown>;
+      const published=DEFAULT_DIRA_CATALOGUE.find(x=>x.id===item.id&&x.published&&x.kind==="service");
+      if(Object.keys(item).some(key=>!["id","name","price"].includes(key))||!published||item.name!==published.name||item.price!==published.priceFrom)return false;
+    }
+  }
+  if(data.configurationHistory!==undefined){
+    if(!Array.isArray(data.configurationHistory)||data.configurationHistory.length>200)return false;
+    for(const raw of data.configurationHistory){
+      if(!raw||typeof raw!=="object"||Array.isArray(raw))return false;
+      const event=raw as Record<string,unknown>;
+      const published=DEFAULT_DIRA_CATALOGUE.find(x=>x.id===event.itemId&&x.published);
+      if(Object.keys(event).some(key=>!["action","itemId","itemName","kind","price","at"].includes(key)))return false;
+      if(!["added","removed","package_changed"].includes(String(event.action))||typeof event.itemId!=="string"||typeof event.itemName!=="string"||typeof event.at!=="string"||typeof event.price!=="number"||!Number.isFinite(event.price)||event.price<0)return false;
+      if(event.itemId==="custom"){if(event.itemName!=="Custom service-only proposal"||event.kind!=="package"||event.price!==0) return false;}
+      else if(!published||published.name!==event.itemName||published.kind!==event.kind||published.priceFrom!==event.price)return false;
+    }
+  }
+  if(data.configurationType==="custom"&&data.packageName!=="")return false;
+  if(data.proposedTotal!==undefined){
+    const selected=data.selectedItems as Array<{id:string;price:number;kind:string}>;
+    const calculated=selected.reduce((sum,item)=>sum+item.price,0);
+    if(Math.abs(calculated-data.proposedTotal)>0.01)return false;
+  }
   if(data.attachment!==null){
     if(!data.attachment||typeof data.attachment!=="object"||Array.isArray(data.attachment))return false;
     const attachment=data.attachment as Record<string,unknown>;
