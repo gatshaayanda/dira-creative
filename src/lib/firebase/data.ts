@@ -46,7 +46,7 @@ const conversationsCollection=collection(db,"conversations");
 export async function createCustomerConversation(uid:string,title:string):Promise<string>{
  const profile=await getCustomerProfile(uid);
  const now=new Date().toISOString();
- const reference=await addDoc(conversationsCollection,{customerId:uid,customerName:profile?.name||"The Plug customer",title,status:"open",createdAt:now,updatedAt:now,lastMessageAt:now,lastMessagePreview:"",unreadForCustomer:false,unreadForAdmin:false});
+ const reference=await addDoc(conversationsCollection,{customerId:uid,customerName:profile?.name||"Dira Creative client",title,status:"open",createdAt:now,updatedAt:now,lastMessageAt:now,lastMessagePreview:"",unreadForCustomer:false,unreadForAdmin:false});
  return reference.id;
 }
 export function subscribeToCustomerConversations(uid:string,onChange:(items:Conversation[])=>void,onError:(error:Error)=>void):Unsubscribe{
