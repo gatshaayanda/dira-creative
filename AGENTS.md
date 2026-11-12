@@ -90,3 +90,8 @@ The legacy single-page preview in `src/app/page.tsx` still contains browser-loca
 
 ## Checkpoint
 Record exact branch/commit, changed areas, checks and outputs, visual QA, customer/owner journey QA, pending backend configuration and whether the app is ready for QA.
+
+
+## Live activity and Firebase telemetry
+
+Dira records privacy-limited customer journey events through `src/lib/firebase/journey-analytics.ts` and the authenticated server route `src/app/api/analytics/journey/route.ts`. The public storefront and project enquiry flow record visits, catalogue views, project-flow opens, selected services/packages and submitted enquiries. Events use anonymous Firebase sessions and must never include customer contact details, briefs, attachments or payment data. Admin telemetry uses the lifetime `customerJourneyAnalytics/summary` aggregate plus a bounded latest-100 event sample; keep admin reads bounded to avoid unnecessary Firestore usage. The 25 GB display is a reference ceiling against the estimated JSON payload bytes of Dira's tracked events only, not total Firebase project storage, billing, Firestore reads/writes or bandwidth. See `docs/OPERATIONAL-TRANSPARENCY-STANDARD.md` before changing event collection or the meter. The server route uses the existing `FIREBASE_PROJECT_ID` and `FIREBASE_ADMIN_KEY` configuration and the `the-wall-ab746` project.
