@@ -63,6 +63,16 @@ export default function Home() {
     void trackDiraJourney("catalogue_view");
   }, []);
 
+  useEffect(() => {
+    const urls = catalogue.map((item) => item.imageUrl).filter((url): url is string => Boolean(url));
+    if (!urls.length || !("serviceWorker" in navigator)) return;
+    void navigator.serviceWorker.ready.then((registration) => {
+      registration.active?.postMessage({ type: "CACHE_MEDIA", urls });
+    }).catch(() => {
+      // Offline media preparation is progressive enhancement; browsing remains available.
+    });
+  }, []);
+
   const visibleItems = useMemo(() => {
     const query = search.trim().toLowerCase();
     return catalogue.filter((item) => {
