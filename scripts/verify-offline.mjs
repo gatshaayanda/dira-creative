@@ -26,7 +26,7 @@ check(sw.includes('if (cached) return cached') && sw.includes('return Response.e
 check(page.includes('type: "CACHE_MEDIA"') && page.includes("data.services.map") && page.includes("data.announcementImage"), "Store service and announcement media must be prepared for offline use");
 check(page.includes('window.localStorage.setItem(STORAGE_KEY, JSON.stringify(data))'), "customer/admin demo changes must be synchronously saved before success feedback");
 check(account.includes("if (!online || !navigator.onLine)") && account.includes("Upload"), "offline account messaging must stay available while uploads are blocked");
-check(offline.includes("not queued for server delivery") && offline.includes("let its images and videos finish loading"), "offline guidance must explain preparation and non-sync boundaries");
+check(offline.includes("not queued for later delivery") && offline.includes("let its images and videos finish loading"), "offline guidance must explain preparation and non-sync boundaries");
 
 check(offline.includes("production enquiries, customer accounts") && offline.includes("owner/admin actions"), "offline guidance must distinguish live server journeys from local preview data");
 check(pwaRegister.includes("Cached public preview is available") && pwaRegister.includes("customer accounts and owner actions need a connection"), "offline banner must not imply production records are saved locally");
