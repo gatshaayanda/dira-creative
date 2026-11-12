@@ -18,12 +18,18 @@ export async function POST(request:Request){
    const alreadyApproved=Boolean(data.clientApprovedAt&&data.clientApprovedPrice===data.quotedPrice);
    if(!alreadyApproved&&!["Quote Ready","Awaiting Approval"].includes(String(data.status)))return {status:409 as const,error:"This quote is not awaiting approval. Refresh My enquiries to see the latest status."};
    const required=Number(data.initialPaymentRequired??0),nextStatus=required>0?"Awaiting Initial Payment":"In Progress";
-   let quoteId=String(data.quoteId??"");let quoteRef=quoteId?db.collection("quotes").doc(quoteId):null;
-   if(quoteRef){const quoteSnap=await tx.get(quoteRef);if(quoteSnap.exists)tx.update(quoteRef,{status:"Approved",approvedAt:data.clientApprovedAt||now,approvedBy:token.uid,updatedAt:now});else quoteRef=null;}
-   if(!quoteRef){quoteRef=db.collection("quotes").doc();tx.create(quoteRef,{enquiryId:body.enquiryId,clientId:token.uid,serviceName:data.serviceName,packageName:data.packageName||"",scope:data.scope||"",amount:data.quotedPrice,currency:"BWP",initialPaymentRequired:required,deliverables:data.deliverables||"",targetCompletion:data.targetCompletion||"",engagementMode:data.engagementMode||"remote",version:Number(data.quoteVersion??1),status:"Approved",sentAt:now,approvedAt:now,approvedBy:token.uid,createdAt:now,updatedAt:now});quoteId=quoteRef.id;}
-   let projectId=String(data.projectId??"");const projectRef=projectId?db.collection("projects").doc(projectId):db.collection("projects").doc();projectId=projectRef.id;
-   const projectData={clientId:token.uid,enquiryId:body.enquiryId,quoteId,serviceName:data.serviceName,packageName:data.packageName||"",scope:data.scope||"",approvedQuote:data.quotedPrice,currency:"BWP",status:nextStatus,targetCompletion:data.targetCompletion||"",engagementMode:data.engagementMode||"remote",deliverables:data.deliverables||"",createdAt:data.projectId?String(data.projectCreatedAt||now):now,updatedAt:now};
-   if(data.projectId){const projectSnap=await tx.get(projectRef);if(projectSnap.exists)tx.update(projectRef,{...projectData,createdAt:projectSnap.data()?.createdAt||now});else tx.create(projectRef,projectData);}else tx.create(projectRef,projectData);
+   let quoteId=String(data.quoteId??"");
+   let quoteRef=quoteId?db.collection("quotes").doc(quoteId):null;
+   let quoteSnap=quoteRef?await tx.get(quoteRef):null;
+   if(!quoteSnap?.exists){quoteRef=db.collection("quotes").doc();quoteId=quoteRef.id;}
+   let projectId=String(data.projectId??"");
+   const projectRef=projectId?db.collection("projects").doc(projectId):db.collection("projects").doc();
+   const projectSnap=data.projectId?await tx.get(projectRef):null;
+   projectId=projectRef.id;
+   const projectData={clientId:token.uid,enquiryId:body.enquiryId,quoteId,serviceName:data.serviceName,packageName:data.packageName||"",scope:data.scope||"",approvedQuote:data.quotedPrice,currency:"BWP",status:nextStatus,targetCompletion:data.targetCompletion||"",engagementMode:data.engagementMode||"remote",deliverables:data.deliverables||"",createdAt:projectSnap?.exists?String(projectSnap.data()?.createdAt||now):now,updatedAt:now};
+   if(quoteSnap?.exists)tx.update(quoteRef!,{status:"Approved",approvedAt:data.clientApprovedAt||now,approvedBy:token.uid,updatedAt:now});
+   else tx.create(quoteRef!,{enquiryId:body.enquiryId,clientId:token.uid,serviceName:data.serviceName,packageName:data.packageName||"",scope:data.scope||"",amount:data.quotedPrice,currency:"BWP",initialPaymentRequired:required,deliverables:data.deliverables||"",targetCompletion:data.targetCompletion||"",engagementMode:data.engagementMode||"remote",version:Number(data.quoteVersion??1),status:"Approved",sentAt:now,approvedAt:now,approvedBy:token.uid,createdAt:now,updatedAt:now});
+   if(projectSnap?.exists)tx.update(projectRef,projectData);else tx.create(projectRef,projectData);
    tx.update(enquiryRef,{clientApprovedAt:data.clientApprovedAt||now,clientApprovedPrice:data.quotedPrice,clientApprovalSource:"dira-client-portal",clientApprovalUid:token.uid,status:nextStatus,quoteId,projectId,updatedAt:now});
    return {status:200 as const,approvedAt:String(data.clientApprovedAt||now),alreadyApproved,projectId};
   });
