@@ -5,7 +5,7 @@ import {db} from "@/lib/firebase/client";
 
 export const DIRA_TASK_STATUSES=["To Do","In Progress","Done","Blocked"] as const;
 export type DiraTaskStatus=typeof DIRA_TASK_STATUSES[number];
-export type DiraTask={id:string;projectId:string;enquiryId:string;clientId:string;title:string;description:string;status:DiraTaskStatus;dueDate:string;assignee:string;sortOrder:number;createdAt:string;updatedAt:string};
+export type DiraTask={id:string;projectId:string;enquiryId:string;clientId:string;projectName:string;title:string;description:string;status:DiraTaskStatus;dueDate:string;assignee:string;sortOrder:number;createdAt:string;updatedAt:string};
 const tasks=collection(db,"tasks");
 const sorted=(items:DiraTask[])=>items.sort((a,b)=>a.sortOrder-b.sortOrder||a.createdAt.localeCompare(b.createdAt));
 export function subscribeToProjectTasks(projectId:string,onChange:(items:DiraTask[])=>void,onError:(error:Error)=>void):Unsubscribe{
