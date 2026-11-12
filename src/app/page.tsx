@@ -203,7 +203,7 @@ export default function Home() {
       // Local demo actions remain available even when the browser blocks service workers.
     });
     return () => navigator.serviceWorker.removeEventListener("controllerchange", prepareOfflineMedia);
-  }, [servicesForDisplay, data.announcementImage, data.orders, ready]);
+  }, [remoteServices, data.services, data.announcementImage, data.orders, ready]);
 
   useEffect(() => {
     if (!notice) return;
