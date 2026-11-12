@@ -487,11 +487,11 @@ export default function Home() {
       <section className="sd-approach sd-wrap" id="approach">
         <div className="sd-section-head sd-compact-section-head"><div><span className="sd-kicker">HOW WE BUILD</span><h2>Five stages. One direction.</h2></div><p>From a clear identity to stronger operations and sustainable growth.</p></div>
         <div className="sd-approach-grid">
-          <article><span>01</span><h3>Define your identity</h3><p>Logo, colour, typography, iconography, graphic elements, imagery, illustration and layout.</p><small>A consistent, recognisable brand.</small></article>
-          <article><span>02</span><h3>Establish your presence</h3><p>Company profiles, proposals, portfolios, pitch decks, business cards, websites, applications and maintenance.</p><small>Professional tools for communication.</small></article>
-          <article><span>03</span><h3>Structure your operations</h3><p>Workflows, team structures, function mapping and practical operational support.</p><small>Clear roles and organised work.</small></article>
-          <article><span>04</span><h3>Connect with your market</h3><p>Print, advertising, social media, promotional video, motion graphics and campaign assets.</p><small>Visibility and meaningful engagement.</small></article>
-          <article><span>05</span><h3>Optimise for growth</h3><p>Asset management, revenue optimisation, gap analysis and strategic problem-solving.</p><small>Better decisions and sustainable performance.</small></article>
+          <article><span>01</span><h3>Define your identity</h3><p>Logo, colour, typography, iconography, graphic elements, imagery, illustration and layout.</p><small>A consistent, recognisable brand.</small><a href="/request?service=Define%20Your%20Identity">Discuss this stage ↗</a></article>
+          <article><span>02</span><h3>Establish your presence</h3><p>Company profiles, proposals, portfolios, pitch decks, business cards, websites, applications and maintenance.</p><small>Professional tools for communication.</small><a href="/request?service=Establish%20Your%20Presence">Discuss this stage ↗</a></article>
+          <article><span>03</span><h3>Structure your operations</h3><p>Workflows, team structures, function mapping and practical operational support.</p><small>Clear roles and organised work.</small><a href="/request?service=Structure%20Your%20Operations">Discuss this stage ↗</a></article>
+          <article><span>04</span><h3>Connect with your market</h3><p>Print, advertising, social media, promotional video, motion graphics and campaign assets.</p><small>Visibility and meaningful engagement.</small><a href="/request?service=Connect%20With%20Your%20Market">Discuss this stage ↗</a></article>
+          <article><span>05</span><h3>Optimise for growth</h3><p>Asset management, revenue optimisation, gap analysis and strategic problem-solving.</p><small>Better decisions and sustainable performance.</small><a href="/request?service=Optimise%20for%20Growth">Discuss this stage ↗</a></article>
         </div>
       </section>
       <section className="sd-contact sd-wrap" id="contact">
