@@ -161,9 +161,6 @@ export default function Home() {
         setData({ ...emptyData, ...parsed, services: Array.isArray(parsed.services) ? parsed.services : seedServices, orders: Array.isArray(parsed.orders) ? parsed.orders : [], announcement: typeof parsed.announcement === "string" ? parsed.announcement : "", views: (Number(parsed.views) || 0) + 1, events: [...(Array.isArray(parsed.events) ? parsed.events : []), { id: "EV-"+Date.now().toString(36), kind: "visit", label: "Store visited", at: new Date().toISOString() }], receiptProfile: { ...emptyData.receiptProfile!, ...(parsed.receiptProfile || {}) } });
         setAnnouncementDraft(typeof parsed.announcement === "string" ? parsed.announcement : "");
         setAnnouncementImageDraft(typeof parsed.announcementImage === "string" ? parsed.announcementImage : "");
-        setRewardTitleDraft(typeof parsed.rewardTitle === "string" ? parsed.rewardTitle : emptyData.rewardTitle || "Take a quick lap.");
-        setRewardDescriptionDraft(typeof parsed.rewardDescription === "string" ? parsed.rewardDescription : emptyData.rewardDescription || "Complete a clean lap to earn a discount code for your next request.");
-        setRewardImageDraft(typeof parsed.rewardImage === "string" ? parsed.rewardImage : "");
         setRewardDiscountDraft(String(Number(parsed.discountAmount) > 0 ? Number(parsed.discountAmount) : 10));
       } else setData(current => ({ ...current, views: 1, events: [{ id: "EV-"+Date.now().toString(36), kind: "visit", label: "Store visited", at: new Date().toISOString() }] }));
     } catch { setNotice("Local demo storage is unavailable in this browser. You can explore, but changes may not persist."); }
