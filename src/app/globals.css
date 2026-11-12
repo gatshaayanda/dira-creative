@@ -3054,3 +3054,6 @@ h1 em,
 .diraAdminPage .diraProjectForm{padding:2px 0 5px}
 .diraAdminPage .diraTaskManager{margin-top:20px;padding-top:18px}
 @media(max-width:560px){.diraAccountPage .orderHeader{align-items:flex-start;gap:8px}.diraAccountPage .accountConnect .actions{display:grid}.diraAccountPage .accountConnect .actions>*{width:100%}.diraAdminPage .diraAdminHeader{padding:14px}.diraAdminPage .diraMetrics{gap:8px}}
+
+.serviceDemo .sd-brand>.diraBrand{display:inline-flex;align-items:center;gap:10px}
+.serviceDemo .sd-brand>.diraBrand .diraBrandWords{display:grid;gap:3px}
