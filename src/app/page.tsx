@@ -57,6 +57,7 @@ function requestHref(item: (typeof catalogue)[number]) {
 export default function Home() {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<"services" | "packages" | "all">("services");
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     void trackDiraJourney("public_visit");
@@ -82,6 +83,8 @@ export default function Home() {
     });
   }, [filter, search]);
 
+  const displayedItems = showAll || search.trim() ? visibleItems : visibleItems.slice(0, 6);
+
   const packageItems = packages.flatMap((path) => {
     const item = catalogue.find((entry) => entry.id === path.id);
     return item ? [{ ...path, item }] : [];
@@ -91,8 +94,8 @@ export default function Home() {
     <main className="diraHome">
       <div className="diraHomeTopbar">
         <div className="diraHomeWrap">
-          <span>ROYALTY HOLDINGS <i>/</i> DIRA CREATIVE</span>
-          <span>BRAND &amp; BUSINESS DEVELOPMENT · GABORONE, BOTSWANA</span>
+          <span>DIRA CREATIVE <i>·</i> BRAND &amp; BUSINESS DEVELOPMENT</span>
+          <span>GABORONE, BOTSWANA</span>
         </div>
       </div>
 
@@ -111,14 +114,14 @@ export default function Home() {
       <section className="diraHomeHero">
         <div className="diraHomeWrap diraHomeHeroGrid">
           <div className="diraHomeHeroCopy">
-            <span className="diraHomeEyebrow"><i /> BRAND &amp; BUSINESS DEVELOPMENT</span>
+            <span className="diraHomeEyebrow"><i /> DIRA CREATIVE · BRAND &amp; BUSINESS DEVELOPMENT</span>
             <h1>Brands with clarity. <em>Businesses with direction.</em></h1>
             <p>Building brands that communicate clearly, operate efficiently, and scale effectively.</p>
             <div className="diraHomeHeroActions">
               <a className="diraHomePrimary" href="#packages">Find your starting point <span aria-hidden="true">↘</span></a>
               <a className="diraHomeTextLink" href="#services">Explore individual services <span aria-hidden="true">→</span></a>
             </div>
-            <div className="diraHomeHeroNote"><span>01—05</span> One connected approach to brand and business development.</div>
+            <div className="diraHomeHeroNote"><span>STORE</span> Packages · Individual services · One project brief</div>
           </div>
           <div className="diraHomeHeroSignal" aria-label="Dira connects brand, business operations and growth">
             <span>ONE CONNECTED BUSINESS JOURNEY</span>
@@ -137,7 +140,7 @@ export default function Home() {
           <div className="diraHomePackageGrid">
             {packageItems.map(({ item, audience, outcome, accent }, index) => (
               <article className={`diraHomePackage diraHomePackage-${accent}`} key={item.id}>
-                <div className="diraHomePackageTop"><span>0{index + 1} / BRAND PACKAGE</span><span>{audience}</span></div>
+                <div className="diraHomePackageTop"><span>0{index + 1} · {audience}</span></div>
                 <h3>{item.name}</h3>
                 <p className="diraHomePackageOutcome">{outcome}</p>
                 <p className="diraHomePackageDescription">{item.description}</p>
@@ -148,18 +151,7 @@ export default function Home() {
               </article>
             ))}
           </div>
-          <p className="diraHomePriceNote">Published package prices are in Botswana pula (BWP). Scope and any price adjustment are discussed and agreed before approval. No payment is taken when you send an enquiry.</p>
-        </div>
-      </section>
-
-      <section className="diraHomeMethod">
-        <div className="diraHomeWrap">
-          <div className="diraHomeMethodHeading"><span className="diraHomeSectionKicker">HOW WE CREATE VALUE</span><h2>One connected process.</h2></div>
-          <div className="diraHomeStageGrid">
-            {stages.map(([number, title, description]) => (
-              <article key={number}><span>{number}</span><h3>{title}</h3><p>{description}</p></article>
-            ))}
-          </div>
+          <p className="diraHomePriceNote">Prices in BWP. Scope and any adjustments are agreed before approval. Enquiries do not take payment.</p>
         </div>
       </section>
 
@@ -177,10 +169,10 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <div className="diraHomeResultLine"><strong>{visibleItems.length} {visibleItems.length === 1 ? "option" : "options"}</strong><span>All prices shown in BWP · final scope agreed before approval</span></div>
+          <div className="diraHomeResultLine"><strong>{visibleItems.length} {visibleItems.length === 1 ? "option" : "options"}</strong><span>Prices in BWP · scope agreed before approval</span></div>
           {visibleItems.length ? (
             <div className="diraHomeServiceList">
-              {visibleItems.map((item) => (
+              {displayedItems.map((item) => (
                 <article className="diraHomeService" key={item.id}>
                   <div className="diraHomeServiceCopy"><span>{item.kind === "package" ? "BRAND PACKAGE" : item.category.toUpperCase()}</span><h3>{item.name}</h3><p>{item.description}</p></div>
                   <div className="diraHomeServiceAction"><strong>{item.priceLabel}</strong><Link href={requestHref(item)}>Add to enquiry <span aria-hidden="true">↗</span></Link></div>
@@ -190,7 +182,7 @@ export default function Home() {
           ) : (
             <div className="diraHomeEmpty"><strong>No matching options.</strong><button type="button" onClick={() => { setSearch(""); setFilter("services"); }}>Clear search</button></div>
           )}
-          <div className="diraHomeCatalogueFoot"><span>Combine services in one brief.</span><Link href="/account?new=1#project-builder">Build your project enquiry <span aria-hidden="true">→</span></Link></div>
+          {visibleItems.length > 6 && !search.trim() && <button type="button" className="diraHomeShowAll" onClick={() => setShowAll((value) => !value)}>{showAll ? "Show fewer services" : `View all ${visibleItems.length} services`} <span aria-hidden="true">{showAll ? "↑" : "↓"}</span></button>}\n          <div className="diraHomeCatalogueFoot"><span>Combine services in one brief.</span><Link href="/account?new=1#project-builder">Build your project enquiry <span aria-hidden="true">→</span></Link></div>
         </div>
       </section>
 
@@ -198,7 +190,7 @@ export default function Home() {
         <div className="diraHomeWrap diraHomeFooterInner">
           <div><DiraBrand /><p>Building brands that communicate clearly, operate efficiently, and scale effectively.</p></div>
           <nav aria-label="Footer navigation"><Link href="/account">Client account</Link><Link href="/patterns">App installation</Link><Link href="/account?new=1#project-builder">Start a project</Link></nav>
-          <small>© {new Date().getFullYear()} Dira Creative · Royalty Holdings (Pty) Ltd</small>
+          <small>© {new Date().getFullYear()} Dira Creative · A Royalty Holdings (Pty) Ltd company</small>
         </div>
       </footer>
 
