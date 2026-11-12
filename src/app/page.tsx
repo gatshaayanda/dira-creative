@@ -7,48 +7,33 @@ import AnnouncementImagePicker from "@/app/AnnouncementImagePicker";
 import AccountWorkspace, { type AccountMessage } from "@/app/AccountWorkspace";
 import ReceiptDocument from "@/app/ReceiptDocument";
 import { hasFirebaseWebConfig } from "@/lib/firebase/client";
+import { subscribeToPublishedDiraServices } from "@/lib/firebase/dira-services";
+import { DEFAULT_DIRA_CATALOGUE } from "@/lib/dira-catalogue";
 import { useEffect, useMemo, useState } from "react";
 
-type Service = { id: string; name: string; price: number; description: string; media: string; mediaType: "image" | "video"; active: boolean };
+type Service = { id: string; name: string; price: number; description: string; media: string; mediaType: "image" | "video"; active: boolean; priceLabel?: string; category?: string; featured?: boolean; kind?: "service" | "package" };
 type ProjectTask = { id: string; title: string; done: boolean };
 type DemoOrder = { id: string; serviceId: string; serviceName: string; price: number; dueDate: string; customerName: string; email: string; brief: string; status: string; createdAt: string; tasks?: ProjectTask[]; messages?: AccountMessage[]; paymentStatus?: "Unpaid" | "Partially paid (demo)" | "Paid (demo)"; originalPrice?: number; discountAmount?: number; discountCode?: string; paidAmount?: number; paidAt?: string; receiptNo?: string; isTest?: boolean; completedAt?: string; quoteAmount?: number; quoteStatus?: "Not prepared" | "Sent" | "Approved" | "Declined"; priceIsStarting?: boolean };
 type DemoEvent = { id: string; kind: "visit" | "request" | "completed" | "payment" | "promotion" | "task" | "quote"; label: string; at: string; test?: boolean };
 type DiscountClaim = { id: string; email: string; code: string; amount: number; createdAt: string; status: "Available" | "Redeemed" };
 type DemoData = { services: Service[]; orders: DemoOrder[]; announcement: string; announcementImage?: string; views: number; events?: DemoEvent[]; discountAmount?: number; discountClaims?: DiscountClaim[]; receiptProfile?: { legalName: string; registration: string; address: string; phone: string; footer: string } };
 const STORAGE_KEY = "dira-creative:business-os:v1";
-const seedServices: Service[] = [
-  { id: "logo-basic", name: "Logo design — Basic", price: 250, description: "One custom concept, one revision, delivered as JPG, PNG and PDF.", media: "", mediaType: "image", active: true },
-  { id: "logo-standard", name: "Logo design — Standard", price: 450, description: "Two concepts, 2–3 revisions and basic colour variations in standard formats.", media: "", mediaType: "image", active: true },
-  { id: "logo-professional", name: "Professional Logo Set", price: 1200, description: "3–4 custom concepts with primary, secondary and icon logo versions, defined colour usage and multiple revisions.", media: "", mediaType: "image", active: true },
-  { id: "logo-inclusive", name: "Full Inclusive Logo Design Suite", price: 3250, description: "Strategy-led complete logo system with extensive refinement, mockups, major file formats and basic usage guidance.", media: "", mediaType: "image", active: true },
-  { id: "colour-basic", name: "Colour — Basic Palette", price: 150, description: "A focused starter palette for a consistent and recognisable brand.", media: "", mediaType: "image", active: true },
-  { id: "colour-standard", name: "Colour — Standard System", price: 300, description: "A considered colour system with practical combinations and usage guidance.", media: "", mediaType: "image", active: true },
-  { id: "colour-full", name: "Colour — Full System", price: 600, description: "A complete brand colour system with supporting tones and application guidance.", media: "", mediaType: "image", active: true },
-  { id: "type-basic", name: "Typography — Basic Pairing", price: 150, description: "A clear primary and supporting type pairing for everyday brand communication.", media: "", mediaType: "image", active: true },
-  { id: "type-standard", name: "Typography — Standard System", price: 350, description: "A structured typography system with hierarchy and practical usage guidance.", media: "", mediaType: "image", active: true },
-  { id: "type-full", name: "Typography — Full System", price: 700, description: "A complete typography system for consistent brand and business communication.", media: "", mediaType: "image", active: true },
-  { id: "icons-basic", name: "Iconography — Basic (3–5 icons)", price: 200, description: "A small set of 3–5 custom or curated icons aligned to your visual identity.", media: "", mediaType: "image", active: true },
-  { id: "icons-standard", name: "Iconography — Standard (6–12 icons)", price: 400, description: "A coordinated set of 6–12 icons for common brand and communication needs.", media: "", mediaType: "image", active: true },
-  { id: "icons-custom", name: "Iconography — Custom System", price: 800, description: "A tailored icon system with consistent visual rules and practical applications.", media: "", mediaType: "image", active: true },
-  { id: "graphics-basic", name: "Graphic Elements — Basic", price: 200, description: "Starter graphic elements that support your logo and visual identity.", media: "", mediaType: "image", active: true },
-  { id: "graphics-standard", name: "Graphic Elements — Standard", price: 400, description: "A coordinated set of graphic elements for more consistent branded materials.", media: "", mediaType: "image", active: true },
-  { id: "graphics-full", name: "Graphic Elements — Full System", price: 900, description: "A comprehensive graphic element system with repeatable usage guidance.", media: "", mediaType: "image", active: true },
-  { id: "photo-basic", name: "Image & Photography Direction — Basic", price: 350, description: "Starter guidance for image selection, visual mood and photography consistency.", media: "", mediaType: "image", active: true },
-  { id: "photo-standard", name: "Image & Photography Direction — Standard", price: 650, description: "A defined photography direction with visual references and selection guidance.", media: "", mediaType: "image", active: true },
-  { id: "photo-full", name: "Image & Photography Direction — Full System", price: 995, description: "A complete image direction system to align photography and brand communication.", media: "", mediaType: "image", active: true },
-  { id: "illustration-basic", name: "Illustration — Basic", price: 250, description: "A focused illustration asset or treatment to support a specific communication need.", media: "", mediaType: "image", active: true },
-  { id: "illustration-standard", name: "Illustration — Standard", price: 500, description: "A considered illustration set or direction for consistent visual storytelling.", media: "", mediaType: "image", active: true },
-  { id: "illustration-custom", name: "Illustration — Custom Direction", price: 1000, description: "A custom illustration direction developed around your brand and intended audience.", media: "", mediaType: "image", active: true },
-  { id: "layout-basic", name: "Layout & Composition — Basic", price: 250, description: "A practical starter layout for clear, consistent business communication.", media: "", mediaType: "image", active: true },
-  { id: "layout-standard", name: "Layout & Composition — Standard", price: 500, description: "A structured layout system with reusable composition guidance.", media: "", mediaType: "image", active: true },
-  { id: "layout-full", name: "Layout & Composition — Full System", price: 1000, description: "A complete layout and composition system for consistent brand applications.", media: "", mediaType: "image", active: true },
-  { id: "package-novice", name: "Novice Brand Package", price: 2100, description: "Package range P2,100–P3,200. For startups and small businesses: basic logo, colour, font pairing and simple layout.", media: "", mediaType: "image", active: true },
-  { id: "package-elevate", name: "Elevate Brand Package", price: 3400, description: "Package range P3,400–P5,200. For growing businesses: standard logo, colour, typography, basic icon set, graphic elements and layout guide.", media: "", mediaType: "image", active: true },
-  { id: "package-elite", name: "Elite Brand Package", price: 9500, description: "Package range P9,500–P12,500. For established businesses: full logo suite, colour and typography systems, custom iconography, graphic system, photography direction, applicable illustration and full layout/composition.", media: "", mediaType: "image", active: true },
-];
+const seedServices: Service[] = DEFAULT_DIRA_CATALOGUE.map(item => ({
+  id: item.id,
+  name: item.name,
+  price: item.priceFrom ?? 0,
+  description: item.description,
+  media: item.imageUrl || "",
+  mediaType: "image",
+  active: item.published,
+  priceLabel: item.priceLabel,
+  category: item.category,
+  featured: item.featured,
+  kind: item.kind,
+}));
 const emptyData: DemoData = { services: seedServices, orders: [], announcement: "", announcementImage: "", views: 0, events: [], discountAmount: 10, discountClaims: [], receiptProfile: { legalName: "Royalty Holdings (Pty) Ltd", registration: "UIN BW 00001917522", address: "Gaborone, Botswana", phone: "+267 74 343 719", footer: "Dira Creative · Building brands that communicate clearly, operate efficiently, and scale effectively." } };
 const money = (amount: number) => "P" + amount.toLocaleString("en-BW", { maximumFractionDigits: 2 });
-const servicePriceLabel = (service: Service) => service.id.startsWith("package-") ? "From " + money(service.price) : money(service.price);
+const servicePriceLabel = (service: Service) => service.priceLabel || (service.id.startsWith("package-") ? "From " + money(service.price) : money(service.price));
 const serviceEmoji = (name: string) => {
   const label = name.toLowerCase();
   if (/website|web|site|digital|design/.test(label)) return "🌐";
@@ -76,6 +61,7 @@ const localDate = () => { const now = new Date(); return [now.getFullYear(), Str
 export default function Home() {
   const [data, setData] = useState<DemoData>(emptyData);
   const [ready, setReady] = useState(false);
+  const [remoteServices, setRemoteServices] = useState<Service[] | null>(null);
   const [online, setOnline] = useState(true);
   const [view, setView] = useState<"shop" | "account" | "login" | "admin">("shop");
   const [adminTab, setAdminTab] = useState<"today" | "work" | "money" | "store" | "notes" | "insights" | "calendar">("today");
@@ -156,6 +142,23 @@ export default function Home() {
   }, [ownerNotes, notesReady]);
 
   useEffect(() => {
+    if (!hasFirebaseWebConfig) { setRemoteServices(null); return; }
+    return subscribeToPublishedDiraServices(items => setRemoteServices(items.map(item => ({
+      id: item.kind === "package" ? "package-" + item.id : item.id,
+      name: item.name,
+      price: item.priceFrom ?? 0,
+      description: item.description,
+      media: item.imageUrl || "",
+      mediaType: "image" as const,
+      active: item.published,
+      priceLabel: item.priceLabel,
+      category: item.category,
+      featured: item.featured,
+      kind: item.kind,
+    }))), error => setNotice(error.message));
+  }, []);
+
+  useEffect(() => {
     try {
       const saved = window.localStorage.getItem(STORAGE_KEY);
       if (saved) {
@@ -185,7 +188,7 @@ export default function Home() {
   useEffect(() => {
     if (!ready || !("serviceWorker" in navigator)) return;
     const mediaUrls = [
-      ...data.services.map(service => service.media),
+      ...servicesForDisplay.map(service => service.media),
       data.announcementImage || "",
       ...data.orders.flatMap(order => (order.messages || []).map(message => message.attachment?.url || "")),
     ].filter((url): url is string => typeof url === "string" && /^https:\/\//i.test(url));
@@ -200,7 +203,7 @@ export default function Home() {
       // Local demo actions remain available even when the browser blocks service workers.
     });
     return () => navigator.serviceWorker.removeEventListener("controllerchange", prepareOfflineMedia);
-  }, [data.services, data.announcementImage, data.orders, ready]);
+  }, [servicesForDisplay, data.announcementImage, data.orders, ready]);
 
   useEffect(() => {
     if (!notice) return;
@@ -251,7 +254,8 @@ export default function Home() {
     return commitData(current => ({ ...current, services: current.services.map(item => item.id === service.id ? { ...item, active: !item.active } : item) }), `${service.name} ${service.active ? "hidden" : "visible"} in the demo.`);
   }
 
-  const activeServices = data.services.filter(service => service.active);
+  const servicesForDisplay = remoteServices ?? data.services;
+  const activeServices = servicesForDisplay.filter(service => service.active);
   const paidTotal = data.orders.reduce((sum, order) => sum + (order.paidAmount || 0), 0);
   const completedUnpaid = data.orders.filter(order => order.status === "Completed").reduce((sum, order) => sum + Math.max(0, order.price - (order.paidAmount || 0)), 0);
   
@@ -259,14 +263,17 @@ export default function Home() {
   const projectedValue = data.orders.filter(order => ["Accepted", "In progress"].includes(order.status)).reduce((sum, order) => sum + order.price, 0);
   const completedValue = data.orders.filter(order => order.status === "Completed").reduce((sum, order) => sum + order.price, 0);
   const customerRecords = Array.from(new Map(data.orders.map(order => [order.email.toLowerCase(), { name: order.customerName, email: order.email, jobs: data.orders.filter(item => item.email.toLowerCase() === order.email.toLowerCase()) }] as const)).values());
-  const selectedService = data.services.find(service => service.id === selected && service.active);
+  const selectedService = servicesForDisplay.find(service => service.id === selected && service.active);
   const statusCounts = useMemo(() => data.orders.reduce<Record<string, number>>((acc, order) => { acc[order.status] = (acc[order.status] || 0) + 1; return acc; }, {}), [data.orders]);
 
   function beginOrder(service: Service) {
+    if (!service.active) return;
+    if (hasFirebaseWebConfig) { window.location.assign("/request?service=" + encodeURIComponent(service.name) + (service.id.startsWith("package-") ? "&package=" + encodeURIComponent(service.name) : "")); return; }
     setSelected(service.id); setOrderFormOpen(true); setView("shop"); setNotice(`${service.name} selected. Add your details and requested date below.`); setDueDate(""); setBrief("");
     window.setTimeout(() => document.getElementById("service-order")?.scrollIntoView({ behavior: "smooth", block: "start" }), 90);
   }
   function openRequestForm() {
+    if (hasFirebaseWebConfig) { window.location.assign("/request"); return; }
     setOrderFormOpen(true); setView("shop");
     window.setTimeout(() => document.getElementById("service-order")?.scrollIntoView({ behavior: "smooth", block: "start" }), 90);
   }
@@ -503,7 +510,7 @@ export default function Home() {
       <form className="sd-admin-form" id="admin-service-form" onSubmit={saveService}><h3>{editingId ? "Edit service" : "Add a service"}</h3><label>Service name<input value={serviceName} onChange={event => setServiceName(event.target.value)} required /></label><label>Price in Pula<input type="number" min="0" step="1" value={servicePrice} onChange={event => setServicePrice(event.target.value)} required /></label><label>Description<textarea rows={3} value={serviceDescription} onChange={event => setServiceDescription(event.target.value)} /></label><ServiceMediaPicker value={serviceMedia} type={serviceMediaType} online={online} onChange={(url, type) => { setServiceMedia(url); setServiceMediaType(type); }} onUploadingChange={setServiceMediaUploading} /><label className="sd-check"><input type="checkbox" checked={serviceActive} onChange={event => setServiceActive(event.target.checked)} /> Show on customer storefront</label><div className="sd-form-two"><button className="sd-button sd-primary" type="submit" disabled={serviceMediaUploading}>{serviceMediaUploading ? "Uploading media…" : editingId ? "Save changes" : "Add service"}</button><button className="sd-button sd-outline" type="button" onClick={resetServiceForm}>Cancel</button></div></form></section>
       <section className="sd-admin-panel" id="admin-announcement-tools"><div className="sd-panel-head"><div><span className="sd-kicker">02 / CUSTOMER NOTICE</span><h2>Special announcement</h2></div></div><p className="sd-admin-help">Publish a short promotion or service update. Leave both fields empty to remove it from the storefront.</p><label className="sd-admin-label">Announcement<textarea rows={4} value={announcementDraft} onChange={event => setAnnouncementDraft(event.target.value)} placeholder="Example: Book your next project this month…" /></label><AnnouncementImagePicker value={announcementImageDraft} online={online} onChange={setAnnouncementImageDraft} onUploadingChange={setAnnouncementImageUploading} /><button className="sd-button sd-primary" disabled={announcementImageUploading} onClick={() => { const announcement = announcementDraft.trim(); const announcementImage = announcementImageDraft.trim(); if (announcementImage) { try { const parsed = new URL(announcementImage); if (parsed.protocol !== "https:" && parsed.protocol !== "http:") throw new Error("Unsupported protocol"); } catch { setNotice("Enter a valid image URL or upload the thumbnail before publishing."); return; } } commitData(current => ({ ...current, announcement, announcementImage }), announcement || announcementImage ? "Announcement published on this device." : "Announcement cleared from the storefront."); }}>{announcementImageUploading ? "Uploading thumbnail…" : "Publish announcement"}</button><div className="sd-live-preview"><span>STOREFRONT PREVIEW</span>{(announcementDraft.trim() || announcementImageDraft.trim()) ? <div className="sd-announcement sd-announcement-preview"><div className="sd-wrap"><span><span aria-hidden="true">📣</span> DIRA CREATIVE / ANNOUNCEMENT</span>{announcementImageDraft.trim() && <img className="sd-announcement-thumb" src={announcementImageDraft} alt={announcementDraft.slice(0, 120) || "Announcement image"} />}<p>{announcementDraft.trim()}</p></div></div> : <p>Your announcement banner will appear here when published.</p>}</div><div className="sd-panel-head sd-request-head" id="admin-requests-tools"><div><span className="sd-kicker">03 / INCOMING WORK</span><h2>Customer requests</h2></div></div>{data.orders.length === 0 ? <div className="sd-admin-empty">No requests yet. Submit a customer request from the Store to see it appear here.</div> : <div className="sd-admin-orders">{data.orders.map(order => <article key={order.id}><div className="sd-admin-order-top"><strong>{order.serviceName} · {order.priceIsStarting ? "From " : ""}{money(order.price)} {order.isTest && <span className="sd-test-label">TEST</span>}</strong><span>{order.id}</span></div><p>{order.customerName} · {order.email}</p><p>Requested date: <b>{order.dueDate}</b></p><p>Payment: <b>{order.paymentStatus || "Unpaid"}</b> · {money(order.paidAmount || 0)} received · {money(Math.max(0,order.price-(order.paidAmount||0)))} due</p>{order.discountAmount ? <p>Discount: <b>{money(order.discountAmount)} off · {order.discountCode}</b> (regular {money(order.originalPrice || order.price + order.discountAmount)})</p> : null}{order.brief && <p>{order.brief}</p>}<div className="sd-project-task-list"><div><strong>Project tasks</strong><small>{(order.tasks || []).filter(task=>task.done).length} of {(order.tasks || []).length} complete</small></div>{(order.tasks || []).map(task=><label key={task.id}><input type="checkbox" checked={task.done} onChange={()=>toggleProjectTask(order.id,task.id)}/><span className={task.done?"is-done":""}>{task.title}</span></label>)}<form onSubmit={event=>{event.preventDefault();addProjectTask(order.id);}}><input value={taskDrafts[order.id] || ""} onChange={event=>setTaskDrafts(current=>({...current,[order.id]:event.target.value}))} placeholder="Add a project task" aria-label={"New project task for "+order.serviceName}/><button className="sd-small-button" type="submit">Add task</button></form></div><div className="sd-quote-editor"><div><strong>Proposal / quote</strong><small>{order.quoteStatus || "Not prepared"}{order.quoteAmount ? " · " + money(order.quoteAmount) : ""}</small></div><div><input type="number" min="0.01" max="100000000" step="0.01" value={quoteDrafts[order.id] ?? String(order.quoteAmount ?? order.price)} onChange={event=>setQuoteDrafts(current=>({...current,[order.id]:event.target.value}))} aria-label={"Quote amount for "+order.serviceName}/><button className="sd-small-button" type="button" onClick={()=>sendQuote(order.id,Number(quoteDrafts[order.id] ?? order.quoteAmount ?? order.price))}>Send quote</button></div><small>Customer can approve or decline the proposal from their account.</small></div><div className="sd-order-admin-actions">{["Accepted", "In progress", "Completed"].includes(order.status) && !order.priceIsStarting && Math.max(0, order.price - (order.paidAmount || 0)) > 0 && <label className="sd-payment-entry">Record payment (demo)<span><input type="number" min="0.01" max={Math.max(0, order.price - (order.paidAmount || 0))} step="0.01" value={paymentDrafts[order.id] ?? String(Math.max(0, order.price - (order.paidAmount || 0)))} onChange={event=>setPaymentDrafts(current=>({...current,[order.id]:event.target.value}))} aria-label={"Payment amount for "+order.serviceName}/><button className="sd-small-button" type="button" onClick={()=>recordDemoPayment(order.id,Number(paymentDrafts[order.id] ?? Math.max(0, order.price - (order.paidAmount || 0))))}>Record amount</button></span></label>}<label>Request status<select value={order.status} onChange={event => updateOrder(order.id, event.target.value)}><option>New request</option><option>Reviewing</option><option>Accepted</option><option>In progress</option><option>Completed</option><option>Declined</option></select></label></div><ReceiptDocument businessName={businessName.trim() || "Dira Creative"} accentColor={themeColor} receiptProfile={data.receiptProfile} order={order}/><div className="sd-admin-thread"><strong>Customer conversation · {(order.messages || []).length} messages</strong>{(order.messages || []).map(message => <div className={"sd-admin-thread-message is-" + message.from} key={message.id}><b>{message.from === "customer" ? "Customer" : "Dira Creative"}</b><small>{new Date(message.createdAt).toLocaleString()}</small>{message.text && <p>{message.text}</p>}{message.attachment && <a href={message.attachment.url} target="_blank" rel="noreferrer">↗ {message.attachment.name}</a>}</div>)}<form onSubmit={event => { event.preventDefault(); replyToOrder(order.id); }}><label>Reply to customer<textarea rows={2} value={adminReplyDrafts[order.id] || ""} onChange={event => setAdminReplyDrafts(current => ({ ...current, [order.id]: event.target.value }))} placeholder="Write a project update or question…" maxLength={1200}/></label><button className="sd-small-button" type="submit" disabled={!(adminReplyDrafts[order.id] || "").trim()}>Save reply to local thread →</button></form></div></article>)}</div>}</section></div><section className="sd-admin-panel sd-owner-notes" id="admin-notes" data-admin-tab="notes"><div className="sd-panel-head"><div><span className="sd-kicker">PRIVATE BRIEFCASE / NOTES</span><h2>My Notes</h2></div><span className="sd-local-pill">THIS DEVICE</span></div><p className="sd-admin-help">Capture priorities, decisions, reminders and ideas for the business. Notes are private to this browser profile in this demo; they are not synced or encrypted as an owner account.</p><label className="sd-admin-label" htmlFor="owner-notes">Working notes</label><textarea id="owner-notes" rows={8} maxLength={12000} value={ownerNotes} onChange={event => setOwnerNotes(event.target.value)} placeholder="Today’s priorities…&#10;Decisions to revisit…&#10;Ideas to develop…" /><div className="sd-notes-meta"><span>{ownerNotes.length.toLocaleString()} / 12,000 characters</span><span>{notesReady ? "Auto-saves on this device" : "Loading notes…"}</span></div></section><div className="sd-admin-footer"><button className="sd-button sd-outline" onClick={() => setPendingConfirm({ kind: "reset-demo" })}>Reset demo data</button><p>Prototype only · no Firebase · no shared admin/customer records</p></div></section>}
 
-    <ServiceGuide view={view === "admin" ? "admin" : view === "account" ? "account" : "shop"} services={data.services} requestCount={data.orders.length} onChooseService={beginOrder} onOpenAccount={() => { if (hasFirebaseWebConfig) window.location.assign("/account"); else { setView("account"); setNotice(""); } }} onOpenAdmin={openAdminGuide} onOpenStorefront={() => { setView("shop"); setNotice(""); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
+    <ServiceGuide view={view === "admin" ? "admin" : view === "account" ? "account" : "shop"} services={servicesForDisplay} requestCount={data.orders.length} onChooseService={beginOrder} onOpenAccount={() => { if (hasFirebaseWebConfig) window.location.assign("/account"); else { setView("account"); setNotice(""); } }} onOpenAdmin={openAdminGuide} onOpenStorefront={() => { setView("shop"); setNotice(""); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
     <footer className="sd-footer"><div className="sd-wrap sd-footer-inner"><button className="sd-brand sd-owner-entry" onClick={() => { requestAdminLogin(); window.scrollTo({ top: 0, behavior: "smooth" }); }} aria-label={`Open ${businessName || "Dira Creative"} owner Briefcase`}><span className="sd-briefcase-mark" aria-hidden="true">💼</span><span className="sd-owner-entry-copy"><strong>Dira Creative</strong><small>OPEN OWNER BRIEFCASE</small><em>{businessName || "Dira Creative"}</em></span><span className="sd-owner-entry-arrow" aria-hidden="true">↗</span></button><p>Built to be explored online and offline.</p><div><button onClick={() => { setView("account"); setNotice(""); }}>My account</button><Link href="/patterns">App installation</Link></div></div></footer>
     {pendingConfirm && <div className="sd-confirm-backdrop" onClick={() => setPendingConfirm(null)}><section className="sd-confirm-dialog" role="alertdialog" aria-modal="true" aria-labelledby="sd-confirm-title" aria-describedby="sd-confirm-description" onClick={event => event.stopPropagation()}><span className="sd-kicker">CONFIRM ACTION</span><h2 id="sd-confirm-title">{pendingConfirm.kind === "reset-demo" ? "Reset demo data?" : `Delete ${pendingConfirm.serviceName || "this service"}?`}</h2><p id="sd-confirm-description">{pendingConfirm.kind === "reset-demo" ? "This clears local requests, service edits and the announcement, restoring the starter examples on this device." : "This removes the service from this browser demo. Existing requests keep their saved service name and price."}</p><div className="sd-confirm-actions"><button type="button" className="sd-button sd-outline" autoFocus onClick={() => setPendingConfirm(null)}>Keep it</button><button type="button" className="sd-button sd-primary" onClick={() => { const action = pendingConfirm; setPendingConfirm(null); if (action.kind === "reset-demo") { if (commitData(() => ({ ...emptyData, views: data.views }), "Demo data reset on this device.")) { setAnnouncementDraft(""); setAnnouncementImageDraft(""); resetServiceForm(); } } else if (action.serviceId) { if (commitData(current => ({ ...current, services: current.services.filter(item => item.id !== action.serviceId) }), `${action.serviceName || "Service"} deleted from this demo.`) && editingId === action.serviceId) resetServiceForm(); } }}>Confirm</button></div></section></div>}
     {notice && <div className="sd-toast-region"><div className={"sd-toast" + (/^(Choose|Add |Enter |The browser|Local demo storage|Could not save)/i.test(notice) ? " is-error" : " is-success")} role={/^(Choose|Add |Enter |The browser|Local demo storage|Could not save)/i.test(notice) ? "alert" : "status"}><span className="sd-toast-mark" aria-hidden="true">{/^(Choose|Add |Enter |The browser|Local demo storage|Could not save)/i.test(notice) ? "!" : "✓"}</span><p>{notice}</p><button type="button" aria-label="Dismiss message" onClick={() => setNotice("")}>×</button></div></div>}
