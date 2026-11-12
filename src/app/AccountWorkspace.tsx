@@ -8,7 +8,7 @@ import type { OurFileRouter } from "@/app/api/uploadthing/core";
 const { useUploadThing } = generateReactHelpers<OurFileRouter>();
 
 export type AccountAttachment = { name: string; url: string; type: string; size: number };
-export type AccountMessage = { id: string; from: "customer" | "Dira Creative"; text: string; createdAt: string; attachment?: AccountAttachment };
+export type AccountMessage = { id: string; from: "customer" | "studio"; text: string; createdAt: string; attachment?: AccountAttachment };
 export type WorkspaceOrder = { id: string; serviceId: string; serviceName: string; price: number; originalPrice?: number; discountAmount?: number; discountCode?: string; receiptNo?: string; paidAmount?: number; paidAt?: string; paymentStatus?: "Unpaid" | "Partially paid (demo)" | "Paid (demo)"; dueDate: string; customerName: string; email: string; brief: string; status: string; createdAt: string; messages?: AccountMessage[] };
 
 type DiscountClaim = { id: string; email: string; code: string; amount: number; lapTime: number; createdAt: string; status: "Available" | "Redeemed" };
@@ -43,19 +43,19 @@ export default function AccountWorkspace({ businessName, orders, discountClaims,
   const [savedJournal, setSavedJournal] = useState("");
   const [extrasReady, setExtrasReady] = useState(false);
   const [projectTips, setProjectTips] = useState(true);
-  const [Dira CreativeNotes, setDira CreativeNotes] = useState(true);
+  const [studioNotes, setstudioNotes] = useState(true);
   const [openThread, setOpenThread] = useState<string | null>(null);
   useEffect(() => {
     try {
       const saved = window.localStorage.getItem("dira-creative:account-extras:v1");
       if (saved) {
-        const parsed = JSON.parse(saved) as { gardenSeeds?: number; projectSteps?: string[]; savedJournal?: string; projectTips?: boolean; Dira CreativeNotes?: boolean };
+        const parsed = JSON.parse(saved) as { gardenSeeds?: number; projectSteps?: string[]; savedJournal?: string; projectTips?: boolean; studioNotes?: boolean };
         setGardenSeeds(Number.isFinite(parsed.gardenSeeds) ? Math.max(0, Number(parsed.gardenSeeds)) : 0);
         setProjectSteps(Array.isArray(parsed.projectSteps) ? parsed.projectSteps.filter((step): step is string => typeof step === "string") : []);
         setJournal(typeof parsed.savedJournal === "string" ? parsed.savedJournal.slice(0, 500) : "");
         setSavedJournal(typeof parsed.savedJournal === "string" ? parsed.savedJournal.slice(0, 500) : "");
         setProjectTips(parsed.projectTips !== false);
-        setDira CreativeNotes(parsed.Dira CreativeNotes !== false);
+        setstudioNotes(parsed.studioNotes !== false);
       }
     } catch { /* Account extras are optional when browser storage is blocked. */ }
     setExtrasReady(true);
@@ -63,9 +63,9 @@ export default function AccountWorkspace({ businessName, orders, discountClaims,
 
   useEffect(() => {
     if (!extrasReady) return;
-    try { window.localStorage.setItem("dira-creative:account-extras:v1", JSON.stringify({ gardenSeeds, projectSteps, savedJournal, projectTips, Dira CreativeNotes })); }
+    try { window.localStorage.setItem("dira-creative:account-extras:v1", JSON.stringify({ gardenSeeds, projectSteps, savedJournal, projectTips, studioNotes })); }
     catch { /* Order history and messages remain usable if optional extras cannot be saved. */ }
-  }, [extrasReady, gardenSeeds, projectSteps, savedJournal, projectTips, Dira CreativeNotes]);
+  }, [extrasReady, gardenSeeds, projectSteps, savedJournal, projectTips, studioNotes]);
 
   const { startUpload, isUploading } = useUploadThing("fileUploader", {
     onUploadProgress: progress => setUploadProgress(Math.max(0, Math.min(100, Math.round(progress)))),
@@ -164,12 +164,12 @@ export default function AccountWorkspace({ businessName, orders, discountClaims,
         <section className="sd-account-extra"><span className="sd-kicker">02 / PROJECT NOTES</span><h2>Keep the details together.</h2><p>Save a short idea, question or requirement you want to remember before the next conversation. This note stays in this browser and is not a secure private vault.</p><label className="sd-journal-label" htmlFor="Dira Creative-journal">Note for your next discussion<textarea id="Dira Creative-journal" rows={4} maxLength={500} value={journal} onChange={event => setJournal(event.target.value)} placeholder="A feature idea, reference link, question or detail to confirm…" /></label><div className="sd-journal-actions"><span>{journal.length}/500 characters</span><button className="sd-small-button" onClick={() => setSavedJournal(journal.trim())}>Save note</button></div>{savedJournal && <p className="sd-saved-note"><strong>Saved note</strong>{savedJournal}</p>}</section>
       </div>
       <div className="sd-account-extras sd-account-followup">
-        <section className="sd-account-extra"><span className="sd-kicker">03 / STUDIO UPDATES</span><h2>{announcement.trim() && Dira CreativeNotes ? "Latest from the Dira Creative." : "Updates for your project."}</h2>{announcement.trim() && Dira CreativeNotes ? <div className="sd-published-note"><span>STUDIO ANNOUNCEMENT</span><p>{announcement}</p></div> : <p>{Dira CreativeNotes ? "There are no Dira Creative announcements right now. When the demo admin publishes an update or offer, it will appear here." : "Dira Creative updates are hidden by your local preferences."}</p>}<p>General planning guidance</p><div className="sd-Dira Creative-feed">{(projectTips ? [
+        <section className="sd-account-extra"><span className="sd-kicker">03 / STUDIO UPDATES</span><h2>{announcement.trim() && studioNotes ? "Latest from the Dira Creative." : "Updates for your project."}</h2>{announcement.trim() && studioNotes ? <div className="sd-published-note"><span>STUDIO ANNOUNCEMENT</span><p>{announcement}</p></div> : <p>{studioNotes ? "There are no Dira Creative announcements right now. When the demo admin publishes an update or offer, it will appear here." : "Dira Creative updates are hidden by your local preferences."}</p>}<p>General planning guidance</p><div className="sd-Dira Creative-feed">{(projectTips ? [
           { title: "Start with the outcome", body: "Describe what should be easier or possible when the project is finished." },
           { title: "Keep the first version focused", body: "Prioritise the essential customer action before adding optional features." },
           { title: "Agree scope before delivery", body: "Review requirements and the requested date together before treating a timeline as confirmed." }
         ] : []).map((item, index) => <article key={item.title}><span>TIP / 0{index + 1}</span><strong>{item.title}</strong><p>{item.body}</p></article>)}</div></section>
-        <section className="sd-account-extra"><span className="sd-kicker">04 / ACCOUNT PREFERENCES</span><h2>Choose what you see.</h2><p>Control the planning tips and Dira Creative announcements shown in this account view. These settings do not send emails or system notifications.</p><label className="sd-preference-toggle"><input type="checkbox" checked={projectTips} onChange={event => setProjectTips(event.target.checked)} /><span><strong>Project planning tips</strong><small>Show short guidance for preparing and discussing your project.</small></span></label><label className="sd-preference-toggle"><input type="checkbox" checked={Dira CreativeNotes} onChange={event => setDira CreativeNotes(event.target.checked)} /><span><strong>Dira Creative announcements</strong><small>Show the latest announcement or offer published in this demo.</small></span></label><p className="sd-account-note">Preferences are saved in this browser. Real push notifications, email updates and account sync are not configured.</p></section>
+        <section className="sd-account-extra"><span className="sd-kicker">04 / ACCOUNT PREFERENCES</span><h2>Choose what you see.</h2><p>Control the planning tips and Dira Creative announcements shown in this account view. These settings do not send emails or system notifications.</p><label className="sd-preference-toggle"><input type="checkbox" checked={projectTips} onChange={event => setProjectTips(event.target.checked)} /><span><strong>Project planning tips</strong><small>Show short guidance for preparing and discussing your project.</small></span></label><label className="sd-preference-toggle"><input type="checkbox" checked={studioNotes} onChange={event => setstudioNotes(event.target.checked)} /><span><strong>Dira Creative announcements</strong><small>Show the latest announcement or offer published in this demo.</small></span></label><p className="sd-account-note">Preferences are saved in this browser. Real push notifications, email updates and account sync are not configured.</p></section>
       </div>
       <section className="sd-account-extra sd-account-guide"><span className="sd-kicker">05 / NEXT STEPS</span><h2>Keep your project moving.</h2><div className="sd-next-steps"><article><b>01</b><strong>Check your request</strong><p>Review your brief, requested date and current status above.</p></article><article><b>02</b><strong>Message the Dira Creative</strong><p>Open the conversation on your request to ask a question or share a reference file while online.</p></article><article><b>03</b><strong>Return for an update</strong><p>Check the same browser for saved messages and any status change in this demo.</p></article></div></section>
       <p className="sd-local-warning">Offline ready for local browsing and text messages after the app shell is cached. Requests, messages and status updates remain on this browser only. Attachments need internet and upload to UploadThing; they are not queued for offline upload.</p>
