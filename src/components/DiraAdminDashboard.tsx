@@ -4,7 +4,7 @@ import {useEffect,useMemo,useState} from "react";
 import Link from "next/link";
 import AdminConversations from "@/components/AdminConversations";
 import {auth} from "@/lib/firebase/client";
-import {DIRA_ENQUIRY_STATUSES,subscribeToAllDiraEnquiries,updateDiraEnquiry,type DiraEnquiry,type DiraEnquiryStatus} from "@/lib/firebase/dira-data";
+import {DIRA_ENQUIRY_STATUSES,subscribeToAllDiraEnquiries,type DiraEnquiry,type DiraEnquiryStatus} from "@/lib/firebase/dira-data";
 
 const money=(n:number)=>"P"+n.toLocaleString("en-BW",{minimumFractionDigits:2,maximumFractionDigits:2});
 const dateText=(value?:string)=>{if(!value)return "Not scheduled";const d=new Date(value);return Number.isFinite(d.getTime())?d.toLocaleDateString("en-BW",{day:"numeric",month:"short",year:"numeric"}):value;};
@@ -31,7 +31,7 @@ export default function DiraAdminDashboard(){
   if(["Client Review","Completed"].includes(draft.status)&&!draft.deliverables.trim()){setNotice("Add the agreed deliverables before moving this project to review or completion.");return}
   const nextStatus=draft.status==="Awaiting Initial Payment"&&required>0&&received>=required?"Initial Payment Received":draft.status;
   setSaving(true);setNotice("");
-  try{await updateDiraEnquiry(selected.id,{quotedPrice:quote,initialPaymentRequired:required,initialPaymentReceived:received,paymentReference:draft.paymentReference.trim(),paymentMethod:draft.paymentMethod.trim(),targetCompletion:draft.targetCompletion,engagementMode:draft.engagementMode,deliverables:draft.deliverables.trim(),status:nextStatus});setNotice("Enquiry and project records saved.");if(nextStatus==="Quote Ready"&&auth.currentUser){const response=await fetch("/api/notifications/enquiry-updated",{method:"POST",headers:{Authorization:"Bearer "+(await auth.currentUser.getIdToken()),"Content-Type":"application/json"},body:JSON.stringify({enquiryId:selected.id})});if(!response.ok)setNotice("Quote saved. The customer notification could not be sent.");}}
+  try{if(!auth.currentUser)throw new Error("Owner sign-in expired. Sign in again before saving.");const response=await fetch("/api/client-enquiry/update",{method:"POST",headers:{Authorization:"Bearer "+(await auth.currentUser.getIdToken()),"Content-Type":"application/json"},body:JSON.stringify({enquiryId:selected.id,quotedPrice:quote,initialPaymentRequired:required,initialPaymentReceived:received,paymentReference:draft.paymentReference.trim(),paymentMethod:draft.paymentMethod.trim(),targetCompletion:draft.targetCompletion,engagementMode:draft.engagementMode,deliverables:draft.deliverables.trim(),status:nextStatus})});const result=await response.json().catch(()=>({error:"The project service returned an unreadable response."})) as {message?:string;error?:string};if(!response.ok)throw new Error(result.error||"The project update could not be saved.");setNotice(result.message||"Enquiry and project records saved.");
   catch(error){setNotice(error instanceof Error?error.message:"The project update could not be confirmed. Refresh before retrying.")}finally{setSaving(false)}
  }
  return <main className="adminPage diraAdminPage"><div className="adminShell">
