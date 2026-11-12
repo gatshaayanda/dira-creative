@@ -10,6 +10,7 @@ import DiraBrand from "@/components/DiraBrand";
 import { hasFirebaseWebConfig } from "@/lib/firebase/client";
 import { subscribeToPublishedDiraServices } from "@/lib/firebase/dira-services";
 import { DEFAULT_DIRA_CATALOGUE } from "@/lib/dira-catalogue";
+import {trackDiraJourney} from "@/lib/firebase/journey-analytics";
 import { useEffect, useMemo, useState } from "react";
 
 type Service = { id: string; name: string; price: number; description: string; media: string; mediaType: "image" | "video"; active: boolean; priceLabel?: string; category?: string; featured?: boolean; kind?: "service" | "package" };
@@ -103,6 +104,8 @@ export default function Home() {
   const [themeReady, setThemeReady] = useState(false);
   const [businessName, setBusinessName] = useState("Dira Creative");
   const [businessNameReady, setBusinessNameReady] = useState(false);
+
+  useEffect(() => { void trackDiraJourney("public_visit"); void trackDiraJourney("catalogue_view"); }, []);
 
   useEffect(() => {
     try {
