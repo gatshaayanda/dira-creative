@@ -29,14 +29,14 @@ export default function manifest(): MetadataRoute.Manifest {
         short_name: "Account",
         description: "Review requests in this browser preview",
         url: "/?view=account",
-        icons: [{ src: "/dira-icon.svg", sizes: "192x192", type: "image/png" }]
+        icons: [{ src: "/dira-icon.svg", sizes: "any", type: "image/svg+xml" }]
       },
       {
         name: "Owner Briefcase preview",
         short_name: "Briefcase",
         description: "Open the local owner workspace preview",
         url: "/#admin",
-        icons: [{ src: "/dira-icon.svg", sizes: "192x192", type: "image/png" }]
+        icons: [{ src: "/dira-icon.svg", sizes: "any", type: "image/svg+xml" }]
       }
     ]
   };
