@@ -51,14 +51,14 @@ self.addEventListener("notificationclick", (event) => {
   }));
 });
 
-const CACHE_VERSION = "dira-creative-shell-v1";
-const MEDIA_CACHE = "dira-creative-media-v1";
+const CACHE_VERSION = "dira-creative-shell-v2";
+const MEDIA_CACHE = "dira-creative-media-v2";
 const SHELL_CACHE = CACHE_VERSION;
 const STATIC_LIMIT = 100;
 const PUBLIC_PAGE_LIMIT = 12;
 const MEDIA_LIMIT = 40;
 const MEDIA_HOSTS = ["images.unsplash.com", "utfs.io", "ufs.sh"];
-const APP_SHELL = ["/", "/offline", "/patterns", "/iphone-install", "/iphone-install.svg", "/dira-icon.svg", "/dira-icon.svg", "/dira-icon.svg", "/dira-icon.svg", "/dira-icon.svg", "/dira-icon.svg", "/manifest.webmanifest"];
+const APP_SHELL = ["/", "/offline", "/iphone-install", "/iphone-install.svg", "/dira-icon.svg", "/manifest.webmanifest"];
 
 self.addEventListener("install", event => {
   event.waitUntil((async () => {
@@ -137,7 +137,13 @@ async function cacheMediaUrl(value) {
 self.addEventListener("activate", event => {
   event.waitUntil((async () => {
     const keys = await caches.keys();
-    await Promise.all(keys.filter(key => key.startsWith("theplug-shell-") || key.startsWith("theplug-media-") || (key.startsWith("iteration13-shell-") && key !== SHELL_CACHE) || (key.startsWith("iteration13-media-") && key !== MEDIA_CACHE)).map(key => caches.delete(key)));
+    // Remove only superseded caches owned by this app and known inherited namespaces.
+    await Promise.all(keys.filter(key =>
+      ((key.startsWith("dira-creative-shell-") || key.startsWith("dira-creative-media-")) && key !== SHELL_CACHE && key !== MEDIA_CACHE) ||
+      key.startsWith("theplug-shell-") || key.startsWith("theplug-media-") ||
+      (key.startsWith("iteration13-shell-") && key !== SHELL_CACHE) ||
+      (key.startsWith("iteration13-media-") && key !== MEDIA_CACHE)
+    ).map(key => caches.delete(key)));
     await self.clients.claim();
   })());
 });
@@ -157,7 +163,7 @@ self.addEventListener("fetch", event => {
   if (url.pathname.startsWith("/api/")) return;
 
   const isNavigation = request.mode === "navigate" || request.headers.get("accept")?.includes("text/html");
-  const isPrivate = /^\/(?:account|requests|orders|admin|invite)(?:\/|$)/.test(url.pathname);
+  const isPrivate = /^\/(?:account|request|requests|orders|admin|invite)(?:\/|$)/.test(url.pathname);
 
   // Private/member routes are network-only. Never serve a cached account/request page as
   // a substitute for a different route or when the authenticated page cannot be fetched.
@@ -172,7 +178,7 @@ self.addEventListener("fetch", event => {
   }
 
   if (isNavigation) {
-    event.respondWith(fetch(request).then(response => {
+    event.respondWith(fetchWithTimeout(request, 7000).then(response => {
       if (response.ok) void caches.open(SHELL_CACHE).then(async cache => {
         await cache.put(request, response.clone());
         await trimCache(SHELL_CACHE, PUBLIC_PAGE_LIMIT + STATIC_LIMIT);
@@ -184,6 +190,16 @@ self.addEventListener("fetch", event => {
     }));
   }
 });
+
+async function fetchWithTimeout(request, timeoutMs) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    return await fetch(request, { signal: controller.signal });
+  } finally {
+    clearTimeout(timeout);
+  }
+}
 
 async function cacheMediaRequest(request, event) {
   const cache = await caches.open(MEDIA_CACHE);
