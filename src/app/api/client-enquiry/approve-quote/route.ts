@@ -1,10 +1,10 @@
 import {NextResponse} from "next/server";
-import {cert,getApps,initializeApp} from "firebase-admin/app";
+import {getDiraAdminApp} from "@/lib/firebase/admin";
 import {getAuth} from "firebase-admin/auth";
 import {getFirestore} from "firebase-admin/firestore";
 import {getMessaging} from "firebase-admin/messaging";
 export const runtime="nodejs";
-function app(){if(getApps().length)return getApps()[0];const raw=process.env.FIREBASE_ADMIN_KEY;if(!raw)throw new Error("Quote approval is not available until Dira Creative's database is configured.");let account:Record<string,unknown>;try{account=JSON.parse(raw) as Record<string,unknown>}catch{throw new Error("Dira Creative's Firebase credentials are invalid.")}return initializeApp({credential:cert(account as Parameters<typeof cert>[0])})}
+function app(){return getDiraAdminApp();}
 export async function POST(request:Request){
  try{
   const match=(request.headers.get("authorization")||"").match(/^Bearer\s+(.+)$/i);if(!match)return NextResponse.json({error:"Please restore your client session and try again."},{status:401});
