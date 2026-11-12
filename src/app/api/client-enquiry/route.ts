@@ -13,7 +13,7 @@ function validEnquiry(data:Record<string,unknown>,uid:string){
   if(data.customerId!==uid||typeof data.customerName!=="string"||!data.customerName.trim()||data.customerName.length>120)return false;
   if(typeof data.email!=="string"||data.email.length>254||!/^\S+@\S+\.\S+$/.test(data.email))return false;
   if(typeof data.phone!=="string"||!data.phone.trim()||data.phone.length>60)return false;
-  if(typeof data.serviceName!=="string"||!data.serviceName.trim()||data.serviceName.length>180)return false;
+  if(typeof data.serviceName!=="string"||!data.serviceName.trim()||data.serviceName.length>3000)return false;
   if(typeof data.packageName!=="string"||data.packageName.length>500||typeof data.scope!=="string"||data.scope.length>5000)return false;
   if(!Array.isArray(data.selectedItems)||data.selectedItems.length<1||data.selectedItems.length>30)return false;
   const seen=new Set<string>();
