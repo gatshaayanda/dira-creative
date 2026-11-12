@@ -2820,3 +2820,29 @@ h1 em,
 .diraCalendarList time{color:#005f70;font-size:.83rem;font-weight:900;white-space:nowrap}
 @media(max-width:900px){.diraWorkspaceGrid{grid-template-columns:1fr}.diraMetrics{grid-template-columns:repeat(3,minmax(0,1fr))}.diraAdminHeader{grid-template-columns:auto 1fr}.diraAdminLinks{grid-column:1/-1}}
 @media(max-width:560px){.diraAdminPage{padding:12px 10px 26px}.diraAdminHeader{grid-template-columns:1fr;padding:14px;gap:10px}.diraAdminHeader .logo{display:none}.diraAdminHeader h1{font-size:1.3rem}.diraAdminLinks a{flex:1;text-align:center}.diraMetrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.diraMetrics article{padding:10px}.diraMetrics article span{font-size:.74rem}.diraMetrics article strong{font-size:1.35rem}.diraFinanceStrip{grid-template-columns:1fr 1fr}.diraFinanceStrip>div:first-child{grid-column:1/-1}.diraAdminPage .adminPanel{padding:12px}.diraQueueTools{grid-template-columns:1fr}.diraEnquiryRow{grid-template-columns:14px minmax(0,1fr);gap:7px}.diraEnquiryRow>b{grid-column:2;justify-self:start}.diraBriefBlock>div{grid-template-columns:1fr}.diraProjectForm .fieldGrid{grid-template-columns:1fr}.diraCalendarList article{align-items:flex-start;flex-direction:column}.diraAdminPage .panelHeading{flex-direction:column}}
+
+
+.diraCatalogueGrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.9fr);gap:13px;align-items:start}
+.diraCatalogueGrid>.adminPanel{min-width:0}
+.diraCatalogueRow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:11px 0;border-top:1px solid #e3ebee}
+.diraCatalogueRow.selected{background:#edf8fa}
+.diraCatalogueRow>div:first-child{display:flex;align-items:center;gap:10px;min-width:0}
+.diraCatalogueRow img{width:52px;height:52px;flex:0 0 52px;border-radius:8px;object-fit:cover;background:#e7f0f3}
+.diraCatalogueRow span{display:grid;gap:3px;min-width:0}
+.diraCatalogueRow strong{color:#222;font-size:.86rem;line-height:1.35}
+.diraCatalogueRow small{color:#52636b;font-size:.74rem;line-height:1.35}
+.diraCatalogueRow>div:last-child{display:flex;gap:6px;flex-wrap:wrap}
+.diraCatalogueRow .button{min-height:34px;padding:7px 10px;font-size:.75rem}
+.diraServiceForm{display:grid;gap:11px}
+.diraServiceForm label{display:grid;gap:5px;color:#27383e;font-size:.82rem;font-weight:800}
+.diraServiceForm input,.diraServiceForm select,.diraServiceForm textarea{width:100%;min-width:0;min-height:42px;padding:9px 10px;border:1px solid #c8d8de;border-radius:8px;background:#fff;color:#222;font:inherit;font-weight:500}
+.diraServiceForm textarea{min-height:105px;resize:vertical}
+.diraServiceForm .fieldGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.diraServiceForm input[type="checkbox"]{width:18px;min-height:18px;accent-color:#007b91}
+.diraServiceChecks{display:grid;align-content:center;gap:10px;padding:10px;border:1px solid #d7e2e7;border-radius:8px}
+.diraServiceChecks label{display:flex;align-items:center;gap:8px}
+.diraServiceImagePreview{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.diraServiceImagePreview img{width:100px;height:72px;object-fit:cover;border-radius:8px;border:1px solid #d7e2e7}
+.diraServiceAdmin .emptyState p{margin:8px auto 14px;max-width:360px}
+@media(max-width:900px){.diraCatalogueGrid{grid-template-columns:1fr}}
+@media(max-width:560px){.diraCatalogueRow{grid-template-columns:1fr}.diraCatalogueRow>div:last-child{justify-content:flex-start}.diraServiceForm .fieldGrid{grid-template-columns:1fr}}
