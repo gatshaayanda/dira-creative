@@ -1,6 +1,6 @@
 "use client";
 import {useEffect,useRef,useState} from "react";
-import {collection,doc,serverTimestamp,setDoc} from "firebase/firestore";
+import {doc,serverTimestamp,setDoc} from "firebase/firestore";
 import {auth,db} from "@/lib/firebase/client";
 import {uploadFiles} from "@/lib/uploadthing";
 import {createCustomerConversation,subscribeToConversation,updateConversationRead,recordConversationMessage,type Conversation,type ConversationMessage} from "@/lib/firebase/data";
