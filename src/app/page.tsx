@@ -146,19 +146,23 @@ export default function Home() {
 
   useEffect(() => {
     if (!hasFirebaseWebConfig) { setRemoteServices(null); return; }
-    return subscribeToPublishedDiraServices(items => setRemoteServices(items.map(item => ({
-      id: item.kind === "package" ? "package-" + item.id : item.id,
-      name: item.name,
-      price: item.priceFrom ?? 0,
-      description: item.description,
-      media: item.imageUrl || "",
-      mediaType: "image" as const,
-      active: item.published,
-      priceLabel: item.priceLabel,
-      category: item.category,
-      featured: item.featured,
-      kind: item.kind,
-    }))), error => setNotice(error.message));
+    return subscribeToPublishedDiraServices(items => setRemoteServices(items.flatMap(item => {
+      const fixedPackage = item.kind === "package" ? DEFAULT_DIRA_CATALOGUE.find(seed => seed.kind === "package" && (seed.id === item.id || seed.name.toLowerCase() === item.name.toLowerCase())) : undefined;
+      if (item.kind === "package" && !fixedPackage) return [];
+      return [{
+        id: item.kind === "package" ? "package-" + item.id : item.id,
+        name: item.name,
+        price: fixedPackage?.priceFrom ?? item.priceFrom ?? 0,
+        description: fixedPackage?.description ?? item.description,
+        media: item.imageUrl || "",
+        mediaType: "image" as const,
+        active: item.published,
+        priceLabel: fixedPackage?.priceLabel ?? item.priceLabel,
+        category: item.category,
+        featured: item.featured,
+        kind: item.kind,
+      }];
+    })), error => setNotice(error.message));
   }, []);
 
   useEffect(() => {
