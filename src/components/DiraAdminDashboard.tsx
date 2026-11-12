@@ -2,6 +2,7 @@
 
 import {useEffect,useMemo,useState} from "react";
 import Link from "next/link";
+import DiraBrand from "@/components/DiraBrand";
 import AdminConversations from "@/components/AdminConversations";
 import {auth} from "@/lib/firebase/client";
 import {createDiraTask,deleteDiraTask,DIRA_TASK_STATUSES,subscribeToProjectTasks,updateDiraTask,type DiraTask,type DiraTaskStatus} from "@/lib/firebase/dira-projects";
@@ -45,7 +46,7 @@ export default function DiraAdminDashboard(){
   catch(error){setNotice(error instanceof Error?error.message:"The project update could not be confirmed. Refresh before retrying.")}finally{setSaving(false)}
  }
  return <main className="adminPage diraAdminPage"><div className="adminShell">
-  <header className="diraAdminHeader"><Link href="/" className="logo"><span className="logoMark">D</span><span>DIRA CREATIVE</span></Link><div><span className="kicker">ROYALTY HOLDINGS · OPERATIONS</span><h1>Business OS</h1><p>Client enquiries, proposals, project delivery and financial records.</p></div><div className="diraAdminLinks"><Link href="/admin/storefront">Services & packages ↗</Link><Link href="/">Public Dira site ↗</Link></div></header>
+  <header className="diraAdminHeader"><Link href="/" className="logo"><DiraBrand name="Dira Creative" subtitle="ROYALTY HOLDINGS"/></Link><div><span className="kicker">ROYALTY HOLDINGS · OPERATIONS</span><h1>Business OS</h1><p>Client enquiries, proposals, project delivery and financial records.</p></div><div className="diraAdminLinks"><Link href="/admin/storefront">Services & packages ↗</Link><Link href="/">Public Dira site ↗</Link></div></header>
   <section className="diraMetrics"><article><span>New enquiries</span><strong>{metrics.newCount}</strong></article><article><span>Quotes to review</span><strong>{metrics.quoteCount}</strong></article><article><span>Awaiting initial payment</span><strong>{metrics.paymentCount}</strong></article><article><span>Active projects</span><strong>{metrics.activeCount}</strong></article><article><span>Completed</span><strong>{metrics.completedCount}</strong></article></section>
   <section className="diraFinanceStrip"><div><small>Verified initial payments recorded</small><strong>{money(metrics.received)}</strong></div><div><small>Client-approved project value</small><strong>{money(metrics.approvedValue)}</strong></div><div><small>Completed project value</small><strong>{money(metrics.completedValue)}</strong></div><p>Payments shown here are amounts manually verified and recorded by an authorised owner. Quotes and approved project value are not cash received.</p></section>
   <nav className="diraAdminTabs" aria-label="Business OS sections"><button type="button" aria-pressed={tab==="enquiries"} onClick={()=>setTab("enquiries")}>Enquiries & projects</button><button type="button" aria-pressed={tab==="calendar"} onClick={()=>setTab("calendar")}>Calendar</button><button type="button" aria-pressed={tab==="inbox"} onClick={()=>setTab("inbox")}>Client inbox</button></nav>
