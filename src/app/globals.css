@@ -3002,3 +3002,55 @@ h1 em,
 @media(max-width:900px){.serviceDemo .sd-service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.serviceDemo .sd-approach-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.serviceDemo .sd-store-intro{grid-template-columns:1fr}.serviceDemo .sd-store-visual{min-height:0}.serviceDemo .sd-hero-art{min-height:260px}.serviceDemo .sd-starting-heading{align-items:flex-start;flex-direction:column}.serviceDemo .sd-catalogue-tools{grid-template-columns:1fr}.serviceDemo .sd-catalogue-filters{margin:0 -2px}.serviceDemo .sd-starting-grid{grid-template-columns:1fr}.serviceDemo .sd-starting-grid article{grid-template-columns:1fr auto;align-items:center}.serviceDemo .sd-starting-grid article p{grid-column:1/-1;grid-row:2}.serviceDemo .sd-starting-grid article button{grid-column:1/-1;width:100%}.diraRequestSteps{grid-template-columns:1fr;gap:7px}.diraRequestOptional .fieldGrid{grid-template-columns:1fr}}
 @media(max-width:560px){.serviceDemo .sd-wrap{width:min(100% - 22px,1160px)}.serviceDemo .sd-store-intro{padding-top:20px}.serviceDemo .sd-store-intro h1{font-size:clamp(2.35rem,12vw,3.4rem)}.serviceDemo .sd-hero-art{min-height:235px;padding:15px}.serviceDemo .sd-hero-art-orbit{right:22px;top:72px;width:68px;height:68px;font-size:2rem}.serviceDemo .sd-hero-art-main strong{font-size:3.6rem}.serviceDemo .sd-store-proof{grid-template-columns:repeat(3,minmax(0,1fr))}.serviceDemo .sd-store-proof span{padding:9px 7px}.serviceDemo .sd-store-proof b{font-size:.82rem}.serviceDemo .sd-store-proof small{font-size:.68rem}.serviceDemo .sd-service-grid{grid-template-columns:1fr}.serviceDemo .sd-service-media{height:150px!important}.serviceDemo .sd-service-title{display:grid}.serviceDemo .sd-service-title>strong{justify-self:start}.serviceDemo .sd-approach-grid{grid-template-columns:1fr}.serviceDemo .sd-contact{padding:18px}.diraRequestCard{padding:16px!important}}
+
+
+/* Client account and owner workspace: compact, calm, legible operational surfaces. */
+.diraAccountPage{background:#f4f6fc!important;color:#222!important;padding-bottom:42px}
+.diraAccountPage .orderWrap{width:min(1000px,calc(100% - 24px));padding-top:18px}
+.diraAccountPage .orderHeader{padding-bottom:12px;border-bottom:1px solid #d5e1e8}
+.diraAccountPage .orderHeader .diraBrandWords strong{color:#222}
+.diraAccountPage .orderHeader .diraBrandWords small{color:#52636b}
+.diraAccountPage .orderCard.accountHome{background:#fff;border:1px solid #d5e1e8;border-radius:14px;padding:clamp(16px,3vw,24px);box-shadow:0 10px 32px #1838440b}
+.diraAccountPage .accountHero h1{margin:8px 0;color:#222;font-size:clamp(1.9rem,4vw,2.7rem);line-height:1.02;letter-spacing:-.05em;text-transform:none}
+.diraAccountPage .accountHero p,.diraAccountPage .accountIntro{color:#52636b;line-height:1.55}
+.diraAccountPage .kicker{color:#007b91}
+.diraAccountPage .accountStatus{border-color:#b7dce2;background:#eaf7f9;color:#005f70}
+.diraAccountPage .accountConnect{border-color:#d5e1e8;background:#f7fafb;padding:15px;border-radius:11px}
+.diraAccountPage .accountConnect strong,.diraAccountPage .accountSection h2,.diraAccountPage .accountDetails strong{color:#222}
+.diraAccountPage .accountConnect p,.diraAccountPage .accountGuestNote{color:#52636b;line-height:1.5}
+.diraAccountPage .accountSection{margin-top:20px;padding-top:18px;border-color:#d5e1e8}
+.diraAccountPage .accountSection h2{font-size:1.2rem;text-transform:none;letter-spacing:-.02em}
+.diraAccountPage .feedItem,.diraAccountPage .feedEmpty,.diraAccountPage .accountDetails,.diraAccountPage .memberSetup{border-color:#d5e1e8;background:#fff;color:#222}
+.diraAccountPage .feedItem{padding:14px;border-radius:10px;margin-bottom:9px}
+.diraAccountPage .feedBody,.diraAccountPage .feedBody p,.diraAccountPage .feedTop strong{color:#27383e}
+.diraAccountPage .feedTop small,.diraAccountPage .feedActions,.diraAccountPage .orderTruth{color:#52636b}
+.diraAccountPage .feedMarker{color:#007b91}
+.diraAccountPage .accountDetails summary{color:#222}
+.diraAccountPage .accountDetails summary small{color:#52636b}
+.diraAccountPage .accountDetails .adminForm{gap:11px}
+.diraAccountPage .accountDetails .adminForm label{color:#27383e}
+.diraAccountPage .accountDetails input,.diraAccountPage .accountDetails textarea{background:#fff;color:#222;border-color:#c8d9df}
+.diraAccountPage .accountAttention{border-color:#9ed5df;background:#eef8fa;color:#222}
+.diraAccountPage .accountAttention p,.diraAccountPage .accountAttention small{color:#46575e}
+.diraAccountPage .memberSetupCard{background:#f7fafb;border-color:#d5e1e8;color:#222}
+.diraAccountPage .memberSetupCard strong{color:#222}
+.diraAccountPage .memberSetupCard small,.diraAccountPage .memberSetupFootnote{color:#52636b}
+.diraAccountPage .notice{background:#eaf6f8;border-color:#b7dce2;color:#005f70}
+.diraAccountPage .buttonPrimary{background:#007b91;color:#fff;border-color:#007b91}
+.diraAccountPage .buttonLight{background:#fff;color:#27383e;border-color:#c8d9df}
+.diraAccountPage .accountFooterNote{color:#52636b}
+.diraAdminPage .diraAdminHeader{padding:17px 20px;gap:20px;border-radius:13px;background:#222}
+.diraAdminPage .diraAdminHeader .diraBrandWords strong{color:#fff}
+.diraAdminPage .diraAdminHeader .diraBrandWords small{color:#d5e1e8}
+.diraAdminPage .diraAdminHeader .diraBrandFallback{background:#f4f6fc;color:#222;box-shadow:inset 0 -4px 0 #0097b2}
+.diraAdminPage .diraMetrics{gap:11px}
+.diraAdminPage .diraMetrics article{padding:15px 16px;border-radius:12px}
+.diraAdminPage .diraFinanceStrip{gap:11px;padding:2px 0 5px}
+.diraAdminPage .diraAdminTabs{padding:4px 0 8px;border-bottom:1px solid #d5e1e8}
+.diraAdminPage .diraWorkspaceGrid{gap:16px}
+.diraAdminPage .adminPanel{box-shadow:0 5px 20px #1838440a}
+.diraAdminPage .diraEnquiryDetail{display:grid;gap:4px}
+.diraAdminPage .diraBriefBlock{margin:4px 0 10px;padding:15px}
+.diraAdminPage .diraProjectForm{padding:2px 0 5px}
+.diraAdminPage .diraTaskManager{margin-top:20px;padding-top:18px}
+@media(max-width:560px){.diraAccountPage .orderHeader{align-items:flex-start;gap:8px}.diraAccountPage .accountConnect .actions{display:grid}.diraAccountPage .accountConnect .actions>*{width:100%}.diraAdminPage .diraAdminHeader{padding:14px}.diraAdminPage .diraMetrics{gap:8px}}
