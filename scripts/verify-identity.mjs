@@ -25,7 +25,7 @@ const manifest = JSON.parse(fs.readFileSync(path.join(root, "public/manifest.web
 if (manifest.name !== "Dira Creative | Business OS") failures.push("manifest: wrong application name");
 if (manifest.short_name !== "Dira") failures.push("manifest: wrong short name");
 if (manifest.theme_color !== "#0097b2") failures.push("manifest: wrong theme color");
-if (!manifest.icons?.some(icon => icon.src === "/dira-icon.svg")) failures.push("manifest: prototype icon missing");
+if (!manifest.icons?.some(icon => icon.src === "/dira-icon.svg")) failures.push("manifest: Dira icon missing");
 for (const iconPath of ["/dira-icon.svg"]) {
   if (!manifest.icons?.some(icon => icon.src === iconPath)) failures.push("manifest: icon missing " + iconPath);
   if (!fs.existsSync(path.join(root, "public", iconPath.slice(1)))) failures.push("manifest icon asset missing " + iconPath);
@@ -40,7 +40,7 @@ const layout = fs.readFileSync(path.join(root, "src/app/layout.tsx"), "utf8");
 const pwaRegister = fs.readFileSync(path.join(root, "src/app/pwa-register.tsx"), "utf8");
 for (const expected of ["Dira Creative | Business OS", "applicationName:\"Dira Creative\""]) if (!layout.includes(expected)) failures.push("layout: missing " + expected);
 // Validate Apple install metadata semantically; whitespace and additional metadata fields are harmless.
-if (!/appleWebApp\s*:\s*\{[^}]*\bcapable\s*:\s*true\b[^}]*\btitle\s*:\s*["']Dira Creative["']/s.test(layout)) failures.push('layout: missing appleWebApp capable=true and title="Iteration 13"');
+if (!/appleWebApp\s*:\s*\{[^}]*\bcapable\s*:\s*true\b[^}]*\btitle\s*:\s*["']Dira Creative["']/s.test(layout)) failures.push('layout: missing appleWebApp capable=true and title="Dira Creative"');
 const sw = fs.readFileSync(path.join(root, "public/sw.js"), "utf8");
 if (!/dira-creative-shell-v\d+/.test(sw)) failures.push("service worker: missing isolated cache namespace");
 if (!sw.includes("/dira-icon.svg")) failures.push("service worker: Dira icon missing from app shell");
