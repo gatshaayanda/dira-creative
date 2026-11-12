@@ -268,7 +268,6 @@ export default function Home() {
   const customerRecords = Array.from(new Map(data.orders.map(order => [order.email.toLowerCase(), { name: order.customerName, email: order.email, jobs: data.orders.filter(item => item.email.toLowerCase() === order.email.toLowerCase()) }] as const)).values());
   const selectedService = servicesForDisplay.find(service => service.id === selected && service.active);
   const catalogueMatches = activeServices.filter(service => { const query = catalogueSearch.trim().toLowerCase(); const matchesQuery = !query || [service.name, service.description, service.category || ""].some(value => value.toLowerCase().includes(query)); const matchesView = catalogueView === "all" || (catalogueView === "services" && service.kind !== "package") || (catalogueView === "packages" && service.kind === "package"); return matchesQuery && matchesView; });
-  const packageFor = (id: string) => { const names:Record<string,string> = { "package-novice":"Novice Brand Package", "package-elevate":"Elevate Brand Package", "package-elite":"Elite Brand Package" }; return activeServices.find(service => service.id === id) || activeServices.find(service => service.name === names[id]); };
   const statusCounts = useMemo(() => data.orders.reduce<Record<string, number>>((acc, order) => { acc[order.status] = (acc[order.status] || 0) + 1; return acc; }, {}), [data.orders]);
 
   function beginOrder(service: Service) {
@@ -277,10 +276,6 @@ export default function Home() {
     if (service.id.startsWith("package-") || service.kind === "package") query.set("package", service.name);
     window.location.assign("/request?" + query.toString());
   }
-  function openRequestForm() {
-    window.location.assign("/request");
-  }
-
   function requestAdminLogin() {
     if (hasFirebaseWebConfig) { window.location.assign("/admin"); return; }
     if (adminUnlocked) { setView("admin"); return; }
