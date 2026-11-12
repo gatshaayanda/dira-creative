@@ -34,7 +34,7 @@ const seedServices: Service[] = DEFAULT_DIRA_CATALOGUE.map(item => ({
 }));
 const emptyData: DemoData = { services: seedServices, orders: [], announcement: "", announcementImage: "", views: 0, events: [], discountAmount: 10, discountClaims: [], receiptProfile: { legalName: "Royalty Holdings (Pty) Ltd", registration: "UIN BW 00001917522", address: "Gaborone, Botswana", phone: "+267 74 343 719", footer: "Dira Creative · Building brands that communicate clearly, operate efficiently, and scale effectively." } };
 const money = (amount: number) => "P" + amount.toLocaleString("en-BW", { maximumFractionDigits: 2 });
-const servicePriceLabel = (service: Service) => service.priceLabel || (service.id.startsWith("package-") ? "From " + money(service.price) : money(service.price));
+const servicePriceLabel = (service: Service) => service.priceLabel || money(service.price);
 const serviceEmoji = (name: string) => {
   const label = name.toLowerCase();
   if (/website|web|site|digital|design/.test(label)) return "🌐";
@@ -70,7 +70,7 @@ export default function Home() {
   const [adminUnlocked, setAdminUnlocked] = useState(false);
   const [adminPassphrase, setAdminPassphrase] = useState("");
   const [selected, setSelected] = useState<string | null>(null);
-  const [catalogueView, setCatalogueView] = useState<"featured" | "all" | "identity" | "packages">("featured");
+  const [catalogueView, setCatalogueView] = useState<"all" | "services" | "packages">("all");
   const [catalogueSearch, setCatalogueSearch] = useState("");
   const [orderFormOpen, setOrderFormOpen] = useState(false);
   const [customerName, setCustomerName] = useState("");
@@ -267,7 +267,7 @@ export default function Home() {
   const completedValue = data.orders.filter(order => order.status === "Completed").reduce((sum, order) => sum + order.price, 0);
   const customerRecords = Array.from(new Map(data.orders.map(order => [order.email.toLowerCase(), { name: order.customerName, email: order.email, jobs: data.orders.filter(item => item.email.toLowerCase() === order.email.toLowerCase()) }] as const)).values());
   const selectedService = servicesForDisplay.find(service => service.id === selected && service.active);
-  const catalogueMatches = activeServices.filter(service => { const query = catalogueSearch.trim().toLowerCase(); const matchesQuery = !query || [service.name, service.description, service.category || ""].some(value => value.toLowerCase().includes(query)); const matchesView = catalogueView === "all" || (catalogueView === "identity" && service.category === "Brand Identity & Visual Systems") || (catalogueView === "packages" && service.kind === "package") || (catalogueView === "featured" && service.featured); return matchesQuery && matchesView; });
+  const catalogueMatches = activeServices.filter(service => { const query = catalogueSearch.trim().toLowerCase(); const matchesQuery = !query || [service.name, service.description, service.category || ""].some(value => value.toLowerCase().includes(query)); const matchesView = catalogueView === "all" || (catalogueView === "services" && service.kind !== "package") || (catalogueView === "packages" && service.kind === "package"); return matchesQuery && matchesView; });
   const packageFor = (id: string) => { const names:Record<string,string> = { "package-novice":"Novice Brand Package", "package-elevate":"Elevate Brand Package", "package-elite":"Elite Brand Package" }; return activeServices.find(service => service.id === id) || activeServices.find(service => service.name === names[id]); };
   const statusCounts = useMemo(() => data.orders.reduce<Record<string, number>>((acc, order) => { acc[order.status] = (acc[order.status] || 0) + 1; return acc; }, {}), [data.orders]);
 
@@ -316,7 +316,7 @@ export default function Home() {
     if (dueDate < localDate()) { setNotice("Choose today or a future date for your requested timeline."); return; }
     const createdAt = new Date().toISOString();
     const id = "DEMO-" + Date.now().toString(36).toUpperCase();
-    const order: DemoOrder = { id, receiptNo: "RCP-" + createdAt.slice(0, 10).replaceAll("-", "") + "-" + id.slice(-5), serviceId: selectedService.id, serviceName: selectedService.name, price: Math.max(0, selectedService.price - discountAmount), ...(discountAmount ? { originalPrice: selectedService.price, discountAmount, discountCode: claim!.code } : {}), dueDate, customerName: customerName.trim(), email: email.trim(), brief: brief.trim(), status: "New request", createdAt, paymentStatus: "Unpaid", paidAmount: 0, tasks: [], quoteStatus: "Not prepared", priceIsStarting: selectedService.id.startsWith("package-") };
+    const order: DemoOrder = { id, receiptNo: "RCP-" + createdAt.slice(0, 10).replaceAll("-", "") + "-" + id.slice(-5), serviceId: selectedService.id, serviceName: selectedService.name, price: Math.max(0, selectedService.price - discountAmount), ...(discountAmount ? { originalPrice: selectedService.price, discountAmount, discountCode: claim!.code } : {}), dueDate, customerName: customerName.trim(), email: email.trim(), brief: brief.trim(), status: "New request", createdAt, paymentStatus: "Unpaid", paidAmount: 0, tasks: [], quoteStatus: "Not prepared", priceIsStarting: false };
     if (!commitData(current => ({ ...current, orders: [order, ...current.orders], discountClaims: claim ? (current.discountClaims || []).map(item => item.id === claim.id ? { ...item, status: "Redeemed" as const } : item) : current.discountClaims, events: [{ id: "EV-"+Date.now().toString(36), kind: "request", label: "Customer request received · "+order.serviceName, at: new Date().toISOString() }, ...(current.events || [])] }), "Order request saved on this device. No payment was taken.")) return;
     setView("account"); setSelected(null); setPromoCode("");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -439,64 +439,26 @@ export default function Home() {
               <p>Building brands that communicate clearly, operate efficiently, and scale effectively.</p>
               <div className="sd-hero-actions">
                 <button type="button" className="sd-hero-primary" onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth", block: "start" })}>Explore services <span aria-hidden="true">↘</span></button>
-                <button type="button" className="sd-hero-secondary" onClick={openRequestForm}>Start a request <span aria-hidden="true">↗</span></button>
               </div>
             </div>
-            <div className="sd-store-visual sd-hero-quicklinks" aria-label="Explore Dira Creative">
-              <div className="sd-quicklinks-head"><span>ROYALTY HOLDINGS</span><strong>Make your next move.</strong></div>
-              <div className="sd-quicklinks-grid">
-                <button type="button" onClick={() => document.getElementById("services")?.scrollIntoView({behavior:"smooth",block:"start"})}><span>01</span><strong>Explore services</strong><i>↘</i></button>
-                <button type="button" onClick={() => {setCatalogueView("packages");document.getElementById("services")?.scrollIntoView({behavior:"smooth",block:"start"});}}><span>02</span><strong>Brand packages</strong><i>↗</i></button>
-                <button type="button" onClick={openRequestForm}><span>03</span><strong>Start a request</strong><i>↗</i></button>
-                <button type="button" onClick={() => document.getElementById("approach")?.scrollIntoView({behavior:"smooth",block:"start"})}><span>04</span><strong>How we work</strong><i>↘</i></button>
-              </div>
-            </div>
+
           </div>
-          <div className="sd-store-proof" aria-label="Dira Creative principles">
-            <span><b>Clarity</b><small>Know what matters</small></span>
-            <span><b>Excellence</b><small>Work with intention</small></span>
-            <span><b>Functionality</b><small>Built to work</small></span>
-          </div>
-          <section className="sd-starting-points" aria-labelledby="sd-starting-title">
-            <div className="sd-starting-heading"><span className="sd-kicker">A GOOD PLACE TO START</span><h2 id="sd-starting-title">Where is your business now?</h2><p>Choose the level that feels closest. We can shape the right scope together.</p></div>
-            <div className="sd-starting-grid">
-              {[
-                {id:"package-novice",label:"I’m getting started",detail:"Build a clear, credible foundation.",price:"P2,100–P3,200"},
-                {id:"package-elevate",label:"I’m ready to grow",detail:"Bring your brand and business into alignment.",price:"P3,400–P5,200"},
-                {id:"package-elite",label:"I’m established",detail:"Create a complete, connected brand system.",price:"P9,500–P12,500"}
-              ].map(item=>{const service=packageFor(item.id);return <article key={item.id}><span>{item.label}</span><p>{item.detail}</p><strong>{item.price}</strong><button type="button" disabled={!service} onClick={()=>service&&beginOrder(service)}>Explore this package <span>↗</span></button></article>;})}
-            </div>
-          </section>
+
           
         </div>
       </section>
-      {(data.announcement.trim() || data.announcementImage) && <section className="sd-announcement"><div className="sd-wrap"><span><span aria-hidden="true">📣</span> DIRA CREATIVE / ANNOUNCEMENT</span>{data.announcementImage && <img className="sd-announcement-thumb" src={data.announcementImage} alt={data.announcement.slice(0, 120) || "Announcement image"} loading="lazy" />}<p>{data.announcement}</p></div></section>}
       <section className="sd-services sd-wrap" id="services">
         <div className="sd-section-head sd-compact-section-head"><div><span className="sd-kicker">DIRA CREATIVE / SERVICES</span><h2>Find the right starting point.</h2></div><p>Clear scope and visible pricing. All prices are in Botswana pula (BWP); final scope is confirmed before work begins.</p></div>
         <div className="sd-catalogue-tools">
-          <label className="sd-catalogue-search"><span aria-hidden="true">⌕</span><input type="search" value={catalogueSearch} onChange={event=>{setCatalogueSearch(event.target.value);if(event.target.value.trim())setCatalogueView("all");}} placeholder="Search logos, websites, operations…" aria-label="Search services"/></label>
+          <label className="sd-catalogue-search"><span aria-hidden="true">⌕</span><input type="search" value={catalogueSearch} onChange={event=>{setCatalogueSearch(event.target.value);if(event.target.value.trim())setCatalogueView("all");}} placeholder="Find a service or package…" aria-label="Search services and packages"/></label>
           <div className="sd-catalogue-filters" role="group" aria-label="Service categories">
-            {[["featured","Recommended"],["all","All services"],["identity","Brand identity"],["packages","Brand packages"]].map(([value,label])=><button key={value} type="button" className={catalogueView===value?"is-active":""} aria-pressed={catalogueView===value} onClick={()=>setCatalogueView(value as typeof catalogueView)}>{label}</button>)}
+            {[["all","All"],["services","Services"],["packages","Brand packages"]].map(([value,label])=><button key={value} type="button" className={catalogueView===value?"is-active":""} aria-pressed={catalogueView===value} onClick={()=>setCatalogueView(value as typeof catalogueView)}>{label}</button>)}
           </div>
         </div>
-        <div className="sd-catalogue-resultline"><strong>{catalogueMatches.length} {catalogueMatches.length===1?"option":"options"}</strong><span>{catalogueView==="featured"?"A focused starting selection. Browse all services to see every option.":"Choose a service to carry it directly into your project enquiry."}</span></div>
+        <div className="sd-catalogue-resultline"><strong>{catalogueMatches.length} {catalogueMatches.length===1?"option":"options"}</strong><span>{catalogueView==="featured"?"A focused starting selection. Browse all services to see every option.":"Select an option to continue to your customer account and order."}</span></div>
         {catalogueMatches.length?<div className="sd-service-grid">{catalogueMatches.map((service,index)=><article className="sd-service-card" key={service.id}><div className={"sd-service-media sd-media-"+(index%4)} data-label={service.name}>{service.media&&service.mediaType==="video"?<video src={service.media} controls muted playsInline preload="metadata"/>:service.media?<img src={service.media} alt={service.name+" preview"} loading="lazy"/>:<div className="sd-media-placeholder"><span>DIRA CREATIVE · {service.kind==="package"?"PACKAGE":"SERVICE"}</span><strong>{service.name}</strong></div>}{service.featured&&<span className="sd-service-featured">Featured</span>}</div><div className="sd-service-info"><div className="sd-service-title"><h3>{service.name}</h3><strong>{servicePriceLabel(service)}</strong></div><p>{service.description}</p><button className="sd-order-button" onClick={()=>beginOrder(service)}>Choose this service <span>↗</span></button></div></article>)}</div>:<div className="sd-catalogue-empty"><strong>No matching services</strong><p>Try a different search or view all services.</p><button type="button" onClick={()=>{setCatalogueSearch("");setCatalogueView("all");}}>Show all services</button></div>}
       </section>
-      <section className="sd-ultimate-package sd-wrap"><div><span className="sd-kicker">ULTIMATE / CUSTOM SCOPE</span><h3>Build a package around your goals.</h3><p>Tailored combinations of services, deliverables, strategic scope and budget. Pricing is confirmed after a discovery conversation.</p></div><a href="mailto:info.diracreative@gmail.com?subject=Ultimate%20Brand%20Package%20Enquiry">Discuss a custom package ↗</a></section>
-      <section className="sd-approach sd-wrap" id="approach">
-        <div className="sd-section-head sd-compact-section-head"><div><span className="sd-kicker">HOW WE BUILD</span><h2>Five stages. One direction.</h2></div><p>From a clear identity to stronger operations and sustainable growth.</p></div>
-        <div className="sd-approach-grid">
-          <article><span>01</span><h3>Define your identity</h3><p>Logo, colour, typography, iconography, graphic elements, imagery, illustration and layout.</p><small>A consistent, recognisable brand.</small><a href="/request?service=Define%20Your%20Identity">Discuss this stage ↗</a></article>
-          <article><span>02</span><h3>Establish your presence</h3><p>Company profiles, proposals, portfolios, pitch decks, business cards, websites, applications and maintenance.</p><small>Professional tools for communication.</small><a href="/request?service=Establish%20Your%20Presence">Discuss this stage ↗</a></article>
-          <article><span>03</span><h3>Structure your operations</h3><p>Workflows, team structures, function mapping and practical operational support.</p><small>Clear roles and organised work.</small><a href="/request?service=Structure%20Your%20Operations">Discuss this stage ↗</a></article>
-          <article><span>04</span><h3>Connect with your market</h3><p>Print, advertising, social media, promotional video, motion graphics and campaign assets.</p><small>Visibility and meaningful engagement.</small><a href="/request?service=Connect%20With%20Your%20Market">Discuss this stage ↗</a></article>
-          <article><span>05</span><h3>Optimise for growth</h3><p>Asset management, revenue optimisation, gap analysis and strategic problem-solving.</p><small>Better decisions and sustainable performance.</small><a href="/request?service=Optimise%20for%20Growth">Discuss this stage ↗</a></article>
-        </div>
-      </section>
-      <section className="sd-contact sd-wrap" id="contact">
-        <div><span className="sd-kicker">START A CONVERSATION</span><h2>Let&apos;s build with intention.</h2><p>Tell us where your business is today and what you want to make possible next.</p></div>
-        <div className="sd-contact-actions"><a href="mailto:info.diracreative@gmail.com">info.diracreative@gmail.com</a><a href="tel:+26774343719">+267 74 343 719</a><span>Gaborone, Botswana</span></div>
-      </section>
+
       {orderFormOpen && <section className="sd-order-section sd-compact-order" id="service-order"><div className="sd-wrap sd-order-grid"><div className="sd-order-copy"><span className="sd-kicker">NEXT STEP</span><h2>Send a request</h2><p>Choose a service, tell us your target date and send the brief. Your date is a preference until reviewed.</p><div className="sd-order-note"><span>i</span><p><strong>Demo only.</strong><br/>No payment is taken and no delivery date is confirmed.</p></div></div><form className="sd-order-form" onSubmit={submitOrder}><div className="sd-form-heading"><button type="button" className="sd-form-close" onClick={() => setOrderFormOpen(false)} aria-label="Close request form">×</button><span>REQUEST DETAILS</span><strong>{selectedService?selectedService.name:"Choose a service"}</strong>{selectedService&&<b>{servicePriceLabel(selectedService)} <small>listed price</small></b>}</div><label>Service<select value={selected||""} onChange={event=>setSelected(event.target.value||null)} required><option value="">Select a service</option>{activeServices.map(service=><option key={service.id} value={service.id}>{service.name} — {servicePriceLabel(service)}</option>)}</select></label><div className="sd-form-two"><label>Your name<input value={customerName} onChange={event=>setCustomerName(event.target.value)} autoComplete="name" required placeholder="Name or business"/></label><label>Email<input value={email} onChange={event=>setEmail(event.target.value)} type="email" autoComplete="email" required placeholder="you@example.com"/></label></div><label>Target date<input type="date" value={dueDate} min={localDate()} onChange={event=>setDueDate(event.target.value)} required/><small>Your requested date is reviewed before confirmation.</small></label><label>Discount code <span className="sd-optional">OPTIONAL</span><input value={promoCode} onChange={event=>setPromoCode(event.target.value.toUpperCase())} placeholder="Enter a promotion code" /></label><label>Project details <span className="sd-optional">OPTIONAL</span><textarea value={brief} onChange={event=>setBrief(event.target.value)} rows={3} placeholder="What would you like to achieve?"/></label><button className="sd-button sd-primary sd-submit" type="submit">Send request →</button><p className="sd-privacy-note">Saved in this browser only · no payment taken</p></form></div></section>}
     </>}
 
