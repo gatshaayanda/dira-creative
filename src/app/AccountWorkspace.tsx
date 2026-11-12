@@ -8,7 +8,7 @@ import type { OurFileRouter } from "@/app/api/uploadthing/core";
 const { useUploadThing } = generateReactHelpers<OurFileRouter>();
 
 export type AccountAttachment = { name: string; url: string; type: string; size: number };
-export type AccountMessage = { id: string; from: "customer" | "studio"; text: string; createdAt: string; attachment?: AccountAttachment };
+export type AccountMessage = { id: string; from: "customer" | "Dira Creative"; text: string; createdAt: string; attachment?: AccountAttachment };
 export type WorkspaceOrder = { id: string; serviceId: string; serviceName: string; price: number; originalPrice?: number; discountAmount?: number; discountCode?: string; receiptNo?: string; paidAmount?: number; paidAt?: string; paymentStatus?: "Unpaid" | "Partially paid (demo)" | "Paid (demo)"; dueDate: string; customerName: string; email: string; brief: string; status: string; createdAt: string; messages?: AccountMessage[] };
 
 type DiscountClaim = { id: string; email: string; code: string; amount: number; lapTime: number; createdAt: string; status: "Available" | "Redeemed" };
@@ -43,19 +43,19 @@ export default function AccountWorkspace({ businessName, orders, discountClaims,
   const [savedJournal, setSavedJournal] = useState("");
   const [extrasReady, setExtrasReady] = useState(false);
   const [projectTips, setProjectTips] = useState(true);
-  const [studioNotes, setStudioNotes] = useState(true);
+  const [Dira CreativeNotes, setDira CreativeNotes] = useState(true);
   const [openThread, setOpenThread] = useState<string | null>(null);
   useEffect(() => {
     try {
-      const saved = window.localStorage.getItem("iteration13:account-extras:v1");
+      const saved = window.localStorage.getItem("dira-creative:account-extras:v1");
       if (saved) {
-        const parsed = JSON.parse(saved) as { gardenSeeds?: number; projectSteps?: string[]; savedJournal?: string; projectTips?: boolean; studioNotes?: boolean };
+        const parsed = JSON.parse(saved) as { gardenSeeds?: number; projectSteps?: string[]; savedJournal?: string; projectTips?: boolean; Dira CreativeNotes?: boolean };
         setGardenSeeds(Number.isFinite(parsed.gardenSeeds) ? Math.max(0, Number(parsed.gardenSeeds)) : 0);
         setProjectSteps(Array.isArray(parsed.projectSteps) ? parsed.projectSteps.filter((step): step is string => typeof step === "string") : []);
         setJournal(typeof parsed.savedJournal === "string" ? parsed.savedJournal.slice(0, 500) : "");
         setSavedJournal(typeof parsed.savedJournal === "string" ? parsed.savedJournal.slice(0, 500) : "");
         setProjectTips(parsed.projectTips !== false);
-        setStudioNotes(parsed.studioNotes !== false);
+        setDira CreativeNotes(parsed.Dira CreativeNotes !== false);
       }
     } catch { /* Account extras are optional when browser storage is blocked. */ }
     setExtrasReady(true);
@@ -63,9 +63,9 @@ export default function AccountWorkspace({ businessName, orders, discountClaims,
 
   useEffect(() => {
     if (!extrasReady) return;
-    try { window.localStorage.setItem("iteration13:account-extras:v1", JSON.stringify({ gardenSeeds, projectSteps, savedJournal, projectTips, studioNotes })); }
+    try { window.localStorage.setItem("dira-creative:account-extras:v1", JSON.stringify({ gardenSeeds, projectSteps, savedJournal, projectTips, Dira CreativeNotes })); }
     catch { /* Order history and messages remain usable if optional extras cannot be saved. */ }
-  }, [extrasReady, gardenSeeds, projectSteps, savedJournal, projectTips, studioNotes]);
+  }, [extrasReady, gardenSeeds, projectSteps, savedJournal, projectTips, Dira CreativeNotes]);
 
   const { startUpload, isUploading } = useUploadThing("fileUploader", {
     onUploadProgress: progress => setUploadProgress(Math.max(0, Math.min(100, Math.round(progress)))),
@@ -81,7 +81,7 @@ export default function AccountWorkspace({ businessName, orders, discountClaims,
     const text = (drafts[order.id] || "").trim();
     if (!text && !attachment) { setUploadNotice("Write a message or attach a file before sending."); return; }
     const message: AccountMessage = { id: "MSG-" + Date.now().toString(36), from: "customer", text, createdAt: new Date().toISOString(), ...(attachment ? { attachment } : {}) };
-    onUpdateOrder(order.id, current => ({ ...current, messages: [...(current.messages || []), message] }), "Message saved in this browser's demo thread. The studio can see it in the Admin demo on this device.");
+    onUpdateOrder(order.id, current => ({ ...current, messages: [...(current.messages || []), message] }), "Message saved in this browser's demo thread. The Dira Creative can see it in the Admin demo on this device.");
     setDrafts(current => ({ ...current, [order.id]: "" }));
     setUploadNotice("Message added to this local demo thread.");
     setOpenThread(order.id);
@@ -126,13 +126,13 @@ export default function AccountWorkspace({ businessName, orders, discountClaims,
         return <article className="sd-order-card sd-workspace-order" key={order.id}>
           <div className="sd-order-card-top"><span>{order.id}</span><b>{order.status}</b></div>
           <div className="sd-order-card-main"><div><h2>{order.serviceName}</h2><p>Requested timeline: <strong>{order.dueDate}</strong></p><p>{order.brief || "No extra brief added."}</p>{order.discountAmount ? <p className="sd-account-discount">Racing reward · {money(order.discountAmount)} off (regular {money(order.originalPrice || order.price + order.discountAmount)})</p> : null}<small>Submitted {prettyDate(order.createdAt)}</small></div><strong className="sd-order-price">{money(order.price)}</strong></div>
-          <div className="sd-workspace-meta"><span>{messages.length} {messages.length === 1 ? "message" : "messages"}</span><span>{messages.filter(message => message.from === "studio").length ? "Studio replied" : "Awaiting studio reply"}</span><button className="sd-small-button" onClick={() => setOpenThread(expanded ? null : order.id)}>{expanded ? "Close conversation" : "Messages & files →"}</button></div><ReceiptDocument businessName={businessName} accentColor={accentColor} receiptProfile={receiptProfile} order={order} />
+          <div className="sd-workspace-meta"><span>{messages.length} {messages.length === 1 ? "message" : "messages"}</span><span>{messages.filter(message => message.from === "Dira Creative").length ? "Dira Creative replied" : "Awaiting Dira Creative reply"}</span><button className="sd-small-button" onClick={() => setOpenThread(expanded ? null : order.id)}>{expanded ? "Close conversation" : "Messages & files →"}</button></div><ReceiptDocument businessName={businessName} accentColor={accentColor} receiptProfile={receiptProfile} order={order} />
           {expanded && <div className="sd-thread">
             <div className="sd-thread-heading"><div><span className="sd-kicker">PROJECT / CONVERSATION</span><h3>Talk about {order.serviceName}</h3></div><span className="sd-local-pill">LOCAL DEMO</span></div>
             <p className="sd-admin-help">Messages are saved to this browser and appear in the Admin demo on the same device. They are not emailed or sent to a remote team.</p>
-            <div className="sd-thread-messages" aria-live="polite">{messages.length ? messages.map(message => <article key={message.id} className={"sd-thread-message is-" + message.from}><div><strong>{message.from === "customer" ? "You" : "Studio / Admin"}</strong><time>{prettyDate(message.createdAt)}</time></div>{message.text && <p>{message.text}</p>}{message.attachment && <a href={message.attachment.url} target="_blank" rel="noreferrer">↗ {message.attachment.name} · Open attachment</a>}</article>) : <p className="sd-thread-empty">No messages yet. Add a question or share a file for the studio to review in this demo.</p>}</div>
+            <div className="sd-thread-messages" aria-live="polite">{messages.length ? messages.map(message => <article key={message.id} className={"sd-thread-message is-" + message.from}><div><strong>{message.from === "customer" ? "You" : "Dira Creative / Admin"}</strong><time>{prettyDate(message.createdAt)}</time></div>{message.text && <p>{message.text}</p>}{message.attachment && <a href={message.attachment.url} target="_blank" rel="noreferrer">↗ {message.attachment.name} · Open attachment</a>}</article>) : <p className="sd-thread-empty">No messages yet. Add a question or share a file for the Dira Creative to review in this demo.</p>}</div>
             <form className="sd-thread-composer" onSubmit={event => { event.preventDefault(); sendMessage(order); }}>
-              <label htmlFor={"message-" + order.id}>Message the studio<textarea id={"message-" + order.id} rows={3} maxLength={1200} value={drafts[order.id] || ""} onChange={event => setDrafts(current => ({ ...current, [order.id]: event.target.value }))} placeholder="Ask a question, clarify your brief, or share the next step…" /></label>
+              <label htmlFor={"message-" + order.id}>Message the Dira Creative<textarea id={"message-" + order.id} rows={3} maxLength={1200} value={drafts[order.id] || ""} onChange={event => setDrafts(current => ({ ...current, [order.id]: event.target.value }))} placeholder="Ask a question, clarify your brief, or share the next step…" /></label>
               <div className="sd-thread-actions"><label className="sd-file-button">＋ Attach file<input type="file" accept="image/*,video/*,application/pdf" disabled={isUploading || !online} onChange={event => attachFile(order, event)} /></label><button className="sd-button sd-primary" type="submit" disabled={isUploading || !(drafts[order.id] || "").trim()}>Send message →</button></div>
               {uploadingOrder === order.id && <div className="sd-media-progress" role="status"><div className="sd-media-progress-copy"><strong>Uploading attachment</strong><span>{uploadProgress}%</span></div><div className="sd-media-progress-track" role="progressbar" aria-label="Attachment upload progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={uploadProgress}><span style={{ width: uploadProgress + "%" }} /></div></div>}
             </form>
@@ -161,17 +161,17 @@ export default function AccountWorkspace({ businessName, orders, discountClaims,
             </label>
           ))}
         </div><p className="sd-account-note">{projectSteps.length}/4 preparation steps checked. This is a planning aid, not a delivery status or score.</p></section>
-        <section className="sd-account-extra"><span className="sd-kicker">02 / PROJECT NOTES</span><h2>Keep the details together.</h2><p>Save a short idea, question or requirement you want to remember before the next conversation. This note stays in this browser and is not a secure private vault.</p><label className="sd-journal-label" htmlFor="studio-journal">Note for your next discussion<textarea id="studio-journal" rows={4} maxLength={500} value={journal} onChange={event => setJournal(event.target.value)} placeholder="A feature idea, reference link, question or detail to confirm…" /></label><div className="sd-journal-actions"><span>{journal.length}/500 characters</span><button className="sd-small-button" onClick={() => setSavedJournal(journal.trim())}>Save note</button></div>{savedJournal && <p className="sd-saved-note"><strong>Saved note</strong>{savedJournal}</p>}</section>
+        <section className="sd-account-extra"><span className="sd-kicker">02 / PROJECT NOTES</span><h2>Keep the details together.</h2><p>Save a short idea, question or requirement you want to remember before the next conversation. This note stays in this browser and is not a secure private vault.</p><label className="sd-journal-label" htmlFor="Dira Creative-journal">Note for your next discussion<textarea id="Dira Creative-journal" rows={4} maxLength={500} value={journal} onChange={event => setJournal(event.target.value)} placeholder="A feature idea, reference link, question or detail to confirm…" /></label><div className="sd-journal-actions"><span>{journal.length}/500 characters</span><button className="sd-small-button" onClick={() => setSavedJournal(journal.trim())}>Save note</button></div>{savedJournal && <p className="sd-saved-note"><strong>Saved note</strong>{savedJournal}</p>}</section>
       </div>
       <div className="sd-account-extras sd-account-followup">
-        <section className="sd-account-extra"><span className="sd-kicker">03 / STUDIO UPDATES</span><h2>{announcement.trim() && studioNotes ? "Latest from the studio." : "Updates for your project."}</h2>{announcement.trim() && studioNotes ? <div className="sd-published-note"><span>STUDIO ANNOUNCEMENT</span><p>{announcement}</p></div> : <p>{studioNotes ? "There are no studio announcements right now. When the demo admin publishes an update or offer, it will appear here." : "Studio updates are hidden by your local preferences."}</p>}<p>General planning guidance</p><div className="sd-studio-feed">{(projectTips ? [
+        <section className="sd-account-extra"><span className="sd-kicker">03 / STUDIO UPDATES</span><h2>{announcement.trim() && Dira CreativeNotes ? "Latest from the Dira Creative." : "Updates for your project."}</h2>{announcement.trim() && Dira CreativeNotes ? <div className="sd-published-note"><span>STUDIO ANNOUNCEMENT</span><p>{announcement}</p></div> : <p>{Dira CreativeNotes ? "There are no Dira Creative announcements right now. When the demo admin publishes an update or offer, it will appear here." : "Dira Creative updates are hidden by your local preferences."}</p>}<p>General planning guidance</p><div className="sd-Dira Creative-feed">{(projectTips ? [
           { title: "Start with the outcome", body: "Describe what should be easier or possible when the project is finished." },
           { title: "Keep the first version focused", body: "Prioritise the essential customer action before adding optional features." },
           { title: "Agree scope before delivery", body: "Review requirements and the requested date together before treating a timeline as confirmed." }
         ] : []).map((item, index) => <article key={item.title}><span>TIP / 0{index + 1}</span><strong>{item.title}</strong><p>{item.body}</p></article>)}</div></section>
-        <section className="sd-account-extra"><span className="sd-kicker">04 / ACCOUNT PREFERENCES</span><h2>Choose what you see.</h2><p>Control the planning tips and studio announcements shown in this account view. These settings do not send emails or system notifications.</p><label className="sd-preference-toggle"><input type="checkbox" checked={projectTips} onChange={event => setProjectTips(event.target.checked)} /><span><strong>Project planning tips</strong><small>Show short guidance for preparing and discussing your project.</small></span></label><label className="sd-preference-toggle"><input type="checkbox" checked={studioNotes} onChange={event => setStudioNotes(event.target.checked)} /><span><strong>Studio announcements</strong><small>Show the latest announcement or offer published in this demo.</small></span></label><p className="sd-account-note">Preferences are saved in this browser. Real push notifications, email updates and account sync are not configured.</p></section>
+        <section className="sd-account-extra"><span className="sd-kicker">04 / ACCOUNT PREFERENCES</span><h2>Choose what you see.</h2><p>Control the planning tips and Dira Creative announcements shown in this account view. These settings do not send emails or system notifications.</p><label className="sd-preference-toggle"><input type="checkbox" checked={projectTips} onChange={event => setProjectTips(event.target.checked)} /><span><strong>Project planning tips</strong><small>Show short guidance for preparing and discussing your project.</small></span></label><label className="sd-preference-toggle"><input type="checkbox" checked={Dira CreativeNotes} onChange={event => setDira CreativeNotes(event.target.checked)} /><span><strong>Dira Creative announcements</strong><small>Show the latest announcement or offer published in this demo.</small></span></label><p className="sd-account-note">Preferences are saved in this browser. Real push notifications, email updates and account sync are not configured.</p></section>
       </div>
-      <section className="sd-account-extra sd-account-guide"><span className="sd-kicker">05 / NEXT STEPS</span><h2>Keep your project moving.</h2><div className="sd-next-steps"><article><b>01</b><strong>Check your request</strong><p>Review your brief, requested date and current status above.</p></article><article><b>02</b><strong>Message the studio</strong><p>Open the conversation on your request to ask a question or share a reference file while online.</p></article><article><b>03</b><strong>Return for an update</strong><p>Check the same browser for saved messages and any status change in this demo.</p></article></div></section>
+      <section className="sd-account-extra sd-account-guide"><span className="sd-kicker">05 / NEXT STEPS</span><h2>Keep your project moving.</h2><div className="sd-next-steps"><article><b>01</b><strong>Check your request</strong><p>Review your brief, requested date and current status above.</p></article><article><b>02</b><strong>Message the Dira Creative</strong><p>Open the conversation on your request to ask a question or share a reference file while online.</p></article><article><b>03</b><strong>Return for an update</strong><p>Check the same browser for saved messages and any status change in this demo.</p></article></div></section>
       <p className="sd-local-warning">Offline ready for local browsing and text messages after the app shell is cached. Requests, messages and status updates remain on this browser only. Attachments need internet and upload to UploadThing; they are not queued for offline upload.</p>
     </div>
   </section>;
