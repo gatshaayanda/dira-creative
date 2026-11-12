@@ -9,27 +9,20 @@ export default function manifest(): MetadataRoute.Manifest {
     start_url: "/",
     scope: "/",
     display: "standalone",
-    background_color: "#f6f5f0",
+    background_color: "#f4f6fc",
     theme_color: "#0097b2",
     orientation: "portrait-primary",
     lang: "en",
     categories: ["business", "productivity"],
     prefer_related_applications: false,
-    icons: [
-      { src: "/dira-icon.svg", sizes: "192x192", type: "image/png", purpose: "any" },
-      { src: "/dira-icon.svg", sizes: "512x512", type: "image/png", purpose: "any" },
-      { src: "/dira-icon.svg", sizes: "180x180", type: "image/png", purpose: "any" },
-      { src: "/dira-icon.svg", sizes: "192x192", type: "image/svg+xml", purpose: "any" },
-      
-      { src: "/dira-icon.svg", sizes: "any", type: "image/svg+xml", purpose: "any" }
-    ],
+    icons: [{ src: "/dira-icon.svg", sizes: "any", type: "image/svg+xml", purpose: "any" }],
     shortcuts: [
       {
         name: "Explore Dira services",
         short_name: "Services",
         description: "Browse brand and business development services",
         url: "/",
-        icons: [{ src: "/dira-icon.svg", sizes: "192x192", type: "image/png" }]
+        icons: [{ src: "/dira-icon.svg", sizes: "any", type: "image/svg+xml" }]
       },
       {
         name: "My account",
