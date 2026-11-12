@@ -2,6 +2,7 @@ import {NextResponse} from "next/server";
 import {cert,getApps,initializeApp} from "firebase-admin/app";
 import {getAuth} from "firebase-admin/auth";
 import {getFirestore} from "firebase-admin/firestore";
+import {getMessaging} from "firebase-admin/messaging";
 
 export const runtime="nodejs";
 
@@ -37,6 +38,16 @@ export async function POST(request:Request){
       return {status:200 as const,approvedAt:now,alreadyApproved:false};
     });
     if(result.status!==200)return NextResponse.json({error:result.error},{status:result.status});
+    if(!result.alreadyApproved){
+      const enquiry=(await db.collection("clientEnquiries").doc(body.enquiryId).get()).data()??{};
+      const admins=await db.collection("admins").get(),messaging=getMessaging(app),baseUrl=process.env.NEXT_PUBLIC_BASE_URL||"";
+      for(const admin of admins.docs){
+        if(!["owner","staff"].includes(String(admin.data()?.role||"").toLowerCase()))continue;
+        const pref=(await db.collection("notificationPreferences").doc(admin.id).get()).data();if(!pref?.enabled)continue;
+        const tokens=await db.collection("notificationTokens").doc(admin.id).collection("tokens").get();
+        for(const token of tokens.docs){const value=String(token.data().token??"");if(!value)continue;try{await messaging.send({token:value,notification:{title:"Dira Creative quote approved",body:String(enquiry.customerName??"Client")+" approved "+String(enquiry.serviceName??"a project quote")},data:{link:"/admin",enquiryId:body.enquiryId},webpush:{...(baseUrl?{fcmOptions:{link:baseUrl+"/admin"}}:{}),notification:{tag:"dira-quote-approved-"+body.enquiryId,icon:"/dira-icon.svg",badge:"/dira-icon.svg"}}})}catch{}}
+      }
+    }
     return NextResponse.json({approved:true,approvedAt:result.approvedAt,alreadyApproved:result.alreadyApproved});
   }catch(error){
     console.error("[Dira Creative] quote approval failed:",error);
