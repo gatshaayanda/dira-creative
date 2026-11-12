@@ -3057,3 +3057,7 @@ h1 em,
 
 .serviceDemo .sd-brand>.diraBrand{display:inline-flex;align-items:center;gap:10px}
 .serviceDemo .sd-brand>.diraBrand .diraBrandWords{display:grid;gap:3px}
+
+.serviceDemo .sd-approach-grid article{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.serviceDemo .sd-approach-grid article a{display:inline-flex;align-items:center;justify-content:center;min-height:36px;margin-top:auto;padding:7px 10px;border:1px solid #b8d6dd;border-radius:7px;color:#006f83;font-size:.74rem;font-weight:850}
+.serviceDemo .sd-approach-grid article a:hover{background:#eaf7f9;border-color:#0097b2}
