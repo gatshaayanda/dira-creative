@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {useState} from "react";
+import {useEffect,useState} from "react";
 import {signInAnonymously} from "firebase/auth";
 import {addDoc,collection} from "firebase/firestore";
 import {auth,db,hasFirebaseWebConfig} from "@/lib/firebase/client";
@@ -27,6 +27,7 @@ export default function RequestForm(){
  const[progress,setProgress]=useState(0);
  const[notice,setNotice]=useState("");
  const[enquiryId,setEnquiryId]=useState("");
+ useEffect(()=>{const params=new URLSearchParams(window.location.search);setServiceName(params.get("service")||"");setPackageName(params.get("package")||"");},[]);
 
  async function submit(event:React.FormEvent<HTMLFormElement>){
   event.preventDefault();
