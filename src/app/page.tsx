@@ -51,7 +51,7 @@ const guideServices = catalogue.map((item) => ({
 
 function requestHref(item: (typeof catalogue)[number]) {
   const key = item.kind === "package" ? "package" : "service";
-  return `/request?${key}=${encodeURIComponent(item.name)}`;
+  return `/account?${key}=${encodeURIComponent(item.id)}#project-builder`;
 }
 
 export default function Home() {
@@ -103,7 +103,7 @@ export default function Home() {
             <a href="#packages">Packages</a>
             <a href="#services">Services</a>
             <Link href="/account">Client account</Link>
-            <Link href="/request" className="diraHomeNavCta">Start a project <span aria-hidden="true">↗</span></Link>
+            <Link href="/account?new=1#project-builder" className="diraHomeNavCta">Start a project <span aria-hidden="true">↗</span></Link>
           </nav>
         </div>
       </header>
