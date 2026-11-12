@@ -72,10 +72,10 @@ export default function Home() {
     });
   }, [filter, search]);
 
-  const packageItems = packages.map((path) => {
+  const packageItems = packages.flatMap((path) => {
     const item = catalogue.find((entry) => entry.id === path.id);
-    return item ? { ...path, item } : null;
-  }).filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
+    return item ? [{ ...path, item }] : [];
+  });
 
   return (
     <main className="diraHome">
