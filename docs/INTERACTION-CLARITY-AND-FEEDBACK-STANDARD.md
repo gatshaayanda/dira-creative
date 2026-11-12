@@ -29,6 +29,15 @@ Design for recognition rather than recall. Make the next useful action visible a
 - Preserve visible focus, logical keyboard order, semantic headings/labels, accessible names, reduced-motion preferences and screen-reader status announcements.
 - Check layouts at narrow mobile widths first, then larger mobile/tablet and desktop. Desktop hover must not be required to discover mobile actions.
 
+## 3A. Text readability is non-negotiable
+
+- Normal customer-facing text and control labels must be at least 14 CSS px. Supporting metadata may be 12 CSS px only when genuinely secondary; essential prices, instructions, dates, statuses and actions must never be tiny metadata.
+- Full service/product descriptions must remain visible in customer cards. Do not apply CSS line clamping, fixed-height clipping, ellipsis or overflow hiding to essential catalogue content. Let cards expand naturally.
+- The customer catalogue must show the complete price (or an honest "From" / "Price on request" label) before the customer opens a request form.
+- Use WCAG 2.2 AA contrast: 4.5:1 for normal text, 3:1 for qualifying large text, and 3:1 for meaningful non-text controls. Verify real colour pairs, including placeholders, focus, selected, disabled, error, success and hover states.
+- Brand colour customisation must preserve readable foreground/surface contrast. Never allow a customer-selected accent to make body copy, prices, navigation or button labels disappear.
+- Do not solve crowding by shrinking type or clipping copy. Remove redundant content, reduce decoration, reorganise layout or allow vertical scrolling.
+
 ## 4. Feedback is part of the operation
 
 Every meaningful action needs an observable, truthful response.
