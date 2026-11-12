@@ -444,19 +444,30 @@ export default function Home() {
                 <button type="button" className="sd-hero-secondary" onClick={openRequestForm}>Start a request <span aria-hidden="true">↗</span></button>
               </div>
             </div>
-            <div className="sd-store-visual" aria-hidden="true">
-              <div className="sd-device-card">
-                <div className="sd-device-top"><strong>DIRA CREATIVE</strong><span>BUSINESS OS</span></div>
-                <div className="sd-device-main"><span className="sd-device-mark">💼</span><strong>Design.<br/>Structure.<br/>Strategy.</strong><small>Brand · Presence · Growth</small></div>
-                <div className="sd-device-bottom"><span>STORE <b>↗</b></span><span>BRIEFCASE <b>✓</b></span></div>
+            <div className="sd-store-visual" aria-label="Dira Creative brand and business development">
+              <div className="sd-hero-art">
+                <div className="sd-hero-art-top"><span>ROYALTY HOLDINGS</span><span>01 — 05</span></div>
+                <div className="sd-hero-art-main"><span className="sd-hero-art-kicker">IDEAS INTO OPERATING BUSINESSES</span><strong>MAKE<br/><em>IT</em> CLEAR.</strong><span className="sd-hero-art-line"/></div>
+                <div className="sd-hero-art-bottom"><span>IDENTITY</span><span>PRESENCE</span><span>OPERATIONS</span><span>GROWTH</span></div>
+                <span className="sd-hero-art-orbit" aria-hidden="true">D</span>
               </div>
             </div>
           </div>
           <div className="sd-store-proof" aria-label="Dira Creative principles">
-            <span><b>Design</b><small>Distinctive identity</small></span>
-            <span><b>Structure</b><small>Practical operations</small></span>
-            <span><b>Strategy</b><small>Sustainable growth</small></span>
+            <span><b>Clarity</b><small>Know what matters</small></span>
+            <span><b>Excellence</b><small>Work with intention</small></span>
+            <span><b>Functionality</b><small>Built to work</small></span>
           </div>
+          <section className="sd-starting-points" aria-labelledby="sd-starting-title">
+            <div className="sd-starting-heading"><span className="sd-kicker">A GOOD PLACE TO START</span><h2 id="sd-starting-title">Where is your business now?</h2><p>Choose the level that feels closest. We can shape the right scope together.</p></div>
+            <div className="sd-starting-grid">
+              {[
+                {id:"package-novice",label:"I’m getting started",detail:"Build a clear, credible foundation.",price:"P2,100–P3,200"},
+                {id:"package-elevate",label:"I’m ready to grow",detail:"Bring your brand and business into alignment.",price:"P3,400–P5,200"},
+                {id:"package-elite",label:"I’m established",detail:"Create a complete, connected brand system.",price:"P9,500–P12,500"}
+              ].map(item=>{const service=packageFor(item.id);return <article key={item.id}><span>{item.label}</span><p>{item.detail}</p><strong>{item.price}</strong><button type="button" disabled={!service} onClick={()=>service&&beginOrder(service)}>Explore this package <span>↗</span></button></article>;})}
+            </div>
+          </section>
           
         </div>
       </section>
