@@ -19,6 +19,7 @@ export const DIRA_ENQUIRY_STATUSES = [
 export type DiraEnquiryStatus = typeof DIRA_ENQUIRY_STATUSES[number];
 
 export type DiraAttachment = {url:string;name:string;type:string;size:number};
+export type DiraSelectedItem = {id:string;name:string;kind:"service"|"package";price:number;priceLabel:string};
 export type DiraEnquiry = {
   id:string;
   customerId:string;
@@ -27,6 +28,7 @@ export type DiraEnquiry = {
   phone:string;
   serviceName:string;
   packageName:string;
+  selectedItems?:DiraSelectedItem[];
   scope:string;
   budget:string;
   preferredTimeline:string;
