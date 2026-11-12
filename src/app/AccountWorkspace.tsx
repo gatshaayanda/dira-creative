@@ -43,7 +43,7 @@ export default function AccountWorkspace({ businessName, orders, discountClaims,
   const [savedJournal, setSavedJournal] = useState("");
   const [extrasReady, setExtrasReady] = useState(false);
   const [projectTips, setProjectTips] = useState(true);
-  const [studioNotes, setstudioNotes] = useState(true);
+  const [studioNotes, setStudioNotes] = useState(true);
   const [openThread, setOpenThread] = useState<string | null>(null);
   useEffect(() => {
     try {
@@ -55,7 +55,7 @@ export default function AccountWorkspace({ businessName, orders, discountClaims,
         setJournal(typeof parsed.savedJournal === "string" ? parsed.savedJournal.slice(0, 500) : "");
         setSavedJournal(typeof parsed.savedJournal === "string" ? parsed.savedJournal.slice(0, 500) : "");
         setProjectTips(parsed.projectTips !== false);
-        setstudioNotes(parsed.studioNotes !== false);
+        setStudioNotes(parsed.studioNotes !== false);
       }
     } catch { /* Account extras are optional when browser storage is blocked. */ }
     setExtrasReady(true);
@@ -169,7 +169,7 @@ export default function AccountWorkspace({ businessName, orders, discountClaims,
           { title: "Keep the first version focused", body: "Prioritise the essential customer action before adding optional features." },
           { title: "Agree scope before delivery", body: "Review requirements and the requested date together before treating a timeline as confirmed." }
         ] : []).map((item, index) => <article key={item.title}><span>TIP / 0{index + 1}</span><strong>{item.title}</strong><p>{item.body}</p></article>)}</div></section>
-        <section className="sd-account-extra"><span className="sd-kicker">04 / ACCOUNT PREFERENCES</span><h2>Choose what you see.</h2><p>Control the planning tips and Dira Creative announcements shown in this account view. These settings do not send emails or system notifications.</p><label className="sd-preference-toggle"><input type="checkbox" checked={projectTips} onChange={event => setProjectTips(event.target.checked)} /><span><strong>Project planning tips</strong><small>Show short guidance for preparing and discussing your project.</small></span></label><label className="sd-preference-toggle"><input type="checkbox" checked={studioNotes} onChange={event => setstudioNotes(event.target.checked)} /><span><strong>Dira Creative announcements</strong><small>Show the latest announcement or offer published in this demo.</small></span></label><p className="sd-account-note">Preferences are saved in this browser. Real push notifications, email updates and account sync are not configured.</p></section>
+        <section className="sd-account-extra"><span className="sd-kicker">04 / ACCOUNT PREFERENCES</span><h2>Choose what you see.</h2><p>Control the planning tips and Dira Creative announcements shown in this account view. These settings do not send emails or system notifications.</p><label className="sd-preference-toggle"><input type="checkbox" checked={projectTips} onChange={event => setProjectTips(event.target.checked)} /><span><strong>Project planning tips</strong><small>Show short guidance for preparing and discussing your project.</small></span></label><label className="sd-preference-toggle"><input type="checkbox" checked={studioNotes} onChange={event => setStudioNotes(event.target.checked)} /><span><strong>Dira Creative announcements</strong><small>Show the latest announcement or offer published in this demo.</small></span></label><p className="sd-account-note">Preferences are saved in this browser. Real push notifications, email updates and account sync are not configured.</p></section>
       </div>
       <section className="sd-account-extra sd-account-guide"><span className="sd-kicker">05 / NEXT STEPS</span><h2>Keep your project moving.</h2><div className="sd-next-steps"><article><b>01</b><strong>Check your request</strong><p>Review your brief, requested date and current status above.</p></article><article><b>02</b><strong>Message the Dira Creative</strong><p>Open the conversation on your request to ask a question or share a reference file while online.</p></article><article><b>03</b><strong>Return for an update</strong><p>Check the same browser for saved messages and any status change in this demo.</p></article></div></section>
       <p className="sd-local-warning">Offline ready for local browsing and text messages after the app shell is cached. Requests, messages and status updates remain on this browser only. Attachments need internet and upload to UploadThing; they are not queued for offline upload.</p>
