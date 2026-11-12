@@ -8,6 +8,7 @@ import NotificationSettings from "@/components/NotificationSettings";
 import CustomerConversations from "@/components/CustomerConversations";
 import ClientProjectTasks from "@/components/ClientProjectTasks";
 import DiraProjectBuilder from "@/components/DiraProjectBuilder";
+import DiraMeetingRequest from "@/components/DiraMeetingRequest";
 import {getCustomerProfile,isAdminUser,saveCustomerProfile,type CustomerProfile} from "@/lib/firebase/data";
 import {subscribeToCustomerDiraEnquiries,type DiraEnquiry} from "@/lib/firebase/dira-data";
 
@@ -153,6 +154,7 @@ export default function AccountPage(){
    {user&&profile&&<nav className="accountQuicklinks" aria-label="Your account shortcuts"><a href="#enquiries"><span>01</span><strong>My enquiries</strong><small>{requests.length?`${requests.length} saved ${requests.length===1?"enquiry":"enquiries"}`:"View your project activity"}</small><b aria-hidden="true">↘</b></a><a href="#conversation-hub"><span>02</span><strong>Messages</strong><small>Talk privately with Dira Creative</small><b aria-hidden="true">↗</b></a><a href="#account-setup"><span>03</span><strong>Account & updates</strong><small>Manage notifications and sign-in</small><b aria-hidden="true">↗</b></a><a href="#profile"><span>04</span><strong>Your details</strong><small>Keep your contact details current</small><b aria-hidden="true">↗</b></a></nav>}
    {(!user||user.isAnonymous)&&<section id="connect" className="accountConnect accountConnectPrimary"><div><strong>{user?.isAnonymous?"Keep your history and set up your circle.":"Already have a Dira Creative client account?"}</strong><p>{user?.isAnonymous?"Connecting Google is optional, but helps preserve this session’s request history and private conversations across devices.":"Continue with Google to reopen an existing account and its saved history. New to Dira Creative? Start a request first; your private session is created only when you submit."}</p>{!hasFirebaseWebConfig&&<p className="notice" role="status">Dira Creative cannot connect or save requests in this deployment yet. Try again later; nothing has been sent.</p>}</div><div className="actions"><button className="googleSignInButton" type="button" onClick={()=>void google()} disabled={busy||!authReady||!hasFirebaseWebConfig}><span>{!authReady?"Restoring your session…":busy?"Connecting…":user?.isAnonymous?"Connect Google":"Continue with Google"}</span></button><Link className="button buttonLight" href="/account?new=1#project-builder">Start a request</Link></div></section>}
    {user&&profile&&showProjectBuilder&&<DiraProjectBuilder user={user} profile={profile} onSaved={(id)=>{setSubmitted(true);window.location.assign("/account?submitted=1&enquiry="+encodeURIComponent(id));}}/>}
+   {user&&profile&&requests.some(x=>["New Enquiry","Reviewing","Quote Ready","Awaiting Approval"].includes(x.status))&&<DiraMeetingRequest user={user} name={profile.name} email={profile.email}/>}
 
 
 
