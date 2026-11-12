@@ -6,6 +6,7 @@ import ServiceMediaPicker from "@/app/ServiceMediaPicker";
 import AnnouncementImagePicker from "@/app/AnnouncementImagePicker";
 import AccountWorkspace, { type AccountMessage } from "@/app/AccountWorkspace";
 import ReceiptDocument from "@/app/ReceiptDocument";
+import DiraBrand from "@/components/DiraBrand";
 import { hasFirebaseWebConfig } from "@/lib/firebase/client";
 import { subscribeToPublishedDiraServices } from "@/lib/firebase/dira-services";
 import { DEFAULT_DIRA_CATALOGUE } from "@/lib/dira-catalogue";
@@ -69,6 +70,8 @@ export default function Home() {
   const [adminUnlocked, setAdminUnlocked] = useState(false);
   const [adminPassphrase, setAdminPassphrase] = useState("");
   const [selected, setSelected] = useState<string | null>(null);
+  const [catalogueView, setCatalogueView] = useState<"featured" | "all" | "identity" | "packages">("featured");
+  const [catalogueSearch, setCatalogueSearch] = useState("");
   const [orderFormOpen, setOrderFormOpen] = useState(false);
   const [customerName, setCustomerName] = useState("");
   const [email, setEmail] = useState("");
@@ -264,6 +267,8 @@ export default function Home() {
   const completedValue = data.orders.filter(order => order.status === "Completed").reduce((sum, order) => sum + order.price, 0);
   const customerRecords = Array.from(new Map(data.orders.map(order => [order.email.toLowerCase(), { name: order.customerName, email: order.email, jobs: data.orders.filter(item => item.email.toLowerCase() === order.email.toLowerCase()) }] as const)).values());
   const selectedService = servicesForDisplay.find(service => service.id === selected && service.active);
+  const catalogueMatches = activeServices.filter(service => { const query = catalogueSearch.trim().toLowerCase(); const matchesQuery = !query || [service.name, service.description, service.category || ""].some(value => value.toLowerCase().includes(query)); const matchesView = catalogueView === "all" || (catalogueView === "identity" && service.category === "Brand Identity & Visual Systems") || (catalogueView === "packages" && service.kind === "package") || (catalogueView === "featured" && service.featured); return matchesQuery && matchesView; });
+  const packageFor = (id: string) => activeServices.find(service => service.id === id);
   const statusCounts = useMemo(() => data.orders.reduce<Record<string, number>>((acc, order) => { acc[order.status] = (acc[order.status] || 0) + 1; return acc; }, {}), [data.orders]);
 
   function beginOrder(service: Service) {
@@ -417,7 +422,7 @@ export default function Home() {
 
   return <main className="serviceDemo" style={{ "--studio-accent": themeColor, "--studio-accent-ink": accentInk(themeColor), "--studio-accent-text": accentText(themeColor) } as React.CSSProperties}>
     <div className="sd-topline"><div className="sd-wrap"><span>DIRA CREATIVE <i className="sd-topline-divider">/</i> BRAND &amp; BUSINESS DEVELOPMENT</span><span className={online ? "sd-connect" : "sd-connect is-offline"}><i />{!online ? (hasFirebaseWebConfig ? "Offline · cached workspace" : "Offline · local preview") : remoteServices !== null ? "Live service catalogue" : hasFirebaseWebConfig ? "Connecting to services…" : "Preview only"}</span></div></div>
-    <header className="sd-header"><div className="sd-wrap sd-nav"><button className="sd-brand" onClick={() => { setView("shop"); setNotice(""); window.scrollTo({top:0,behavior:"smooth"}); }} aria-label="Back to services"><span className="sd-logo">{(businessName.trim() || "DC").slice(0,2).toUpperCase()}</span><span><strong>{businessName || "Dira Creative"}</strong><small>STORE</small></span></button><nav aria-label="Main navigation"><button onClick={() => { setView("shop"); setNotice(""); }}>Store</button><button onClick={() => { if (hasFirebaseWebConfig) window.location.assign("/account"); else { setView("account"); setNotice(""); } }}>Account <span className="sd-count">{data.orders.length}</span></button></nav></div></header>
+    <header className="sd-header"><div className="sd-wrap sd-nav"><button className="sd-brand" onClick={() => { setView("shop"); setNotice(""); window.scrollTo({top:0,behavior:"smooth"}); }} aria-label="Back to services"><DiraBrand name={businessName || "Dira Creative"} subtitle="BRAND & BUSINESS DEVELOPMENT"/></button><nav aria-label="Main navigation"><button onClick={() => { setView("shop"); setNotice(""); }}>Store</button><button onClick={() => { if (hasFirebaseWebConfig) window.location.assign("/account"); else { setView("account"); setNotice(""); } }}>Account <span className="sd-count">{data.orders.length}</span></button></nav></div></header>
     {(view === "shop" || view === "account" || view === "login") && <nav className="sd-mobile-nav" aria-label="Quick navigation">
       <button type="button" className={view === "shop" ? "is-active" : ""} onClick={() => { setView("shop"); setNotice(""); window.scrollTo({ top: 0, behavior: "smooth" }); }}><span aria-hidden="true">⌂</span>Store</button>
       <button type="button" onClick={() => { setView("shop"); document.getElementById("services")?.scrollIntoView({ behavior: "smooth", block: "start" }); }}><span aria-hidden="true">▦</span>Services</button>
