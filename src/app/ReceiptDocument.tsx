@@ -27,6 +27,7 @@ export type ReceiptOrder = {
   paymentStatus?: "Unpaid" | "Partially paid (demo)" | "Paid (demo)";
   paidAmount?: number;
   paidAt?: string;
+  priceIsStarting?: boolean;
 };
 
 type Props = {
@@ -50,11 +51,11 @@ const dateLabel = (value?: string) => {
 
 export default function ReceiptDocument({ businessName, accentColor, receiptProfile, order }: Props) {
   const total = Math.max(0, Number(order.price) || 0);
-  const paid = Math.min(total, Math.max(0, Number(order.paidAmount) || 0));
-  const balance = Math.max(0, total - paid);
+  const paid = order.priceIsStarting ? 0 : Math.min(total, Math.max(0, Number(order.paidAmount) || 0));
+  const balance = order.priceIsStarting ? 0 : Math.max(0, total - paid);
   const paymentState = paid <= 0 ? "No payment recorded" : balance > 0 ? "Partially paid" : "Paid in full";
   const receiptNumber = order.receiptNo || "REQ-" + order.id;
-  const brand = businessName.trim() || receiptProfile?.legalName?.trim() || "Your Business";
+  const brand = businessName.trim() || receiptProfile?.legalName?.trim() || "Dira Creative";
   const registeredName = receiptProfile?.legalName?.trim();
   const showRegisteredName = Boolean(registeredName && registeredName.toLowerCase() !== "your business" && registeredName.toLowerCase() !== brand.toLowerCase());
   const printReceipt = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -89,10 +90,10 @@ export default function ReceiptDocument({ businessName, accentColor, receiptProf
       </div>
       <div className="sd-receipt-line"><span>{order.serviceName}</span><strong>{money(order.originalPrice ?? total)}</strong></div>
       {order.discountAmount ? <div className="sd-receipt-line is-discount"><span>Discount {order.discountCode ? "(" + order.discountCode + ")" : ""}</span><strong>−{money(order.discountAmount)}</strong></div> : null}
-      <div className="sd-receipt-line is-total"><span>Agreed demo total</span><strong>{money(total)}</strong></div>
+      <div className="sd-receipt-line is-total"><span>{order.priceIsStarting ? "Starting price · not a quote" : "Agreed demo total"}</span><strong>{order.priceIsStarting ? "From " : ""}{money(total)}</strong></div>
       <div className="sd-receipt-payment">
         <div><span>Payment recorded</span><strong>{money(paid)}</strong></div>
-        <div><span>Balance outstanding</span><strong>{money(balance)}</strong></div>
+        <div><span>Balance outstanding</span><strong>{order.priceIsStarting ? "After quote approval" : money(balance)}</strong></div>
         <div><span>Payment status</span><strong>{paymentState}</strong></div>
         <div><span>Last payment recorded</span><strong>{dateLabel(order.paidAt)}</strong></div>
       </div>
