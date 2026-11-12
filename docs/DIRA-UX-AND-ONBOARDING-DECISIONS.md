@@ -32,6 +32,7 @@ Show the most useful starting choices first, while keeping the complete catalogu
 - **Reduce choice overload without removing choice.** Lead with three audience-level package paths and a small recommended service set. Keep every other service reachable through search and category filters. Do not create a flat wall of equally weighted options.
 - **Recognition before recall.** Use plain-language audience labels ("I'm getting started", "I'm ready to grow", "I'm established") alongside agency service names.
 - **Progressive disclosure.** Ask for the essential information first. Keep budget, timing and working preference optional and collapsed until requested. Never hide required scope or contact details.
+- **Build one project basket.** Customers can add or remove multiple catalogue items in one project enquiry. Retain each item’s published price and review combined scope before issuing a final quote.
 - **Set expectations early.** Explain that an enquiry is reviewed, scoped and quoted before work or payment is confirmed. A preferred date is not a confirmed delivery date.
 - **Use a short, visible process.** Share brief → scope/proposal → approval/begin so customers understand what happens after they submit.
 - **Keep the user in control.** The service guide is optional, can be dismissed, and never blocks browsing or form completion.
@@ -63,6 +64,12 @@ Show the most useful starting choices first, while keeping the complete catalogu
 ## Research references
 
 - Baymard Institute, UX Best Practices for Consumables Subscription Services Websites (2022): preference quizzes can create friction when instructions, progress, save state and single/multiple selection rules are unclear; users need core service information and pricing to be easy to find. https://baymard.com/research-articles/new-research-consumables-subscription-services
+- Nielsen Norman Group, Progressive Disclosure (2006): https://www.nngroup.com/articles/progressive-disclosure/
+- Nielsen Norman Group, 4 Principles to Reduce Cognitive Load in Forms (2025): https://www.nngroup.com/articles/4-principles-reduce-cognitive-load/
+- Baymard Institute, Cart & Checkout Usability Research: https://baymard.com/research/checkout-usability
+- Firebase, Anonymous Authentication for JavaScript: https://firebase.google.com/docs/auth/web/anonymous-auth
+- Firebase, Authentication State Persistence: https://firebase.google.com/docs/auth/web/auth-state-persistence
+- USENIX Security, Best Practices for Web Push Notification Permission Requests: https://www.usenix.org/system/files/sec21_slides_bilogrevic.pdf
 - Nielsen Norman Group, Helping Users Make Decisions: research-backed frameworks for reducing choice overload and supporting decisions. https://www.nngroup.com/reports/make-decisions/
 - Netherlands Authority for the Financial Markets, Understanding, Guiding and Measuring Consumer Behaviour (2021): choice overload increases cognitive burden; presenting fewer choices first with the rest available on request can reduce stress. https://www.afm.nl/~/profmedia/files/publicaties/2021/report-consumer-behaviour-understanding-guiding-measuring.pdf
 - Behavioural Insights Team, Active Online Choices: recognise limited time and mental capacity, simplify information, minimise navigation friction, disclose information at the right moment and personalise relevant content. https://www.bi.team/wp-content/uploads/2021/08/CDEI-Active-Online-Choices_Final-Report-1.pdf
