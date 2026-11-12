@@ -316,11 +316,11 @@ export default function PwaRegister({ initialEmbedded = false, initialAndroid = 
     <div style={embeddedInstallStyle} role="alertdialog" aria-modal="true" aria-labelledby="plug-embedded-title" aria-describedby="plug-embedded-message">
       <div className="pwaInstallInfo" style={{...installShellStyle, position: "relative", left: "auto", right: "auto", bottom: "auto", width: "100%", maxWidth: 520, margin: 0}}>
         <div>
-          <strong id="plug-embedded-title"><span aria-hidden="true">🌐 </span>OPEN ITERATION 13 IN YOUR BROWSER</strong>
-          <span id="plug-embedded-message">{embeddedAndroid ? <>Open Iteration 13 in Chrome to continue. Chrome will offer its own installation action when the app is eligible.</> : <>Iteration 13 opened inside another app. Open this page in your browser to continue.</>}</span>
+          <strong id="plug-embedded-title"><span aria-hidden="true">🌐 </span>OPEN DIRA CREATIVE IN YOUR BROWSER</strong>
+          <span id="plug-embedded-message">{embeddedAndroid ? <>Open Dira Creative in Chrome to continue. Chrome will offer its own installation action when the app is eligible.</> : <>Dira Creative opened inside another app. Open this page in your browser to continue.</>}</span>
         </div>
         <div className="pwaInstallActions" style={{display:"flex",justifyContent:"flex-end"}}>
-          <button ref={embeddedActionRef} type="button" style={{background:"#0866FF",color:"#fff"}} onClick={openBrowser}>{embeddedAndroid ? "OPEN IN CHROME" : "OPEN IN BROWSER"}</button>
+          <button ref={embeddedActionRef} type="button" style={{background:"#007b91",color:"#fff"}} onClick={openBrowser}>{embeddedAndroid ? "OPEN IN CHROME" : "OPEN IN BROWSER"}</button>
         </div>
       </div>
     </div>
@@ -330,10 +330,10 @@ export default function PwaRegister({ initialEmbedded = false, initialAndroid = 
     {offline && <div className="offlineBanner" role="status" aria-live="polite"><span aria-hidden="true">⚡</span> Offline · The service demo saves orders and admin edits locally on this device. Firebase-backed routes need a connection.</div>}
     {!offline && reconnecting && <div className="offlineBanner reconnectingBanner" role="status" aria-live="polite"><span aria-hidden="true">↻</span> Reconnected · Iteration 13 can reach the network again. Local demo data remains on this device.</div>}
     {!environment().standalone && installState !== "embedded" && (canInstall || canShowManualInstall) && !installCardDismissed && !(installState === "native" && installHelpOpen) && (
-      <aside className="i13-install-card" aria-label="Install Iteration 13">
+      <aside className="i13-install-card" aria-label="Install Dira Creative">
         <div className="i13-install-brand">
           <span className="i13-install-mark" aria-hidden="true">13</span>
-          <span><strong>ITERATION 13</strong><small>SERVICE STUDIO</small></span>
+          <span><strong>DIRA CREATIVE</strong><small>BUSINESS OS</small></span>
         </div>
         <button className="i13-install-close" type="button" aria-label="Dismiss install prompt" onClick={() => setInstallCardDismissed(true)}>×</button>
         <button className="i13-install-action" type="button" onClick={() => {
