@@ -2,8 +2,8 @@
 - 
 
 ## Customer journey
-- [ ] Public discovery and service selection checked
-- [ ] Enquiry submission and fallback checked
+- [ ] Public discovery and service selection checked (when affected)
+- [ ] Enquiry submission and fallback checked (when affected)
 - [ ] Customer account and quote actions checked (when affected)
 
 ## Owner workspace
@@ -15,12 +15,17 @@
 - [ ] PWA install lifecycle unchanged and verified (when affected)
 - [ ] Chatbot behavior unchanged and verified (when affected)
 - [ ] No secrets, credentials, or real customer data added
-- [ ] `npm run verify:identity`
-- [ ] `npm run verify:offline`
-- [ ] `npm run lint`
-- [ ] `npm run build`
+- [ ] `npm run verify:identity` — result recorded below (or N/A with reason)
+- [ ] `npm run verify:offline` — result recorded below (or N/A with reason)
+- [ ] `npm run lint` — result recorded below (or N/A with reason)
+- [ ] `npm run build` — result recorded below (or N/A with reason)
 
 ## Evidence and limitations
 - Screens/states reviewed:
 - Checks run and results:
 - Outstanding configuration or known limitations:
+
+## Delivery status
+- GitHub branch/commit:
+- CI status:
+- Deployment status (not implied by a push):
