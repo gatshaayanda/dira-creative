@@ -44,8 +44,9 @@ The supplied service catalogue and brand-package descriptions/prices are recorde
 The first adaptation pass has:
 - Replaced the public application identity, PWA metadata, app icon, page copy and visual palette with Dira Creative.
 - Added the complete supplied priced brand-identity service tiers and the Novice, Elevate and Elite package cards.
-- Added the five development stages and direct email/phone contact.
-- Removed the unrelated racing promotion from the public customer journey.
+- Added the five development stages, custom Ultimate package enquiry and direct email/phone contact.
+- Added owner-issued customer discounts, quote sending, customer quote approval/decline, project task checklists and a requested-date calendar.
+- Removed the unrelated racing promotion and capacity claims from the Dira customer journey.
 - Preserved the existing customer request/account, owner workspace CRUD, receipt rendering, UploadThing client attachment workflow, guided chatbot, service worker and install lifecycle.
 - Isolated the browser-local data keys and service-worker cache names for Dira Creative.
 
@@ -75,4 +76,4 @@ npm run build
 Do not rewrite the PWA install lifecycle or chatbot interaction architecture as part of brand adaptation. Preserve the captured native install prompt, click-to-prompt behavior, branded dismissible install card, iOS Safari guidance, embedded-browser handoff, service-worker update lifecycle, offline shell and upload feedback. See [AGENTS.md](./AGENTS.md) and docs/PWA-INSTALLATION-LOCK.md for the project-specific protections.
 
 ## Checkpoint
-The brand/catalogue adaptation is in progress. Production database/auth, shared customer records, quote approval, full project/task delivery workflows, production financial records, real messaging and production payment integrations remain to be completed and verified before launch.
+The brand/catalogue and local workflow adaptation is in progress. Quote approval, project tasks and requested-date calendar are browser-local demonstrations. Production database/auth, shared customer records, server-side task/deliverable workflows, verified financial records, live messaging and payment integrations remain to be connected and verified before launch.
