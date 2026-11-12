@@ -38,11 +38,11 @@ if (!fs.existsSync(path.join(root, "public/dira-icon.svg"))) failures.push("Dira
 
 const layout = fs.readFileSync(path.join(root, "src/app/layout.tsx"), "utf8");
 const pwaRegister = fs.readFileSync(path.join(root, "src/app/pwa-register.tsx"), "utf8");
-for (const expected of ["Iteration 13 | Service Studio", "applicationName:\"Iteration 13\""]) if (!layout.includes(expected)) failures.push("layout: missing " + expected);
+for (const expected of ["Dira Creative | Business OS", "applicationName:\"Dira Creative\""]) if (!layout.includes(expected)) failures.push("layout: missing " + expected);
 // Validate Apple install metadata semantically; whitespace and additional metadata fields are harmless.
-if (!/appleWebApp\s*:\s*\{[^}]*\bcapable\s*:\s*true\b[^}]*\btitle\s*:\s*["']Iteration 13["']/s.test(layout)) failures.push('layout: missing appleWebApp capable=true and title="Iteration 13"');
+if (!/appleWebApp\s*:\s*\{[^}]*\bcapable\s*:\s*true\b[^}]*\btitle\s*:\s*["']Dira Creative["']/s.test(layout)) failures.push('layout: missing appleWebApp capable=true and title="Iteration 13"');
 const sw = fs.readFileSync(path.join(root, "public/sw.js"), "utf8");
-if (!/iteration13-shell-v\d+/.test(sw)) failures.push("service worker: missing isolated cache namespace");
+if (!/dira-creative-shell-v\d+/.test(sw)) failures.push("service worker: missing isolated cache namespace");
 if (!sw.includes("/dira-icon.svg")) failures.push("service worker: Dira icon missing from app shell");
 if (!sw.includes("/iphone-install") || !sw.includes("/iphone-install.svg")) failures.push("service worker: iPhone installation guide is not cached for offline use");
 if (!layout.includes("__iteration13InstallPrompt") || !layout.includes("beforeinstallprompt")) failures.push("PWA layout: early native install-prompt capture is missing");
