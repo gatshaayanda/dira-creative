@@ -1,19 +1,12 @@
 import {createHash,timingSafeEqual} from "node:crypto";
-import {cert,getApps,initializeApp} from "firebase-admin/app";
+import {getDiraAdminApp} from "@/lib/firebase/admin";
 import {getAuth} from "firebase-admin/auth";
 import {getFirestore} from "firebase-admin/firestore";
 import {NextResponse} from "next/server";
 
 export const runtime="nodejs";
 
-function getAdminApp(){
- const existing=getApps()[0];if(existing)return existing;
- const raw=process.env.FIREBASE_ADMIN_KEY;
- if(!raw)throw new Error("Missing FIREBASE_ADMIN_KEY environment variable.");
- let serviceAccount:Record<string,unknown>;
- try{serviceAccount=JSON.parse(raw) as Record<string,unknown>}catch{throw new Error("FIREBASE_ADMIN_KEY must contain valid service-account JSON.")}
- return initializeApp({credential:cert(serviceAccount as Parameters<typeof cert>[0])});
-}
+function getAdminApp(){ return getDiraAdminApp(); }
 function matchesWord(input:string,expected:string){
  const a=createHash("sha256").update(input).digest();
  const b=createHash("sha256").update(expected).digest();
