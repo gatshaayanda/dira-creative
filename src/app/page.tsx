@@ -120,14 +120,10 @@ export default function Home() {
             </div>
             <div className="diraHomeHeroNote"><span>01—05</span> One connected approach to brand and business development.</div>
           </div>
-          <div className="diraHomeHeroVisual" aria-label="Five stages of brand and business development">
-            <div className="diraHomeVisualHead"><span>THE DIRA APPROACH</span><strong>From identity to growth</strong></div>
-            {stages.map(([number, title], index) => (
-              <div className={`diraHomeVisualStep step-${index + 1}`} key={number}>
-                <span>{number}</span><strong>{title}</strong><i aria-hidden="true">↗</i>
-              </div>
-            ))}
-            <div className="diraHomeVisualFoot"><span>STRATEGY</span><b>+</b><span>DESIGN</span><b>+</b><span>OPERATIONS</span></div>
+          <div className="diraHomeHeroSignal" aria-label="Dira connects brand, business operations and growth">
+            <span>ONE CONNECTED BUSINESS JOURNEY</span>
+            <strong>Brand <i>→</i> Operations <i>→</i> Growth</strong>
+            <small>Clear identity. Practical systems. Better direction.</small>
           </div>
         </div>
       </section>
@@ -194,14 +190,7 @@ export default function Home() {
           ) : (
             <div className="diraHomeEmpty"><strong>No matching options.</strong><button type="button" onClick={() => { setSearch(""); setFilter("services"); }}>Clear search</button></div>
           )}
-          <div className="diraHomeCatalogueFoot"><span>Need a tailored combination?</span><Link href="/request">Build one project enquiry with multiple services <span aria-hidden="true">→</span></Link></div>
-        </div>
-      </section>
-
-      <section className="diraHomeNext">
-        <div className="diraHomeWrap diraHomeNextInner">
-          <div><span className="diraHomeSectionKicker">YOUR NEXT STEP</span><h2>Let’s build with intention.</h2><p>Tell us what you’re working towards. We’ll review the brief, confirm the scope and prepare a proposal for your approval.</p></div>
-          <Link href="/request" className="diraHomePrimary">Start a project enquiry <span aria-hidden="true">↗</span></Link>
+          <div className="diraHomeCatalogueFoot"><span>Combine services in one brief.</span><Link href="/request">Build your project enquiry <span aria-hidden="true">→</span></Link></div>
         </div>
       </section>
 
