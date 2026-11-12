@@ -1,19 +1,11 @@
 import {NextResponse} from "next/server";
-import {cert,getApps,initializeApp} from "firebase-admin/app";
+import {getDiraAdminApp} from "@/lib/firebase/admin";
 import {getAuth} from "firebase-admin/auth";
 import {getFirestore,type DocumentData} from "firebase-admin/firestore";
 
 export const runtime="nodejs";
 
-function adminApp(){
-  const existing=getApps()[0];if(existing)return existing;
-  const raw=process.env.FIREBASE_ADMIN_KEY;
-  if(!raw)throw new Error("The Dira Creative client-enquiry service is not configured.");
-  let serviceAccount:Record<string,unknown>;
-  try{serviceAccount=JSON.parse(raw) as Record<string,unknown>}
-  catch{throw new Error("The Dira Firebase service credentials are invalid.");}
-  return initializeApp({credential:cert(serviceAccount as Parameters<typeof cert>[0])});
-}
+function adminApp(){ return getDiraAdminApp(); }
 
 function validEnquiry(data:Record<string,unknown>,uid:string){
   const allowed=["customerId","customerName","email","phone","serviceName","packageName","scope","budget","preferredTimeline","attachment","createdAt","updatedAt","status","engagementMode"];
