@@ -10,7 +10,7 @@ function adminApp(){ return getDiraAdminApp(); }
 
 function validEnquiry(data:Record<string,unknown>,uid:string){
   const allowed=["customerId","customerName","email","phone","serviceName","packageName","selectedItems","scope","budget","preferredTimeline","attachment","createdAt","updatedAt","status","engagementMode","configurationType","proposedTotal","excludedInclusions","configurationHistory"];
-  if(Object.keys(data).some(key=>!allowed.includes(key))||!allowed.every(key=>Object.prototype.hasOwnProperty.call(data,key)))return false;
+  const required=["customerId","customerName","email","phone","serviceName","packageName","selectedItems","scope","budget","preferredTimeline","attachment","createdAt","updatedAt","status","engagementMode"];\n  if(Object.keys(data).some(key=>!allowed.includes(key))||!required.every(key=>Object.prototype.hasOwnProperty.call(data,key)))return false;
   if(data.customerId!==uid||typeof data.customerName!=="string"||!data.customerName.trim()||data.customerName.length>120)return false;
   if(typeof data.email!=="string"||data.email.length>254||!/^\S+@\S+\.\S+$/.test(data.email))return false;
   if(typeof data.phone!=="string"||!data.phone.trim()||data.phone.length>60)return false;
