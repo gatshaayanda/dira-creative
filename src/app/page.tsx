@@ -185,7 +185,6 @@ export default function Home() {
     const mediaUrls = [
       ...data.services.map(service => service.media),
       data.announcementImage || "",
-      data.rewardImage || "",
       ...data.orders.flatMap(order => (order.messages || []).map(message => message.attachment?.url || "")),
     ].filter((url): url is string => typeof url === "string" && /^https:\/\//i.test(url));
     const prepareOfflineMedia = () => {
