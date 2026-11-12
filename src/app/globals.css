@@ -2759,3 +2759,64 @@ h1 em,
 .serviceDemo .sd-client-quote .sd-button{min-height:42px;padding:9px 12px;font-size:.84rem}
 .serviceDemo .sd-client-quote-status{margin:10px 0;padding:10px 12px;border-radius:9px;background:#e4f5ed;color:#155c40;font-size:.85rem;font-weight:800}
 @media(max-width:560px){.serviceDemo .sd-quote-editor>div:first-child{align-items:flex-start;flex-direction:column}.serviceDemo .sd-quote-editor>div:nth-child(2){flex-direction:column}.serviceDemo .sd-client-quote>div:first-child{align-items:flex-start;flex-direction:column}}
+
+
+/* Dira authenticated Business OS */
+.serviceDemo .diraAdminPage,.diraAdminPage{min-height:100vh;background:#f4f6fc;color:#222;padding:22px 16px 40px}
+.diraAdminPage .adminShell{width:min(1440px,100%);margin:0 auto;display:grid;gap:16px}
+.diraAdminHeader{display:grid;grid-template-columns:auto minmax(220px,1fr) auto;align-items:center;gap:16px;padding:16px 18px;background:#222;border-radius:14px;color:#fff}
+.diraAdminHeader .logo{display:flex;align-items:center;gap:9px;color:#fff;text-decoration:none;font-size:.8rem;font-weight:900;letter-spacing:.07em}
+.diraAdminHeader .logoMark{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:#0097b2;color:#fff;font-size:1rem}
+.diraAdminHeader .kicker{color:#9ddce6;font-size:.7rem;font-weight:800;letter-spacing:.12em}
+.diraAdminHeader h1{margin:4px 0;color:#fff;font-size:1.5rem;line-height:1.15}
+.diraAdminHeader p{margin:0;color:#e2edf0;font-size:.85rem}
+.diraAdminLinks{display:flex;flex-wrap:wrap;gap:8px}
+.diraAdminLinks a{padding:9px 11px;border:1px solid #647980;border-radius:8px;color:#fff;text-decoration:none;font-size:.8rem;font-weight:800}
+.diraMetrics{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}
+.diraMetrics article,.diraFinanceStrip>div{display:grid;gap:6px;min-width:0;padding:13px 14px;border:1px solid #d7e2e7;border-radius:11px;background:#fff}
+.diraMetrics article span,.diraFinanceStrip small{color:#4a5b62;font-size:.78rem;font-weight:700}
+.diraMetrics article strong{color:#222;font-size:1.55rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.diraFinanceStrip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.diraFinanceStrip strong{color:#005f70;font-size:1.1rem;font-variant-numeric:tabular-nums}
+.diraFinanceStrip p{grid-column:1/-1;margin:0;padding:0 3px;color:#4a5b62;font-size:.78rem;line-height:1.45}
+.diraAdminTabs{display:flex;gap:7px;overflow-x:auto;padding:2px 0}
+.diraAdminTabs button{flex:0 0 auto;min-height:42px;padding:9px 14px;border:1px solid #c8d8de;border-radius:9px;background:#fff;color:#293a40;font-size:.84rem;font-weight:800}
+.diraAdminTabs button[aria-pressed="true"]{border-color:#007b91;background:#007b91;color:#fff}
+.diraWorkspaceGrid{display:grid;grid-template-columns:minmax(300px,.85fr) minmax(0,1.35fr);gap:13px;align-items:start}
+.diraAdminPage .adminPanel{min-width:0;padding:16px;border:1px solid #d7e2e7;border-radius:13px;background:#fff;color:#222;box-shadow:0 4px 16px rgba(34,34,34,.04)}
+.diraAdminPage .panelHeading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.diraAdminPage .panelHeading h2{margin:4px 0;color:#222;font-size:1.15rem}
+.diraAdminPage .panelHeading p{margin:6px 0 0;color:#45565d;font-size:.82rem;line-height:1.45;overflow-wrap:anywhere}
+.diraAdminPage .kicker{color:#007b91;font-size:.68rem;font-weight:900;letter-spacing:.1em}
+.diraQueueTools{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:7px;margin:10px 0}
+.diraQueueTools input,.diraQueueTools select{min-width:0;min-height:42px;padding:9px 10px;border:1px solid #c8d8de;border-radius:8px;background:#fff;color:#222;font-size:.84rem}
+.diraEnquiryRow{display:grid;width:100%;grid-template-columns:18px minmax(0,1fr) auto;align-items:center;gap:9px;padding:11px 8px;border:0;border-top:1px solid #e3ebee;background:#fff;text-align:left;color:#222}
+.diraEnquiryRow.selected{border-radius:8px;background:#edf8fa;box-shadow:inset 3px 0 #0097b2}
+.diraEnquiryRow>span:nth-child(2){display:grid;gap:3px;min-width:0}
+.diraEnquiryRow strong{color:#222;font-size:.86rem;line-height:1.35;overflow-wrap:anywhere}
+.diraEnquiryRow small{color:#4a5b62;font-size:.75rem;line-height:1.35;overflow-wrap:anywhere}
+.diraEnquiryRow>b{color:#005f70;font-size:.8rem;white-space:nowrap}
+.diraEnquiryMarker{color:#0097b2;font-size:1.2rem;font-weight:900}
+.diraStatusPill{flex:0 0 auto;padding:6px 9px;border-radius:99px;background:#e4f5f8;color:#005f70;font-size:.72rem;font-weight:900}
+.diraBriefBlock{display:grid;gap:9px;margin:12px 0;padding:13px;border:1px solid #d7e5e9;border-radius:10px;background:#f6fafb}
+.diraBriefBlock>strong{font-size:.9rem}
+.diraBriefBlock p{margin:0;color:#27383e;font-size:.88rem;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}
+.diraBriefBlock>div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.diraBriefBlock>div span{color:#46575e;font-size:.78rem;line-height:1.4}
+.diraBriefBlock>a{color:#006a7d;font-size:.82rem;font-weight:800;overflow-wrap:anywhere}
+.diraProjectForm{display:grid;gap:12px}
+.diraProjectForm .fieldGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.diraProjectForm label{display:grid;gap:5px;color:#27383e;font-size:.82rem;font-weight:800}
+.diraProjectForm input,.diraProjectForm select,.diraProjectForm textarea{width:100%;min-width:0;min-height:42px;padding:9px 10px;border:1px solid #c8d8de;border-radius:8px;background:#fff;color:#222;font:inherit;font-weight:500}
+.diraProjectForm textarea{min-height:96px;resize:vertical}
+.diraQuoteStatus{padding:10px 12px;border-radius:8px;background:#eaf6f8;color:#005f70;font-size:.82rem;font-weight:800}
+.diraAdminPage .buttonPrimary{background:#007b91;color:#fff}
+.diraAdminPage .emptyState{padding:24px 12px;color:#52636b;text-align:center;font-size:.88rem;line-height:1.5}
+.diraCalendarList{display:grid;gap:8px}
+.diraCalendarList article{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border:1px solid #d7e2e7;border-radius:9px;background:#fff}
+.diraCalendarList article>div{display:grid;gap:4px}
+.diraCalendarList strong{color:#222;font-size:.88rem}
+.diraCalendarList small{color:#52636b;font-size:.78rem}
+.diraCalendarList time{color:#005f70;font-size:.83rem;font-weight:900;white-space:nowrap}
+@media(max-width:900px){.diraWorkspaceGrid{grid-template-columns:1fr}.diraMetrics{grid-template-columns:repeat(3,minmax(0,1fr))}.diraAdminHeader{grid-template-columns:auto 1fr}.diraAdminLinks{grid-column:1/-1}}
+@media(max-width:560px){.diraAdminPage{padding:12px 10px 26px}.diraAdminHeader{grid-template-columns:1fr;padding:14px;gap:10px}.diraAdminHeader .logo{display:none}.diraAdminHeader h1{font-size:1.3rem}.diraAdminLinks a{flex:1;text-align:center}.diraMetrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.diraMetrics article{padding:10px}.diraMetrics article span{font-size:.74rem}.diraMetrics article strong{font-size:1.35rem}.diraFinanceStrip{grid-template-columns:1fr 1fr}.diraFinanceStrip>div:first-child{grid-column:1/-1}.diraAdminPage .adminPanel{padding:12px}.diraQueueTools{grid-template-columns:1fr}.diraEnquiryRow{grid-template-columns:14px minmax(0,1fr);gap:7px}.diraEnquiryRow>b{grid-column:2;justify-self:start}.diraBriefBlock>div{grid-template-columns:1fr}.diraProjectForm .fieldGrid{grid-template-columns:1fr}.diraCalendarList article{align-items:flex-start;flex-direction:column}.diraAdminPage .panelHeading{flex-direction:column}}
