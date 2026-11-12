@@ -10,30 +10,30 @@ try {
   console.warn("Background messaging is unavailable; offline app-shell support remains enabled.", error);
 }
 
-let thePlugMessaging = null;
+let diraMessaging = null;
 try {
   const config = self.__THE_PLUG_FIREBASE_CONFIG__;
   if (config && config.apiKey && config.projectId && config.messagingSenderId && config.appId) {
     firebase.initializeApp(config);
-    thePlugMessaging = firebase.messaging();
-    thePlugMessaging.onBackgroundMessage((payload) => {
+    diraMessaging = firebase.messaging();
+    diraMessaging.onBackgroundMessage((payload) => {
       // Notification payloads are displayed automatically by Firebase. Only render
       // data-only pushes here to avoid showing the same notification twice.
       if (payload.notification) return;
-      const title = payload.data?.title || "Iteration 13 update";
+      const title = payload.data?.title || "Dira Creative update";
       const options = {
         body: payload.data?.body || "Open the app to check your latest information.",
-        icon: "/iteration13-icon.svg",
-        badge: "/iteration13-icon.svg",
+        icon: "/dira-icon.svg",
+        badge: "/dira-icon.svg",
         data: { link: payload.data?.link || "/account" },
       };
       self.registration.showNotification(title, options);
     });
   } else {
-    console.error("The Plug Firebase Messaging web config is incomplete.");
+    console.error("Dira Creative notification configuration is not connected.");
   }
 } catch (error) {
-  console.error("The Plug Firebase Messaging service worker could not initialize.", error);
+  console.error("Dira Creative notifications could not initialize.", error);
 }
 
 self.addEventListener("notificationclick", (event) => {
@@ -51,14 +51,14 @@ self.addEventListener("notificationclick", (event) => {
   }));
 });
 
-const CACHE_VERSION = "iteration13-shell-v4";
-const MEDIA_CACHE = "iteration13-media-v2";
+const CACHE_VERSION = "dira-creative-shell-v1";
+const MEDIA_CACHE = "dira-creative-media-v1";
 const SHELL_CACHE = CACHE_VERSION;
 const STATIC_LIMIT = 100;
 const PUBLIC_PAGE_LIMIT = 12;
 const MEDIA_LIMIT = 40;
 const MEDIA_HOSTS = ["images.unsplash.com", "utfs.io", "ufs.sh"];
-const APP_SHELL = ["/", "/offline", "/patterns", "/iphone-install", "/iphone-install.svg", "/iteration13-icon.svg", "/iteration13-icon-192.svg", "/iteration13-icon-512.svg", "/iteration13-icon-192.png", "/iteration13-icon-512.png", "/iteration13-icon-180.png", "/manifest.webmanifest"];
+const APP_SHELL = ["/", "/offline", "/patterns", "/iphone-install", "/iphone-install.svg", "/dira-icon.svg", "/dira-icon.svg", "/dira-icon.svg", "/dira-icon.svg", "/dira-icon.svg", "/dira-icon.svg", "/manifest.webmanifest"];
 
 self.addEventListener("install", event => {
   event.waitUntil((async () => {
