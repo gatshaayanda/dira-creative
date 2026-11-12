@@ -42,6 +42,9 @@ export type DiraEnquiry = {
   targetCompletion?:string;
   engagementMode?:"remote"|"on-site"|"hybrid";
   deliverables?:string;
+  quoteId?:string;
+  quoteVersion?:number;
+  projectId?:string;
   clientApprovedAt?:string;
   clientApprovedPrice?:number;
   clientApprovalSource?:string;
