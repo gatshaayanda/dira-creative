@@ -12,7 +12,7 @@ try {
 
 let diraMessaging = null;
 try {
-  const config = self.__THE_PLUG_FIREBASE_CONFIG__;
+  const config = self.__DIRA_FIREBASE_CONFIG__;
   if (config && config.apiKey && config.projectId && config.messagingSenderId && config.appId) {
     firebase.initializeApp(config);
     diraMessaging = firebase.messaging();
