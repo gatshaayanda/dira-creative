@@ -1,6 +1,6 @@
 "use client";
 import {useEffect,useRef,useState} from "react";
-import {addDoc,collection,serverTimestamp} from "firebase/firestore";
+import {collection,doc,serverTimestamp,setDoc} from "firebase/firestore";
 import {auth,db} from "@/lib/firebase/client";
 import {uploadFiles} from "@/lib/uploadthing";
 import {createCustomerConversation,subscribeToConversation,updateConversationRead,recordConversationMessage,type Conversation,type ConversationMessage} from "@/lib/firebase/data";
@@ -24,7 +24,6 @@ export default function ConversationPanel({conversationId,conversationTitle,onBa
    let attachment:ConversationMessage["attachment"]=undefined;
    const currentConversationId=activeConversationId||await createCustomerConversation(user.uid,conversationTitle||"Question");
    if(!activeConversationId)setActiveConversationId(currentConversationId);
-   const messageRef=collection(db,"conversations",currentConversationId,"messages");
    const messageId=crypto.randomUUID();
    if(file){
     if(!allowed(file))throw new Error("Please attach an image or PDF.");
@@ -36,7 +35,7 @@ export default function ConversationPanel({conversationId,conversationTitle,onBa
     attachment={url,name:file.name,type:file.type,size:file.size};
    }
    const body=text.trim();
-   await addDoc(messageRef,{senderId:user.uid,senderRole:"customer",text:body,attachment:attachment??null,createdAt:new Date().toISOString(),createdAtServer:serverTimestamp()});
+   await setDoc(doc(db,"conversations",currentConversationId,"messages",messageId),{senderId:user.uid,senderRole:"customer",text:body,attachment:attachment??null,createdAt:new Date().toISOString(),createdAtServer:serverTimestamp()});
    await recordConversationMessage(currentConversationId,"customer",body||("Attachment: "+(attachment?.name||"file")));
    setText("");setFile(null);
    const input=document.getElementById("dira-conversation-file") as HTMLInputElement|null;if(input)input.value="";
