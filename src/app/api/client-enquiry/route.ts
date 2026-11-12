@@ -2,6 +2,7 @@ import {NextResponse} from "next/server";
 import {getDiraAdminApp} from "@/lib/firebase/admin";
 import {getAuth} from "firebase-admin/auth";
 import {getFirestore,type DocumentData} from "firebase-admin/firestore";
+import {DEFAULT_DIRA_CATALOGUE} from "@/lib/dira-catalogue";
 
 export const runtime="nodejs";
 
@@ -24,6 +25,8 @@ function validEnquiry(data:Record<string,unknown>,uid:string){
     if(typeof entry.id!=="string"||entry.id.length>100||seen.has(entry.id)||typeof entry.name!=="string"||!entry.name.trim()||entry.name.length>180)return false;
     if(entry.kind!=="service"&&entry.kind!=="package")return false;
     if(typeof entry.price!=="number"||!Number.isFinite(entry.price)||entry.price<0||entry.price>100000000||typeof entry.priceLabel!=="string"||entry.priceLabel.length>40)return false;
+    const published=DEFAULT_DIRA_CATALOGUE.find(item=>item.id===entry.id&&item.published);
+    if(!published||published.name!==entry.name||published.kind!==entry.kind||published.priceFrom!==entry.price||published.priceLabel!==entry.priceLabel)return false;
     seen.add(entry.id);
   }
   if(data.serviceName!==(data.selectedItems as Array<{name:string}>).map(item=>item.name).join(" + "))return false;
