@@ -2589,3 +2589,25 @@ h1 em,
   .serviceDemo .sd-service-media{height:128px;min-height:128px}
   .serviceDemo .sd-service-info{padding:12px}
 }
+
+
+/* Account, Briefcase and receipt legibility floors. */
+.serviceDemo .sd-account p,.serviceDemo .sd-admin p{font-size:max(.875rem,1em);line-height:1.5}
+.serviceDemo .sd-account :is(label,button,input,select,textarea),.serviceDemo .sd-admin :is(label,button,input,select,textarea){font-size:max(.875rem,1em)}
+.serviceDemo .sd-account small,.serviceDemo .sd-admin small,.serviceDemo .sd-account .sd-kicker,.serviceDemo .sd-admin .sd-kicker,.serviceDemo .sd-account .sd-local-pill,.serviceDemo .sd-admin .sd-local-pill{font-size:max(.75rem,1em)}
+.serviceDemo .sd-account-head p,.serviceDemo .sd-order-card-main p,.serviceDemo .sd-account-extra p,.serviceDemo .sd-empty p{font-size:.875rem;line-height:1.5;color:#303b49}
+.serviceDemo .sd-account-filter>span,.serviceDemo .sd-order-card-top>span,.serviceDemo .sd-order-card-top>b{font-size:.75rem;color:#303b49}
+.serviceDemo .sd-stats span,.serviceDemo .sd-finance-metrics small,.serviceDemo .sd-receipt-paper :is(dt,small,.sd-receipt-heading>span,.sd-receipt-parties>div>span,.sd-receipt-brief>span){font-size:.75rem;line-height:1.4}
+.serviceDemo .sd-receipt-paper :is(p,dd){font-size:.875rem;line-height:1.5;color:#263241}
+.serviceDemo .sd-receipt-paper dt,.serviceDemo .sd-receipt-paper small{color:#465365}
+.serviceDemo .sd-admin .sd-stats article{background:#17191b;color:#fff}
+.serviceDemo .sd-admin .sd-stats article :is(span,small){color:#f1f4f8}
+.serviceDemo .sd-account .sd-workspace-order,.serviceDemo .sd-account .sd-account-content{background:#fff;color:#17202c}
+.serviceDemo .sd-account .sd-order-price{color:#1748b5;font-size:1rem;font-weight:850}
+.serviceDemo .sd-admin .sd-small-button,.serviceDemo .sd-account .sd-small-button{min-height:42px;color:#17202c;background:#fff;border-color:#788697}
+.serviceDemo .sd-admin .sd-button.sd-primary{color:var(--studio-accent-ink,#111827)!important}
+@media(max-width:760px){
+  .serviceDemo .sd-account p,.serviceDemo .sd-admin p{font-size:.875rem;line-height:1.5}
+  .serviceDemo .sd-account :is(label,button,input,select,textarea),.serviceDemo .sd-admin :is(label,button,input,select,textarea){font-size:.875rem}
+  .serviceDemo .sd-receipt-paper :is(p,dd,dt,small){font-size:.8125rem;line-height:1.45}
+}
