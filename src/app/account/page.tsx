@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import DiraBrand from "@/components/DiraBrand";
 import {getIdToken,GoogleAuthProvider,browserLocalPersistence,linkWithPopup,onAuthStateChanged,setPersistence,signInWithCredential,signInWithPopup,signOut,type User} from "firebase/auth";
 import {useEffect,useState} from "react";
 import {auth,hasFirebaseWebConfig} from "@/lib/firebase/client";
@@ -115,8 +116,8 @@ export default function AccountPage(){
   try{await saveCustomerProfile(next);setProfile(next);setMessage("Your Dira Creative client profile is saved.")}catch{setMessage("We could not save your details. Nothing was changed; please try again.")}finally{setBusy(false)}
  }
 
- return <main className="orderPage"><div className="orderWrap">
-  <div className="orderHeader"><Link href="/" className="logo"><span className="logoMark">D</span><span>DIRA CREATIVE</span></Link><nav aria-label="Client account navigation" className="accountTopNav"><Link href="/" className="button buttonLight">Services</Link><Link href="#profile" className="button buttonLight">Settings</Link><Link href="/request" className="button buttonPrimary">Start a project enquiry</Link></nav></div>
+ return <main className="orderPage diraAccountPage"><div className="orderWrap">
+  <div className="orderHeader"><Link href="/" className="logo"><DiraBrand/></Link><nav aria-label="Client account navigation" className="accountTopNav"><Link href="/" className="button buttonLight">Services</Link><Link href="#profile" className="button buttonLight">Settings</Link><Link href="/request" className="button buttonPrimary">Start a project enquiry</Link></nav></div>
   <section className="orderCard accountHome" style={{maxWidth:920,margin:"0 auto"}}>
    <div className="accountHero"><div><span className="kicker">DIRA CREATIVE / CLIENT ACCOUNT</span><h1>Your projects & enquiries.</h1><p>Track enquiries, review quotes, follow project progress and talk with Dira Creative.</p></div>{user&&profile&&<span className="accountStatus">{user.isAnonymous?"Guest session":"Google connected"}</span>}</div>
    {(!user||user.isAnonymous)&&<section id="connect" className="accountConnect accountConnectPrimary"><div><strong>{user?.isAnonymous?"Keep your history and set up your circle.":"Already have a Dira Creative client account?"}</strong><p>{user?.isAnonymous?"Connecting Google is optional, but helps preserve this session’s request history and private conversations across devices.":"Continue with Google to reopen an existing account and its saved history. New to Dira Creative? Start a request first; your private session is created only when you submit."}</p>{!hasFirebaseWebConfig&&<p className="notice" role="status">Dira Creative cannot connect or save requests in this deployment yet. Try again later; nothing has been sent.</p>}</div><div className="actions"><button className="googleSignInButton" type="button" onClick={()=>void google()} disabled={busy||!authReady||!hasFirebaseWebConfig}><span>{!authReady?"Restoring your session…":busy?"Connecting…":user?.isAnonymous?"Connect Google":"Continue with Google"}</span></button><Link className="button buttonLight" href="/request">Start a request</Link></div></section>}
