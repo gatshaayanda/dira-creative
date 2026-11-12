@@ -7,6 +7,7 @@ const firebaseConfig = {
   // Build/CI must also be able to prerender client routes when those env vars are absent.
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || "build-placeholder",
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || "build-placeholder.firebaseapp.com",
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || undefined,
   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "build-placeholder",
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || "build-placeholder",
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || "build-placeholder",
