@@ -55,7 +55,9 @@ export default function RequestForm(){
     budget:budget.trim(),preferredTimeline:preferredTimeline.trim(),attachment,
     createdAt:now,updatedAt:now,status:"New Enquiry" as const,engagementMode
    };
-   savedId=await createDiraEnquiry(data,await customer.getIdToken());
+   const idToken=await customer.getIdToken();
+   savedId=await createDiraEnquiry(data,idToken);
+   await fetch("/api/notifications/enquiry-created",{method:"POST",headers:{Authorization:"Bearer "+idToken,"Content-Type":"application/json"},body:JSON.stringify({enquiryId:savedId})}).catch(()=>null);
    const existing=await getCustomerProfile(customer.uid).catch(()=>null);
    await saveCustomerProfile({uid:customer.uid,name:name.trim(),email:email.trim(),phone:phone.trim(),preferredDeliveryLocation:existing?.preferredDeliveryLocation||"",notes:scope.trim(),createdAt:existing?.createdAt||now,updatedAt:now});
    try{
