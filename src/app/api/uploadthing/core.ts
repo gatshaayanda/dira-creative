@@ -2,7 +2,7 @@ import { createUploadthing, type FileRouter } from "uploadthing/next";
 
 const f = createUploadthing();
 
-// Match the proven Admin Hub / Sparkle Legacy UploadThing setup.
+// Dira Creative client attachment uploads; keep client-side validation in sync with these limits.
 // Keep the client-side validation in request-form.tsx in sync with these limits.
 export const ourFileRouter = {
   fileUploader: f({
