@@ -11,10 +11,10 @@ export default function OfflinePage() {
           <div className="confirmIcon">📶</div>
           <span className="kicker">Offline mode</span>
           <h1>Dira Creative is still here.</h1>
-          <p>The Store shell, app scripts and styles are cached for offline visits. Once the Store has loaded online, its current service images and videos from supported media hosts are also prepared for offline viewing. Cached content may be out of date, and browser storage can still be cleared by the device.</p>
-          <p>Customer requests, account text messages, service edits, announcement changes, Briefcase notes and demo payment/status changes save in this browser. Customer and owner views use the same local records on this device; nothing is uploaded or synced to another device.</p>
-          <p>New UploadThing uploads, external links, remote Firebase features and other server-dependent actions need internet. Offline text and admin changes are saved locally, not queued for server delivery.</p>
-          <p><strong>Before going offline:</strong> open the Store while connected, let its images and videos finish loading, then reload once so the latest app shell is active.</p>
+          <p>The public Dira shell, app scripts and styles are cached for offline visits. Images and videos from supported media hosts can also be cached after they have loaded online. Cached content may be out of date, and the browser or device can clear stored data.</p>
+          <p><strong>Offline preview:</strong> browser-local preview records and demo changes remain on this device only. They are not uploaded or synchronised to another device.</p>
+          <p><strong>Needs a connection:</strong> production enquiries, customer accounts, private messages, quote approvals, owner/admin actions, Firebase records, notifications and new UploadThing uploads. These actions are not queued for later delivery.</p>
+          <p><strong>Before going offline:</strong> open the public Store while connected, let its images and videos finish loading, then reload once to activate the latest app shell. Private customer and owner routes intentionally show this offline page instead of replaying cached account or admin content.</p>
           <div className="actions centered">
             <Link className="button buttonPrimary" href="/#service-order">Try customer journey</Link>
             <Link className="button buttonLight" href="/">Open home</Link>
