@@ -19,6 +19,7 @@ Build an integrated Business OS for Royalty Holdings, initially operated through
 - The Iteration 13 mobile WashRide reference at docs/assets/washride-home-reference.jpeg is the visual craftsmanship reference. Adapt its compact mobile composition, clear hierarchy, dominant action, useful secondary actions and polished finish. Never copy WashRide branding, car imagery or its palette.
 - Dira palette: Light Blue #f4f6fc; Azure #4bb4ce; Dark Turquoise #0097b2; Dark Grey #222222.
 - Typography: Radnika Next for headings/primary typography; Open Sans for supporting text. Use available local assets if present; otherwise safe sans-serif fallbacks.
+- The public/account/owner lockup uses `src/components/DiraBrand.tsx`; place the official Facebook-sourced logo at `public/dira-logo.png` to replace its safe D monogram fallback. Never fabricate or redraw the official mark.
 - Readable text is mandatory: normal text and controls >=14 CSS px; nonessential metadata >=12px; WCAG AA contrast. Never clip essential descriptions or prices.
 - Compactness applies to public Store, enquiries, customer account, owner workspace, forms, CRUD, settings and records—not just the landing page.
 
@@ -30,7 +31,7 @@ Build an integrated Business OS for Royalty Holdings, initially operated through
 
 The local prototype currently demonstrates enquiries, quote send/approve/decline, project task checklists, client messages/attachments, requested-date calendar, service CRUD, customer discounts and receipt/payment recording. These actions are browser-local. Only expose a module as production-operational when its server-side actions and persistence are implemented. Clearly distinguish prototype/local state from server-persisted/shared state.
 
-## Five development stages
+## UX research and onboarding decisions\n- Follow `docs/DIRA-UX-AND-ONBOARDING-DECISIONS.md` for the audience paths, psychology-informed choice architecture, progressive-disclosure enquiry form, colour constraints and first-QA acceptance journeys.\n- Lead with three plain-language audience package paths, then provide a searchable full service catalogue. Do not hide or remove any supplied service or price.\n- Enquiry fallback without configured online submission must clearly prepare a WhatsApp draft and say it is not sent until the customer presses Send.\n\n## Five development stages
 1. Define Your Identity — logo, colour, typography, iconography, graphic elements, photography direction, illustration and layout.
 2. Establish Your Presence — company profiles, proposals, portfolios, pitch decks, business cards, websites, applications and maintenance.
 3. Structure Your Operations — workflows, team structures, function mapping and operational support.
