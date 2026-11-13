@@ -3901,3 +3901,81 @@ h1 em,
  .diraHomeFooter nav{gap:13px}
  .diraHomeFooterInner>small{grid-column:auto}
 }
+
+
+/* Dira storefront: one compact decision surface, not a brochure. */
+.diraCompactStore{min-height:100vh;background:#050d1b;color:#f7fbff;padding:0 16px 34px;max-width:1180px;margin:0 auto}
+.diraCompactHeader{min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:1px solid rgba(75,180,206,.22)}
+.diraCompactLogo{display:flex;align-items:center;min-width:0}
+.diraCompactAccount{display:inline-flex;align-items:center;gap:8px;border:1px solid #1764a5;border-radius:999px;padding:9px 13px;color:#e8f6ff;font-size:.78rem;font-weight:800;white-space:nowrap}
+.diraCompactAccount span{color:#39b9ff}
+.diraCompactIntro{padding:22px 0 17px}
+.diraCompactIntro>span,.diraCompactMeta,.diraCompactPackageLabel,.diraCustomModalHeader>div>span{font-size:.66rem;letter-spacing:.13em;font-weight:900;color:#54c6ff}
+.diraCompactIntro h1{font-family:Inter,Arial,sans-serif;text-transform:none;font-size:clamp(1.65rem,4vw,2.35rem);line-height:1.08;letter-spacing:-.045em;margin:8px 0 5px;color:#fff}
+.diraCompactIntro p{margin:0;color:#b7c9da;font-size:.9rem;line-height:1.45}
+.diraCompactOffers{padding-bottom:12px}
+.diraCompactMeta{padding:0 0 11px;color:#b7c9da;letter-spacing:.04em;font-weight:700}
+.diraCompactPackageGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.diraCompactPackage{min-width:0;display:flex;flex-direction:column;gap:10px;padding:16px;background:linear-gradient(145deg,#102844,#09182b 70%);border:1px solid #174c7c;border-radius:16px;box-shadow:inset 0 1px rgba(255,255,255,.035)}
+.diraCompactPackage2{border-color:#087cae;background:linear-gradient(145deg,#103553,#0a1b30 72%)}
+.diraCompactPackage3{border-color:#245aa0;background:linear-gradient(145deg,#172e55,#0a172c 72%)}
+.diraCompactPackageLabel{display:flex;justify-content:space-between;align-items:center;font-size:.61rem}
+.diraCompactPackageLabel span{color:#8caac2}
+.diraCompactPackage h2{font-family:Inter,Arial,sans-serif;text-transform:none;font-size:1.15rem;line-height:1.15;letter-spacing:-.025em;margin:0;color:#fff}
+.diraCompactPackage p{font-size:.79rem;line-height:1.48;color:#c3d3e2;margin:0;flex:1}
+.diraCompactPackageAction{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:10px;border-top:1px solid rgba(130,190,230,.2)}
+.diraCompactPackageAction strong{font-size:1.35rem;letter-spacing:-.04em;color:#fff;white-space:nowrap}
+.diraCompactPackageAction a{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 11px;border-radius:10px;background:#087fca;color:#fff;font-size:.72rem;font-weight:900;white-space:nowrap}
+.diraCompactPackage2 .diraCompactPackageAction a{background:#079bc2}
+.diraCompactPackage3 .diraCompactPackageAction a{background:#2766c7}
+.diraCompactCustomButton{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:12px;padding:15px 17px;border:1px solid #159bd2;border-radius:15px;background:linear-gradient(100deg,#07528b,#06365f);color:#fff;text-align:left;cursor:pointer}
+.diraCompactCustomButton>span{display:grid;gap:3px}
+.diraCompactCustomButton small{font-size:.61rem;letter-spacing:.13em;font-weight:900;color:#82dcff}
+.diraCompactCustomButton strong{font-size:1rem}
+.diraCompactCustomButton em{font-size:.77rem;line-height:1.35;font-style:normal;color:#d1eaff}
+.diraCompactCustomButton>b{font-size:1.55rem;color:#82dcff}
+.diraCompactScopeNote{max-width:850px;margin:10px 2px 0;color:#9fb4c8;font-size:.7rem;line-height:1.45}
+.diraCustomBackdrop{position:fixed;z-index:1000;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:12px;background:rgba(0,5,14,.78);backdrop-filter:blur(8px)}
+.diraCustomModal{width:min(760px,100%);max-height:min(88vh,900px);display:flex;flex-direction:column;overflow:hidden;border:1px solid #1d6397;border-radius:19px 19px 13px 13px;background:#07182b;box-shadow:0 24px 80px rgba(0,0,0,.55)}
+.diraCustomModalHeader{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:17px 18px 13px;border-bottom:1px solid #173b5b}
+.diraCustomModalHeader h2{font-family:Inter,Arial,sans-serif;text-transform:none;font-size:1.35rem;line-height:1.1;margin:5px 0;color:#fff}
+.diraCustomModalHeader p{margin:0;color:#b4c8da;font-size:.8rem;line-height:1.4}
+.diraCustomModalHeader>button{width:34px;height:34px;flex:0 0 34px;border:1px solid #275478;border-radius:50%;background:#102b45;color:#fff;font-size:1.45rem;cursor:pointer}
+.diraCustomServiceList{overflow-y:auto;overscroll-behavior:contain;padding:4px 16px}
+.diraCustomServiceList label{display:grid;grid-template-columns:20px minmax(0,1fr) auto;align-items:center;gap:11px;padding:12px 3px;border-bottom:1px solid rgba(128,173,207,.16);cursor:pointer}
+.diraCustomServiceList label.isSelected{background:rgba(0,145,210,.09)}
+.diraCustomServiceList input{width:18px;height:18px;accent-color:#16a9ec}
+.diraCustomServiceText{display:grid;gap:3px;min-width:0}
+.diraCustomServiceText strong{font-size:.83rem;color:#f4f9ff}
+.diraCustomServiceText small{font-size:.71rem;line-height:1.35;color:#a9bfd2}
+.diraCustomServiceList label>b{font-size:.82rem;color:#72d5ff;white-space:nowrap}
+.diraCustomModalFooter{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 16px calc(13px + env(safe-area-inset-bottom));background:#0b223b;border-top:1px solid #1c4c70}
+.diraCustomModalFooter>div{display:grid;gap:2px}
+.diraCustomModalFooter small{font-size:.68rem;color:#a9bfd2}
+.diraCustomModalFooter strong{font-size:1.2rem;color:#fff}
+.diraCustomModalFooter button{min-height:43px;padding:10px 14px;border:0;border-radius:11px;background:#078dcc;color:#fff;font-size:.78rem;font-weight:900;cursor:pointer}
+.diraCustomModalFooter button:disabled{opacity:.42;cursor:not-allowed}
+@media(max-width:760px){
+ .diraCompactStore{padding-left:13px;padding-right:13px}
+ .diraCompactHeader{min-height:59px}
+ .diraCompactIntro{padding:18px 0 14px}
+ .diraCompactPackageGrid{grid-template-columns:1fr;gap:9px}
+ .diraCompactPackage{padding:13px 14px;gap:7px;border-radius:13px}
+ .diraCompactPackage h2{font-size:1.05rem}
+ .diraCompactPackage p{font-size:.76rem;line-height:1.42}
+ .diraCompactPackageAction{padding-top:8px}
+ .diraCompactPackageAction strong{font-size:1.22rem}
+ .diraCompactPackageAction a{padding:8px 10px}
+ .diraCompactCustomButton{margin-top:10px;padding:13px 14px}
+ .diraCustomBackdrop{padding:0;align-items:flex-end}
+ .diraCustomModal{max-height:90dvh;border-radius:18px 18px 0 0}
+ .diraCustomModalHeader{padding:15px 15px 11px}
+ .diraCustomServiceList{padding:3px 13px}
+ .diraCustomServiceList label{gap:9px;padding:11px 2px}
+ .diraCustomModalFooter{padding-left:14px;padding-right:14px}
+}
+@media(min-width:761px){
+ .diraCompactStore{padding-left:28px;padding-right:28px}
+ .diraCompactIntro{padding-top:30px;padding-bottom:22px}
+ .diraCustomBackdrop{align-items:center}
+}
