@@ -332,7 +332,7 @@ export default function PwaRegister({ initialEmbedded = false, initialAndroid = 
     {!environment().standalone && installState !== "embedded" && (canInstall || canShowManualInstall) && !installCardDismissed && !(installState === "native" && installHelpOpen) && (
       <aside className="i13-install-card" aria-label="Install Dira Creative">
         <div className="i13-install-brand">
-          <span className="i13-install-mark" aria-hidden="true">D</span>
+          <span className="i13-install-mark"><img src="/diralogo.jpeg" alt="Dira Creative logo"/></span>
           <span><strong>DIRA CREATIVE</strong><small>BUSINESS OS</small></span>
         </div>
         <button className="i13-install-close" type="button" aria-label="Dismiss install prompt" onClick={() => setInstallCardDismissed(true)}>×</button>
