@@ -23,8 +23,8 @@ try {
       const title = payload.data?.title || "Dira Creative update";
       const options = {
         body: payload.data?.body || "Open the app to check your latest information.",
-        icon: "/diralogo.jpeg",
-        badge: "/diralogo.jpeg",
+        icon: "/dira-icon.svg",
+        badge: "/dira-icon.svg",
         data: { link: payload.data?.link || "/account" },
       };
       self.registration.showNotification(title, options);
@@ -58,7 +58,7 @@ const STATIC_LIMIT = 100;
 const PUBLIC_PAGE_LIMIT = 12;
 const MEDIA_LIMIT = 40;
 const MEDIA_HOSTS = ["images.unsplash.com", "utfs.io", "ufs.sh"];
-const APP_SHELL = ["/", "/offline", "/iphone-install", "/iphone-install.svg", "/diralogo.jpeg", "/manifest.webmanifest"];
+const APP_SHELL = ["/", "/offline", "/iphone-install", "/iphone-install.svg", "/dira-icon.svg", "/manifest.webmanifest"];
 
 self.addEventListener("install", event => {
   event.waitUntil((async () => {

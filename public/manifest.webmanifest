@@ -14,8 +14,8 @@
   "theme_color": "#0097b2",
   "icons": [
     {
-      "src": "/diralogo.jpeg",
-      "type": "image/jpeg",
+      "src": "/dira-icon.svg",
+      "type": "image/svg+xml",
       "sizes": "512x512",
       "purpose": "any"
     }
