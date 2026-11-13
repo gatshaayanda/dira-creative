@@ -1,5 +1,11 @@
 import type { MetadataRoute } from "next";
 
+const diraLogoIcons = [
+  { src: "/diralogo.jpeg", sizes: "192x192", type: "image/jpeg", purpose: "any" as const },
+  { src: "/diralogo.jpeg", sizes: "512x512", type: "image/jpeg", purpose: "any" as const },
+  { src: "/dira-icon.svg", sizes: "512x512", type: "image/svg+xml", purpose: "any" as const }
+];
+
 export default function manifest(): MetadataRoute.Manifest {
   return {
     id: "/",
@@ -15,29 +21,11 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: "en",
     categories: ["business", "productivity"],
     prefer_related_applications: false,
-    icons: [{ src: "/dira-icon.svg", sizes: "512x512", type: "image/svg+xml", purpose: "any" }],
+    icons: diraLogoIcons,
     shortcuts: [
-      {
-        name: "Explore Dira services",
-        short_name: "Services",
-        description: "Browse brand and business development services",
-        url: "/",
-        icons: [{ src: "/dira-icon.svg", sizes: "512x512", type: "image/svg+xml" }]
-      },
-      {
-        name: "My account",
-        short_name: "Account",
-        description: "Review requests in this browser preview",
-        url: "/?view=account",
-        icons: [{ src: "/dira-icon.svg", sizes: "512x512", type: "image/svg+xml" }]
-      },
-      {
-        name: "Owner Briefcase preview",
-        short_name: "Briefcase",
-        description: "Open the local owner workspace preview",
-        url: "/#admin",
-        icons: [{ src: "/dira-icon.svg", sizes: "512x512", type: "image/svg+xml" }]
-      }
+      { name: "Explore Dira services", short_name: "Services", description: "Browse brand and business development services", url: "/", icons: diraLogoIcons },
+      { name: "My account", short_name: "Account", description: "Review requests in this browser preview", url: "/?view=account", icons: diraLogoIcons },
+      { name: "Owner Briefcase preview", short_name: "Briefcase", description: "Open the local owner workspace preview", url: "/#admin", icons: diraLogoIcons }
     ]
   };
 }

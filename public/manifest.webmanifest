@@ -3,21 +3,15 @@
   "name": "Dira Creative | Business OS",
   "short_name": "Dira",
   "description": "Building brands that communicate clearly, operate efficiently, and scale effectively.",
-  "categories": [
-    "business",
-    "productivity"
-  ],
+  "categories": ["business", "productivity"],
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#f4f6fc",
   "theme_color": "#0097b2",
   "icons": [
-    {
-      "src": "/dira-icon.svg",
-      "type": "image/svg+xml",
-      "sizes": "512x512",
-      "purpose": "any"
-    }
+    { "src": "/diralogo.jpeg", "type": "image/jpeg", "sizes": "192x192", "purpose": "any" },
+    { "src": "/diralogo.jpeg", "type": "image/jpeg", "sizes": "512x512", "purpose": "any" },
+    { "src": "/dira-icon.svg", "type": "image/svg+xml", "sizes": "512x512", "purpose": "any" }
   ]
 }
