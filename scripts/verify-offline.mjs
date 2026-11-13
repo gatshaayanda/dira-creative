@@ -12,7 +12,8 @@ const check = (condition, message) => { if (!condition) failures.push(message); 
 check(/const CACHE_VERSION = "dira-creative-shell-v\d+"/.test(sw), "versioned Dira Creative app-shell cache is missing");
 check(/const MEDIA_CACHE = "dira-creative-media-v\d+"/.test(sw), "versioned Dira Creative media cache is missing");
 
-check(sw.includes('const CACHE_VERSION = "dira-creative-shell-v2"'), "current hardened shell cache version is missing");
+const shellCacheVersion = Number(sw.match(/const CACHE_VERSION = "dira-creative-shell-v(\\d+)"/)?.[1] || 0);
+check(shellCacheVersion >= 2, "current hardened shell cache version is missing");
 check(sw.includes("account|request|requests|orders|admin|invite"), "customer account, enquiry and owner routes must use the private network-only path");
 check(sw.includes("fetchWithTimeout(request, 7000)") && sw.includes("controller.abort()"), "public navigation must fall back after a bounded network wait");
 check(sw.includes('key.startsWith("dira-creative-shell-")') && sw.includes('key.startsWith("dira-creative-media-")'), "activation must clean superseded Dira cache versions");
