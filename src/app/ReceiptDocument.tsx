@@ -70,7 +70,7 @@ export default function ReceiptDocument({ businessName, accentColor, receiptProf
   };
 
   return <details className="sd-receipt">
-    <summary>{paid > 0 || order.clientApproved ? "Receipt / payment record" : "Quote record"} · {receiptNumber}</summary>
+    <summary>Receipt / payment record · {receiptNumber}</summary>
     <div className="sd-receipt-paper" style={{ "--receipt-accent": accentColor, "--receipt-accent-ink": accentInk(accentColor) } as CSSProperties}>
       <header className="sd-receipt-brand">
         <span className="sd-receipt-mark"><img src="/diralogo.jpeg" alt="Dira Creative logo" /></span>
