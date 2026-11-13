@@ -13,7 +13,7 @@ export const metadata:Metadata={
  keywords:["Dira Creative","Brand development","Business development","Brand identity","Business systems","Botswana"],
  openGraph:{type:"website",siteName:"Dira Creative",title:"Dira Creative | Business OS",description:"Building brands that communicate clearly, operate efficiently, and scale effectively."},
  twitter:{card:"summary",title:"Dira Creative | Business OS",description:"Building brands that communicate clearly, operate efficiently, and scale effectively."},
- icons:{icon:[{url:"/dira-icon.svg",type:"image/svg+xml"}],apple:{url:"/dira-icon.svg"}},
+ icons:{icon:[{url:"/diralogo.jpeg",type:"image/jpeg"}],apple:{url:"/diralogo.jpeg"}},
  manifest:"/manifest.webmanifest",
  appleWebApp:{capable:true,title:"Dira Creative",statusBarStyle:"default"}
 };
