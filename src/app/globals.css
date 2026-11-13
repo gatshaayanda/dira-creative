@@ -4133,16 +4133,9 @@ h1 em,
  .diraAccountPage .conversationHubHeading{align-items:flex-start}
 }
 
-
-/* Owner access stays discreetly in the storefront footer, matching Iteration 13. */
-.diraStoreFooter{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 0 10px;margin-top:14px;border-top:1px solid rgba(117,174,213,.22)}
-.diraOwnerBriefcase{display:inline-flex;align-items:center;gap:10px;min-width:0;padding:7px 10px 7px 7px;border:1px solid #24577d;border-radius:13px;background:linear-gradient(110deg,#102c48,#0a1a2d);color:#f5f9ff;text-decoration:none;transition:border-color .18s ease,background .18s ease}
-.diraOwnerBriefcase:hover,.diraOwnerBriefcase:focus-visible{border-color:#54c6ff;background:#123654;outline:none}
-.diraOwnerBriefcaseIcon{width:42px;height:42px;display:grid;place-items:center;flex:0 0 42px;border-radius:11px;background:#e5f2fb;font-size:24px}
-.diraOwnerBriefcaseCopy{display:grid;gap:2px;min-width:0}
-.diraOwnerBriefcaseCopy strong{font-size:.8rem;line-height:1.15}
-.diraOwnerBriefcaseCopy small{font-size:.57rem;letter-spacing:.09em;font-weight:900;color:#8ebbd8}
-.diraOwnerBriefcaseCopy em{font-size:.68rem;font-style:normal;color:#d1e7f6}
-.diraOwnerBriefcaseArrow{margin-left:5px;color:#64d2ff;font-weight:900}
-.diraStoreFooterNote{color:#91a9bc;font-size:.65rem;text-align:right}
-@media(max-width:560px){.diraStoreFooter{align-items:flex-start;flex-direction:column;gap:9px}.diraStoreFooterNote{padding-left:4px;text-align:left}}
+ 
+/* The storefront owner entry is the Briefcase icon only. */
+.diraStoreFooter{display:flex;justify-content:center;padding:10px 0 8px;margin-top:8px}
+.diraOwnerBriefcase{display:grid;place-items:center;width:42px;height:42px;border:0;border-radius:9px;background:transparent;color:inherit;text-decoration:none}
+.diraOwnerBriefcase:hover,.diraOwnerBriefcase:focus-visible{background:rgba(75,180,206,.12);outline:2px solid var(--dira-blue);outline-offset:2px}
+.diraOwnerBriefcaseIcon{font-size:25px;line-height:1}
