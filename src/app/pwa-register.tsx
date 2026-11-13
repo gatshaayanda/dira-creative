@@ -65,6 +65,7 @@ export default function PwaRegister({ initialEmbedded = false, initialAndroid = 
   const installPromptRef = useRef<InstallPromptEvent | null>(null);
   const [installState, setInstallState] = useState<InstallState>(initialEmbedded ? "embedded" : "hidden");
   const [updateReady, setUpdateReady] = useState<ServiceWorker | null>(null);
+  const [refreshAvailable, setRefreshAvailable] = useState(false);
   const [embeddedAndroid, setEmbeddedAndroid] = useState(initialEmbedded && initialAndroid);
   const [installHelpOpen, setInstallHelpOpen] = useState(false);
   const [canInstall, setCanInstall] = useState(false);
@@ -196,7 +197,11 @@ export default function PwaRegister({ initialEmbedded = false, initialAndroid = 
     void register();
     void retryPendingOrderNotifications();
     const stopPendingAuth = onAuthStateChanged(auth, () => { void retryPendingOrderNotifications(); });
-    const controllerChange = () => { if (reloadForUpdate.current) window.location.reload(); };
+    const hadController = Boolean(navigator.serviceWorker.controller);
+    const controllerChange = () => {
+      if (reloadForUpdate.current) window.location.reload();
+      else if (hadController) setRefreshAvailable(true);
+    };
     navigator.serviceWorker?.addEventListener("controllerchange", controllerChange);
 
     return () => {
@@ -349,6 +354,6 @@ export default function PwaRegister({ initialEmbedded = false, initialAndroid = 
       </aside>
     )}
     {installCard}
-    {updateReady && <div className="pwaUpdate" role="status" aria-live="polite"><div><strong>Dira Creative update is ready</strong><span>Refresh when you are ready.</span></div><button type="button" className="button buttonPrimary" onClick={applyUpdate}>Refresh</button></div>}
+    {(updateReady || refreshAvailable) && <div className="pwaUpdate" role="status" aria-live="polite"><div><strong>Dira Creative update is ready</strong><span>Your new app version is installed and ready to display.</span></div><button type="button" className="button buttonPrimary" onClick={applyUpdate}>Refresh</button></div>}
   </>;
 }

@@ -28,6 +28,7 @@ export type ReceiptOrder = {
   paidAmount?: number;
   paidAt?: string;
   priceIsStarting?: boolean;
+  clientApproved?: boolean;
 };
 
 type Props = {
@@ -72,12 +73,12 @@ export default function ReceiptDocument({ businessName, accentColor, receiptProf
     <summary>Receipt / payment record · {receiptNumber}</summary>
     <div className="sd-receipt-paper" style={{ "--receipt-accent": accentColor, "--receipt-accent-ink": accentInk(accentColor) } as CSSProperties}>
       <header className="sd-receipt-brand">
-        <span className="sd-receipt-mark" aria-hidden="true">{brand.slice(0, 1).toUpperCase()}</span>
+        <span className="sd-receipt-mark"><img src="/diralogo.jpeg" alt="Dira Creative logo" /></span>
         <div><strong>{brand}</strong><small>Customer receipt &amp; job record</small></div>
         <span className="sd-receipt-state">{paymentState}</span>
       </header>
       {showRegisteredName ? <p className="sd-receipt-registered">Registered name: {registeredName}</p> : null}
-      <div className="sd-receipt-heading"><span>{paid > 0 ? "PAYMENT RECORD" : "REQUEST RECORD"}</span><h2>{paymentState === "Paid in full" ? "Paid in full" : paymentState === "Partially paid" ? "Part payment" : "Payment outstanding"}</h2><p>{paymentState === "Paid in full" ? "The recorded demo balance is settled." : paymentState === "Partially paid" ? "A payment has been recorded; the remaining balance is shown below." : "This request is recorded. No payment has been recorded."}</p></div>
+      <div className="sd-receipt-heading"><span>{paid > 0 ? "PAYMENT RECORD" : "QUOTE RECORD"}</span><h2>{paid > 0 ? paymentState === "Paid in full" ? "Paid in full" : "Part payment recorded" : order.clientApproved ? "Approved project value" : "Quote for review"}</h2><p>{paid > 0 ? "The owner-recorded payment and remaining balance are shown below." : order.clientApproved ? "The client-approved project value is recorded below. No payment has been recorded." : "This is the quote currently on file for client review. No payment has been recorded."}</p></div>
       <dl className="sd-receipt-meta">
         <div><dt>Record number</dt><dd>{receiptNumber}</dd></div>
         <div><dt>Request date</dt><dd>{dateLabel(order.createdAt)}</dd></div>
@@ -90,7 +91,7 @@ export default function ReceiptDocument({ businessName, accentColor, receiptProf
       </div>
       <div className="sd-receipt-line"><span>{order.serviceName}</span><strong>{money(order.originalPrice ?? total)}</strong></div>
       {order.discountAmount ? <div className="sd-receipt-line is-discount"><span>Discount {order.discountCode ? "(" + order.discountCode + ")" : ""}</span><strong>−{money(order.discountAmount)}</strong></div> : null}
-      <div className="sd-receipt-line is-total"><span>{order.priceIsStarting ? "Starting price · not a quote" : "Agreed demo total"}</span><strong>{order.priceIsStarting ? "From " : ""}{money(total)}</strong></div>
+      <div className="sd-receipt-line is-total"><span>{order.priceIsStarting ? "Starting price · not a quote" : order.clientApproved ? "Approved project value" : "Quoted amount · pending approval"}</span><strong>{order.priceIsStarting ? "From " : ""}{money(total)}</strong></div>
       <div className="sd-receipt-payment">
         <div><span>Payment recorded</span><strong>{money(paid)}</strong></div>
         <div><span>Balance outstanding</span><strong>{order.priceIsStarting ? "After quote approval" : money(balance)}</strong></div>
@@ -99,7 +100,7 @@ export default function ReceiptDocument({ businessName, accentColor, receiptProf
       </div>
       {receiptProfile?.registration ? <p className="sd-receipt-tax">Business reference: {receiptProfile.registration}</p> : null}
       {order.brief ? <div className="sd-receipt-brief"><span>REQUEST NOTES</span><p>{order.brief}</p></div> : null}
-      <footer className="sd-receipt-footer"><strong>{receiptProfile?.footer || "Thank you for your business."}</strong><small>Local prototype record only. This app does not process or independently verify payments. Keep this document with the related job record.</small><button className="sd-small-button sd-receipt-download" type="button" onClick={printReceipt}>Download / print PDF</button></footer>
+      <footer className="sd-receipt-footer"><strong>{receiptProfile?.footer || "Thank you for your business."}</strong><small>Owner-recorded project document. Dira Creative records payments after verification. This document is not a tax invoice or independent proof of bank settlement.</small><button className="sd-small-button sd-receipt-download" type="button" onClick={printReceipt}>Download / print PDF</button></footer>
     </div>
   </details>;
 }
