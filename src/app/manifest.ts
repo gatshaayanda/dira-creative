@@ -15,28 +15,28 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: "en",
     categories: ["business", "productivity"],
     prefer_related_applications: false,
-    icons: [{ src: "/dira-icon.svg", sizes: "any", type: "image/svg+xml", purpose: "any" }],
+    icons: [{ src: "/diralogo.jpeg", sizes: "any", type: "image/jpeg", purpose: "any" }],
     shortcuts: [
       {
         name: "Explore Dira services",
         short_name: "Services",
         description: "Browse brand and business development services",
         url: "/",
-        icons: [{ src: "/dira-icon.svg", sizes: "any", type: "image/svg+xml" }]
+        icons: [{ src: "/diralogo.jpeg", sizes: "any", type: "image/jpeg" }]
       },
       {
         name: "My account",
         short_name: "Account",
         description: "Review requests in this browser preview",
         url: "/?view=account",
-        icons: [{ src: "/dira-icon.svg", sizes: "any", type: "image/svg+xml" }]
+        icons: [{ src: "/diralogo.jpeg", sizes: "any", type: "image/jpeg" }]
       },
       {
         name: "Owner Briefcase preview",
         short_name: "Briefcase",
         description: "Open the local owner workspace preview",
         url: "/#admin",
-        icons: [{ src: "/dira-icon.svg", sizes: "any", type: "image/svg+xml" }]
+        icons: [{ src: "/diralogo.jpeg", sizes: "any", type: "image/jpeg" }]
       }
     ]
   };
