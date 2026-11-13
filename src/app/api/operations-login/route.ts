@@ -14,8 +14,8 @@ function matchesWord(input:string,expected:string){
 }
 export async function POST(request:Request){
  try{
-  const expected=process.env.DIRA_OPERATIONS_WORD;
-  if(!expected)return NextResponse.json({error:"Operations access is not configured yet. Set DIRA_OPERATIONS_WORD in Vercel."},{status:503});
+  const expected=process.env.THE_PLUG_OPERATIONS_WORD;
+  if(!expected)return NextResponse.json({error:"Operations access is not configured yet. Set THE_PLUG_OPERATIONS_WORD in Vercel."},{status:503});
   const body=await request.json().catch(()=>null) as {word?:unknown}|null;
   const word=typeof body?.word==="string"?body.word:"";
   if(!matchesWord(word,expected))return NextResponse.json({error:"Access denied. Check the access word and try again."},{status:401});
