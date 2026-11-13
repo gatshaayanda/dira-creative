@@ -140,6 +140,15 @@ export default function Home() {
         </div>
       )}
 
+      <footer className="diraStoreFooter">
+        <Link href="/admin" className="diraOwnerBriefcase" aria-label="Open Dira Creative owner Briefcase">
+          <span className="diraOwnerBriefcaseIcon" aria-hidden="true">💼</span>
+          <span className="diraOwnerBriefcaseCopy"><strong>Dira Creative</strong><small>PRIVATE BRIEFCASE · OWNER ACCESS</small><em>Open your workspace</em></span>
+          <span className="diraOwnerBriefcaseArrow" aria-hidden="true">↗</span>
+        </Link>
+        <span className="diraStoreFooterNote">Brand &amp; business development</span>
+      </footer>
+
       <ServiceGuide
         view="shop"
         services={guideServices}
