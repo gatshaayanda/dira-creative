@@ -51,7 +51,7 @@ export default function AccountPage(){
  const[user,setUser]=useState<User|null>(null),[profile,setProfile]=useState<CustomerProfile|null>(null),[requests,setRequests]=useState<DiraEnquiry[]>([]),[busy,setBusy]=useState(false),[authReady,setAuthReady]=useState(false),[message,setMessage]=useState(""),[showPostSubmitSetup,setShowPostSubmitSetup]=useState(false),[submitted,setSubmitted]=useState(false),[showProjectBuilder,setShowProjectBuilder]=useState(false);
 
 
- useEffect(()=>{const params=new URLSearchParams(window.location.search);setShowProjectBuilder(params.has("new")||params.has("package")||params.has("service"));if(params.has("submitted")){setSubmitted(true);setShowPostSubmitSetup(true)}},[]);
+ useEffect(()=>{const params=new URLSearchParams(window.location.search);setShowProjectBuilder(params.has("new")||params.has("package")||params.has("service")||params.has("services"));if(params.has("submitted")){setSubmitted(true);setShowPostSubmitSetup(true)}},[]);
  useEffect(()=>{
   let stopRequests=()=>{};
   let stopAuth=()=>{};
@@ -62,7 +62,7 @@ export default function AccountPage(){
    }
    if(disposed)return;
    const entryParams=new URLSearchParams(window.location.search);
-   if(hasFirebaseWebConfig&&(entryParams.has("package")||entryParams.has("service")||entryParams.has("new"))&&!auth.currentUser){
+   if(hasFirebaseWebConfig&&(entryParams.has("package")||entryParams.has("service")||entryParams.has("services")||entryParams.has("new"))&&!auth.currentUser){
     try{await signInAnonymously(auth)}catch{if(!disposed)setMessage("Your private project session could not be started. Please retry the package selection.")}
    }
    if(disposed)return;
