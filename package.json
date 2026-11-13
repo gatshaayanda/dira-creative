@@ -7,6 +7,7 @@
     "build": "npm run verify:identity && npm run verify:offline && next build",
     "start": "next start",
     "lint": "eslint .",
+    "check": "npm run verify:identity && npm run verify:offline && npm run lint",
     "verify:identity": "node scripts/verify-identity.mjs",
     "verify:offline": "node scripts/verify-offline.mjs"
   },
