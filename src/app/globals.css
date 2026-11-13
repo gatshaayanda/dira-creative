@@ -3979,3 +3979,156 @@ h1 em,
  .diraCompactIntro{padding-top:30px;padding-bottom:22px}
  .diraCustomBackdrop{align-items:center}
 }
+
+/* Dira client account — high-contrast, compact, task-first workspace. */
+.diraAccountPage{min-height:100vh;padding:12px 12px 88px;background:#f1f5f7!important;color:#172a31!important}
+.diraAccountPage .orderWrap{width:min(100%,1040px);margin:0 auto;gap:12px}
+.diraAccountPage .orderHeader{min-height:54px;padding:5px 0 9px;border-bottom:1px solid #cbd8de}
+.diraAccountPage .accountTopNav{display:flex;gap:6px;flex-wrap:wrap}
+.diraAccountPage .accountTopNav .button{min-height:36px;padding:8px 11px;border-radius:8px;font-size:.76rem}
+.diraAccountPage .accountDashboard{max-width:none!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;display:grid;gap:11px}
+.diraAccountPage .accountHero{align-items:center;padding:14px 16px;border:1px solid #d0dfe4;border-radius:11px;background:#fff;color:#172a31}
+.diraAccountPage .accountHero .kicker,.diraAccountPage .kicker{color:#006b7d!important}
+.diraAccountPage .accountHero h1{margin:4px 0;font-size:clamp(1.25rem,3.2vw,1.8rem);line-height:1.12;letter-spacing:-.035em;color:#142a32}
+.diraAccountPage .accountHero p{max-width:58ch;color:#425861!important;font-size:.82rem;line-height:1.4}
+.diraAccountPage .accountStatus{border-color:#9dcfc6;background:#e7f6f1;color:#075c4c}
+.diraAccountPage .accountQuicklinks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:0}
+.diraAccountPage .accountQuicklinks>a{position:relative;display:grid;grid-template-columns:24px minmax(0,1fr);align-content:center;gap:2px 8px;min-height:66px;padding:9px 10px;border:1px solid #cfdae0;border-radius:9px;background:#fff;color:#172a31;text-decoration:none}
+.diraAccountPage .accountQuicklinks>a>span{grid-row:1/3;color:#00768a;font-size:.68rem;font-weight:900}
+.diraAccountPage .accountQuicklinks>a>strong{font-size:.82rem;color:#172a31}
+.diraAccountPage .accountQuicklinks>a>small{font-size:.68rem;line-height:1.3;color:#4a6069}
+.diraAccountPage .accountQuicklinks>a>b{display:none}
+.diraAccountPage .accountConnect,.diraAccountPage .feedEmpty,.diraAccountPage .accountSection,.diraAccountPage .conversationHub,.diraAccountPage .accountDetails,.diraAccountPage .accountSetupDisclosure{margin:0;padding:13px;border:1px solid #cfdae0;border-radius:10px;background:#fff;color:#172a31;box-shadow:none}
+.diraAccountPage .accountConnect{align-items:center;gap:12px}
+.diraAccountPage .accountConnect strong,.diraAccountPage .feedEmpty strong{color:#172a31;font-size:.92rem}
+.diraAccountPage .accountConnect p,.diraAccountPage .feedEmpty p{margin:4px 0 0;color:#425861!important;font-size:.78rem;line-height:1.42}
+.diraAccountPage .accountConnect .actions{gap:7px}
+.diraAccountPage .accountConnect .button,.diraAccountPage .accountConnect button{min-height:38px;padding:8px 11px;font-size:.76rem}
+.diraAccountPage .feedEmpty{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.diraAccountPage .feedEmpty .button{flex:0 0 auto;min-height:38px;padding:8px 11px;font-size:.75rem}
+.diraAccountPage .accountSection{padding:13px}
+.diraAccountPage .accountRequestsHeading{margin-bottom:10px}
+.diraAccountPage .accountRequestsHeading h2{margin:3px 0;color:#172a31;font-size:1.12rem}
+.diraAccountPage .feedItem{border:1px solid #d4dfe4;border-radius:9px;background:#fff;color:#172a31}
+.diraAccountPage .feedBody,.diraAccountPage .feedBody p,.diraAccountPage .feedBody strong{color:#243b43}
+.diraAccountPage .feedBody .orderTruth,.diraAccountPage .feedBody small{color:#4b6069!important}
+.diraAccountPage .accountNextAction{padding:10px;border-radius:8px;background:#edf5f7;color:#172a31}
+.diraAccountPage .accountNextAction .kicker{color:#006b7d!important}
+.diraAccountPage .accountNextAction p{color:#405861!important}
+.diraAccountPage .accountProgress{background:#f6f9fa;border:1px solid #dce5e9;border-radius:8px}
+.diraAccountPage .accountProgress li small{color:#405861}
+.diraAccountPage .accountSetupSummary{padding:10px 11px!important}
+.diraAccountPage .accountSetupSummary strong{color:#172a31}
+.diraAccountPage .accountSetupSummary small{color:#4a6069!important}
+.diraAccountPage .accountSetupBody{padding-top:10px}
+.diraAccountPage .memberSetupHeading h2{font-size:1.05rem;color:#172a31}
+.diraAccountPage .memberSetupHeading p,.diraAccountPage .memberSetupFootnote{color:#425861!important;font-size:.78rem;line-height:1.4}
+.diraAccountPage .memberSetupGrid{gap:7px}
+.diraAccountPage .memberSetupCard{padding:10px!important;border:1px solid #d6e1e5;background:#f7fafb!important}
+.diraAccountPage .memberSetupCard strong{color:#172a31}
+.diraAccountPage .memberSetupCard small{color:#4a6069!important}
+.diraAccountPage .accountDetails summary strong,.diraAccountPage .accountDetails summary small{color:#172a31}
+.diraAccountPage .accountDetails summary small{color:#4a6069!important}
+.diraAccountPage .accountFooterNote,.diraAccountPage .accountBottomActions .orderTruth{color:#52656d!important}
+.diraAccountPage .diraBuilder{margin:0;padding:12px;border:1px solid #cbd9df;border-radius:10px;background:#fff;color:#172a31;gap:10px}
+.diraAccountPage .diraBuilderHeading{align-items:center;gap:9px}
+.diraAccountPage .diraBuilderHeading h2{margin:2px 0;font-size:1.15rem;color:#172a31}
+.diraAccountPage .diraBuilderHeading p{font-size:.78rem;line-height:1.38;color:#425861}
+.diraAccountPage .diraBuilderHeading>strong{font-size:1.2rem;color:#006c65}
+.diraAccountPage .diraBuilderPackages{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.diraAccountPage .diraBuilderPackages button{min-height:54px;padding:8px;border-radius:7px;background:#f5f8f9;color:#172a31;border-color:#cbd9df}
+.diraAccountPage .diraBuilderPackages button span{font-size:.74rem;color:#253d46}
+.diraAccountPage .diraBuilderPackages button strong{font-size:.82rem;color:#075e61}
+.diraAccountPage .diraBuilderServiceList{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+.diraAccountPage .diraBuilderServiceList label{padding:7px;border-color:#d5e0e4;background:#fbfcfd}
+.diraAccountPage .diraBuilderServiceList label strong{font-size:.75rem;color:#203841}
+.diraAccountPage .diraBuilderServiceList label small{font-size:.68rem;color:#4b6069}
+.diraAccountPage .diraBuilderServiceList label>b{color:#006b65}
+.diraAccountPage .diraBuilderSubhead strong{font-size:.8rem;color:#172a31}
+.diraAccountPage .diraBuilderSubhead small{font-size:.7rem;color:#4b6069}
+.diraAccountPage .diraBuilderReceipt{padding:9px;background:#f1f6f7;border-color:#cbd9df}
+.diraAccountPage .diraBuilderReceipt>div:not(.diraBuilderSubhead){font-size:.76rem;color:#253d46}
+.diraAccountPage .diraBuilderTotal strong{font-size:1.2rem;color:#006b65}
+.diraAccountPage .diraBuilderReceipt>p{color:#654b19}
+.diraAccountPage .diraBuilderForm{gap:8px}
+.diraAccountPage .diraBuilderForm label{font-size:.75rem;color:#203841}
+.diraAccountPage .diraBuilderForm input,.diraAccountPage .diraBuilderForm textarea{min-height:39px;padding:8px 9px;border-color:#bfcfd5;background:#fff;color:#172a31;font-size:16px}
+.diraAccountPage .diraBuilderForm textarea{min-height:66px}
+.diraAccountPage .diraBuilderSubmit .button{min-height:41px;padding:9px 13px}
+.diraAccountPage .diraBuilderSubmit small,.diraAccountPage .diraConfigAudit small{color:#4b6069}
+.diraAccountPage .conversationHub{display:grid;gap:9px}
+.diraAccountPage .conversationHubHeading{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.diraAccountPage .conversationHubHeading h2{margin:3px 0;font-size:1.05rem;line-height:1.2;color:#172a31}
+.diraAccountPage .conversationHubHeading p{margin:0;color:#425861;font-size:.76rem;line-height:1.4}
+.diraAccountPage .conversationPrivate{border-color:#a9d7cd;background:#e9f7f2;color:#075c4c}
+.diraAccountPage .conversationEmpty{display:flex;align-items:center;gap:10px;padding:10px 11px;border:1px solid #d9e4e8;border-radius:8px;background:#f7fafb;color:#172a31;text-align:left}
+.diraAccountPage .conversationEmptyIcon{display:grid;place-items:center;flex:0 0 32px;width:32px;height:32px;border-radius:8px;background:#dff1f2;color:#006b7d;font-weight:900}
+.diraAccountPage .conversationEmpty strong{font-size:.8rem;color:#172a31}
+.diraAccountPage .conversationEmpty p{margin:2px 0 0;color:#4a6069!important;font-size:.72rem;line-height:1.35}
+.diraAccountPage .conversationStart{overflow:hidden;border:1px solid #cbd9df;border-radius:8px;background:#fff}
+.diraAccountPage .conversationStart>summary{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 11px;cursor:pointer;list-style:none;color:#172a31}
+.diraAccountPage .conversationStart>summary::-webkit-details-marker{display:none}
+.diraAccountPage .conversationStart>summary>span{display:grid;gap:2px}
+.diraAccountPage .conversationStart>summary strong{font-size:.8rem;color:#006b7d}
+.diraAccountPage .conversationStart>summary small{font-size:.7rem;color:#4a6069}
+.diraAccountPage .conversationStart>summary>b{color:#006b7d}
+.diraAccountPage .conversationHub .requestChoices{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;padding:7px}
+.diraAccountPage .conversationHub .requestChoice{position:relative;display:grid;align-content:start;gap:4px;min-height:64px;padding:8px;border:1px solid #d4dfe4;border-radius:7px;background:#f7fafb;color:#172a31;text-align:left}
+.diraAccountPage .conversationHub .requestChoice strong{font-size:.72rem;color:#172a31}
+.diraAccountPage .conversationHub .requestChoice span{font-size:.66rem;line-height:1.3;color:#4a6069}
+.diraAccountPage .conversationHub .requestChoice>b{display:none}
+.diraAccountPage .conversationList{display:grid;gap:5px}
+.diraAccountPage .conversationRow{display:grid;grid-template-columns:10px minmax(0,1fr) auto;align-items:center;gap:9px;padding:9px;border:1px solid #d4dfe4;border-radius:8px;background:#fff;color:#172a31;text-align:left}
+.diraAccountPage .conversationRow strong{color:#172a31}
+.diraAccountPage .conversationRow small,.diraAccountPage .conversationRow time{color:#4a6069}
+.diraAccountPage .conversationPanel{padding:12px;border:1px solid #cbd9df;border-radius:10px;background:#fff;color:#172a31}
+.diraAccountPage .conversationHeader h2{color:#172a31}
+.diraAccountPage .conversationHeader p,.diraAccountPage .messageRole,.diraAccountPage .messageComposer>small{color:#4a6069!important}
+.diraAccountPage .messageList{background:#f6f9fa;border-color:#d4dfe4}
+.diraAccountPage .messageBubble{color:#172a31}
+.diraAccountPage .messageBubble p{color:#203841}
+.diraAccountPage .messageComposer textarea{background:#fff;color:#172a31;border-color:#bfcfd5}
+.diraAccountPage .accountSubmissionSuccess{background:#e9f7f2;color:#124c40;border-color:#9ed3c6}
+.diraAccountPage .notice{color:#7a2f12}
+.diraAccountPage a:focus-visible,.diraAccountPage button:focus-visible,.diraAccountPage summary:focus-visible,.diraAccountPage input:focus-visible,.diraAccountPage textarea:focus-visible{outline:3px solid #006f82;outline-offset:2px}
+@media(max-width:700px){
+ .diraAccountPage{padding:8px 8px 82px}
+ .diraAccountPage .orderHeader{align-items:center;gap:8px}
+ .diraAccountPage .orderHeader .logo img{width:34px;height:34px}
+ .diraAccountPage .accountTopNav{gap:4px}
+ .diraAccountPage .accountTopNav .button{min-height:34px;padding:7px 8px;font-size:.69rem}
+ .diraAccountPage .accountHero{padding:11px 12px}
+ .diraAccountPage .accountHero h1{font-size:1.28rem}
+ .diraAccountPage .accountHero p{font-size:.74rem}
+ .diraAccountPage .accountQuicklinks{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}
+ .diraAccountPage .accountQuicklinks>a{grid-template-columns:1fr;gap:3px;min-height:59px;padding:7px}
+ .diraAccountPage .accountQuicklinks>a>span{grid-row:auto;font-size:.59rem}
+ .diraAccountPage .accountQuicklinks>a>strong{font-size:.68rem}
+ .diraAccountPage .accountQuicklinks>a>small{font-size:.6rem}
+ .diraAccountPage .accountConnect,.diraAccountPage .feedEmpty{align-items:stretch;flex-direction:column;padding:10px}
+ .diraAccountPage .accountConnect .actions{display:grid;grid-template-columns:1fr 1fr}
+ .diraAccountPage .feedEmpty .button{width:100%;justify-content:center}
+ .diraAccountPage .diraBuilder{padding:9px;gap:8px}
+ .diraAccountPage .diraBuilderPackages{grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+ .diraAccountPage .diraBuilderPackages button{min-height:48px;padding:6px;gap:4px}
+ .diraAccountPage .diraBuilderPackages button span{font-size:.64rem}
+ .diraAccountPage .diraBuilderPackages button strong{font-size:.7rem}
+ .diraAccountPage .diraBuilderServiceList{grid-template-columns:1fr;gap:4px}
+ .diraAccountPage .diraBuilderServiceList label{padding:6px}
+ .diraAccountPage .diraBuilderHeading>strong{font-size:1.05rem}
+ .diraAccountPage .diraBuilderForm .fieldGrid{grid-template-columns:1fr 1fr;gap:6px}
+ .diraAccountPage .conversationHub{padding:10px}
+ .diraAccountPage .conversationHubHeading h2{font-size:.98rem}
+ .diraAccountPage .conversationHubHeading p{max-width:38ch;font-size:.7rem}
+ .diraAccountPage .conversationHub .requestChoices{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .diraAccountPage .conversationHub .requestChoice{min-height:58px}
+ .diraAccountPage .conversationHub .requestChoice strong{font-size:.7rem}
+ .diraAccountPage .conversationHub .requestChoice span{font-size:.63rem}
+ .diraAccountPage .accountSection{padding:10px}
+ .diraAccountPage .accountProgress{grid-template-columns:1fr;gap:0}
+}
+@media(max-width:390px){
+ .diraAccountPage .accountQuicklinks>a>small{display:none}
+ .diraAccountPage .diraBuilderForm .fieldGrid{grid-template-columns:1fr}
+ .diraAccountPage .conversationHubHeading{align-items:flex-start}
+}
