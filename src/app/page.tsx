@@ -7,36 +7,29 @@ import ServiceGuide from "@/app/ServiceGuide";
 import { DEFAULT_DIRA_CATALOGUE } from "@/lib/dira-catalogue";
 import { trackDiraJourney } from "@/lib/firebase/journey-analytics";
 
+const catalogue = DEFAULT_DIRA_CATALOGUE.filter((item) => item.published).sort((a, b) => a.sortOrder - b.sortOrder);
 const packages = [
   {
     id: "package-novice",
-    audience: "I’m getting started",
-    outcome: "Build a credible first identity.",
-    accent: "novice",
+    name: "Novice Brand Package",
+    description: "For startups and small businesses: basic logo, colour, font pairing and simple layout. Published price P3,200; scope and any price adjustment can be discussed and agreed before approval.",
+    price: 3200,
   },
   {
     id: "package-elevate",
-    audience: "I’m ready to grow",
-    outcome: "Bring consistency to a growing business.",
-    accent: "elevate",
+    name: "Elevate Brand Package",
+    description: "For growing businesses: standard logo, colour, typography, basic icon set, graphic elements and layout guide. Published price P5,200; scope and any price adjustment can be discussed and agreed before approval.",
+    price: 5200,
   },
   {
     id: "package-elite",
-    audience: "I’m established",
-    outcome: "Connect every part of an established brand.",
-    accent: "elite",
+    name: "Elite Brand Package",
+    description: "For established businesses: full logo suite, colour and typography systems, custom iconography, graphic system, photography direction, applicable illustration and full layout/composition. Published price P12,500; scope and any price adjustment can be discussed and agreed before approval.",
+    price: 12500,
   },
 ] as const;
 
-const stages = [
-  ["01", "Define your identity", "Build a recognisable brand system."],
-  ["02", "Establish your presence", "Show up clearly across key touchpoints."],
-  ["03", "Structure your operations", "Make the business work more effectively."],
-  ["04", "Connect with your market", "Reach the people your business serves."],
-  ["05", "Optimise for growth", "Find opportunities and move forward."],
-] as const;
-
-const catalogue = DEFAULT_DIRA_CATALOGUE.filter((item) => item.published).sort((a, b) => a.sortOrder - b.sortOrder);
+const services = catalogue.filter((item) => item.kind === "service");
 const guideServices = catalogue.map((item) => ({
   id: item.id,
   name: item.name,
@@ -49,159 +42,99 @@ const guideServices = catalogue.map((item) => ({
   featured: item.featured,
 }));
 
-function requestHref(item: (typeof catalogue)[number]) {
-  const key = item.kind === "package" ? "package" : "service";
-  return `/account?${key}=${encodeURIComponent(item.id)}#project-builder`;
-}
+const money = (amount: number) => "P" + amount.toLocaleString("en-BW");
 
 export default function Home() {
-  const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState<"services" | "packages" | "all">("services");
-  const [showAll, setShowAll] = useState(false);
+  const [customOpen, setCustomOpen] = useState(false);
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
 
   useEffect(() => {
     void trackDiraJourney("public_visit");
     void trackDiraJourney("catalogue_view");
   }, []);
 
-  useEffect(() => {
-    const urls = catalogue.map((item) => item.imageUrl).filter((url): url is string => Boolean(url));
-    if (!urls.length || !("serviceWorker" in navigator)) return;
-    void navigator.serviceWorker.ready.then((registration) => {
-      registration.active?.postMessage({ type: "CACHE_MEDIA", urls });
-    }).catch(() => {
-      // Offline media preparation is progressive enhancement; browsing remains available.
-    });
-  }, []);
+  const selectedTotal = useMemo(
+    () => services.filter((service) => selectedServices.includes(service.id)).reduce((sum, service) => sum + (service.priceFrom ?? 0), 0),
+    [selectedServices],
+  );
 
-  const visibleItems = useMemo(() => {
-    const query = search.trim().toLowerCase();
-    return catalogue.filter((item) => {
-      const matchesType = filter === "all" || item.kind === (filter === "packages" ? "package" : "service");
-      const matchesSearch = !query || [item.name, item.category, item.description].some((value) => value.toLowerCase().includes(query));
-      return matchesType && matchesSearch;
-    });
-  }, [filter, search]);
+  function toggleService(id: string) {
+    setSelectedServices((current) => current.includes(id) ? current.filter((value) => value !== id) : [...current, id]);
+  }
 
-  const displayedItems = showAll || search.trim() ? visibleItems : visibleItems.slice(0, 6);
-
-  const packageItems = packages.flatMap((path) => {
-    const item = catalogue.find((entry) => entry.id === path.id);
-    return item ? [{ ...path, item }] : [];
-  });
+  function continueToAccount() {
+    if (!selectedServices.length) return;
+    const query = new URLSearchParams({ services: selectedServices.join(",") });
+    window.location.assign("/account?" + query.toString() + "#project-builder");
+  }
 
   return (
-    <main className="diraHome">
-      <div className="diraHomeTopbar">
-        <div className="diraHomeWrap">
-          <span>DIRA CREATIVE <i>·</i> BRAND &amp; BUSINESS DEVELOPMENT</span>
-          <span>GABORONE, BOTSWANA</span>
-        </div>
-      </div>
-
-      <header className="diraHomeHeader">
-        <div className="diraHomeWrap diraHomeNav">
-          <Link href="/" className="diraHomeLogo" aria-label="Dira Creative home"><DiraBrand /></Link>
-          <nav aria-label="Main navigation">
-            <a href="#packages">Packages</a>
-            <a href="#services">Services</a>
-            <Link href="/account">Client account</Link>
-            <Link href="/account?new=1#project-builder" className="diraHomeNavCta">Start a project <span aria-hidden="true">↗</span></Link>
-          </nav>
-        </div>
+    <main className="diraCompactStore">
+      <header className="diraCompactHeader">
+        <Link href="/" aria-label="Dira Creative home" className="diraCompactLogo"><DiraBrand /></Link>
+        <Link href="/account" className="diraCompactAccount">Client account <span aria-hidden="true">↗</span></Link>
       </header>
 
-      <section className="diraHomeHero">
-        <div className="diraHomeWrap diraHomeHeroGrid">
-          <div className="diraHomeHeroCopy">
-            <span className="diraHomeEyebrow"><i /> DIRA CREATIVE · BRAND &amp; BUSINESS DEVELOPMENT</span>
-            <h1>Brands with clarity. <em>Businesses with direction.</em></h1>
-            <p>Building brands that communicate clearly, operate efficiently, and scale effectively.</p>
-            <div className="diraHomeHeroActions">
-              <a className="diraHomePrimary" href="#packages">Find your starting point <span aria-hidden="true">↘</span></a>
-              <a className="diraHomeTextLink" href="#services">Explore individual services <span aria-hidden="true">→</span></a>
-            </div>
-            <div className="diraHomeHeroNote"><span>STORE</span> Packages · Individual services · One project brief</div>
-          </div>
-          <div className="diraHomeHeroSignal" aria-label="Dira connects brand, business operations and growth">
-            <span>ONE CONNECTED BUSINESS JOURNEY</span>
-            <strong>Brand <i>→</i> Operations <i>→</i> Growth</strong>
-            <small>Clear identity. Practical systems. Better direction.</small>
-          </div>
-        </div>
+      <section className="diraCompactIntro">
+        <span>DIRA CREATIVE · BRAND &amp; BUSINESS DEVELOPMENT</span>
+        <h1>Build a brand with direction.</h1>
+        <p>Choose a brand package or build your own from individual services.</p>
       </section>
 
-      <section className="diraHomePackages" id="packages">
-        <div className="diraHomeWrap">
-          <div className="diraHomeSectionHeading">
-            <div><span className="diraHomeSectionKicker">A CLEAR PLACE TO START</span><h2>Choose the stage you’re at.</h2></div>
-            <p>Three practical brand packages. Choose the closest fit; we’ll confirm the right scope together before you approve anything.</p>
-          </div>
-          <div className="diraHomePackageGrid">
-            {packageItems.map(({ item, audience, outcome, accent }, index) => (
-              <article className={`diraHomePackage diraHomePackage-${accent}`} key={item.id}>
-                <div className="diraHomePackageTop"><span>0{index + 1} · {audience}</span></div>
-                <h3>{item.name}</h3>
-                <p className="diraHomePackageOutcome">{outcome}</p>
-                <p className="diraHomePackageDescription">{item.description}</p>
-                <div className="diraHomePackageBottom">
-                  <strong>{item.priceLabel}</strong>
-                  <Link href={requestHref(item)}>Choose this package <span aria-hidden="true">↗</span></Link>
-                </div>
-              </article>
-            ))}
-          </div>
-          <p className="diraHomePriceNote">Prices in BWP. Scope and any adjustments are agreed before approval. Enquiries do not take payment.</p>
+      <section className="diraCompactOffers" aria-label="Brand packages">
+        <div className="diraCompactMeta">Prices in BWP · scope agreed before approval</div>
+        <div className="diraCompactPackageGrid">
+          {packages.map((item, index) => (
+            <article className={"diraCompactPackage diraCompactPackage" + (index + 1)} key={item.id}>
+              <div className="diraCompactPackageLabel">BRAND PACKAGE <span>0{index + 1}</span></div>
+              <h2>{item.name}</h2>
+              <p>{item.description}</p>
+              <div className="diraCompactPackageAction">
+                <strong>{money(item.price)}</strong>
+                <Link href={"/account?package=" + item.id + "#project-builder"}>Add to enquiry <span aria-hidden="true">↗</span></Link>
+              </div>
+            </article>
+          ))}
         </div>
+        <button type="button" className="diraCompactCustomButton" onClick={() => setCustomOpen(true)}>
+          <span><small>CREATE YOUR OWN</small><strong>Build a custom package</strong><em>Select individual services and combine them into one proposal.</em></span>
+          <b aria-hidden="true">↗</b>
+        </button>
+        <p className="diraCompactScopeNote">Your selections and indicative total continue into your private client account. Dira reviews the scope and confirms any agreed adjustment before approval. No payment is taken here.</p>
       </section>
 
-      <section className="diraHomeServices" id="services">
-        <div className="diraHomeWrap">
-          <div className="diraHomeSectionHeading">
-            <div><span className="diraHomeSectionKicker">THE FULL CAPABILITY</span><h2>Individual services.</h2></div>
-            <p>Build a focused brief or combine several services into one project enquiry. Every published service remains available below.</p>
-          </div>
-          <div className="diraHomeCatalogueTools">
-            <label className="diraHomeSearch"><span aria-hidden="true">⌕</span><input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search services and packages" aria-label="Search services and packages" /></label>
-            <div className="diraHomeFilters" role="group" aria-label="Catalogue filter">
-              {([["services", "Services"], ["packages", "Packages"], ["all", "All options"]] as const).map(([value, label]) => (
-                <button key={value} type="button" className={filter === value ? "is-active" : ""} aria-pressed={filter === value} onClick={() => setFilter(value)}>{label}</button>
-              ))}
+      {customOpen && (
+        <div className="diraCustomBackdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setCustomOpen(false); }}>
+          <section className="diraCustomModal" role="dialog" aria-modal="true" aria-labelledby="dira-custom-title">
+            <header className="diraCustomModalHeader">
+              <div><span>INDIVIDUAL SERVICES</span><h2 id="dira-custom-title">Build your package.</h2><p>Select the services you need. Your running total updates as you choose.</p></div>
+              <button type="button" aria-label="Close custom package builder" onClick={() => setCustomOpen(false)}>×</button>
+            </header>
+            <div className="diraCustomServiceList">
+              {services.map((service) => {
+                const checked = selectedServices.includes(service.id);
+                return (
+                  <label className={checked ? "isSelected" : ""} key={service.id}>
+                    <input type="checkbox" checked={checked} onChange={() => toggleService(service.id)} />
+                    <span className="diraCustomServiceText"><strong>{service.name}</strong><small>{service.description}</small></span>
+                    <b>{service.priceLabel}</b>
+                  </label>
+                );
+              })}
             </div>
-          </div>
-          <div className="diraHomeResultLine"><strong>{visibleItems.length} {visibleItems.length === 1 ? "option" : "options"}</strong><span>Prices in BWP · scope agreed before approval</span></div>
-          {visibleItems.length ? (
-            <div className="diraHomeServiceList">
-              {displayedItems.map((item) => (
-                <article className="diraHomeService" key={item.id}>
-                  <div className="diraHomeServiceCopy"><span>{item.kind === "package" ? "BRAND PACKAGE" : item.category.toUpperCase()}</span><h3>{item.name}</h3><p>{item.description}</p></div>
-                  <div className="diraHomeServiceAction"><strong>{item.priceLabel}</strong><Link href={requestHref(item)}>Add to enquiry <span aria-hidden="true">↗</span></Link></div>
-                </article>
-              ))}
-            </div>
-          ) : (
-            <div className="diraHomeEmpty"><strong>No matching options.</strong><button type="button" onClick={() => { setSearch(""); setFilter("services"); }}>Clear search</button></div>
-          )}
-          {visibleItems.length > 6 && !search.trim() && <button type="button" className="diraHomeShowAll" onClick={() => setShowAll((value) => !value)}>{showAll ? "Show fewer services" : `View all ${visibleItems.length} services`} <span aria-hidden="true">{showAll ? "↑" : "↓"}</span></button>}\n          <div className="diraHomeCatalogueFoot"><span>Combine services in one brief.</span><Link href="/account?new=1#project-builder">Build your project enquiry <span aria-hidden="true">→</span></Link></div>
+            <footer className="diraCustomModalFooter">
+              <div><small>{selectedServices.length} service{selectedServices.length === 1 ? "" : "s"} selected</small><strong>{money(selectedTotal)}</strong></div>
+              <button type="button" disabled={!selectedServices.length} onClick={continueToAccount}>Continue in my account <span aria-hidden="true">↗</span></button>
+            </footer>
+          </section>
         </div>
-      </section>
-
-      <footer className="diraHomeFooter">
-        <div className="diraHomeWrap diraHomeFooterInner">
-          <div><DiraBrand /><p>Building brands that communicate clearly, operate efficiently, and scale effectively.</p></div>
-          <nav aria-label="Footer navigation"><Link href="/account">Client account</Link><Link href="/patterns">App installation</Link><Link href="/account?new=1#project-builder">Start a project</Link></nav>
-          <small>© {new Date().getFullYear()} Dira Creative · A Royalty Holdings (Pty) Ltd company</small>
-        </div>
-      </footer>
+      )}
 
       <ServiceGuide
         view="shop"
         services={guideServices}
         requestCount={0}
-        onChooseService={(service) => {
-          const key = service.id.startsWith("package-") ? "package" : "service";
-          window.location.assign(`/request?${key}=${encodeURIComponent(service.name)}`);
-        }}
+        onChooseService={(service) => window.location.assign("/account?services=" + encodeURIComponent(service.id) + "#project-builder")}
         onOpenAccount={() => window.location.assign("/account")}
         onOpenAdmin={() => window.location.assign("/admin")}
         onOpenStorefront={() => window.scrollTo({ top: 0, behavior: "smooth" })}
