@@ -69,7 +69,7 @@ Use the fixed package prices above. Discuss and agree any scope adjustment or ne
 - Preserve existing request/account/owner interactions, UploadThing upload flows, receipt rendering, local/offline shell and responsive behavior unless a demonstrated defect requires a narrow authorized fix.
 - Do not rewrite `src/app/pwa-register.tsx` install mechanics or weaken `scripts/verify-identity.mjs` install regression guards.
 - The approved Firebase project is `the-wall-ab746` (Firestore Native, `(default)`, `africa-south1`). The public web configuration is recorded in `.env.example`; server-side routes require a matching Firebase service-account JSON in `FIREBASE_ADMIN_KEY` and `FIREBASE_PROJECT_ID=the-wall-ab746`. Never commit service-account credentials or `ADMIN_PASSWORD`.
-- The one-word owner access environment variable is exactly `ADMIN_PASSWORD`. The login route must read `process.env.ADMIN_PASSWORD`; `.env.example` and runtime guidance must use the same key. Do not introduce or reference project-specific alternatives such as `DIRA_OPERATIONS_WORD` or `THE_PLUG_OPERATIONS_WORD`.
+- The one-word owner access environment variable is exactly `ADMIN_PASSWORD`. The login route must read `process.env.ADMIN_PASSWORD`; `.env.example` and runtime guidance must use the same key. Do not add alternative owner-password environment variables.
 - Use UploadThing for required media uploads. Do not introduce Firebase Storage.
 
 ## Current persistence/security boundary
