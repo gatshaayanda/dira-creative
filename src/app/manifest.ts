@@ -1,9 +1,7 @@
 import type { MetadataRoute } from "next";
 
 const diraLogoIcons = [
-  { src: "/diralogo.jpeg", sizes: "192x192", type: "image/jpeg", purpose: "any" as const },
-  { src: "/diralogo.jpeg", sizes: "512x512", type: "image/jpeg", purpose: "any" as const },
-  { src: "/dira-icon.svg", sizes: "512x512", type: "image/svg+xml", purpose: "any" as const }
+  { src: "/diralogo.jpeg", sizes: "715x715", type: "image/jpeg", purpose: "any" as const }
 ];
 
 export default function manifest(): MetadataRoute.Manifest {
